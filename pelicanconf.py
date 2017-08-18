@@ -4,11 +4,11 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Janko Slavič'
 SITENAME = 'pypinm'
-SITESUBTITLE = u'Essential Tools for Working with Data'
-SITEURL = ''
-SITESUBURL = 'pypinm/'
+SITESUBTITLE = u'Programiranje in numerične metode'
+SITEURL = 'https://jankoslavic.github.io/pypinm.io/'
+SITESUBURL = ''
 PATH = 'content'
-TIMEZONE = 'America/Los_Angeles'
+TIMEZONE = 'France/Paris'
 DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
@@ -55,9 +55,9 @@ TWITTER_USERNAME = 'jankoslavic'
 GITHUB_USERNAME = 'jankoslavic'
 #STACKOVERFLOW_ADDRESS = 'http://stackoverflow.com/users/2937831/jakevdp'
 AUTHOR_WEBSITE = 'http://ladisk.si/~slavic'
-AUTHOR_BLOG = 'http://jankoslavic.github.io'
+AUTHOR_BLOG = 'http://jankoslavic.github.io/pypinm.io'
 #AUTHOR_CV = "http://staff.washington.edu/jakevdp/media/pdfs/CV.pdf"
-SHOW_ARCHIVES = True
+SHOW_ARCHIVES = False
 SHOW_FEED = False  # Need to address large feeds
 
 ENABLE_MATHJAX = True
@@ -66,5 +66,5 @@ STATIC_PATHS = ['images', 'fig', 'videos', 'downloads', 'favicon.ico']
 
 # Footer info
 
-LICENSE_URL = "https://github.com/jakevdp/jakevdp.github.io-source/blob/master/LICENSE"
+LICENSE_URL = "https://github.com/jankoslavic/pypinm/blob/master/LICENSE"
 LICENSE = "MIT"

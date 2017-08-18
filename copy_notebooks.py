@@ -18,11 +18,7 @@ Template: {template}
 {{% notebook notebooks/{notebook_file} cells[{cells}] %}}
 """
 
-INTRO_TEXT = """This website contains the full text of the [Python Data Science Handbook](http://shop.oreilly.com/product/0636920034919.do) by Jake VanderPlas; the content is available [on GitHub](https://github.com/jakevdp/PythonDataScienceHandbook) in the form of Jupyter notebooks.
-
-The text is released under the [CC-BY-NC-ND license](https://creativecommons.org/licenses/by-nc-nd/3.0/us/legalcode), and code is released under the [MIT license](https://opensource.org/licenses/MIT).
-
-If you find this content useful, please consider supporting the work by [buying the book](http://shop.oreilly.com/product/0636920034919.do)!
+INTRO_TEXT = """Ta domača stran je pripravljena na podlagi spletnega učbenika [Programiranje in numerične metode v ekosistemu Pythona](http://shop.oreilly.com/product/0636920034919.do) by Jake VanderPlas; the content is available [on GitHub](https://github.com/jankoslavic/pypinm) v obliki Jupyter notebookov.
 """
 
 

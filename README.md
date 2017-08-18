@@ -32,5 +32,7 @@ $ pelican content --debug --autoreload  --output output --settings pelicanconf.p
 
 To generate the production site in the output directory:
 ```
-$ pelican content --output output --settings publishconf.py
+$ pelican content -o output -s pelicanconf.py
+$ ghp-import output
+$ git push origin gh-pages
 ```
