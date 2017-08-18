@@ -25,14 +25,14 @@ Copy the notebook content to the right location (this script also modifies some 
 $ python copy_notebooks.py
 ```
 
-To generate the content for your debug site in the output directory:
-```
-$ pelican content --debug --autoreload  --output output --settings pelicanconf.py
-```
-
 To generate the production site in the output directory:
 ```
 $ pelican content -o output -s pelicanconf.py
 $ ghp-import output
 $ git push origin gh-pages
+```
+
+To generate the content for your debug site in the output directory:
+```
+$ pelican content --debug --autoreload  --output output --settings pelicanconf.py
 ```

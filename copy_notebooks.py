@@ -18,7 +18,9 @@ Template: {template}
 {{% notebook notebooks/{notebook_file} cells[{cells}] %}}
 """
 
-INTRO_TEXT = """Ta domača stran je pripravljena na podlagi spletnega učbenika [Programiranje in numerične metode v ekosistemu Pythona](http://shop.oreilly.com/product/0636920034919.do) by Jake VanderPlas; the content is available [on GitHub](https://github.com/jankoslavic/pypinm) v obliki Jupyter notebookov.
+INTRO_TEXT = """Ta domača stran je pripravljena na podlagi spletnega učbenika 
+[Programiranje in numerične metode v ekosistemu Pythona](https://github.com/jankoslavic/pypinm), 
+ki ga je pripravil Janko Slavič v obliki Jupyter notebookov.
 """
 
 
