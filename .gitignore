@@ -1,0 +1,4 @@
+content/pages/*.md
+output
+content/fig
+content/notebooks
