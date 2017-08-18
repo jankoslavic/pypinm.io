@@ -1,4 +1,4 @@
 content/pages/*.md
 output
-content/fig
+content/figures
 content/notebooks
