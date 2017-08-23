@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Janko Slavič'
-SITENAME = 'pypinm'
-SITESUBTITLE = u'Programiranje in numerične metode'
+SITENAME = 'Programiranje in numerične metode v ekosistemu Pythona'
+SITESUBTITLE = u'Fakulteta za strojništvo, Univerza v Ljubljani'
 SITEURL = 'https://jankoslavic.github.io/pypinm.io/'
 SITESUBURL = 'pypinm.io'
 PATH = 'content'
