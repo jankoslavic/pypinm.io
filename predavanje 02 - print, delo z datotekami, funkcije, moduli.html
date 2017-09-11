@@ -1815,12 +1815,12 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>mode</code> je lahko:</p>
 <ul>
-<li>'r' - branje (read)</li>
-<li>'w' - pisanje (write). Če datoteka ne obstaja jo ustvari.</li>
-<li>'a' - dodaj (append) na koncu datoteke</li>
+<li>'r' - datoteko bomo brali (read)</li>
+<li>'w' - v datoteko bomo pisali (write). Če datoteka ne obstaja, jo ustvari. Če obstaja, pobriše njeno vsebino.</li>
+<li>'a' - novo vsebino bomo dodajali (append) na koncu obstoječe datoteke</li>
 <li>'r+' - branje in pisanje v obstoječo datoteko</li>
-<li>'w+' - isto kot 'r+' ampak, če ni datoteke, jo ustvari     </li>
-<li>'a+' - isto kot 'w+' ampak se podatki dodajo na koncu</li>
+<li>'w+' - enako kot 'r+', le da ustvari datoteko, če še ne obstaja     </li>
+<li>'a+' - enako kot 'w+', le da piše na konec datoteke</li>
 </ul>
 <p><a href="https://docs.python.org/3.4/tutorial/inputoutput.html#reading-and-writing-files">docs.python.org</a></p>
 </div>
@@ -2025,7 +2025,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kadar programiramo kaj bolj zahtevnega, je treba kontrolirati morebitne napake. Če na primer uporabnik vnese kaj takega:</p>
+<p>Kadar programiramo kaj bolj zahtevnega, je treba prestreči morebitne napake. Če na primer uporabnik vnese kaj takega:</p>
 </div>
 </div>
 </div>
@@ -2097,7 +2097,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pametno je preverjati podatke in potem dvigniti izjeme, ki jih funkcija, katera izvaja trenutno kodo, lahko ujame v <code>try except</code> stavku:</p>
+<p>Pametno je preverjati podatke in potem sprožiti izjeme, ki jih funkcija, kai izvaja trenutno kodo, lahko ujame v stavku <code>try except</code>:</p>
 </div>
 </div>
 </div>
@@ -2136,7 +2136,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vključimo izjemo sedaj v <code>try except</code> stavek:</p>
+<p>Vključimo izjemo sedaj v stavek <code>try except</code>:</p>
 </div>
 </div>
 </div>
@@ -2285,7 +2285,7 @@ out
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Lahko dodajamo tudi <code>if</code> stavke:</p>
+<p>Lahko dodajamo tudi izraze <code>if</code>:</p>
 </div>
 </div>
 </div>
@@ -2459,7 +2459,7 @@ out
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>V kolikor ni <code>return</code> stavka, potem funkcija ne vrne ničesar (oz vrne <code>None</code> objekt).</p>
+<p>Če stavka <code>return</code> ni, funkcija ne vrne ničesar (oz vrne objekt <code>None</code>).</p>
 <p>Prvi stavek je lahko t. i. <em>docstring</em>: kratek - enovrstični opis funkcije. Parametri imajo lahko tudi privzete vrednosti.</p>
 </div>
 </div>
@@ -2917,7 +2917,7 @@ g
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://docs.python.org/3.4/tutorial/controlflow.html#lambda-expressions">docs.python.org</a></p>
-<p>Pogosto imamo potrebo po kratki funkciji, ki ne potrebuje niti imena (zato <em>anonimna</em>). Anonimno funkcjo definiramo z besedo <code>lambda</code>:</p>
+<p>Pogosto imamo potrebo po kratki funkciji, ki ne potrebuje niti imena (zato <em>anonimna</em>). Anonimno funkcijo definiramo z besedo <code>lambda</code>:</p>
 </div>
 </div>
 </div>
@@ -3095,7 +3095,7 @@ Tako pisanje kot branje je zelo hitro (pozneje bomo tako shranjevali npr. velike
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ogljemo si primer:</p>
+<p>Oglejmo si primer:</p>
 </div>
 </div>
 </div>

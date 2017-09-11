@@ -1805,10 +1805,10 @@ $$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznak zapisal
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="affa97c7-0f5b-48e8-b999-6ec13b8e6f40"></div>
+<div id="e1ed16b1-8f00-4635-aa13-0820e80056aa"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#affa97c7-0f5b-48e8-b999-6ec13b8e6f40');
+var element = $('#e1ed16b1-8f00-4635-aa13-0820e80056aa');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "bf6d273f3e0847ed851bed8b1130b3cc"}
@@ -2520,8 +2520,10 @@ $$e_i=y_i - f(x_i)$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogljemo si kako uporabimo knjižnico <code>numpy</code> za polinomsko aproksimacijo.</p>
-<p>Najprej uporabimo funkcijo <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html">polyfit</a>, ki zahteva tri parametre: <code>x</code>, <code>y</code> in <code>deg</code>. <code>x</code> in <code>y</code> predstavljata tabelo podatkov, <code>deg</code> pa stopnjo polinoma (za podrobnejši opis (npr. uporabe uteži pri aproksimaciji) glejte dokumentacijo funkcije).</p>
-<p>Funkcija <code>polyfit</code> vrne koeficiente polinoma (najprej za najvišji red).</p>
+<p>Najprej uporabimo funkcijo <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html"><code>polyfit</code></a>:</p>
+<p><code>polyfit(x, y, deg, rcond=None, full=False, w=None, cov=False)</code>,</p>
+<p>ki zahteva tri parametre: <code>x</code> in <code>y</code> predstavljata tabelo podatkov (lahko tudi v obliki seznamov vektorjev), <code>deg</code> pa stopnjo polinoma. Ostali parametri so opcijski (npr. <code>w</code> za uporaba uteži pri aproksimaciji).</p>
+<p>Funkcija <code>polyfit</code> vrne seznam koeficientov polinoma (najprej za najvišji red); rezultat je lahko tudi seznam seznamov (če so vhodni podatki seznam vektorjev).</p>
 </div>
 </div>
 </div>
@@ -2580,7 +2582,16 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ko imamo koeficiente, lahko polinom definiramo s klicanjem objekta <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html#numpy.poly1d">poly1d</a>, ki vrne instanco s pomočjo katere lahko izračunamo vrednosti v odvisnosti od <code>x</code> ali pa npr. izračunamo ničle.</p>
+<p>Ko imamo koeficiente, lahko polinom definiramo s klicanjem objekta <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html#numpy.poly1d"><code>poly1d</code></a>:</p>
+<p><code>poly1d(c_or_r, r=False, variable=None)</code>,</p>
+<p>kjer <code>c_or_r</code> predstavljajo seznam koeficientov polinoma oz. ničle polinoma v primeru, da je <code>r=True</code>. Funkcija vrne instanco s pomočjo katere lahko izračunamo vrednosti v odvisnosti od <code>x</code> ali pa npr. ničle.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer:</p>
 </div>
 </div>
@@ -3058,7 +3069,9 @@ IgAAIFAEAAAE6v8Bj+mA2gJca4wAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Aprksimacijo z nelinearno funkcijo bomo izvedli s pomočjo <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">scipy.optimize.curve_fit</a>. Funkcija <code>curve_fit</code> zahteva tri parametre: <code>f, xdata, ydata</code>. <code>f</code> predstavlja definicijo pythom funkcije katere parametre spreminjamo z uporabo nelinearne metode najmanjših kvadratov. <code>xdata</code> in <code>ydata</code> predstavljata tabelo podatkov. Priporočeno je tudi, da definiramo približek iskanih parametrov <code>p0</code>.</p>
+<p>Aprksimacijo z nelinearno funkcijo bomo izvedli s pomočjo <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html"><code>scipy.optimize.curve_fit</code></a>:</p>
+<p><code>curve_fit(f, xdata, ydata, p0=None, sigma=None, absolute_sigma=False, check_finite=True, bounds=(-inf, inf), method=None, jac=None, **kwargs)</code>,</p>
+<p>katera zahteva tri parametre: <code>f</code> predstavlja definicijo pythom funkcije katere parametre spreminjamo z uporabo nelinearne metode najmanjših kvadratov. <code>xdata</code> in <code>ydata</code> predstavljata tabelo podatkov. Priporočeno je tudi, da definiramo približek iskanih parametrov <code>p0</code>. Ostali parametri so opcijski.</p>
 <p>Funkcija vrne dva parametra <code>popt</code>, ki predstavlja najdene parametre ter <code>pcov</code>, ki ocenjeno kovarianco <code>popt</code>.</p>
 </div>
 </div>
@@ -3505,7 +3518,9 @@ JQlACCF8lCQAIYTwUZIAhBDCR/0/tzg11f5gJAMAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Poglejmo si objekt <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html">UnivariateSpline</a>, ki omogoča tako interpolacijo kot aproksimacijo z zlepki.</p>
+<p>Poglejmo si objekt <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html"><code>UnivariateSpline</code></a>, ki omogoča tako interpolacijo kot aproksimacijo z zlepki:</p>
+<p><code>UnivariateSpline(x, y, w=None, bbox=[None, None], k=3, s=None, ext=0, check_finite=False)</code></p>
+<p>parametra <code>x</code> in <code>y</code> predstavljata tabelo podatkov.</p>
 </div>
 </div>
 </div>
@@ -3513,11 +3528,19 @@ JQlACCF8lCQAIYTwUZIAhBDCR/0/tzg11f5gJAMAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Aproksimacijo z zlepki izvedemo tako, da ob tabeli podatkov <code>x</code> in <code>y</code> definiramo še parameter <code>s</code>. Parameter <code>s</code> določa vrednost, ki je vsota kvadrata razlik aproksimacijskega zlepka in aproksimacijskih točk ne sme preseči:</p>
+<p>Opcijski parameter <code>s</code> določa vrednost, ki je vsota kvadrata razlik aproksimacijskega zlepka in aproksimacijskih točk ne sme preseči:</p>
 <p><code>sum((w[i] * (y[i]-spl(x[i])))**2, axis=0) <= s</code></p>
 <p><code>w</code> je utež.</p>
 <p>Če definiramo <code>s=0</code>, zahtevamo interpolacijo.</p>
 <p>Parameter <code>k</code> definira stopnjo polinomskega zlepka (privzeto je <code>k=3</code>).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Aproksimacijo z zlepki izvedemo tako, da ob tabeli podatkov <code>x</code> in <code>y</code> definiramo še parameter <code>s</code>.</p>
 </div>
 </div>
 </div>
