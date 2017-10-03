@@ -3,3 +3,4 @@ content/pages/*.md
 output
 content/figures
 content/notebooks
+refresh2github.bat
