@@ -2592,10 +2592,10 @@ $$P_{n-1}(x)=\sum_{i=0}^{n-1}y_i\,l_i(x),$$</p>
 </div>
 <div class="output_area">
 <div class="prompt"></div>
-<div id="c71e2f99-d291-4962-b388-922aff5d8478"></div>
+<div id="283c85fc-0e31-4285-aebd-78c8cb895ab1"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c71e2f99-d291-4962-b388-922aff5d8478');
+var element = $('#283c85fc-0e31-4285-aebd-78c8cb895ab1');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "c7f797d8ce0c41c8b3a604449aa93cb1"}
@@ -3798,7 +3798,7 @@ Sledi, da lahko v vsaki točki tanek nosilec popišemo s polinomom tretje stopnj
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj $n-1$ enačb določimo iz predpostavke, da je nosilec v znanih točkah členkasto vpet in se torej moment v členkih ne spremeni; to pomeni, da je 2. odvod v členkih zvezen (to imenujemo $C^2$ zveznost):</p>
-$$\lim_{x\rightarrow x_i^-}f''(x)=\lim_{x\rightarrow x_i^+}f''(x)$$
+<p>$$\lim_{x\rightarrow x_i^-}f''(x)=\lim_{x\rightarrow x_i^+}f''(x)$$</p>
 </div>
 </div>
 </div>
@@ -3807,7 +3807,8 @@ $$\lim_{x\rightarrow x_i^-}f''(x)=\lim_{x\rightarrow x_i^+}f''(x)$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preostali 2 neznanki pri naravnih kubičnih zlepkih določimo iz pogoja, da je moment na koncih enak nič (členkasto vpetje):</p>
-$$f''(x_{0})=0\qquad\textrm{in}\qquad f''(x_{n})=0$$<p>Izpeljava je natančneje prikazana v knjigi Kiusalaas J: Numerical Methods in Engineering with Python 3, 2013, stran 120 (glejte tudi J. Petrišič: Interpolacija, Fakulteta za strojništvo, 1999); podrobna izpeljava presega obseg te knjige. Tukaj si bomo pogledali samo končni rezultat, ki ga lahko izpeljemo ob zgornjih pogojih v primeru ekvidistantne delitve $h=x_{i+1}-x_i$ (takim zlepkom rečemo, da so <em>uniformni</em>).</p>
+<p>$$f''(x_{0})=0\qquad\textrm{in}\qquad f''(x_{n})=0$$</p>
+<p>Izpeljava je natančneje prikazana v knjigi Kiusalaas J: Numerical Methods in Engineering with Python 3, 2013, stran 120 (glejte tudi J. Petrišič: Interpolacija, Fakulteta za strojništvo, 1999); podrobna izpeljava presega obseg te knjige. Tukaj si bomo pogledali samo končni rezultat, ki ga lahko izpeljemo ob zgornjih pogojih v primeru ekvidistantne delitve $h=x_{i+1}-x_i$ (takim zlepkom rečemo, da so <em>uniformni</em>).</p>
 </div>
 </div>
 </div>
@@ -3816,13 +3817,15 @@ $$f''(x_{0})=0\qquad\textrm{in}\qquad f''(x_{n})=0$$<p>Izpeljava je natančneje 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če uporabimo zapis  $k_i = f''_{i,i+1}$ ($i=0,1,\dots,n-1$) lahko izpeljemo:</p>
-$$
+<p>$$
 f_{i,i+1}(x)=\frac{k_i}{6}\left(\frac{(x-x_{i+1})^3}{h}-(x-x_{i+1})\,h\right)
 -\frac{k_{i+1}}{6}\left(\frac{(x-x_{i})^3}{h}-(x-x_{i})\,h\right)
 +\frac{y_i\,(x-x_{i+1})-y_{i+1}\,(x-x_{i})}{h}
-$$<p>kjer je $h=x_i-x_{i+1}$ in $k_i$ določimo iz sistema linearnih enačb:</p>
-$$k_{i-1} + 4 k_{i} + k_{i+1}  =  \frac{6}{h^2} \left(y_{i-1} -2 y_{i} +y_{i+1} \right).$$<p>Če na koncih ni momenta, velja:</p>
-$$k_0=k_n=0.$$
+$$</p>
+<p>kjer je $h=x_i-x_{i+1}$ in $k_i$ določimo iz sistema linearnih enačb:</p>
+<p>$$k_{i-1} + 4 k_{i} + k_{i+1}  =  \frac{6}{h^2} \left(y_{i-1} -2 y_{i} +y_{i+1} \right).$$</p>
+<p>Če na koncih ni momenta, velja:</p>
+<p>$$k_0=k_n=0.$$</p>
 </div>
 </div>
 </div>
@@ -3839,7 +3842,8 @@ $$k_0=k_n=0.$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej definirajmo funkcijo za izračun koeficientov $k_i$:</p>
-$$k_{i-1} + 4 k_{i} + k_{i+1}  =  \frac{6}{h^2} \left(y_{i-1} -2 y_{i} +y_{i+1} \right).$$<p>Konstante pred $k_i$ definirajo matriko koeficientov (tipično označimo z $\mathbf{A}$), $k_i$ so neznanke (tipično označimo z $\mathbf{x}$) in desna stran zgornje enačbe vektor konstant (tipično označimo z $\mathbf{b}$).</p>
+<p>$$k_{i-1} + 4 k_{i} + k_{i+1}  =  \frac{6}{h^2} \left(y_{i-1} -2 y_{i} +y_{i+1} \right).$$</p>
+<p>Konstante pred $k_i$ definirajo matriko koeficientov (tipično označimo z $\mathbf{A}$), $k_i$ so neznanke (tipično označimo z $\mathbf{x}$) in desna stran zgornje enačbe vektor konstant (tipično označimo z $\mathbf{b}$).</p>
 </div>
 </div>
 </div>
@@ -3918,11 +3922,11 @@ Koeficienti k so: [ 0.         -4.28571429  5.14285714 -4.28571429  0.        ]
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato potrebujemo še kubični polinom v določenem intervalu; implementirajmo formulo:</p>
-$$
+<p>$$
 f_{i,i+1}(x)=\frac{k_i}{6}\left(\frac{(x-x_{i+1})^3}{h}-(x-x_{i+1})\,h\right)
 -\frac{k_{i+1}}{6}\left(\frac{(x-x_{i})^3}{h}-(x-x_{i})\,h\right)
 +\frac{y_i\,(x-x_{i+1})-y_{i+1}\,(x-x_{i})}{h}
-$$
+$$</p>
 </div>
 </div>
 </div>

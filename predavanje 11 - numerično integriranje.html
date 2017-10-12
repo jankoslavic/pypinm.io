@@ -1477,7 +1477,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča; pozneje bomo definirali $n$ kot štev
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri numeričnem integriranju si bomo pomagali s konkretnim primerom:</p>
-$$\int_1^2 x\,\sin(x)\,\textrm{d}x$$
+<p>$$\int_1^2 x\,\sin(x)\,\textrm{d}x$$</p>
 </div>
 </div>
 </div>
@@ -1869,8 +1869,9 @@ $$1.4404224209802097$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Trapezno pravilo vrednosti na (pod)intervalu interpolira z linearno funkcijo. Za dve vozliščni točki to pomeni, da površin izračunamo kot:</p>
-$$I_{\textrm{trapezno}}=\sum_{i=0}^{n=1}A_i\,f(x_i)=\frac{h}{2}\cdot\left(f(x_0)+f(x_1)\right).$$<p>To tudi pomeni, da so uteži:</p>
-$$A_0 = A_1 = \frac{1}{2}\,h.$$
+<p>$$I_{\textrm{trapezno}}=\sum_{i=0}^{n=1}A_i\,f(x_i)=\frac{h}{2}\cdot\left(f(x_0)+f(x_1)\right).$$</p>
+<p>To tudi pomeni, da so uteži:</p>
+<p>$$A_0 = A_1 = \frac{1}{2}\,h.$$</p>
 </div>
 </div>
 </div>
@@ -2263,7 +2264,7 @@ AAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Razlika med pravo vrednostjo integrala in numeričnim približkom $I$ je napaka metode:</p>
-$$E = \int_a^bf(x)\,d x-I,$$
+<p>$$E = \int_a^bf(x)\,d x-I,$$</p>
 </div>
 </div>
 </div>
@@ -2770,7 +2771,8 @@ mqEHjW1cNJT8CCGEKI5kmj0JIYSQZKHkRwghRHEo+RFCCFEcSn6EEEIUh5IfIYQQxaHkRwghRHEo
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker velja $h\cdot n=b-a$ izpeljemo napako sestavljenega trapeznega pravila kot:</p>
-$$E_{\textrm{trapezno sest}}=-\frac{h^2(b-a)}{12}f''(\xi),$$<p>$\xi$ je neznana vrednost na intervalu $[a,b]$. Napaka je drugega reda $\mathcal{O}(h^2)$.</p>
+<p>$$E_{\textrm{trapezno sest}}=-\frac{h^2(b-a)}{12}f''(\xi),$$</p>
+<p>$\xi$ je neznana vrednost na intervalu $[a,b]$. Napaka je drugega reda $\mathcal{O}(h^2)$.</p>
 </div>
 </div>
 </div>
@@ -2805,7 +2807,8 @@ kjer je $I_h$ približek integrala s korakom $h$ in $E_h$ ocena napake pri korak
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naprej zapišemo:</p>
-$$E_h=-\frac{h^2(b-a)}{12}f''(\xi)=h^2\,K.$$<p>Ob predpostavki, da je $f''\left (\xi \right )$ pri koraku $h$ in $2h$ enak ($\xi$ je pri koraku $h$ in $2h$ dejansko različen), zapišemo:
+<p>$$E_h=-\frac{h^2(b-a)}{12}f''(\xi)=h^2\,K.$$</p>
+<p>Ob predpostavki, da je $f''\left (\xi \right )$ pri koraku $h$ in $2h$ enak ($\xi$ je pri koraku $h$ in $2h$ dejansko različen), zapišemo:
 $$E_{2h}=-\frac{(2h)^2(b-a)}{12}f''(\xi)=4\,h^2\,K$$</p>
 </div>
 </div>
@@ -2815,8 +2818,9 @@ $$E_{2h}=-\frac{(2h)^2(b-a)}{12}f''(\xi)=4\,h^2\,K$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sledi:</p>
-$$I_{2h}-I_h=-3K\,h^2.$$<p>Sedaj lahko ocenimo napako pri koraku $h$:</p>
-$$\overline{E}_h=h^2\,K=\frac{I_h-I_{2h}}{3}.$$
+<p>$$I_{2h}-I_h=-3K\,h^2.$$</p>
+<p>Sedaj lahko ocenimo napako pri koraku $h$:</p>
+<p>$$\overline{E}_h=h^2\,K=\frac{I_h-I_{2h}}{3}.$$</p>
 </div>
 </div>
 </div>
@@ -3243,9 +3247,10 @@ $$A_0=h/2\qquad A_1=h/2.$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Trapezno pravilo je:</p>
-$$\int_{x_0}^{x_1}f(x)\,\textrm{d}x=
+<p>$$\int_{x_0}^{x_1}f(x)\,\textrm{d}x=
 \underbrace{\frac{h}{2}\cdot\left(f(x_0)+f(x_1)\right)}_{I_{\textrm{trapezno}}}{~}
-\underbrace{-\frac{h^3}{12}f''(\xi)}_{E_{\textrm{trapezno}}},$$<p>kjer je $\xi$ na intervalu $[x_0, x_1]$.</p>
+\underbrace{-\frac{h^3}{12}f''(\xi)}_{E_{\textrm{trapezno}}},$$
+kjer je $\xi$ na intervalu $[x_0, x_1]$.</p>
 </div>
 </div>
 </div>
@@ -3296,9 +3301,10 @@ $$\left [ \frac{h}{3}, \quad \frac{4 h}{3}, \quad \frac{h}{3}\right ]$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Simpsonovo 1/3 pravilo (ime izhaja iz uteži prvega člena) je:</p>
-$$\int_{x_0}^{x_2}f(x)\,\textrm{d}x=
+<p>$$\int_{x_0}^{x_2}f(x)\,\textrm{d}x=
 \underbrace{\frac{h}{3}\cdot\left(f(x_0)+4\,f(x_1)+f(x_2)\right)}_{I_{\textrm{Simpsonovo 1/3}}}{~}
-\underbrace{-\frac{h^5}{90}f^{(4)}(\xi)}_{E_{\textrm{Simpsonovo 1/3}}},$$<p>kjer je $\xi$ na intervalu $[x_0, x_2]$.</p>
+\underbrace{-\frac{h^5}{90}f^{(4)}(\xi)}_{E_{\textrm{Simpsonovo 1/3}}},$$
+kjer je $\xi$ na intervalu $[x_0, x_2]$.</p>
 </div>
 </div>
 </div>
@@ -3753,9 +3759,10 @@ $$\left [ \frac{3 h}{8}, \quad \frac{9 h}{8}, \quad \frac{9 h}{8}, \quad \frac{3
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Simpsonovo 3/8 pravilo je:</p>
-$$\int_{x_0}^{x_3}f(x)\,\textrm{d}x=
+<p>$$\int_{x_0}^{x_3}f(x)\,\textrm{d}x=
 \underbrace{\frac{3h}{8}\cdot\left(f(x_0)+3\,f(x_1)+3f(x_2)+f(x_3)\right)}_{I_{\textrm{Simpsonovo 3/8}}}{~}
-\underbrace{-\frac{3h^5}{80}f^{(4)}(\xi)}_{E_{\textrm{Simpsonovo 3/8}}},$$<p>kjer je $\xi$ na intervalu $[x_0, x_3]$.</p>
+\underbrace{-\frac{3h^5}{80}f^{(4)}(\xi)}_{E_{\textrm{Simpsonovo 3/8}}},$$
+kjer je $\xi$ na intervalu $[x_0, x_3]$.</p>
 </div>
 </div>
 </div>
@@ -4156,7 +4163,7 @@ hCQIJVVCCCEkQSipEkIIIQlCSZUQQghJEEqqhBBCSIL8f9AlDVFTVpLKAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Interval $[a, b]$ razdelimo sodo število $n$ podintervalov enake širine $h=(b - a)/n$ s čemer so definirana vozlišča $x_i=a+i\,h$ za $i=0,1,\dots,n$. V tem primeru zapišemo sestavljeno Simpsonovo 1/3 pravilo:</p>
-$$\int_{a}^{b}f(x)\,\textrm{d}x=
+<p>$$\int_{a}^{b}f(x)\,\textrm{d}x=
 \frac{h}{3}\left(
 f(x_0)
 +4\sum_{i=1}^{n/2}f(x_{2i-1})
@@ -4166,7 +4173,7 @@ f(x_0)
 \underbrace{
 -\frac{b-a}{180}h^4\,f^{(4)}(\xi)
 }_{E_{\textrm{Sestavljeno Simpsonovo 1/3}}}
-$$
+$$</p>
 </div>
 </div>
 </div>
@@ -4609,7 +4616,8 @@ kjer je $I_h$ približek integrala s korakom $h$ in $E_h$ ocena napake pri korak
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naprej zapišemo:</p>
-$$E_h=-\frac{b-a}{180}h^4\,f^{(4)}(\xi)=h^4\,K.$$<p>Ob predpostavki, da je $f^(4)\left (\xi \right )$ pri koraku $h$ in $2h$ enak ($\xi$ je pri koraku $h$ in $2h$ dejansko različen), zapišemo:
+<p>$$E_h=-\frac{b-a}{180}h^4\,f^{(4)}(\xi)=h^4\,K.$$</p>
+<p>Ob predpostavki, da je $f^(4)\left (\xi \right )$ pri koraku $h$ in $2h$ enak ($\xi$ je pri koraku $h$ in $2h$ dejansko različen), zapišemo:
 $$E_{2h}=-\frac{(b-a)}{180}(2h)^4\,f^{(4)}(\xi)=16\,h^2\,K$$</p>
 </div>
 </div>
@@ -4619,8 +4627,9 @@ $$E_{2h}=-\frac{(b-a)}{180}(2h)^4\,f^{(4)}(\xi)=16\,h^2\,K$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sledi:</p>
-$$I_{2h}-I_h=-15K\,h^4.$$<p>Sedaj lahko ocenimo napako pri koraku $h$:</p>
-$$\overline{E}_h=h^4\,K=\frac{I_h-I_{2h}}{15}.$$
+<p>$$I_{2h}-I_h=-15K\,h^4.$$</p>
+<p>Sedaj lahko ocenimo napako pri koraku $h$:</p>
+<p>$$\overline{E}_h=h^4\,K=\frac{I_h-I_{2h}}{15}.$$</p>
 </div>
 </div>
 </div>
@@ -5138,7 +5147,7 @@ Pri tem je neznana utež $w_i$ in tudi lega vozlišča $x_i$. Z stopnje polinoma
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Predpostavimo, da želimo integrirati polinom stopnje $n=1$ (linearna funkcija):</p>
-$$f(x)=P_1(x)=A_0+A_1\,x.$$
+<p>$$f(x)=P_1(x)=A_0+A_1\,x.$$</p>
 </div>
 </div>
 </div>
@@ -5147,7 +5156,7 @@ $$f(x)=P_1(x)=A_0+A_1\,x.$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo:</p>
-$$\int_a^bP_1(x)\,\textrm{d}x=-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{2}.$$
+<p>$$\int_a^bP_1(x)\,\textrm{d}x=-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{2}.$$</p>
 </div>
 </div>
 </div>
@@ -5156,7 +5165,7 @@ $$\int_a^bP_1(x)\,\textrm{d}x=-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Po drugi strani pa želimo integral izračunati glede na ustrezno uteženo $w_0$ vrednost funkcije $f(x_0)$ v neznanem vozlišču $x_0$ (samo eno vozlišče!):</p>
-$$\int_a^bP_1(x)\,\textrm{d}x = w_0\,P_1(x_0)= w_0\,A_0+w_0\,A_1\,x.$$
+<p>$$\int_a^bP_1(x)\,\textrm{d}x = w_0\,P_1(x_0)= w_0\,A_0+w_0\,A_1\,x.$$</p>
 </div>
 </div>
 </div>
@@ -5165,7 +5174,7 @@ $$\int_a^bP_1(x)\,\textrm{d}x = w_0\,P_1(x_0)= w_0\,A_0+w_0\,A_1\,x.$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$A_0$ in $A_1$ sta koeficienta linearne funkcije, ki lahko zavzame poljubne vrednosti; z enačenjem zgornjih izrazov izpeljemo:</p>
-$$-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{2}=w_0\,A_0+w_0\,A_1\,x$$
+<p>$$-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{2}=w_0\,A_0+w_0\,A_1\,x$$</p>
 </div>
 </div>
 </div>
@@ -5174,7 +5183,8 @@ $$-A_0\,a+A_0\,b-\frac{A_1\,a^2}{2}+\frac{A_1\,b^2}{2}=w_0\,A_0+w_0\,A_1\,x$$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Gre za sistem linearnih enačb z rešitvijo:</p>
-$$w_0= b-a, \qquad x_0=\frac{b+a}{2}.$$<p>Če je integrirana funkcija linearna, bomo samo na podlagi vrednosti v eni točki izračunali pravo vrednost!</p>
+<p>$$w_0= b-a, \qquad x_0=\frac{b+a}{2}.$$</p>
+<p>Če je integrirana funkcija linearna, bomo samo na podlagi vrednosti v eni točki izračunali pravo vrednost!</p>
 </div>
 </div>
 </div>
@@ -5183,7 +5193,8 @@ $$w_0= b-a, \qquad x_0=\frac{b+a}{2}.$$<p>Če je integrirana funkcija linearna, 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Standardne-meje:-$a=-1$-in-$b=1$">Standardne meje: $a=-1$ in $b=1$<a class="anchor-link" href="#Standardne-meje:-$a=-1$-in-$b=1$">¶</a></h3><p>Zaradi splošnosti, meje $x\in[a,b]$ transformiramo v $\xi\in[-1, +1]$ s pomočjo:</p>
-$$x=\frac{b+a}{2}+\frac{b-a}{2}\xi$$<p>in 
+<p>$$x=\frac{b+a}{2}+\frac{b-a}{2}\xi$$</p>
+<p>in 
 $$\textrm{d}x=\frac{b-a}{2}\textrm{d}\xi.$$</p>
 </div>
 </div>
@@ -5193,8 +5204,9 @@ $$\textrm{d}x=\frac{b-a}{2}\textrm{d}\xi.$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Velja:</p>
-$$\int_a^bf(x)\,\textrm{d}x=\int_{-1}^1 g\left(\xi\right)\,\textrm{d}\xi,$$<p>kjer je:</p>
-$$g(\xi)=\frac{b-a}{2}\,f\left(\frac{b+a}{2}+\frac{b-a}{2}\xi\right).$$
+<p>$$\int_a^bf(x)\,\textrm{d}x=\int_{-1}^1 g\left(\xi\right)\,\textrm{d}\xi,$$</p>
+<p>kjer je:</p>
+<p>$$g(\xi)=\frac{b-a}{2}\,f\left(\frac{b+a}{2}+\frac{b-a}{2}\xi\right).$$</p>
 </div>
 </div>
 </div>
@@ -5296,7 +5308,8 @@ $$\left [ \left ( - a + b, \quad \frac{1}{2} \left(a + b\right)\right )\right ]$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izpeljati želimo Gaussovo integracijsko metodo, ki bo upoštevala na intervalu $[a,b]$ $v$ vozlišč in bo točno izračunala integral polinomov do stopnje $n=2v-1$. Veljati mora:</p>
-$$\int_a^bP_{2v-1}(x)\,\textrm{d}x = \sum_{i=0}^{v-1} w_i\,P_{2v-1}(x_i),$$<p>Pri izpeljavi se bomo omejili na standardne meje $a=-1$, $b=1$.</p>
+<p>$$\int_a^bP_{2v-1}(x)\,\textrm{d}x = \sum_{i=0}^{v-1} w_i\,P_{2v-1}(x_i),$$</p>
+<p>Pri izpeljavi se bomo omejili na standardne meje $a=-1$, $b=1$.</p>
 </div>
 </div>
 </div>
@@ -5856,7 +5869,7 @@ Funkcija <code>dblquad</code> izračuna dvojni integral <code>func(y, x)</code> 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogljemo primer izračuna površine polkroga s pomerom 1:</p>
-$$\int_{-1}^{1}\left(\int_0^{\sqrt{1-x^2}}1\,\textrm{d}y\right)\,\textrm{d}x=\frac{\pi}{2}$$
+<p>$$\int_{-1}^{1}\left(\int_0^{\sqrt{1-x^2}}1\,\textrm{d}y\right)\,\textrm{d}x=\frac{\pi}{2}$$</p>
 </div>
 </div>
 </div>

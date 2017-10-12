@@ -2689,10 +2689,10 @@ $$-0.3037048743129991$$
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="52a6215e-c66a-47b2-8eac-f89aa9c31d24"></div>
+<div id="90faa0e7-0e84-4eba-8b43-c1d66b7f166b"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#52a6215e-c66a-47b2-8eac-f89aa9c31d24');
+var element = $('#90faa0e7-0e84-4eba-8b43-c1d66b7f166b');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "a1c36c9ba3504ac7a97b019334d6cb4b"}
@@ -2757,8 +2757,8 @@ $$\mathbf{y}(t+h)_{\textrm{Taylor}}=\mathbf{y}(t)+\mathbf{f}(t,\mathbf{y})\,h + 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornjo dilemo metoda <em>Runge-Kutta</em> (razvita leta 1901) rešuje z idejo, ki smo jo sicer že srečali pri Gaussovi integraciji: rešitev poskuša najti s pravilno uteženo dodatno vrednostjo funkcije $\mathbf{f}$:</p>
-$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta}}=\mathbf{y}(t)+c_0\,\mathbf{f}\left(t,\mathbf{y}\right)\,h +c_1
-\underbrace{\mathbf{f}{\large(}t+p\,h,\mathbf{y}+q\,h\,\mathbf{f}(t,\mathbf{y}){\large)}}_{A}\,h.$$
+<p>$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta}}=\mathbf{y}(t)+c_0\,\mathbf{f}\left(t,\mathbf{y}\right)\,h +c_1
+\underbrace{\mathbf{f}{\large(}t+p\,h,\mathbf{y}+q\,h\,\mathbf{f}(t,\mathbf{y}){\large)}}_{A}\,h.$$</p>
 </div>
 </div>
 </div>
@@ -2811,12 +2811,12 @@ q\,h\,\sum_i^{n-1}\frac{\partial \mathbf{f}}{\partial y_i}\,f_i(t, \mathbf{y})
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta}}=\mathbf{y}(t)+(c_0+c1)\,\mathbf{f}\left(t,\mathbf{y}\right)\,h +\frac{1}{2}
+<p>$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta}}=\mathbf{y}(t)+(c_0+c1)\,\mathbf{f}\left(t,\mathbf{y}\right)\,h +\frac{1}{2}
 {\LARGE(}
 \frac{\partial \mathbf{f}}{\partial t}\,2\,c_1\,p+
 2\,c_1\,q\,\sum_i^{n-1}\frac{\partial \mathbf{f}}{\partial y_i}\,f_i(t, \mathbf{y})
 {\LARGE)}
-\,h^2.$$
+\,h^2.$$</p>
 </div>
 </div>
 </div>
@@ -2862,7 +2862,8 @@ Imamo torej tri enačbe in štiri neznanke. Eno od konstant si tako lahko poljub
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta 4}}=\mathbf{y}(t)+\frac{1}{6}(\mathbf{k}_0+2\,\mathbf{k}_1+2\,\mathbf{k}_2+\mathbf{k}_3),$$<p>kjer so vektorji konstant:
+<p>$$\mathbf{y}(t+h)_{\textrm{Runge-Kutta 4}}=\mathbf{y}(t)+\frac{1}{6}(\mathbf{k}_0+2\,\mathbf{k}_1+2\,\mathbf{k}_2+\mathbf{k}_3),$$
+kjer so vektorji konstant:
 $$\begin{align}
 \mathbf{k}_0&=h\,\mathbf{f}(t,\mathbf{y})\\
 \mathbf{k}_1&=h\,\mathbf{f}\left(t+\frac{h}{2},\mathbf{y}+\frac{\mathbf{k}_0}{2}\right)\\
@@ -2996,10 +2997,10 @@ $$</p>
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="0f350458-8250-4380-b84a-9e6971f18cfc"></div>
+<div id="bb57b81c-981b-4824-b7a4-3dac9400de4f"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0f350458-8250-4380-b84a-9e6971f18cfc');
+var element = $('#bb57b81c-981b-4824-b7a4-3dac9400de4f');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "eb031cac8be342a0b36f58d2b73b4d27"}
