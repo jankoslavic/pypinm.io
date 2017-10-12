@@ -1467,8 +1467,8 @@ conda update --all</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Namesto izhoda v ukazno vrstico, bomo tukaj večkrat uporabljali možnost <em>Jupyter notebooka</em>, da s pomočjo klicaja (!) v celici s kodo izvedemo ukaz v ukazni vrstici. Če izvedemo ukaz z dvema klicajema (!!, gre za kratko obliko magičnega ukaza <code>%se</code> - shell execute, glejte <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-sx">dokumentacijo</a>), pa se ukaz izvede in v notebook vrne rezultat.</p>
-<p>Poglejmo slednje:</p>
+<p>Namesto izhoda v ukazno vrstico, bomo tukaj večkrat uporabljali možnost <em>Jupyter notebooka</em>, ko s pomočjo klicaja (!) v celici s kodo izvedemo ukaz v ukazni vrstici  (gre za kratko obliko magičnega ukaza <code>%se</code> - shell execute, glejte <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-sx">dokumentacijo</a>). Opomba: dva klicaja bi vrnila celoten rezultat neposredno v notebook (ker je izpis zelo dolg, smo se temu tukaj izognili)</p>
+<p>Poglejmo primer:</p>
 </div>
 </div>
 </div>
@@ -1477,7 +1477,8 @@ conda update --all</code></pre>
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!!</span>conda list
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rezultat</span> <span class="o">=</span> <span class="o">!</span>conda list
+<span class="n">rezultat</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1491,223 +1492,7 @@ conda update --all</code></pre>
  '#',
  '_ipyw_jlab_nb_ext_conf    0.1.0            py36he6757f0_0  ',
  'alabaster                 0.7.10           py36hcd07829_0  ',
- 'anaconda                  5.0.0            py36hea9b2fc_0  ',
- 'anaconda-client           1.6.5            py36hd36550c_0  ',
- 'anaconda-navigator        1.6.8            py36h4b7dd57_0  ',
- 'anaconda-project          0.8.0            py36h8b3bf89_0  ',
- 'asn1crypto                0.22.0           py36h8e79faa_1  ',
- 'astroid                   1.5.3            py36h9d85297_0  ',
- 'astropy                   2.0.2            py36h06391c4_4  ',
- 'babel                     2.5.0            py36h35444c1_0  ',
- 'backports                 1.0              py36h81696a8_1  ',
- 'backports.shutil_get_terminal_size 1.0.0            py36h79ab834_2  ',
- 'beautifulsoup4            4.6.0            py36hd4cc5e8_1  ',
- 'bitarray                  0.8.1            py36h6af124b_0  ',
- 'bkcharts                  0.2              py36h7e685f7_0  ',
- 'blaze                     0.11.3           py36h8a29ca5_0  ',
- 'bleach                    2.0.0            py36h0a7e3d6_0  ',
- 'bokeh                     0.12.7           py36h012f572_1  ',
- 'boto                      2.48.0           py36h1a776d2_1  ',
- 'bottleneck                1.2.1            py36hd119dfa_0  ',
- 'bzip2                     1.0.6            vc14hdec8e7a_1  [vc14]',
- 'ca-certificates           2017.08.26           h94faf87_0  ',
- 'cachecontrol              0.12.3           py36hfe50d7b_0  ',
- 'certifi                   2017.7.27.1      py36h043bc9e_0  ',
- 'cffi                      1.10.0           py36hae3d1b5_1  ',
- 'chardet                   3.0.4            py36h420ce6e_1  ',
- 'click                     6.7              py36hec8c647_0  ',
- 'cloudpickle               0.4.0            py36h639d8dc_0  ',
- 'clyent                    1.2.2            py36hb10d595_1  ',
- 'colorama                  0.3.9            py36h029ae33_0  ',
- 'comtypes                  1.1.2            py36heb9b3d1_0  ',
- 'conda                     4.3.27           py36hcbae3bd_0  ',
- 'conda-build               3.0.22           py36hd71664c_0  ',
- 'conda-env                 2.6.0                h36134e3_1  ',
- 'conda-verify              2.0.0            py36h065de53_0  ',
- 'console_shortcut          0.1.1                haa4cab3_2  ',
- 'contextlib2               0.5.5            py36he5d52c0_0  ',
- 'cryptography              2.0.3            py36h123decb_1  ',
- 'curl                      7.55.1           vc14hdaba4a4_3  [vc14]',
- 'cycler                    0.10.0           py36h009560c_0  ',
- 'cython                    0.26.1           py36h18049ac_0  ',
- 'cytoolz                   0.8.2            py36h547e66e_0  ',
- 'dask                      0.15.2           py36h25e1b01_0  ',
- 'dask-core                 0.15.2           py36hf9e56b0_0  ',
- 'datashape                 0.5.4            py36h5770b85_0  ',
- 'decorator                 4.1.2            py36he63a57b_0  ',
- 'distlib                   0.2.5            py36h51371be_0  ',
- 'distributed               1.18.3           py36h5be4c3e_0  ',
- 'docutils                  0.14             py36h6012d8f_0  ',
- 'entrypoints               0.2.3            py36hfd66bb0_2  ',
- 'et_xmlfile                1.0.1            py36h3d2d736_0  ',
- 'fastcache                 1.0.2            py36hffdae1b_0  ',
- 'filelock                  2.0.12           py36hd7ddd41_0  ',
- 'flask                     0.12.2           py36h98b5e8f_0  ',
- 'flask-cors                3.0.3            py36h8a3855d_0  ',
- 'freetype                  2.8              vc14h17c9bdf_0  [vc14]',
- 'get_terminal_size         1.0.0                h38e98db_0  ',
- 'gevent                    1.2.2            py36h342a76c_0  ',
- 'glob2                     0.5              py36h11cc1bd_1  ',
- 'greenlet                  0.4.12           py36ha00ad21_0  ',
- 'h5py                      2.7.0            py36hfbe0a52_1  ',
- 'hdf5                      1.10.1           vc14hb361328_0  [vc14]',
- 'heapdict                  1.0.0            py36h21fa5f4_0  ',
- 'html5lib                  0.999999999      py36ha09b1f3_0  ',
- 'icc_rt                    2017.0.4             h97af966_0  ',
- 'icu                       58.2             vc14hc45fdbb_0  [vc14]',
- 'idna                      2.6              py36h148d497_1  ',
- 'imageio                   2.2.0            py36had6c2d2_0  ',
- 'imagesize                 0.7.1            py36he29f638_0  ',
- 'intel-openmp              2018.0.0             hcd89f80_7  ',
- 'ipykernel                 4.6.1            py36hbb77b34_0  ',
- 'ipython                   6.1.0            py36h236ecc8_1  ',
- 'ipython_genutils          0.2.0            py36h3c5d0ee_0  ',
- 'ipywidgets                7.0.0            py36h2e74ada_0  ',
- 'isort                     4.2.15           py36h6198cc5_0  ',
- 'itsdangerous              0.24             py36hb6c5a24_1  ',
- 'jdcal                     1.3              py36h64a5255_0  ',
- 'jedi                      0.10.2           py36hed927a0_0  ',
- 'jinja2                    2.9.6            py36h10aa3a0_1  ',
- 'jpeg                      9b               vc14h4d7706e_1  [vc14]',
- 'jsonschema                2.6.0            py36h7636477_0  ',
- 'jupyter                   1.0.0            py36h422fd7e_2  ',
- 'jupyter_client            5.1.0            py36h9902a9a_0  ',
- 'jupyter_console           5.2.0            py36h6d89b47_1  ',
- 'jupyter_core              4.3.0            py36h511e818_0  ',
- 'jupyterlab                0.27.0           py36h34cc53b_2  ',
- 'jupyterlab_launcher       0.4.0            py36h22c3ccf_0  ',
- 'lazy-object-proxy         1.3.1            py36hd1c21d2_0  ',
- 'libiconv                  1.15             vc14h29686d3_5  [vc14]',
- 'libpng                    1.6.32           vc14hce43e6c_2  [vc14]',
- 'libssh2                   1.8.0            vc14hcf584a9_2  [vc14]',
- 'libtiff                   4.0.8           vc14h04e2a1e_10  [vc14]',
- 'libxml2                   2.9.4            vc14h8fd0f11_5  [vc14]',
- 'libxslt                   1.1.29           vc14hf85b8d4_5  [vc14]',
- 'llvmlite                  0.20.0                   py36_0  ',
- 'locket                    0.2.0            py36hfed976d_1  ',
- 'lockfile                  0.12.2           py36h0468280_0  ',
- 'lxml                      3.8.0            py36h45350b2_0  ',
- 'markupsafe                1.0              py36h0e26971_1  ',
- 'matplotlib                2.0.2            py36h58ba717_1  ',
- 'mccabe                    0.6.1            py36hb41005a_1  ',
- 'menuinst                  1.4.8            py36h870ab7d_0  ',
- 'mistune                   0.7.4            py36h4874169_0  ',
- 'mkl                       2018.0.0             h36b65af_4  ',
- 'mkl-service               1.1.2            py36h57e144c_4  ',
- 'mpmath                    0.19             py36he326802_2  ',
- 'msgpack-python            0.4.8            py36h58b1e9d_0  ',
- 'multipledispatch          0.4.9            py36he44c36e_0  ',
- 'navigator-updater         0.1.0            py36h8a7b86b_0  ',
- 'nbconvert                 5.3.1            py36h8dc0fde_0  ',
- 'nbformat                  4.4.0            py36h3a5bc1b_0  ',
- 'networkx                  1.11             py36hdf4b0f5_0  ',
- 'nltk                      3.2.4            py36hd0e0a39_0  ',
- 'nose                      1.3.7            py36h1c3779e_2  ',
- 'notebook                  5.0.0            py36h27f7975_1  ',
- 'numba                     0.35.0             np113py36_10  ',
- 'numexpr                   2.6.2            py36h7ca04dc_1  ',
- 'numpy                     1.13.1           py36haf1bc54_2  ',
- 'numpydoc                  0.7.0            py36ha25429e_0  ',
- 'odo                       0.5.1            py36h7560279_0  ',
- 'olefile                   0.44             py36h0a7bdd2_0  ',
- 'openpyxl                  2.4.8            py36hf3b77f6_1  ',
- 'openssl                   1.0.2l           vc14hcac20b0_2  [vc14]',
- 'packaging                 16.8             py36ha0986f6_1  ',
- 'pandas                    0.20.3           py36hce827b7_2  ',
- 'pandoc                    1.19.2.1             hb2460c7_1  ',
- 'pandocfilters             1.4.2            py36h3ef6317_1  ',
- 'partd                     0.3.8            py36hc8e763b_0  ',
- 'path.py                   10.3.1           py36h3dd8b46_0  ',
- 'pathlib2                  2.3.0            py36h7bfb78b_0  ',
- 'patsy                     0.4.1            py36h42cefec_0  ',
- 'pep8                      1.7.0            py36h0f3d67a_0  ',
- 'pickleshare               0.7.4            py36h9de030f_0  ',
- 'pillow                    4.2.1            py36hdb25ab2_0  ',
- 'pip                       9.0.1            py36hadba87b_3  ',
- 'pkginfo                   1.4.1            py36hb0f9cfa_1  ',
- 'ply                       3.10             py36h1211beb_0  ',
- 'progress                  1.3              py36hbeca8d3_0  ',
- 'prompt_toolkit            1.0.15           py36h60b8f86_0  ',
- 'psutil                    5.2.2            py36he84b5ac_0  ',
- 'py                        1.4.34           py36ha4aca3a_1  ',
- 'pycodestyle               2.3.1            py36h7cc55cd_0  ',
- 'pycosat                   0.6.2            py36hf17546d_1  ',
- 'pycparser                 2.18             py36hd053e01_1  ',
- 'pycrypto                  2.6.1            py36he68e6e2_1  ',
- 'pycurl                    7.43.0           py36h086bf4c_3  ',
- 'pyflakes                  1.5.0            py36h56100d8_1  ',
- 'pygments                  2.2.0            py36hb010967_0  ',
- 'pylint                    1.7.2            py36h091ff97_0  ',
- 'pyodbc                    4.0.17           py36h0006bc2_0  ',
- 'pyopenssl                 17.2.0           py36h15ca2fc_0  ',
- 'pyparsing                 2.2.0            py36h785a196_1  ',
- 'pyqt                      5.6.0            py36hb5ed885_5  ',
- 'pysocks                   1.6.7            py36h698d350_1  ',
- 'pytables                  3.4.2            py36h85b5e71_1  ',
- 'pytest                    3.2.1            py36h753b05e_1  ',
- 'python                    3.6.2               h6679aeb_11  ',
- 'python-dateutil           2.6.1            py36h509ddcb_1  ',
- 'pytz                      2017.2           py36h05d413f_1  ',
- 'pywavelets                0.5.2            py36hc649158_0  ',
- 'pywin32                   221              py36h9c10281_0  ',
- 'pyyaml                    3.12             py36h1d1928f_1  ',
- 'pyzmq                     16.0.2           py36h38c27d9_2  ',
- 'qt                        5.6.2           vc14h6f8c307_12  [vc14]',
- 'qtawesome                 0.4.4            py36h5aa48f6_0  ',
- 'qtconsole                 4.3.1            py36h99a29a9_0  ',
- 'qtpy                      1.3.1            py36hb8717c5_0  ',
- 'requests                  2.18.4           py36h4371aae_1  ',
- 'rise                      5.0.0                    py36_0    damianavila82',
- 'rope                      0.10.5           py36hcaf5641_0  ',
- 'ruamel_yaml               0.11.14          py36h9b16331_2  ',
- 'scikit-image              0.13.0           py36h6dffa3f_1  ',
- 'scikit-learn              0.19.0           py36h294a771_2  ',
- 'scipy                     0.19.1           py36h7565378_3  ',
- 'seaborn                   0.8.0            py36h62cb67c_0  ',
- 'setuptools                36.5.0           py36h65f9e6e_0  ',
- 'simplegeneric             0.8.1            py36heab741f_0  ',
- 'singledispatch            3.4.0.3          py36h17d0c80_0  ',
- 'sip                       4.18.1           py36h9c25514_2  ',
- 'six                       1.10.0           py36h2c0fdd8_1  ',
- 'snowballstemmer           1.2.1            py36h763602f_0  ',
- 'sortedcollections         0.5.3            py36hbefa0ab_0  ',
- 'sortedcontainers          1.5.7            py36ha90ac20_0  ',
- 'sphinx                    1.6.3            py36h9bb690b_0  ',
- 'sphinxcontrib             1.0              py36hbbac3d2_1  ',
- 'sphinxcontrib-websupport  1.0.1            py36hb5e5916_1  ',
- 'spyder                    3.2.3            py36h132a2c8_0  ',
- 'sqlalchemy                1.1.13           py36h5948d12_0  ',
- 'sqlite                    3.20.1           vc14h7ce8c62_1  [vc14]',
- 'statsmodels               0.8.0            py36h6189b4c_0  ',
- 'sympy                     1.1.1            py36h96708e0_0  ',
- 'tblib                     1.3.2            py36h30f5020_0  ',
- 'testpath                  0.3.1            py36h2698cfe_0  ',
- 'tk                        8.6.7            vc14hb68737d_1  [vc14]',
- 'toolz                     0.8.2            py36he152a52_0  ',
- 'tornado                   4.5.2            py36h57f6048_0  ',
- 'traitlets                 4.3.2            py36h096827d_0  ',
- 'typing                    3.6.2            py36hb035bda_0  ',
- 'unicodecsv                0.14.1           py36h6450c06_0  ',
- 'urllib3                   1.22             py36h276f60a_0  ',
- 'vc                        14                   h2379b0c_1  ',
- 'vs2015_runtime            14.0.25123           hd4c4e62_1  ',
- 'wcwidth                   0.1.7            py36h3d5aa90_0  ',
- 'webencodings              0.5.1            py36h67c50ae_1  ',
- 'werkzeug                  0.12.2           py36h866a736_0  ',
- 'wheel                     0.29.0           py36h6ce6cde_1  ',
- 'widgetsnbextension        3.0.2            py36h364476f_1  ',
- 'win_inet_pton             1.0.1            py36he67d7fd_1  ',
- 'win_unicode_console       0.5              py36hcdbd4b5_0  ',
- 'wincertstore              0.2              py36h7fe50ca_0  ',
- 'wrapt                     1.10.11          py36he5f5981_0  ',
- 'xlrd                      1.1.0            py36h1cb58dc_1  ',
- 'xlsxwriter                0.9.8            py36hdf8fb07_0  ',
- 'xlwings                   0.11.4           py36hd3cf94d_0  ',
- 'xlwt                      1.3.0            py36h1a4751e_0  ',
- 'yaml                      0.1.7            vc14hb31d195_1  [vc14]',
- 'youtube-dl                2017.10.12                <pip>',
- 'zict                      0.1.2            py36hbda90c0_0  ',
- 'zlib                      1.2.11           vc14h1cdd9ab_1  [vc14]']</pre>
+ 'anaconda                  5.0.0            py36hea9b2fc_0  ']</pre>
 </div>
 </div>
 </div>
@@ -3022,7 +2807,7 @@ conda update --all</code></pre>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>850 ns ± 45.9 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>639 ns ± 98.8 ns per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -4362,7 +4147,7 @@ for i in range(N):
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>475 µs ± 47.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>512 µs ± 55.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -4393,7 +4178,7 @@ c = a @ b
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>5.7 µs ± 2.57 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+<pre>5.52 µs ± 2.3 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre>
 </div>
 </div>
@@ -5248,10 +5033,10 @@ oECBAgVi8f8BghqpVLcybLkAAAAASUVORK5CYII=
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="21affbdb-33b6-4a1b-aa30-fa8dbec45358"></div>
+<div id="016359fe-a910-488f-b9db-29a14f12c840"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#21affbdb-33b6-4a1b-aa30-fa8dbec45358');
+var element = $('#016359fe-a910-488f-b9db-29a14f12c840');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -6030,10 +5815,10 @@ if (IPython.notebook.kernel != null) {
 </div>
 <div class="output_area">
 <div class="prompt"></div>
-<div id="d8749e36-d444-4314-b3d4-f1fc4bfa5be8"></div>
+<div id="55329ff6-80fb-425c-b669-bb816189a406"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#d8749e36-d444-4314-b3d4-f1fc4bfa5be8');
+var element = $('#55329ff6-80fb-425c-b669-bb816189a406');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -6836,10 +6621,10 @@ if (IPython.notebook.kernel != null) {
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="0fd82df3-3204-460c-9265-676e080f868f"></div>
+<div id="847f5cad-d9c9-4636-85c7-bf2ece75d9e5"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#0fd82df3-3204-460c-9265-676e080f868f');
+var element = $('#847f5cad-d9c9-4636-85c7-bf2ece75d9e5');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -7618,10 +7403,10 @@ if (IPython.notebook.kernel != null) {
 </div>
 <div class="output_area">
 <div class="prompt"></div>
-<div id="1898200d-eaa2-4a14-8835-685e60436c75"></div>
+<div id="8acb0cf3-98f7-4f8b-a746-1b4e275e7bd4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#1898200d-eaa2-4a14-8835-685e60436c75');
+var element = $('#8acb0cf3-98f7-4f8b-a746-1b4e275e7bd4');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -8727,13 +8512,13 @@ sAshhMVIsAshhMVIsAshhMVIsAshhMX8f7LVE12ZO6SBAAAAAElFTkSuQmCC
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="c81630bb-5c73-4b6e-9e46-afceb34f55e0"></div>
+<div id="6a8f36af-4b44-4e5e-a045-ab62bee6db6d"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#c81630bb-5c73-4b6e-9e46-afceb34f55e0');
+var element = $('#6a8f36af-4b44-4e5e-a045-ab62bee6db6d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "017b3b14b5eb467190cc2fc5ce47e331", "version_major": 2, "version_minor": 0}
+{"model_id": "edcdc9a4f56a4446a7414ab5a06afc2f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 </div>
@@ -8762,13 +8547,13 @@ var element = $('#c81630bb-5c73-4b6e-9e46-afceb34f55e0');
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="a9c32b02-f771-4b30-81e1-20ead5039bbd"></div>
+<div id="18238bcc-bbf2-4418-b6fe-03434f6f6fb4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#a9c32b02-f771-4b30-81e1-20ead5039bbd');
+var element = $('#18238bcc-bbf2-4418-b6fe-03434f6f6fb4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "8a8d949cd51a4418894149a16cfad1b1", "version_major": 2, "version_minor": 0}
+{"model_id": "afd42ea3a4d045dca019a3d3bb12da1a", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 </div>
@@ -10086,7 +9871,7 @@ a @ b
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3.39 µs ± 385 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>2.61 µs ± 587 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -10138,7 +9923,7 @@ skalarni_produkt(a, b)
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>839 ns ± 38.3 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>1.12 µs ± 222 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -10228,10 +10013,10 @@ skalarni_produkt(a, b)
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="31d6ad5d-a9fa-4553-8bf0-74b995b369a3"></div>
+<div id="01c8bd72-aa0c-459c-81c4-a3a4cbda82ae"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#31d6ad5d-a9fa-4553-8bf0-74b995b369a3');
+var element = $('#01c8bd72-aa0c-459c-81c4-a3a4cbda82ae');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -11005,7 +10790,7 @@ if (IPython.notebook.kernel != null) {
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_html rendered_html output_subarea ">
-<img src="data:image/png;base64,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" width="432"/>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAogAAAGwCAYAAAAqiJTnAAAYrElEQVR4Xu3ZIQ7EMBAEwfj/nw51QKTmU4eXbK1BK3cePwIECBAgQIAAAQKXwKFBgAABAgQIECBA4BYQiN4DAQIECBAgQIDAR0AgehAECBAgQIAAAQIC0RsgQIAAAQIECBD4F/AF0esgQIAAAQIECBDwBdEbIECAAAECBAgQ8AXRGyBAgAABAgQIEIgC/mKOUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCgjECGWMAAECBAgQILAiIBBXLm1PAgQIECBAgEAUEIgRyhgBAgQIECBAYEVAIK5c2p4ECBAgQIAAgSggECOUMQIECBAgQIDAioBAXLm0PQkQIECAAAECUUAgRihjBAgQIECAAIEVAYG4cml7EiBAgAABAgSigECMUMYIECBAgAABAisCAnHl0vYkQIAAAQIECEQBgRihjBEgQIAAAQIEVgQE4sql7UmAAAECBAgQiAICMUIZI0CAAAECBAisCAjElUvbkwABAgQIECAQBQRihDJGgAABAgQIEFgREIgrl7YnAQIECBAgQCAKCMQIZYwAAQIECBAgsCIgEFcubU8CBAgQIECAQBQQiBHKGAECBAgQIEBgRUAgrlzangQIECBAgACBKCAQI5QxAgQIECBAgMCKgEBcubQ9CRAgQIAAAQJRQCBGKGMECBAgQIAAgRUBgbhyaXsSIECAAAECBKKAQIxQxggQIECAAAECKwICceXS9iRAgAABAgQIRAGBGKGMESBAgAABAgRWBATiyqXtSYAAAQIECBCIAgIxQhkjQIAAAQIECKwICMSVS9uTAAECBAgQIBAFBGKEMkaAAAECBAgQWBEQiCuXticBAgQIECBAIAoIxAhljAABAgQIECCwIiAQVy5tTwIECBAgQIBAFBCIEcoYAQIECBAgQGBFQCCuXNqeBAgQIECAAIEoIBAjlDECBAgQIECAwIqAQFy5tD0JECBAgAABAlFAIEYoYwQIECBAgACBFQGBuHJpexIgQIAAAQIEooBAjFDGCBAgQIAAAQIrAgJx5dL2JECAAAECBAhEAYEYoYwRIECAAAECBFYEBOLKpe1JgAABAgQIEIgCAjFCGSNAgAABAgQIrAgIxJVL25MAAQIECBAgEAUEYoQyRoAAAQIECBBYERCIK5e2JwECBAgQIEAgCrx54gGxbgLpWgAAAABJRU5ErkJggg==" width="432"/>
 </div>
 </div>
 <div class="output_area">
