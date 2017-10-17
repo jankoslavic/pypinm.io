@@ -18,7 +18,7 @@ Template: {template}
 {{% notebook notebooks/{notebook_file} cells[{cells}] %}}
 """
 
-INTRO_TEXT = """Ta domača stran je pripravljena na podlagi spletnega učbenika 
+INTRO_TEXT = """Ta domača stran je pripravljena na podlagi izvršljivega učbenika 
 [Programiranje in numerične metode v ekosistemu Pythona](https://github.com/jankoslavic/pypinm), 
 ki ga je pripravil Janko Slavič v obliki Jupyter notebookov.
 """
