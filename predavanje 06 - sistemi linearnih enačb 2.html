@@ -1418,7 +1418,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za rešitev sistema linearnih enačb zahteva Gaussov eliminacijski postopek najmanjše število računskih operacij.</p>
-<p>V primeru, ko se matrika koeficientov $\mathbf{A}$ ne spreminja in se spreminja zgolj vektor konstant $\mathbf{b}$ se je mogoče izogniti ponovni Gaussovi eliminaciji matrike ter z razcepom matrike $\mathbf{A}$ z manj računskih operacij izračunati rešitev. V ta namen si bomo pogledali razcep LU!</p>
+<p>V primeru, ko se matrika koeficientov $\mathbf{A}$ ne spreminja in se spreminja zgolj vektor konstant $\mathbf{b}$, se je mogoče izogniti ponovni Gaussovi eliminaciji matrike koeficientov. Z drugačnim razcepom matrike $\mathbf{A}$ lahko pridemo do rešitve z manj računskimi operacijami. V ta namen si bomo pogledali razcep LU!</p>
 </div>
 </div>
 </div>
@@ -1428,10 +1428,11 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poljubno matriko lahko zapišemo kot produkt dveh matrik:
 $$\mathbf{A}=\mathbf{B}\,\mathbf{C}.$$
-Pri tem je možnosti za zapis matrik $\mathbf{B}$ in $\mathbf{C}$ neomejeno veliko.</p>
-<p>Pri razcepu LU zahtevamo, da je matrika $\mathbf{B}$ spodnje trikotno matriko in matrika $\mathbf{C}$ zgornje trikotna matrika:
+Pri tem je možnosti za zapis matrik $\mathbf{B}$ in $\mathbf{C}$ neskončno veliko.</p>
+<p>Pri razcepu LU zahtevamo, da je matrika $\mathbf{B}$ spodnje trikotna in matrika $\mathbf{C}$ zgornje trikotna:
 $$\mathbf{A}=\mathbf{L}\,\mathbf{U}.$$
-Vsaka od matrik $\mathbf{L}$ in $\mathbf{U}$ ima $(n+1)\,n/2$ neničelnih elementov; skupaj torej $n^2+n$ neznank. Znana matrika $\mathbf{A}$ definira $n^2$ vrednosti. Za enolično določitev matrik $\mathbf{L}$ in $\mathbf{U}$ manjka torej $n$ enačb. Tukaj bomo uporabili LU razcep, ki dodatne enačbe pridobi s pogojem $L_{ii}=1$.</p>
+Vsaka od matrik $\mathbf{L}$ in $\mathbf{U}$ ima $(n+1)\,n/2$ neničelnih elementov; skupaj torej $n^2+n$ neznank. Znana matrika $\mathbf{A}$ definira $n^2$ vrednosti. Za enolično določitev matrik $\mathbf{L}$ in $\mathbf{U}$ torej manjka 
+$n$ enačb. Tukaj bomo uporabili LU razcep, ki dodatne enačbe pridobi s pogojem $L_{ii}=1$.</p>
 </div>
 </div>
 </div>
@@ -1439,12 +1440,12 @@ Vsaka od matrik $\mathbf{L}$ in $\mathbf{U}$ ima $(n+1)\,n/2$ neničelnih elemen
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če torej linearni sistem:
+<p>Sistem linearnih enačb:
 $$\mathbf{A}\mathbf{x}=\mathbf{b}$$
-zapišemo z rezcepom matrike $\mathbf{A}$:
+torej zapišemo z rezcepom matrike $\mathbf{A}$:
 $$\mathbf{L}\,\underbrace{\mathbf{U}\,\mathbf{x}}_{\mathbf{y}}=\mathbf{b}.$$</p>
-<p>Sistem $\mathbf{A}\mathbf{x}=\mathbf{b}$ lahko torej rešimo tako, da rešimo dva trikotna sistema enačb.</p>
-<p>Namesto neznanega vektorja $\mathbf{x}$, najprej izračunamo vektor $\mathbf{y}$:
+<p>Do rešitve sistema $\mathbf{A}\mathbf{x}=\mathbf{b}$ sedaj pridemo tako, da rešimo dva trikotna sistema enačb.</p>
+<p>Namesto neznanega vektorja $\mathbf{x}$ najprej izračunamo vektor $\mathbf{y}$:
 $$\mathbf{L}\,\mathbf{y}=\mathbf{b}.\qquad \textrm{(direktno vstavljanje)}$$
 Ko je $\mathbf{y}$ izračunan, lahko iz:
 $$\mathbf{U}\,\mathbf{x}=\mathbf{y}\qquad \textrm{(obratno vstavljanje)}$$
@@ -1456,7 +1457,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$">Razcep LU matrike koeficientov $\mathbf{A}$<a class="anchor-link" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$">¶</a></h2><p>V nadaljevanju bomo pokazali, da Gaussova eliminacija predstavlja razcep LU matrike koeficientov $\mathbf{A}$. Pri te si bomo pomagali s simbolnim izračunom, zato uvozimo paket <code>sympy</code>:</p>
+<h2 id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$">Razcep LU matrike koeficientov $\mathbf{A}$<a class="anchor-link" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$">¶</a></h2><p>V nadaljevanju bomo pokazali, da Gaussova eliminacija dejanjsko predstavlja razcep LU matrike koeficientov $\mathbf{A}$. Prim te si bomo pomagali s simbolnim izračunom, zato uvozimo paket <code>sympy</code>:</p>
 </div>
 </div>
 </div>
@@ -1476,7 +1477,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pokaz začnimo na primeru simbolno zapisanih matrik $\mathbf{L}$ in $\mathbf{U}$ dimenzije $3\times 3$:</p>
+<p>Prikaz začnimo na primeru simbolno zapisanih matrik $\mathbf{L}$ in $\mathbf{U}$ dimenzije $3\times 3$:</p>
 </div>
 </div>
 </div>
@@ -1532,8 +1533,8 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\L_{21} U_{11} & L_{21} U_{12} + 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Izvedemo sedaj Gaussovo eliminacijo nad matriko koeficientov $\mathbf{A}$.</p>
-<p>S pomočjo prve vrstice izvedimo sedaj Gaussovo eliminacijo v prve stolpcu:</p>
+<p>Izvedimo sedaj Gaussovo eliminacijo nad matriko koeficientov $\mathbf{A}$.</p>
+<p>S pomočjo prve vrstice izvedemo Gaussovo eliminacijo v prvem stolpcu:</p>
 </div>
 </div>
 </div>
@@ -1597,7 +1598,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 <p>Iz zgornje eliminacije ugotovimo:</p>
 <ol>
 <li>matrika $\mathbf{U}$ je enaka matriki, ki jo dobimo, če izvedemo Gaussovo eliminacijo nad matriko koeficientov $\mathbf{A}$.</li>
-<li>izven diagonalni členi $\mathbf{L}$ predstavljajo faktorje, ki smo jih uporabili pri Gaussovi eliminaciji.</li>
+<li>izven diagonalni členi $\mathbf{L}$ so faktorji, ki smo jih uporabili pri Gaussovi eliminaciji.</li>
 </ol>
 </div>
 </div>
@@ -1630,7 +1631,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Izvedimo Gaussovo eliminacijo in koeficient s katerim množimo pivotno vrsto <code>m</code> shranjuje v matriko <code>L</code> na mesto z indeksi kot jih ima v matriki $\mathbf{A}$ eliminirani element.</p>
+<p>Izvedimo Gaussovo eliminacijo in koeficiente, s katerim množimo pivotno vrsto <code>m</code>, shranjuje v matriko <code>L</code> na mesto z indeksi, kot jih ima v matriki $\mathbf{A}$ eliminirani element.</p>
 </div>
 </div>
 </div>
@@ -1885,7 +1886,7 @@ Korak: 1
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kakor smo navedli zgoraj, ob spremembi vektorja konstant, ponovna Gaussova eliminacija ni potrebna; traba je izvesti samo direktno in nato obratno vstavljane. Primer:</p>
+<p>Kakor smo navedli zgoraj, ob spremembi vektorja konstant ponovna Gaussova eliminacija ni potrebna. Izvesti je treba samo direktno in nato obratno vstavljane. Poglejmo primer:</p>
 </div>
 </div>
 </div>
@@ -1978,7 +1979,7 @@ Korak: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
@@ -1991,15 +1992,15 @@ Korak: 1
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
+<pre>C:\Users\Domen\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
   """Entry point for launching an IPython kernel.
-C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
+C:\Users\Domen\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
   """Entry point for launching an IPython kernel.
 </pre>
 </div>
 </div>
 <div class="output_area">
-<div class="prompt output_prompt">Out[21]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ nan, -inf,  inf])</pre>
 </div>
@@ -2011,7 +2012,7 @@ C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarni
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Opazimo, da imamo težavo z deljenjem z 0 v prvi vrstici. Ker nad sistemom enačb lahko izvajamo elementarne operacije, lahko vrstice poljubno zamenjujemo in dosežemo, da pivotni element ni enak 0. Vseeno se lahko zgodi, da delimo z zelo majhna vrednost $\varepsilon$, ki bi povečevala zaokrožitveno napako, zato izmed vseh vrstic za pivotno vrstico izberemo tisto, katere pivot ima največjo absolutno vrednost.</p>
+<p>Opazimo, da imamo težavo z deljenjem z 0 v prvi vrstici. Elementarne operacije, ki jih nad sistemom lahko izvajamo, dovoljujejo zamenjavo poljubnih vrstic. Sistem lahko preuredimo tako, da pivotni element ni enak 0. Vseeno se lahko zgodi, da ima pivotni element, s katerim delimo, zalo majhno vrednost $\varepsilon$. Ker bi to povečevalo zaokrožitveno napako izmed vseh vrstic za pivotno vrstico izberemo tisto, katere pivot ima največjo absolutno vrednost.</p>
 <p>Če pred Gaussovo eliminacijo zamenjamo vrstice tako, da je pivotni element največji, to imenujemo <strong>pivotiranje vrstic</strong> ali tudi <strong>delno pivotiranje</strong>.</p>
 </div>
 </div>
@@ -2021,7 +2022,7 @@ C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarni
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pokazati je mogoče, da pri reševanju sistema enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$, pri katerem je matrika $\mathbf{A}$ diagonalno dominantna, pivotiranje po vrsticah ni potrebno. Reševanje je brez pivotiranja numerično stabilno.</p>
-<p>Pravokotna matrika $\mathbf{A}$ dimenzije $n$ je <strong>diagonalno dominantna</strong>, če je absolutna vrednost diagonalnega elementa večja kot vsota absolutnih vrednosti ostalih elementov:
+<p>Pravokotna matrika $\mathbf{A}$ dimenzije $n$ je <strong>diagonalno dominantna</strong>, če je absolutna vrednost diagonalnega elementa vsake vrstice večja od vsote absolutnih vrednosti ostalih elementov v vrstici:
 $$\left|A_{ii}\right|> \sum_{j=1, j\ne i}^n \left|A_{ij}\right|$$</p>
 </div>
 </div>
@@ -2038,9 +2039,9 @@ $$\left|A_{ii}\right|> \sum_{j=1, j\ne i}^n \left|A_{ij}\right|$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pogledali si bomo Gaussovo eliminacijo z <strong>delnim pivotiranjem</strong>. Brez delnega pivotiranja v $i$-tem koraku eliminacije izberemo vrstico $i$ za pivotiranje. Pri delnem pivotiranju pa preverimo ali je $i$-ti diagonalni element po absolutni vrednosti največji element v stolpcu $i$; če ni, zamenjamo vrstico $i$ z 
-tisto vrstico pod vrstico $i$, kjer je v stolpcu $i$ element po absolutni vrednosti največji. Z delnim pivotiranjem zmanjšamo zaokrožitveno napako.</p>
-<p>V koliko bi izvedli <strong>polno pivotiranje</strong> bi poleg zamenjave vrstic, uporabili tudi zamenjavo vrstnega reda spremenljivk (zamenjava stolpcev). Polno pivotiranje izboljša stabilnost; se pa redko uporablja in ga tukaj ne bomo obravnavali.</p>
+<p>Pogledali si bomo Gaussovo eliminacijo z <strong>delnim pivotiranjem</strong>. Brez delnega pivotiranja v $i$-tem koraku eliminacije izberemo vrstico $i$ za pivotiranje. Pri delnem pivotiranju pa najprej preverimo, ali je $i$-ti diagonalni element po absolutni vrednosti največji element v stolpcu $i$; če ni, zamenjamo vrstico $i$ s 
+tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največji element. Z delnim pivotiranjem zmanjšamo zaokrožitveno napako.</p>
+<p>V koliko bi izvedli <strong>polno pivotiranje</strong> bi poleg zamenjave vrstic uporabili tudi zamenjavo vrstnega reda spremenljivk (zamenjava stolpcev). Polno pivotiranje izboljša stabilnost, se pa redko uporablja in ga tukaj ne bomo obravnavali.</p>
 </div>
 </div>
 </div>
@@ -2054,11 +2055,11 @@ tisto vrstico pod vrstico $i$, kjer je v stolpcu $i$ element po absolutni vredno
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gaussova_eliminacija_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">""" Vrne Gaussovo eliminacijo razširjene matrike koeficientov, uporabi delno pivotiranje</span>
+    <span class="sd">""" Vrne Gaussovo eliminacijo razširjene matrike koeficientov, uporabi delno pivotiranje.</span>
 
 <span class="sd">    :param A: matrika koeficientov</span>
 <span class="sd">    :param b: vektor konstant</span>
@@ -2086,7 +2087,7 @@ tisto vrstico pod vrstico $i$, kjer je v stolpcu $i$ element po absolutni vredno
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span>
@@ -2097,7 +2098,7 @@ tisto vrstico pod vrstico $i$, kjer je v stolpcu $i$ element po absolutni vredno
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[23]:</div>
+<div class="prompt output_prompt">Out[22]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 0., -6.,  6.],
        [-6.,  6., -6.],
@@ -2109,7 +2110,7 @@ tisto vrstico pod vrstico $i$, kjer je v stolpcu $i$ element po absolutni vredno
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ab</span> <span class="o">=</span> <span class="n">gaussova_eliminacija_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2150,22 +2151,22 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Podobno kakor pri Gaussovi eliminaciji, lahko razcep LU razširimo z delnim pivotiranjem in tako postane reševanje numerično <strong>stabilno</strong>. Paziti moramo, da shranimo informacijo, kako so se vrstice zamenjale in to potem posredujemo tudi v funkcijo za rešitev ustreznih trikotnih sistemov.</p>
+<p>Podobno kakor pri Gaussovi eliminaciji lahko tudi razcep LU razširimo z delnim pivotiranjem. Reševanje tako postane numerično <strong>stabilno</strong>. Pri tem moramo shraniti informacijo o zamenjavi vrstic, ki jo potem posredujemo v funkcijo za rešitev ustreznih trikotnih sistemov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">LU_razcep_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">""" Vrne razcep LU matriko in vektor zamenjanih vrstic pivotiranje, uporabi delno pivotiranje</span>
+    <span class="sd">""" Vrne razcep LU matriko in vektor zamenjanih vrstic pivotiranje, uporabi delno pivotiranje.</span>
 
-<span class="sd">    :param A:               matrika koeficientov</span>
-<span class="sd">    :param prikazi_korake:  izpišem posamezne korake</span>
-<span class="sd">    :return LU:             LU matrika</span>
-<span class="sd">    :return pivotiranje:    vektor zamenjave vrstic (pomembno pri iskanju rešitve)    </span>
+<span class="sd">    :param A: matrika koeficientov</span>
+<span class="sd">    :param prikazi_korake: izpišem posamezne korake</span>
+<span class="sd">    :return LU: LU matrika</span>
+<span class="sd">    :return pivotiranje: vektor zamenjave vrstic (pomembno pri iskanju rešitve)    </span>
 <span class="sd">    """</span>
     <span class="n">LU</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">pivotiranje</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -2202,12 +2203,12 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
               <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="c1"># poskusite tukaj izpustiti dtype=float in </span>
+              <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2216,7 +2217,7 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span> <span class="o">=</span> <span class="n">LU_razcep_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2249,13 +2250,13 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>V zgornjem primeru smo uporabili kompaketen način zapisa trikotnih matrik $\mathbf{L}$ in $\mathbf{U}$; vsaka je namreč definirana z 6 elementi, pri matriki $\mathbf{L}$ pa vemo, da so diagonalni elementi enaki 1. Matrika <code>lu</code> tako vsebuje $3\times3=9$ elementov:</p>
+<p>V zgornjem primeru smo uporabili kompaketen način zapisa trikotnih matrik $\mathbf{L}$ in $\mathbf{U}$; vsaka je namreč definirana s 6 elementi, pri matriki $\mathbf{L}$ pa vemo, da so diagonalni elementi enaki 1. Matrika <code>lu</code> tako vsebuje $3\times3=9$ elementov:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span>
@@ -2266,7 +2267,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[27]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 8.  , -6.  ,  3.  ],
        [ 0.  , -6.  ,  6.  ],
@@ -2280,7 +2281,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Na diagonali in nad diagonalo so vrednosti zgornje trikotne matrike $\mathbf{U}$. Pod diagonalo pa so poddiagonalni elementi matrike $\mathbf{L}$ pri čemer bom pri izračunu rešitve upoštevali da so diagonalne vrednosti enake 1.</p>
+<p>Na diagonali in nad diagonalo so vrednosti zgornje trikotne matrike $\mathbf{U}$, pod diagonalo pa so poddiagonalni elementi matrike $\mathbf{L}$. Pri izračunu rešitve bomo upoštevali, da so diagonalne vrednosti $\mathbf{L}$ enake 1.</p>
 </div>
 </div>
 </div>
@@ -2288,13 +2289,13 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Numerični seznam <code>piv</code> definira kako so bile zamenjane vrstice (treba upoštevati pri izračunu rešitve):</p>
+<p>Numerični seznam <code>piv</code> nam pove kako so bile zamenjane vrstice, kar je treba upoštevati pri izračunu rešitve:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">piv</span>
@@ -2305,7 +2306,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[29]:</div>
+<div class="prompt output_prompt">Out[28]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([2, 0, 1])</pre>
 </div>
@@ -2323,7 +2324,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli</span> <span class="k">import</span> <span class="n">orodja</span>
@@ -2334,7 +2335,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">orodja</span><span class="o">.</span><span class="n">LU_resitev_pivotiranje</span><span class="p">(</span><span class="n">lu</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">piv</span><span class="p">)</span>
@@ -2346,7 +2347,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[31]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ -3.66666667, -14.11111111, -16.44444444])</pre>
 </div>
@@ -2364,7 +2365,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@r</span>
@@ -2375,7 +2376,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.,  36.,   6.])</pre>
 </div>
@@ -2395,7 +2396,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Modul <code>SciPy</code> temelji na <code>numpy</code> modulu in vsebuje veliko različnih visokonivojskih programov/modulov/funkcij. Teoretično ozadje modulov so seveda različni numerični algoritmi; nekatere spoznamo tudi v okviru tega učbenika. Dober vir teh numeričnih algoritmov v povezavi s 'SciPy' predstavlja <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/">dokumentacija</a>.</p>
+<p>Modul <code>SciPy</code> temelji na <code>numpy</code> modulu in vsebuje veliko različnih visokonivojskih programov/modulov/funkcij. Teoretično ozadje modulov so seveda različni numerični algoritmi; nekatere spoznamo tudi v okviru tega učbenika. Dober vir teh numeričnih algoritmov v povezavi s <code>SciPy</code> predstavlja <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/">dokumentacija</a>.</p>
 <p>Kratek pregled hierarhije modula:</p>
 <ul>
 <li>Linearna algebra (<a href="http://docs.scipy.org/doc/scipy/reference/linalg.html">scipy.linalg</a>)</li>
@@ -2427,13 +2428,13 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Poglejmo si, kako je znotraj <code>scipy</code> implementiran <em>LU razcep</em>:</p>
+<p>Poglejmo si, kako je znotraj <code>SciPy</code> implementiran <em>LU razcep</em>:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">lu_factor</span><span class="p">,</span> <span class="n">lu_solve</span>
@@ -2446,12 +2447,13 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Funkcija <code>lu_factor</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_factor.html">dokumentacija</a>):</p>
-<p><code>lu_factor(a, overwrite_a=False, check_finite=True)</code></p>
-<p>zahteva vnos matrike koeficientov (ali seznama matrik koeficientov) <code>a</code>, <code>overwrite_a</code> v primeru <code>true</code> z rezultatom razcepa prepiše vrednost <code>a</code> (to je lahko pomembno, da se prihrani spomin in poveča hitrost). <code>lu_factor</code>vrne terko <code>(lu, piv)</code>:</p>
+<p>Funkcija <code>scipy.linalg.lu_factor</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_factor.html">dokumentacija</a>):</p>
+<div class="highlight"><pre><span></span><span class="n">lu_factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+<p>zahteva vnos matrike koeficientov (ali seznama matrik koeficientov) <code>a</code>, <code>overwrite_a</code> v primeru <code>True</code> z rezultatom razcepa prepiše vrednost <code>a</code> (to je lahko pomembno, da se prihrani spomin in poveča hitrost). Funkcija <code>lu_factor</code> vrne terko <code>(lu, piv)</code>:</p>
 <ul>
-<li>lu - L\U matrika (matrika, ki je enake dimenzije kot <code>a</code>, vendar pod diagonalo vsebuje elemente <code>L</code>, preostali elementi pa definirajo <code>U</code>; diagonalni elementi <code>L</code> imajo vrednosti 1.</li>
-<li>piv - pivotni indeksi, predstavljajo permutacijsko matriko <code>P</code>: vrsta  <code>i</code> matrike <code>a</code> je bila zamenjana z vrsto <code>piv[i]</code> (v vsakem koraku se upošteva predhodno stanje, malo drugačna logika kot v <code>LU_razcep_pivotiranje</code>).</li>
+<li><code>lu</code> - $\mathbf{L}$ \ $\mathbf{U}$ matrika (matrika, ki je enake dimenzije kot <code>a</code>, vendar pod diagonalo vsebuje elemente $\mathbf{L}$, preostali elementi pa definirajo $\mathbf{U}$; diagonalni elementi $\mathbf{L}$ imajo vrednosti 1.</li>
+<li><code>piv</code> - pivotni indeksi, predstavljajo permutacijsko matriko <code>P</code>: vrsta  <code>i</code> matrike <code>a</code> je bila zamenjana z vrsto <code>piv[i]</code> (v vsakem koraku se upošteva predhodno stanje, malo drugačna logika kot v naši funkciji <code>LU_razcep_pivotiranje</code>).</li>
 </ul>
 </div>
 </div>
@@ -2460,8 +2462,9 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><code>lu_factor</code> uporabljamo v paru z <code>lu_solve</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_solve.html">dokumentacija</a>), ki nam poda rešitev:</p>
-<p><code>lu_solve(lu_and_piv, b, trans=0, overwrite_b=False, check_finite=True)</code></p>
+<p><code>lu_factor</code> uporabljamo v paru s funkcijo <code>scipy.linalg.lu_solve</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_solve.html">dokumentacija</a>), ki nam poda rešitev sistema:</p>
+<div class="highlight"><pre><span></span><span class="n">lu_solve</span><span class="p">(</span><span class="n">lu_and_piv</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">trans</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">overwrite_b</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
 <p><code>lu_and_piv</code> je terka rezultata <code>(lu, piv)</code> iz <code>lu_factor</code>, <code>b</code> je vektor (ali seznam vektorjev) konstant. Ostali parametri so opcijski.</p>
 <p>Poglejmo si uporabo:</p>
 </div>
@@ -2469,12 +2472,12 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>            
               <span class="p">[</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="c1"># poskusite tukaj izpustiti dtype=float in </span>
+              <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">14</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2483,7 +2486,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span> <span class="o">=</span> <span class="n">lu_factor</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -2494,7 +2497,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span>
@@ -2505,7 +2508,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[43]:</div>
+<div class="prompt output_prompt">Out[35]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 8.  , -6.  ,  3.  ],
        [ 0.  , -6.  ,  6.  ],
@@ -2517,7 +2520,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">piv</span>
@@ -2528,7 +2531,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[44]:</div>
+<div class="prompt output_prompt">Out[36]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([2, 2, 2], dtype=int32)</pre>
 </div>
@@ -2546,7 +2549,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">lu_solve</span><span class="p">((</span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
@@ -2558,7 +2561,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[45]:</div>
+<div class="prompt output_prompt">Out[37]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ -3.66666667, -14.11111111, -16.44444444])</pre>
 </div>
@@ -2576,7 +2579,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@r</span>
@@ -2587,7 +2590,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.,  36.,   6.])</pre>
 </div>
@@ -2607,12 +2610,12 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Inverzno matriko h kvadratni matriki $\textbf{A}$ reda $n\times n$ označimo z $\textbf{A}^{-1}$ in je matrika reda $n\times n$  takšna, da velja 
+<p>Inverzno matriko h kvadratni matriki $\textbf{A}$ reda $n\times n$ označimo z $\textbf{A}^{-1}$. Je matrika reda $n\times n$,  takšna, da velja 
 $$\mathbf{A}\,\mathbf{A}^{-1} = \mathbf{A}^{-1}\,\mathbf{A} = \mathbf{I},$$
 kjer je $\mathbf{I}$ enotska matrika.</p>
 <p>Najbolj učinkovit način za izračun inverzne matrike od matrike $\mathbf{A}$ je rešitev matrične enačbe:
 $$\mathbf{A}\,\mathbf{X}=\mathbf{I}.$$ 
-Matrika $\mathbf{X}$ predstavlja inverz na matriko $\mathbf{A}$: $\mathbf{A}^{-1}=\mathbf{X}$.</p>
+Matrika $\mathbf{X}$ je inverzna matriki $\mathbf{A}$: $\mathbf{A}^{-1}=\mathbf{X}$.</p>
 </div>
 </div>
 </div>
@@ -2630,14 +2633,14 @@ kjer je $\mathbf{b}_i$ $i$-ti stolpec matrike $\mathbf{B}=\mathbf{I}$.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Numerična zahtevnost: izvedemo razcep LU nad matriko $\mathbf{A}$ (računski obseg reda $n^3$) in nato 
-poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $i$). Skupni računski obseg je torej $3\,n^3$.</p>
+<p><em>Numerična zahtevnost:</em> izvedemo razcep LU nad matriko $\mathbf{A}$ (računski obseg reda $n^3$) in nato 
+poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $i$). Skupni računski obseg je torej $3\,n^3$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu_piv</span> <span class="o">=</span> <span class="n">lu_factor</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -2649,7 +2652,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[40]:</div>
+<div class="prompt output_prompt">Out[39]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(array([[ 8.  , -6.  ,  3.  ],
         [ 0.  , -6.  ,  6.  ],
@@ -2663,13 +2666,14 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tukaj se sedaj pokaže smisel razcepa LU; razcep namreč izračunamo samo enkrat in potem za vsak vektor konstant poiščemo rešitev tako, da rešimo dva trikotna sistema. Če bi sisteme reševali po Gaussovi metodi, bi rabili $(n^3+n^2)\,n$ računskih operacij. Izračunajmo torej inverzno matriko matriki $\textbf{A}$, najprej z <code>np.identity()</code> pripravimo enotsko matriko:</p>
+<p>Tukaj se sedaj pokaže smisel razcepa LU; razcep namreč izračunamo samo enkrat in potem za vsak vektor konstant poiščemo rešitev tako, da rešimo dva trikotna sistema. Če bi sisteme reševali po Gaussovi metodi, bi rabili $(n^3+n^2)\,n$ računskih operacij.</p>
+<p>Izračunajmo torej inverzno matriko matriki $\textbf{A}$. Najprej z uporabo <code>np.identity()</code> pripravimo enotsko matriko:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -2680,7 +2684,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[41]:</div>
+<div class="prompt output_prompt">Out[40]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1.,  0.,  0.],
        [ 0.,  1.,  0.],
@@ -2700,7 +2704,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1">#zeros_like nam vrne matriko oblike in tipa matrike A, vendar z vrednostmi 0</span>
@@ -2722,7 +2726,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A_inv</span>
@@ -2733,7 +2737,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[43]:</div>
+<div class="prompt output_prompt">Out[42]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
        [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
@@ -2753,7 +2757,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@A_inv</span>
@@ -2764,7 +2768,7 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[44]:</div>
+<div class="prompt output_prompt">Out[43]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[  1.00000000e+00,   0.00000000e+00,   1.11022302e-16],
        [ -1.11022302e-16,   1.00000000e+00,  -1.11022302e-16],
@@ -2784,11 +2788,43 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In [44]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
 <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[44]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
+       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
+       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Z ustrezno uporabo <code>SciPy</code> funkcij lahko do rešitve pridemo še hitrje. V funkcijo <code>lu_solve</code> lahko vstavimo vektor $\mathbf{b}$ ali matriko $\mathbf{B}$, katere posamezni stolpec $i$ predstavlja nov vektor konstant $\mathbf{b}_i$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [45]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
+<span class="n">lu_solve</span><span class="p">(</span><span class="n">lu_piv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -2810,46 +2846,6 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Scipy rešitev prek dekompozicije LU.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>V funkcijo <code>lu_solve</code> lahko vstavimo vektor $\mathbf{b}$ ali matriko $\mathbf{B}$, kjer posamezni stolpec $i$ predstavlja vektor konstant $\mathbf{b}_i$.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [46]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
-<span class="n">lu_solve</span><span class="p">(</span><span class="n">lu_piv</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
-       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
-       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Reševanje-predoločenih-sistemov">Reševanje predoločenih sistemov<a class="anchor-link" href="#Reševanje-predoločenih-sistemov">¶</a></h1>
 </div>
 </div>
@@ -2858,10 +2854,10 @@ poiskati rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kadar rešujemo sistem $m$ linearnih enačbami z $n$ neznankami ter velja $m>n$ in je rang $n+1$, imamo predoločeni sistem.</p>
+<p>Kadar rešujemo sistem $m$ linearnih enačbami z $n$ neznankami ter velja $m>n$ in je rang vsaj $n+1$, imamo predoločeni sistem.</p>
 <p>Predoločeni (tudi <strong>nekonsistenten sistem</strong>):
 $$\mathbf{A}\,\mathbf{x}=\mathbf{b},$$
-nima rešitve; lahko pa z metodo <strong>najmanjših kvadratov</strong> najdemo najboljši približek rešitve.</p>
+nima rešitve. Lahko pa poiščemo najboljši približek rešitve z metodo <strong>najmanjših kvadratov</strong> .</p>
 </div>
 </div>
 </div>
@@ -2869,7 +2865,7 @@ nima rešitve; lahko pa z metodo <strong>najmanjših kvadratov</strong> najdemo 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vsota kvadratov prostankov je definirana s skalarnim produktom:
+<p>Vsota kvadratov preostankov je definirana s skalarnim produktom:
 $$\left\lVert r\right\rVert ^2=(\mathbf{A}\,\mathbf{x}-\mathbf{b})^T\,(\mathbf{A}\,\mathbf{x}-\mathbf{b})$$
 kar preoblikujemo v:
 $$\left\lVert r\right\rVert^2=\mathbf{x}^T\mathbf{A}^T\mathbf{A}\mathbf{x}-2\mathbf{b}^T\mathbf{A}\mathbf{x}+\mathbf{b}^T\mathbf{b},$$
@@ -2883,9 +2879,9 @@ kjer smo upoštevali, da zaradi skalarne vrednosti velja: $\mathbf{b}^T\mathbf{A
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Koren gradienta vsote kvadratov določa njen minimum :
 $$\nabla_x\,\left\lVert r\right\rVert^2=2\mathbf{A}^T\mathbf{A}\,\mathbf{x}-2\mathbf{A}^T\,\mathbf{b}=0$$
-Tako iz normalne enačbo:
+Tako iz normalne enačbe:
 $$\mathbf{A}^T\mathbf{A}\,\mathbf{x}=\mathbf{A}^T\,\mathbf{b}$$
-določimo najboljši približek:
+določimo najboljši približek rešitve:
 $$\mathbf{x}=\left(\mathbf{A}^T\mathbf{A}\right)^{-1}\mathbf{A}^T\,\mathbf{b}.$$</p>
 </div>
 </div>
@@ -2905,21 +2901,30 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Psevdo invertno ponavadi izračunamo z:</p>
+<p>Psevdo inverzno matriko lahko izračunamo z uporabo funkcij:</p>
 <ul>
-<li><code>numpy.linalg</code> ima v implemenitrano funkcijo <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.pinv.html">pinv</a> </li>
-<li><code>scipy.linalg</code> pa več različnih funkcij <a href="https://docs.scipy.org/doc/scipy/reference/linalg.html">pinv, pinv2 in pinvh</a>; izbira funkcije je odvisna od obravnavanega problema; glejte dokumentacijo!</li>
+<li><code>numpy.linalg.pinv</code> iz modula <code>numpy</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.pinv.html">dokumentacija</a>),</li>
 </ul>
+<ul>
+<li>Funkcij <code>pinv</code>, <code>pinv2</code> ali <code>pinvh</code> iz modula <code>scipy.linalg</code> (izbira je odvisna od obravnavanega problema; glejte <a href="https://docs.scipy.org/doc/scipy/reference/linalg.html">dokumentacijo</a>).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer sistema z enolično rešitvijo:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In [46]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># število enačb enako število neznank</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># število enačb enako številu neznank</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
               <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">5.</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
@@ -2931,7 +2936,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[47]:</div>
+<div class="prompt output_prompt">Out[46]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 1.,  2.])</pre>
 </div>
@@ -2943,13 +2948,13 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Naredimo sedaj predoločeni sistem (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">np.vstack()</a>, sestavi sezname po stolpcih, <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.seed.html">np.random.seed()</a> ponastavi generator naključnih števil na vrednost semena <code>seed</code>, <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html">np.random.normal()</a> generira normalno porazdeljeni seznam dolžine <code>size</code> in standardne deviacije <code>scale</code>):</p>
+<p>Naredimo sedaj predoločeni sistem (funkcija <code>numpy.vstack</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">dokumentacija</a>) sestavi sezname po stolpcih, <code>numpy.random.seed</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.seed.html">dokumentacija</a>) ponastavi generator naključnih števil na vrednost semena <code>seed</code>, <code>numpy.random.normal</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html">dokumentacija</a>) pa generira normalno porazdeljeni seznam dolžine <code>size</code> in standardne deviacije <code>scale</code>):</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In [47]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">])</span> 
@@ -2963,7 +2968,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[48]:</div>
+<div class="prompt output_prompt">Out[47]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1.01764052,  2.00400157],
        [ 2.00978738,  3.02240893],
@@ -2978,7 +2983,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In [48]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">])</span>
@@ -2991,7 +2996,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[49]:</div>
+<div class="prompt output_prompt">Out[48]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 5.00761038,  8.00121675,  5.00443863,  8.00333674,  5.01494079,
         7.99794842])</pre>
@@ -3010,7 +3015,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [69]:</div>
+<div class="prompt input_prompt">In [49]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">vA</span><span class="p">)</span>
@@ -3022,7 +3027,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[69]:</div>
+<div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 0.94512271,  2.02675939])</pre>
 </div>
@@ -3042,13 +3047,13 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Psevdo invertno matriko lahko določimo tudi sami in preverimo raziko z vgrajeno funkcijo:</p>
+<p>Psevdo inverzno matriko lahko določimo tudi sami in preverimo raziko z vgrajeno funkcijo:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [70]:</div>
+<div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit # preverite hitrost!</span>
@@ -3062,12 +3067,12 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[70]:</div>
+<div class="prompt output_prompt">Out[50]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[  6.21724894e-15,  -8.21565038e-15,   1.13242749e-14,
-         -8.88178420e-15,   1.19904087e-14,  -7.10542736e-15],
-       [ -4.21884749e-15,   4.94049246e-15,  -6.99440506e-15,
-          4.82947016e-15,  -7.54951657e-15,   3.77475828e-15]])</pre>
+<pre>array([[  8.88178420e-15,  -8.21565038e-15,   9.65894031e-15,
+         -8.65973959e-15,   1.04360964e-14,  -7.10542736e-15],
+       [ -5.66213743e-15,   4.71844785e-15,  -5.66213743e-15,
+          4.49640325e-15,  -6.21724894e-15,   3.55271368e-15]])</pre>
 </div>
 </div>
 </div>
@@ -3085,7 +3090,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pogosto se srečamo z velikimi sistemi linearnih enačb, katerih matrika koeficientov ima malo od nič različnih elementov (take matrike imenujemo <strong>redke</strong> ali tudi <strong>razpršene</strong>, ang: sparse).</p>
+<p>Pogosto se srečamo z velikimi sistemi linearnih enačb, katerih matrika koeficientov ima malo od nič različnih elementov (take matrike imenujemo <strong>redke</strong> ali tudi <strong>razpršene</strong>, angl. <em>sparse</em>).</p>
 <p>Pri reševanju takih sistemov linearnih enačb se zelo dobro izkažejo iterativne metod; prednosti v primerjavi z direktnimi metodami so:</p>
 <ul>
 <li>računske operacije se izvajajo samo nad neničelnimi elementi (kljub iterativnemu reševanju jih je lahko manj)</li>
@@ -3127,7 +3132,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [84]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -3149,7 +3154,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [85]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -3161,7 +3166,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[85]:</div>
+<div class="prompt output_prompt">Out[52]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 0.,  0.,  0.])</pre>
 </div>
@@ -3179,7 +3184,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [86]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#naredimo kopijo, da ne povozimo podatkov</span>
@@ -3191,7 +3196,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [87]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K</span>
@@ -3202,7 +3207,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[87]:</div>
+<div class="prompt output_prompt">Out[54]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 0., -1.,  1.],
        [-1.,  0., -1.],
@@ -3224,7 +3229,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [90]:</div>
+<div class="prompt input_prompt">In [55]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -3242,17 +3247,17 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-----iteracja 0-----
-Približek za element 0 [-1.23645332  6.13004808  2.02167468]
-Približek za element 1 [-1.23645332  6.13087023  2.02167468]
-Približek za element 2 [-1.23645332  6.13087023  2.0218117 ]
+Približek za element 0 [-1.75  0.    0.  ]
+Približek za element 1 [-1.75        5.70833333  0.        ]
+Približek za element 2 [-1.75        5.70833333  1.95138889]
 -----iteracja 1-----
-Približek za element 0 [-1.23636768  6.13087023  2.0218117 ]
-Približek za element 1 [-1.23636768  6.13090734  2.0218117 ]
-Približek za element 2 [-1.23636768  6.13090734  2.02181789]
+Približek za element 0 [-1.28038194  5.70833333  1.95138889]
+Približek za element 1 [-1.28038194  6.11183449  1.95138889]
+Približek za element 2 [-1.28038194  6.11183449  2.01863908]
 -----iteracja 2-----
-Približek za element 0 [-1.23636382  6.13090734  2.02181789]
-Približek za element 1 [-1.23636382  6.13090901  2.02181789]
-Približek za element 2 [-1.23636382  6.13090901  2.02181817]
+Približek za element 0 [-1.23835057  6.11183449  2.01863908]
+Približek za element 1 [-1.23835057  6.13004808  2.01863908]
+Približek za element 2 [-1.23835057  6.13004808  2.02167468]
 </pre>
 </div>
 </div>
@@ -3269,7 +3274,7 @@ Približek za element 2 [-1.23636382  6.13090901  2.02181817]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [89]:</div>
+<div class="prompt input_prompt">In [56]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@x</span>
@@ -3280,7 +3285,7 @@ Približek za element 2 [-1.23636382  6.13090901  2.02181817]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[89]:</div>
+<div class="prompt output_prompt">Out[56]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.01517799,  35.9969644 ,   6.        ])</pre>
 </div>
