@@ -73,7 +73,9 @@ def copy_notebooks():
             title = title.lstrip('#').strip()
 
             # put nav below title
-            content.cells[0], content.cells[1], content.cells[2] = content.cells[2], content.cells[0], content.cells[1]
+            #content.cells[0], content.cells[1], content.cells[2] = content.cells[2], content.cells[0], content.cells[1]
+            content.cells[1].source = content.cells[1].source.replace('Table of Contents', 'Kazalo')
+            content.cells.insert(1,content.cells[1])
 
         # Replace internal URLs and figure links in notebook
         for cell in content.cells:
