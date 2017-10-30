@@ -1409,7 +1409,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Kazalo">Kazalo<a class="anchor-link" href="#Kazalo">¶</a></h1><p><p><div class="lev1 toc-item"><a data-toc-modified-id="Testiranje-pravilnosti-kode-1" href="#Testiranje-pravilnosti-kode"><span class="toc-item-num">1  </span>Testiranje pravilnosti kode</a></div><div class="lev2 toc-item"><a data-toc-modified-id="PyTest-11" href="#PyTest"><span class="toc-item-num">1.1  </span>PyTest</a></div><div class="lev1 toc-item"><a data-toc-modified-id="Uporabniški-vmesnik-2" href="#Uporabniški-vmesnik"><span class="toc-item-num">2  </span>Uporabniški vmesnik</a></div><div class="lev2 toc-item"><a data-toc-modified-id="Zgled-21" href="#Zgled"><span class="toc-item-num">2.1  </span>Zgled</a></div><div class="lev1 toc-item"><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">3  </span>Nekaj vprašanj za razmislek!</a></div><div class="lev1 toc-item"><a data-toc-modified-id="Dodatno-4" href="#Dodatno"><span class="toc-item-num">4  </span>Dodatno</a></div></p>
+<h1 id="Kazalo">Kazalo<a class="anchor-link" href="#Kazalo">¶</a></h1><p><p><div class="lev1 toc-item"><a data-toc-modified-id="Testiranje-pravilnosti-kode-1" href="#Testiranje-pravilnosti-kode"><span class="toc-item-num">1  </span>Testiranje pravilnosti kode</a></div><div class="lev2 toc-item"><a data-toc-modified-id="pytest-11" href="#pytest"><span class="toc-item-num">1.1  </span>pytest</a></div><div class="lev1 toc-item"><a data-toc-modified-id="Uporabniški-vmesnik-2" href="#Uporabniški-vmesnik"><span class="toc-item-num">2  </span>Uporabniški vmesnik</a></div><div class="lev2 toc-item"><a data-toc-modified-id="Zgled-21" href="#Zgled"><span class="toc-item-num">2.1  </span>Zgled</a></div><div class="lev1 toc-item"><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">3  </span>Nekaj vprašanj za razmislek!</a></div></p>
 </p></div>
 </div>
 </div>
@@ -1425,7 +1425,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kadar razvijamo bolj obsežno kodo in pri razvoju sodeluje več oseb, se pojavi potreba po avtomatskem testiranju pravilnosti kode. To pomeni, da poleg kode, ki ima določen rezultat definiramo tudi testirne funkcije; slednje preverjajo ali prve dajo pričakovani rezultat.</p>
+<p>Kadar razvijamo bolj obsežno kodo in pri tem sodeluje več oseb, se pojavi potreba po avtomatskem testiranju pravilnosti kode. To pomeni, da poleg kode, ki ima določen rezultat, definiramo tudi testirne funkcije; slednje preverjajo ali prve vračajo pričakovani rezultat.</p>
 </div>
 </div>
 </div>
@@ -1448,7 +1448,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če poženemo funkcijo <code>test_kvadrat()</code> se testira pravilnost <code>kvadrat(2) == 4</code>; v primeru, da je rezultat <code>True</code> se ne zgodi nič, če pa je rezultat <code>False</code> se sproži <code>AssertionError()</code> (glejte <a href="https://docs.python.org/reference/simple_stmts.html#assert"><code>assert</code></a>). Ker funkcija <code>kvadrat()</code> vrne <code>x**2+1</code>, bo testiranje neuspešno.</p>
+<p>Če poženemo funkcijo <code>test_kvadrat()</code> se testira pravilnost <code>kvadrat(2) == 4</code>; v primeru, da je rezultat <code>True</code> se ne zgodi nič, če pa je rezultat <code>False</code> se sproži <code>AssertionError()</code> (glejte <a href="https://docs.python.org/reference/simple_stmts.html#assert">dokumentacijo</a> za ukaz <code>assert</code>). Ker funkcija <code>kvadrat()</code> vrne <code>x**2+1</code>, bo testiranje neuspešno.</p>
 <p>Verjetno se sprašujete v čem je smisel takega <em>testiranja pravilnosti</em>. Ko koda postaja obsežna in na njej dela veliko oseb, postane nujno tudi prepletena. Tako se lahko zgodi, da razvijalec doda novo funkcionalnost in nehote poruši obstoječo. Če so vse funkcionalnosti testirane, bo testiranje zaznalo neustreznost predlagane spremembe.</p>
 </div>
 </div>
@@ -1457,16 +1457,9 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Večina paketov ima tako dodano testiranje pravilnosti; za primer si lahko pogledate izvorno kodo paketa <em>NumPy</em>, ki se nahaja na <a href="https://github.com/numpy/numpy/tree/master/numpy/">githubu</a>; če pogledate vsebino podmodula, ki skrbi za linearno algebro <a href="https://github.com/numpy/numpy/tree/master/numpy/linalg"><code>numpy.linalg</code></a>:</p>
+<p>Večina paketov ima tako dodano testiranje pravilnosti; za primer si lahko pogledate izvorno kodo paketa <em>NumPy</em>, ki se nahaja na <a href="https://github.com/numpy/numpy/tree/master/numpy/">githubu</a>; če pogledate <a href="https://github.com/numpy/numpy/tree/master/numpy/linalg">vsebino</a> podmodula <code>numpy.linalg</code> za linearno algebro:</p>
 <p><img src="./fig/github_numpy_linalg.png" width="400"/></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>opazimo samo dve podmapi: <code>src</code> in <code>tests</code>. Slednja je v celoti namenjena testiranju in vsebuje množico Python datotek, ki preverjajo ustreznost podmodula.</p>
+<p>opazimo podmapo <code>tests</code>. Slednja je v celoti namenjena testiranju in vsebuje množico Python datotek, ki preverjajo ustreznost podmodula.</p>
 </div>
 </div>
 </div>
@@ -1480,7 +1473,7 @@ h6:hover .anchor-link {
 <li><a href="http://nose.readthedocs.io/en/latest/"><code>nose</code></a>,</li>
 <li><a href="https://docs.pytest.org/"><code>pytest</code></a>.</li>
 </ul>
-<p>Vsi trije pristopi imajo podobno funkcionalnost; v zadnje obdobju pa se največ uporablja <code>pytest</code> (npr. NumPy/SciPy), katerega osnove si bomo tukaj pogledali.</p>
+<p>Vsi trije pristopi imajo podobno funkcionalnost. V zadnjem obdobju pa se najpogosteje uporablja <code>pytest</code> (npr. NumPy/SciPy), katerega osnove si bomo tukaj pogledali.</p>
 </div>
 </div>
 </div>
@@ -1488,7 +1481,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PyTest">PyTest<a class="anchor-link" href="#PyTest">¶</a></h2><p>PyTest je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo s <code>pip</code> ali <code>conda</code> ukazom.</p>
+<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">¶</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo s <code>pip</code> ali <code>conda</code> ukazom.</p>
 <p>Nekatere lastnosti:</p>
 <ul>
 <li>vrne opis testa, ki ni bil uspešen,</li>
@@ -1553,12 +1546,12 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Za osnovno uporabo pri numeričnih izračunih, je treba še izpostaviti modul <a href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html#"><code>numpy.testing</code></a>, ki nudi podporo za testiranje numeričnih polj.</p>
+<p>Za osnovno uporabo pri numeričnih izračunih je treba še izpostaviti modul <code>numpy.testing</code> (<a href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html#">dokumentacija</a>), ki nudi podporo za testiranje numeričnih polj.</p>
 <p>Izbrane funkcije so:</p>
 <ul>
-<li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_allclose.html#numpy.testing.assert_allclose"><code>assert_allclose(dejansko, pričakovano[, rtol, ...])</code></a> preveri enakost do zahtevane natančnosti</li>
-<li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less"><code>assert_array_less(x, y[, err_msg, verbose])</code></a> preveri ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
-<li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_string_equal.html#numpy.testing.assert_string_equal"><code>assert_string_equal(dejansko, pričakovano)</code></a> preveri enakost niza.</li>
+<li><code>assert_allclose(dejansko, pričakovano[, rtol, ...])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_allclose.html#numpy.testing.assert_allclose">dokumentacija</a>) preveri enakost do zahtevane natančnosti</li>
+<li><code>assert_array_less(x, y[, err_msg, verbose])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less">dokumentacija</a>) preveri ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
+<li><code>assert_string_equal(dejansko, pričakovano)</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_string_equal.html#numpy.testing.assert_string_equal">dokumentacija</a>) preveri enakost niza.</li>
 </ul>
 </div>
 </div>
@@ -1567,7 +1560,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zled:-test_orodja.py:">Zled: <code>test_orodja.py</code>:<a class="anchor-link" href="#Zled:-test_orodja.py:">¶</a></h3><p>V datoteki <code>test_orodja.py</code> so pripravljene funkcije za testiranje modula <code>orodja.py</code>.</p>
+<h3 id="Zgled:-test_orodja.py:">Zgled: <code>test_orodja.py</code>:<a class="anchor-link" href="#Zgled:-test_orodja.py:">¶</a></h3><p>V datoteki <code>test_orodja.py</code> so pripravljene funkcije za testiranje modula <code>orodja.py</code>.</p>
 <p>Tako so najprej pripravljeni podatki:</p>
 <div class="highlight"><pre><span></span><span class="n">zacetna</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
                       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
@@ -1596,7 +1589,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če funkcija <code>orodja.zamenjaj_stolpca()</code> deluje pravilno, se klicanje <code>pytest</code> v ukazni vrstici uspešno zaključi. Za preostale teste poglejte datoteko <code>test_orodja.py</code> in dokumentacijo paketa <a href="https://docs.pytest.org/"><code>pytest</code></a>.</p>
+<p>Če funkcija <code>orodja.zamenjaj_stolpca()</code> deluje pravilno, se klicanje <code>pytest</code> v ukazni vrstici uspešno zaključi. Za preostale teste poglejte datoteko <code>test_orodja.py</code> in <a href="https://docs.pytest.org/">dokumentacijo</a> paketa <code>pytest</code>.</p>
 </div>
 </div>
 </div>
@@ -1612,10 +1605,10 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tudi za programiranje uporabniškega vmesnika obstaja različnih načinov/modulov, npr.:</p>
+<p>Tudi za programiranje uporabniškega vmesnika obstaja veliko različnih načinov/modulov. Nekaj najpogosteje uporabljenih:</p>
 <ul>
 <li><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> temelji na <a href="https://www.qt.io/">Qt</a>, ki predstavlja najbolj razširjeno platforma za uporabniške vmesnike,</li>
-<li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em> vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a> žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
+<li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em> vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a>, a žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
 <li><a href="http://kivy.org/">Kivy</a> za hiter razvoj modernih uporabniških vmesnikov (ni tako zrel kakor npr. Qt),</li>
 <li><a href="https://www.wxwidgets.org/">wxWidgets</a> široko uporabljena prosta platforma za izdelavo uporabniških vmesnikov.</li>
 </ul>
@@ -1629,7 +1622,7 @@ test_prvi.py:5: AssertionError
 <p>Med vsemi naštetimi si bomo podrobneje pogledali <em>PyQt</em>, ki je verjetno najboljša in tudi najbolj dozorela izbira (za komercialno uporabo pa žal ni brezplačna).</p>
 <p>Velja omeniti, da uporabniški vmesnik lahko:</p>
 <ul>
-<li><em>rišemo</em> s <a href="http://doc.qt.io/qt-5/qtdesigner-manual.html">QtDesignerjem</a> (glejte <a href="https://www.youtube.com/watch?v=GLqrzLIIW2E">video</a> ali </li>
+<li><em>rišemo</em> s <a href="http://doc.qt.io/qt-5/qtdesigner-manual.html">QtDesignerjem</a> (glejte <a href="https://www.youtube.com/watch?v=GLqrzLIIW2E">video</a>), ali </li>
 <li><em>kodiramo</em>.</li>
 </ul>
 <p>Tukaj bomo uporabniški vmesnik <em>kodirali</em>.</p>
@@ -1674,7 +1667,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -1687,7 +1680,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Uporabniški vmesnik tipično gradimo na razredu <a href="http://doc.qt.io/qt-5/qmainwindow.html"><code>QtWidgets.QMainWindow()</code></a>, kateri ima strukturo, kot je prikazana spodaj:</p>
+<p>Uporabniški vmesnik tipično gradimo na razredu <code>QtWidgets.QMainWindow</code> (<a href="http://doc.qt.io/qt-5/qmainwindow.html">dokumentacija</a>), ki ima  spodaj prikazano strukturo:</p>
 <p><img src="http://doc.qt.io/qt-5/images/mainwindowlayout.png" width="350"/></p>
 </div>
 </div>
@@ -1711,20 +1704,20 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ni potrebno definirati vseh; spodaj si bomo pogledali primer, ko bomo definirali <em>Status bar</em>, <em>Central Widget</em> in <em>Menu Bar</em>. Ponavadi vse elemente definiramo pri inicializacijo instance razreda (<code>__init__()</code> funkcija).</p>
-<p>Tukaj izpostavimo, da grafični vmesnik temelji na t.i. <em>Widgetih</em>, (za na primer gumb, tabelo, datum) prikaz nekaterih možnosti je prikazan v:</p>
+<p>Ni potrebno definirati vseh; spodaj si bomo pogledali primer, ko bomo definirali <em>Status bar</em>, <em>Central Widget</em> in <em>Menu Bar</em>. Ponavadi vse elemente definiramo pri inicializaciji instance razreda (metoda <code>__init__</code>).</p>
+<p>Tukaj izpostavimo, da grafični vmesnik temelji na t.i. <em>Widgetih</em>, (za na primer gumb, tabelo, datum itd.). Prikaz nekaterih možnosti je prikazan v:</p>
 <ul>
-<li><a href="http://doc.qt.io/qt-5/gallery-windows.html">Qt 5 Windows galerija</a>,</li>
+<li><a href="http://doc.qt.io/qt-5/gallery-windows.html">Qt 5 Windows galeriji</a>,</li>
 <li><a href="http://doc.qt.io/qt-5/gallery.html">Qt5 galeriji</a> in</li>
 <li><a href="http://doc.qt.io/qt-5/gallery-fusion.html">Qt5 fusion galeriji</a>.</li>
 </ul>
-<p>Zelo okrnjen uporabniški vmesnik (s vrstičnimi komentarji) je prikazan spodaj.</p>
+<p>Zelo enostaven uporabniški vmesnik (z vrstičnimi komentarji kode) je prikazan spodaj.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
@@ -1779,7 +1772,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -1793,6 +1786,17 @@ test_prvi.py:5: AssertionError
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">())</span>
 </pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Zapiram okno.
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -1814,11 +1818,11 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nekaj komentarjev za <code>uporabniski_vmesnik.py</code>:</p>
+<p>Nekaj komentarjev na <code>uporabniski_vmesnik.py</code>:</p>
 <ol>
 <li>Poglejte prepis dogodka <code>mouseDoubleClickEvent</code> in prepišite podedovan dogodek <code>keyPressEvent</code>, ki naj ob pritisku katerekoli tipke zapre program (če se nahajate v TextEdit polju, potem seveda pritisk tipke izpiše vrednost te tipke).</li>
-<li>Dodajte še kakšen <em>widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
-<li>Preprogramirajte program, da se bo vedno izrisoval sinus, v vpisno polje <code>function_text</code> pa boste zapisali število diskretnih točk (sedaj je točk 100).  Povežite polje z ustreznimi funkcijami.</li>
+<li>Dodajte še kakšen <em>Widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
+<li>Spremenite program, da se bo vedno izrisovala funkcija sinus, v vpisno polje <code>function_text</code> pa boste zapisali število diskretnih točk (sedaj je točk 100).  Povežite polje z ustreznimi funkcijami.</li>
 <li>Uredite lovljenje napak pri zgornji spremembi.</li>
 </ol>
 </div>
@@ -1837,7 +1841,7 @@ test_prvi.py:5: AssertionError
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li>V pyCharm-u pripravite modul, ki bo imel dve funkciji:<ul>
+<li>V PyCharm-u pripravite modul, ki bo imel dve funkciji:<ul>
 <li>za množenje matrike in vektorja,</li>
 <li>za množenje dveh matrik.</li>
 </ul>
@@ -1853,7 +1857,7 @@ test_prvi.py:5: AssertionError
 </ul>
 </li>
 <li>Odkomentirajte prej (zgoraj) zakomentirane vrstice. Dodajte tretji gumb, ki naj program zapre.</li>
-<li>Dodajte še kakšen <em>widget</em> s seznama: <a href="http://doc.qt.io/qt-5/gallery-windows.html">http://doc.qt.io/qt-5/gallery-windows.html</a> </li>
+<li>Dodajte še kakšen <em>Widget</em> s seznama: <a href="http://doc.qt.io/qt-5/gallery-windows.html">http://doc.qt.io/qt-5/gallery-windows.html</a> </li>
 </ol>
 </div>
 </div>
