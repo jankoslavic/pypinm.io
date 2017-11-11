@@ -1425,7 +1425,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kadar želimo simulirati izbrani fizikalni proces ponavadi postopamo takole:</p>
+<p>Kadar želimo simulirati izbrani fizikalni proces, ponavadi postopamo takole:</p>
 <ol>
 <li>postavimo matematični model*,</li>
 <li>izberemo numerično metodo in njene parametre,</li>
@@ -1456,7 +1456,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Število z dvojno natančnostjo se v Pythonu imeuje <strong>float64</strong> in je zapisano v spomin v binarni obliki v 64 bitih (11 bitov eksponent in 53 bitov mantisa (1 bit za predznak)). Ker je mantisa definirana na podlagi 52 binarnih števk, se lahko pojavi pri njegovem zapisu <em>relativna napaka</em> največ $\epsilon\approx2.2\cdot 10^{-16}$. Ta napaka se imenuje <strong>osnovna zaokrožitvena napaka</strong> in se lahko pojavi pri vsakem vmesnem
+<p>Število z dvojno natančnostjo se v Pythonu imenuje <strong>float64</strong> in je zapisano v spomin v binarni obliki v 64 bitih (11 bitov eksponent in 53 bitov mantisa (1 bit za predznak)). Ker je mantisa definirana na podlagi 52 binarnih števk, se lahko pojavi pri njegovem zapisu <em>relativna napaka</em> največ $\epsilon\approx2.2\cdot 10^{-16}$. Ta napaka se imenuje <strong>osnovna zaokrožitvena napaka</strong> in se lahko pojavi pri vsakem vmesnem
 izračunu!</p>
 </div>
 </div>
@@ -1465,7 +1465,7 @@ izračunu!</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če je korakov veliko, lahko napaka zelo naraste in zato je pomembno, da je njen vpliv na izbrano numerično metodo čim manjši!</p>
+<p>Če je korakov veliko, lahko napaka zelo naraste in zato je pomembno, da je njen vpliv na rezultat čim manjši!</p>
 <p>Spodaj je primer podrobnejših informacij za tip podatkov z dvojno natančnostjo (<code>float</code>); pri tem si pomagamo z vgrajenim modulom <code>sys</code> za klic parametrov in funkcij python sistema (<a href="https://docs.python.org/3/library/sys.html">dokumentacija</a>):</p>
 </div>
 </div>
@@ -1498,7 +1498,7 @@ izračunu!</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poleg števila z dvojno natančnostjo se uporabljajo drugi tipi podatkov; dober pregled različnih tipov je prikazan v okviru <a href="https://docs.scipy.org/doc/numpy-1.10.1/user/basics.types.html">numpy</a> in <a href="https://docs.python.org/3/library/stdtypes.html">python</a> dokumentacije.</p>
-<p>Tukaj si poglejmo primer tipa <code>int8</code>, kar pomeni celo število zapisano z 8 biti (8 bit = 1 byte). Z njim lahko v desetiškem sistemu zapišemo cela števila od -128 do +127:</p>
+<p>Tukaj si poglejmo primer tipa <code>int8</code>, kar pomeni celo število zapisano z 8 biti (8 bit = 1 byte). Z njim lahko v dvojiškem sistemu zapišemo cela števila od -128 do +127:</p>
 </div>
 </div>
 </div>
@@ -1529,7 +1529,7 @@ izračunu!</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Napaka-metode">Napaka metode<a class="anchor-link" href="#Napaka-metode">¶</a></h2><p>Poleg zaorožitvene napake pa se pogosto srečamo tudi z <strong>napako metode</strong> ali <strong>metodično napako</strong>, ki jo naredimo takrat, ko natančen analitični postopek reševanja matematičnega modela zamenjamo s približnim numeričnim.</p>
+<h2 id="Napaka-metode">Napaka metode<a class="anchor-link" href="#Napaka-metode">¶</a></h2><p>Poleg zaokrožitvene napake pa se pogosto srečamo tudi z <strong>napako metode</strong> ali <strong>napako metode</strong>, ki jo naredimo takrat, ko natančen analitični postopek reševanja matematičnega modela zamenjamo s približnim numeričnim.</p>
 </div>
 </div>
 </div>
@@ -1546,12 +1546,7 @@ izračunu!</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Med izvajanje numeričnega izračuna se napake lahko seštevajo, in sicer:</p>
-<ul>
-<li><strong>absolutna napaka</strong> pri seštevanju/odštevanju,</li>
-<li><strong>relativna napaka</strong> pri množenju/deljenju.</li>
-</ul>
-<p>Posledično je rezultat operacije manj natančnen (ima manj zanesljivh števk) kakor pa je zanesljivost obeh operandov.</p>
+<p>Med izvajanjem numeričnega izračuna se napake lahko širijo. Posledično je rezultat operacije manj natančen (ima manj zanesljivih števk), kakor pa je zanesljivost podatkov izračuna.</p>
 </div>
 </div>
 </div>
@@ -1560,7 +1555,7 @@ izračunu!</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj splošen pristop k oceni napake. Točno vrednost označimo z $r$, približek z $a_1$; velja $r=a_1+e_1$, kjer je $e_1$ napaka. Če z numeričnim algoritmom  izračunamo bistveno boljši približek $a_2$, velja $r=a_2+e_2$.</p>
-<p>Ker velja $a_1+e_1=a_2+e_2$, lahko ob predpostavki $\left|e_1\right|>>\left|e_2\right|$ izpeljemo $a_2-a_1=e_1-e_2\approx e_1$.</p>
+<p>Ker velja $a_1+e_1=a_2+e_2$, lahko ob predpostavki $\left|e_1\right|>>\left|e_2\right|$ in $\left|e_2\right|\approx 0$ izpeljemo $a_2-a_1=e_1-e_2\approx e_1$.</p>
 </div>
 </div>
 </div>
@@ -1569,7 +1564,7 @@ izračunu!</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$\left|a_1-a_2\right|$ je torej pesimistična ocena absolutne napake,</p>
-<p>$\left|\frac{a_1-a_2}{a_2}\right|$ pa ocena relativne napake</p>
+<p>$\left|\frac{a_1-a_2}{a_2}\right|$ pa ocena relativne napake.</p>
 </div>
 </div>
 </div>
@@ -1640,12 +1635,12 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>S pomočjo elementarnih operacij nad vrsticami matrike $\mathbf{A}$ jo lahko preoblikujemo v t.i. <strong>vrstično kanonično obliko</strong>:</p>
+<p>S pomočjo elementarnih operacij nad vrsticami matrike $\mathbf{A}$ jo lahko preoblikujemo v t. i. <strong>vrstično kanonično obliko</strong>:</p>
 <ol>
 <li>če obstajajo ničelne vrstice, so te na dnu matrike,</li>
 <li>prvi neničelni element se nahaja desno od prvih neničelnih elementov predhodnih vrstic,</li>
 <li>prvi neničelni element v vrstici imenujemo <strong>pivot</strong> in je enak 1,</li>
-<li>pivot je edini neničelni element v stolpcu.</li>
+<li>pivot je edini neničelni element v vrstici.</li>
 </ol>
 <p><strong>Rang matrike</strong> predstavlja število neničelnih vrstic v vrstični kanonični obliki matrike; število neničelnih vrstic predstavlja število linearno neodvisnih enačb in je enako številu pivotnih elementov.</p>
 </div>
@@ -1688,7 +1683,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Očitno ima neničeni element <code>A[0,0]</code> vrednost 1 in je pivotni element. Prvo vrstico <code>A[0,:]</code> pomnožimo z $-4$ in produkt prištejemo drugi vrstici <code>A[1,:]-4A[0,:]</code>:</p>
+<p>Očitno ima neničelni element <code>A[0,0]</code> vrednost 1 in je pivotni element. Prvo vrstico <code>A[0,:]</code> pomnožimo z $-4$ in produkt prištejemo drugi vrstici <code>A[1,:]-4A[0,:]</code>:</p>
 </div>
 </div>
 </div>
@@ -1874,7 +1869,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 <p>Rang matrike pa lahko določimo tudi s pomočjo <code>numpy</code> funkcije <code>numpy.linalg.matrix_rank</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.matrix_rank.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
-<p>kjer je <code>M</code> matrika katere rang iščemo, <code>tol</code> opcijski parameter, ki določa mejo pod katero se vrednosti v algoritmu smatrajo enake nič.</p>
+<p>kjer je <code>M</code> matrika, katere rang iščemo, <code>tol</code> opcijski parameter, ki določa mejo, pod katero se vrednosti v algoritmu smatrajo enake nič.</p>
 </div>
 </div>
 </div>
@@ -1917,8 +1912,8 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej se bomo omejili na sistem $m=n$ linearnih enačb z $n$ neznankami ter velja $n=r$:
-$$\mathbf{A}\,\mathbf{x}=\mathbf{b}.$$
-Če je matrika koeficientov $\mathbf{A}$ nesingulanra ($|\mathbf{A}|\neq 0$), ima tak sistem rešitev:
+$$\mathbf{A}\,\mathbf{x}=\mathbf{b}.$$</p>
+<p>Pod zgornjimi pogoji je matrika koeficientov $\mathbf{A}$ nesingularna ($|\mathbf{A}|\neq 0$) in sistem ima rešitev:
 $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
@@ -1927,8 +1922,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če je matrika koeficientov singularna, to je $|\mathbf{A}|=0$, potem ima sistem linearnih enačb neskončno mnogo rešitev ali pa rešitve sploh nima (odvisno od ranga).</p>
-<p>Poglejmo si primer sistema, ko so <strong>enačbe linearno odvisne</strong>:</p>
+<p>Poglejmo si primer sistema, ko so <strong>enačbe linearno odvisne</strong> ($r<n$):</p>
 </div>
 </div>
 </div>
@@ -1962,10 +1956,10 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>S pomočjo <code>numpy</code> knjižnice poglejo sedaj rang matrike koeficientov in razširjene matrike ter determinanto z uporabo <code>numpy.linalg.det</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.det.html">dokumentacija</a>):</p>
+<p>S pomočjo <code>numpy</code> knjižnice poglejmo sedaj rang matrike koeficientov in razširjene matrike ter determinanto z uporabo <code>numpy.linalg.det</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.det.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">det</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
-<p>kjer je <code>a</code> matrika (ali seznam matrik) katere determinanto iščemo; funkcija <code>det</code> vrne determinanto (ali seznam determinant).</p>
+<p>kjer je <code>a</code> matrika (ali seznam matrik), katere determinanto iščemo; funkcija <code>det</code> vrne determinanto (ali seznam determinant).</p>
 </div>
 </div>
 </div>
@@ -2060,7 +2054,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerična naloga je slabo pogojena, če majhna sprememba podatkov povzroči veliko spremembo rezultata. V primeru <em>majhne spremembe podatkov</em>, ki povzročijo <em>majhno spremembo rezultatov</em>, pa je naloga <strong>dobro pogojena</strong>.</p>
-<p>Sistem enačb je ponavadi dobro pogojen, če so absolutne vrednosti diagonalnih elementov matrike koeflcientov velike v primerjavi z absolutnimi vrednostmi izven diagonalnih elementov.</p>
+<p>Sistem enačb je ponavadi dobro pogojen, če so absolutne vrednosti diagonalnih elementov matrike koeficientov velike v primerjavi z absolutnimi vrednostmi izven diagonalnih elementov.</p>
 </div>
 </div>
 </div>
@@ -2068,7 +2062,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Za sistem linearnih enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$ lahko računamo <strong>število pogojenosti</strong> (<em>ang.</em> condition number):</p>
+<p>Za sistem linearnih enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$ lahko računamo <strong>število pogojenosti</strong> (<em>angl.</em> condition number):</p>
 <p>$$\textrm{cond}(\textbf{A})=||\textbf{A}||\,||\textbf{A}^{-1}||.$$</p>
 <p>Z $||\textbf{A}||$ je označena <strong>norma</strong> matrike.</p>
 </div>
@@ -2120,7 +2114,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tukaj si bomo pogledali slabo pogojen sistem, kjer bomo z malenkostno spremembo na matriki koeficientov povzročili veliko spremembo rešitve.</p>
+<p>Pogledali si bomo slabo pogojen sistem, kjer bomo z malenkostno spremembo na matriki koeficientov povzročili veliko spremembo rešitve.</p>
 </div>
 </div>
 </div>
@@ -2138,7 +2132,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0001</span><span class="p">]])</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.00001</span><span class="p">]])</span>
 <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2149,7 +2143,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[15]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>40002.00007491187</pre>
+<pre>400002.00000283821</pre>
 </div>
 </div>
 </div>
@@ -2159,7 +2153,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In vektor konstant:</p>
+<p>Vektor konstant:</p>
 </div>
 </div>
 </div>
@@ -2168,7 +2162,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">Ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
 <span class="n">Ab</span>
 </pre></div>
@@ -2180,8 +2174,8 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ 1.    ,  1.    ,  3.    ],
-       [ 1.    ,  1.0001,  0.    ]])</pre>
+<pre>array([[ 1.     ,  1.     ,  3.     ],
+       [ 1.     ,  1.00001, -3.     ]])</pre>
 </div>
 </div>
 </div>
@@ -2211,7 +2205,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>'rang(A)=2, rang(Ab)=2, število neznak: 2, det(A)=9.99999999999889e-05'</pre>
+<pre>'rang(A)=2, rang(Ab)=2, število neznak: 2, det(A)=1.000000000006551e-05'</pre>
 </div>
 </div>
 </div>
@@ -2221,7 +2215,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In od druge enačbe odšejemo prvo:</p>
+<p>Od druge enačbe odšejemo prvo:</p>
 </div>
 </div>
 </div>
@@ -2242,7 +2236,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[  1.00000000e+00,   1.00000000e+00,   3.00000000e+00],
-       [  0.00000000e+00,   1.00000000e-04,  -3.00000000e+00]])</pre>
+       [  0.00000000e+00,   1.00000000e-05,  -6.00000000e+00]])</pre>
 </div>
 </div>
 </div>
@@ -2252,7 +2246,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In določimo <code>x1</code>:</p>
+<p>Določimo <code>x1</code>:</p>
 </div>
 </div>
 </div>
@@ -2272,7 +2266,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[19]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>-30000.000000003303</pre>
+<pre>-599999.99999606924</pre>
 </div>
 </div>
 </div>
@@ -2302,7 +2296,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[20]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>30003.000000003303</pre>
+<pre>600002.99999606924</pre>
 </div>
 </div>
 </div>
@@ -2322,7 +2316,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
-              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.00011</span><span class="p">]])</span> <span class="c1"># <= tukaj smo spremenili 1.0001 na 1.00011</span>
+              <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0001</span> <span class="o">+</span> <span class="mf">1e-5</span><span class="p">]])</span> <span class="c1"># <= tukaj smo spremenili 1.0001 na 1.00011</span>
 <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2343,7 +2337,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In ponovimo izračun:</p>
+<p>Ponovimo izračun:</p>
 </div>
 </div>
 </div>
@@ -2386,7 +2380,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[23]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[30003.000000003303, -30000.000000003303]</pre>
+<pre>[600002.99999606924, -599999.99999606924]</pre>
 </div>
 </div>
 </div>
@@ -2407,7 +2401,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="output_area">
 <div class="prompt output_prompt">Out[24]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>[30003.000000003303, -27272.727272713761]</pre>
+<pre>[600002.99999606924, -54545.454545427521]</pre>
 </div>
 </div>
 </div>
@@ -2417,7 +2411,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ugotovimo, da je malenkostna sprememba enega koeficienta v matriki koeficientov povzročila veliko spremembo v rezultatu.</p>
+<p>Ugotovimo, da je malenkostna sprememba enega koeficienta v matriki koeficientov povzročila veliko spremembo v rezultatu. Majhni spremembi podatkov se ne moremo izogniti, zaradi zapisa podatkov v računalniku.</p>
 </div>
 </div>
 </div>
@@ -2436,7 +2430,6 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <p>Pogledali si bomo dva, v principu različna pristopa k reševanju sistemov linearnih enačb:</p>
 <p>A) <strong>Direktni pristop</strong>: nad sistemom enačb izvajamo elementarne operacije, s katerimi predelamo sistem enačb v lažje rešljivega,</p>
 <p>B) <strong>Iterativni pristop</strong>: izberemo začetni približek, nato pa približek iterativno izboljšujemo.</p>
-<p>Pogosteje uporabljamo direktne metode in jim bomo posvetili več časa.</p>
 </div>
 </div>
 </div>
@@ -2517,8 +2510,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Korak 0:</p>
-<p>prvo vrstico pomnožimo z <code>Ab[1,0]/Ab[0,0]=-6/8</code> in odštejemo od druge:</p>
+<p>Korak 0: prvo vrstico pomnožimo z <code>Ab[1,0]/Ab[0,0]=-6/8</code> in odštejemo od druge:</p>
 </div>
 </div>
 </div>
@@ -2550,7 +2542,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>nato prvo vrstico pomnožimo z <code>Ab[2,0]/Ab[0,0]=3/8</code> in odštejemo od tretje:</p>
+<p>Nato prvo vrstico pomnožimo z <code>Ab[2,0]/Ab[0,0]=3/8</code> in odštejemo od tretje:</p>
 </div>
 </div>
 </div>
@@ -2614,7 +2606,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Dobili smo zgornjo trikotno matriko in Gaussova eliminacija končana. Lahko izračunamo rešitev, torej določimo vektor neznak $x$ z <strong>obratnim vstavljanjem</strong>.</p>
+<p>Dobili smo zgornje trikotno matriko in Gaussova eliminacija je končana. Lahko izračunamo rešitev, torej določimo vektor neznak $x$ z <strong>obratnim vstavljanjem</strong>.</p>
 <p>Iz zadnje vrstice zgornje trikotne matrike izračunamo $x_2$:</p>
 </div>
 </div>
@@ -2993,16 +2985,16 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 </li>
 <li>Za zgoraj definirano matriko $\mathbf{A}$ določite neskončno normo (lastni program).</li>
 <li>Za zgoraj definirano matriko $\mathbf{A}$ določite pogojenost (<code>numpy</code> funkcija).</li>
-<li>Definirajte funkcijo <code>gauss_elim</code>, ki za poljubno matriko $\mathbf{A}$ in vektor $\mathbf{b}$ izvede Gaussovo eliminacijo (posebej za matriko in posebej za vektor; tako, da ne sestavite razširjene matrike $[\mathbf{A}|\mathbf{b}]$).</li>
+<li>Definirajte funkcijo <code>gauss_elim</code>, ki za poljubno matriko $\mathbf{A}$ in vektor $\mathbf{b}$ izvede Gaussovo eliminacijo (posebej za matriko in posebej za vektor tako, da ne sestavite razširjene matrike $[\mathbf{A}|\mathbf{b}]$).</li>
 <li>Definirajte funkcijo <code>gauss_elim_x</code>, ki za razultat funkcije <code>gauss_elim</code> najde ustrezne vrednosti vektorja $\textbf{x}$.</li>
 <li>Zgornji funkciji dopolnite s štetjem matematičnih operacij.</li>
 <li><p>Na sliki je prikazan sistem mas:</p>
 <p><img src="./fig/mase_na_klancu.png" width="600"/></p>
 <p>Predpostavite, da se sistem zaradi teže giblje po klancu navzdol z neznanim pospeškom $a$ in da so vrvi napete z neznanimi silami $F_i$. Znane veličine so (sami jih določite): posamično telo ima maso $m_i$, koeficient trenja s podlago $\mu_i=1$, $g=9,81$m/s$^2$, $\varphi=55^{\circ}$.
-  Določite sistem enačb v primeru dveh teles. Določite matriko koeficientov $\mathbf{A}$, in vektorja $\mathbf{b}$ ter $\mathbf{x}$.</p>
+  Določite sistem enačb v primeru dveh teles. Določite matriko koeficientov $\mathbf{A}$ in vektorja $\mathbf{b}$ ter $\mathbf{x}$.</p>
 </li>
 <li>Za zgoraj definiran sistem mas predpostavite, da je mas 4 (ali več) ter določite matriko koeficientov $\mathbf{A}$, in vektorja $\mathbf{x}$ ter $\mathbf{b}$. Rešite sistem s pomočjo Gaussove elimnacije/LU razcepa ali <code>np.linalg.solve</code>. Preverite pogojenost!</li>
-<li>V sistemu mas dobimo fizikalno nekonsistentno rešitev, če imamo v kateri od vrvi tlačno silo (vrv ne prenese tlačne sile). Preverite ali je to v vašem primeru res. Ustrezno spremenite koeficient(e) trenja, da se bo to zgodilo.</li>
+<li>V sistemu mas dobimo fizikalno nekonsistentno rešitev, če imamo v kateri od vrvi tlačno silo (vrv ne prenese tlačne sile). Preverite, ali je to v vašem primeru res. Ustrezno spremenite koeficient(e) trenja, da se bo to zgodilo.</li>
 </ol>
 </div>
 </div>

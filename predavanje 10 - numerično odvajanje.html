@@ -1436,7 +1436,7 @@ $$f'(x)=\lim_{\Delta x \rightarrow 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}.$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V okviru tega poglavja se bomo seznanili s tem, kako numerično izračunamo odvod funkcije $f(x)$; pri tem so vrednosti funkcije $f(x)$ podane tabelarično, kakor je prikazano na sliki:
 <img src="./fig/odvajanje_tabela.png" width="400"/>
-Najprej se bomo osredotočili na ekvidistantno, s korakom $h$, razporejene vrednoti $x_i$; vrednostni funkcije pa bodo $y_i=f(x_i)$.</p>
+Najprej se bomo osredotočili na ekvidistantno, s korakom $h$, razporejene vrednosti $x_i$; vrednosti funkcije pa bodo $y_i=f(x_i)$.</p>
 </div>
 </div>
 </div>
@@ -1521,7 +1521,7 @@ $$f'(x_i)=f_o'(x_i)+e$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Sedaj si poglejmo kako pridemo do istega rezultata s strojno izpeljavo; najprej uvozimo <code>sympy</code>:</p>
+<p>Sedaj si poglejmo, kako pridemo do istega rezultata s strojno izpeljavo; najprej uvozimo <code>sympy</code>:</p>
 </div>
 </div>
 </div>
@@ -1541,7 +1541,7 @@ $$f'(x_i)=f_o'(x_i)+e$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In definirajmo simbole:</p>
+<p>Definirajmo simbole:</p>
 </div>
 </div>
 </div>
@@ -1648,7 +1648,7 @@ $$f{\left (h + x \right )} = f{\left (x \right )} + h \frac{d}{d x} f{\left (x \
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In jo rešimo za prvi odvod $f'(x)$:</p>
+<p>Rešimo jo za prvi odvod $f'(x)$:</p>
 </div>
 </div>
 </div>
@@ -1708,7 +1708,7 @@ $$\mathcal{O}\left(h\right)$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Napaka $\mathcal{O}\left(h^{1}\right)$ je torej prvega reda in če ta člen zanemarimo naredimo <em>napako metode</em> in dobimo oceno odvoda:</p>
+<p>Napaka $\mathcal{O}\left(h^{1}\right)$ je torej prvega reda in če ta člen zanemarimo, naredimo <em>napako metode</em> in dobimo oceno odvoda:</p>
 </div>
 </div>
 </div>
@@ -1826,7 +1826,7 @@ $$2 h \frac{d}{d x} f{\left (x \right )} + \mathcal{O}\left(h^{3}\right)$$
 <ol>
 <li>Taylorjevo vrsto nazaj odštejemo od vrste naprej, sodi odvodi se odštejejo,</li>
 <li>rešimo enačbo za prvi odvod,</li>
-<li>določimo metodično napako,</li>
+<li>določimo napako metode,</li>
 <li>določimo oceno odvoda.</li>
 </ol>
 <p>Izvedimo zgornje korake:</p>
@@ -1881,7 +1881,7 @@ $$- \frac{1}{2 h} f{\left (- h + x \right )} + \frac{1}{2 h} f{\left (h + x \rig
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Metodična napaka pa je torej drugega reda:</p>
+<p>napaka metode pa je torej drugega reda:</p>
 </div>
 </div>
 </div>
@@ -1918,7 +1918,7 @@ $$\mathcal{O}\left(h^{2}\right)$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Poglejmo si zgled eksponentne funkcije $f(x)=\exp(-x)$ in za točko $x=1.0$ izračunajmo prvi odvod $f'(x)=-\exp(-x)$ pri koraku $h_0=1$ in $h_1=0.1$.</p>
+<p>Poglejmo si zgled eksponentne funkcije $f(x)=\exp(-x)$ in za točko $x=1,0$ izračunajmo prvi odvod $f'(x)=-\exp(-x)$ pri koraku $h_0=1$ in $h_1=0,1$.</p>
 <p>Najprej pripravimo tabelo numeričnih vrednosti in točen rezultat:</p>
 </div>
 </div>
@@ -1989,7 +1989,7 @@ $$- \frac{1}{h} f{\left (x \right )} + \frac{1}{h} f{\left (h + x \right )}$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In analizirajmo napako pri $x$=1.0:</p>
+<p>Analizirajmo napako pri $x=1,0$:</p>
 </div>
 </div>
 </div>
@@ -2088,7 +2088,7 @@ $$- \frac{1}{2 h} f{\left (- h + x \right )} + \frac{1}{2 h} f{\left (h + x \rig
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In analizirajmo napako:</p>
+<p>Analizirajmo napako:</p>
 </div>
 </div>
 </div>
@@ -2208,7 +2208,7 @@ $$2 f{\left (x \right )} + h^{2} \frac{d^{2}}{d x^{2}}  f{\left (x \right )} + \
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ocena 2. odvoda je:</p>
+<p>Ocena drugega odvoda je:</p>
 </div>
 </div>
 </div>
@@ -2237,7 +2237,7 @@ $$- \frac{2}{h^{2}} f{\left (x \right )} + \frac{1}{h^{2}} f{\left (- h + x \rig
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Metodična napaka pa je ponovno drugega reda:</p>
+<p>napaka metode pa je ponovno drugega reda:</p>
 </div>
 </div>
 </div>
@@ -2304,7 +2304,7 @@ $$- f{\left (- h + x \right )} + f{\left (h + x \right )} = 2 h \frac{d}{d x} f{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Uporaba 1. odvoda, ki smo ga izpeljali zgoraj nam ne bi koristila, saj je red napake $\mathcal{O}\left(h^{2}\right)$ kar pomeni, da bi v zgornji pri deljenju z $h^3$ dobili $\mathcal{O}\left(h^{-1}\right)$.</p>
+<p>Uporaba 1. odvoda, ki smo ga izpeljali zgoraj, nam ne bi koristila, saj je red napake $\mathcal{O}\left(h^{2}\right)$, kar pomeni, da bi v zgornji pri deljenju s $h^3$ dobili $\mathcal{O}\left(h^{-1}\right)$.</p>
 </div>
 </div>
 </div>
@@ -2347,10 +2347,10 @@ $$- f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 4 h \frac{d}{d x
 <li>enačbo <code>eq_h</code> rešimo za prvi odvod,</li>
 <li>enačbo <code>eq_2h</code> rešimo za prvi odvod,</li>
 <li>enačimo rezultata prvih dveh korakov in rešimo za tretji odvod,</li>
-<li>določimo metodično napako,</li>
+<li>določimo napako metode,</li>
 <li>določimo oceno odvoda.</li>
 </ol>
-<p>Izvedimo naveden korake:</p>
+<p>Izvedimo navedene korake:</p>
 </div>
 </div>
 </div>
@@ -2403,7 +2403,7 @@ $$- \frac{1}{2 h^{3}} f{\left (- 2 h + x \right )} + \frac{1}{h^{3}} f{\left (- 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Potrdimo, da je metodična napaka drugega reda:</p>
+<p>Potrdimo, da je napaka metode drugega reda:</p>
 </div>
 </div>
 </div>
@@ -2500,7 +2500,7 @@ $$f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 2 f{\left (x \righ
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In iz dveh enačb določimo 4. odvod:</p>
+<p>Iz dveh enačb določimo 4. odvod:</p>
 </div>
 </div>
 </div>
@@ -2553,7 +2553,7 @@ $$\frac{6}{h^{4}} f{\left (x \right )} + \frac{1}{h^{4}} f{\left (- 2 h + x \rig
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Potrdimo, da je metodična napaka drugega reda:</p>
+<p>Potrdimo, da je napaka metode drugega reda:</p>
 </div>
 </div>
 </div>
@@ -2590,7 +2590,7 @@ $$\mathcal{O}\left(h^{2}\right)$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Zgoraj smo izpeljali prve štiri odvode z napako metode 2. reda. Bistvo zgornjih izpeljav je, da nam dajo uteži s katerimi moramo množiti funkcijske vrednosti, da izračunamo približek določenega odvoda. Iz tega razloga bomo tukaj te uteži zbrali.</p>
+<p>Zgoraj smo izpeljali prve štiri odvode z napako metode 2. reda. Bistvo zgornjih izpeljav je, da nam dajo uteži, s katerimi moramo množiti funkcijske vrednosti, da izračunamo približek določenega odvoda. Iz tega razloga bomo tukaj te uteži zbrali.</p>
 </div>
 </div>
 </div>
@@ -2604,7 +2604,7 @@ $$\mathcal{O}\left(h^{2}\right)$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">odvodi</span> <span class="o">=</span> <span class="p">[</span><span class="n">f1_cent_ocena</span><span class="p">,</span> <span class="n">f2_cent_ocena</span><span class="p">,</span> <span class="n">f3_cent_ocena</span><span class="p">,</span> <span class="n">f4_cent_ocena</span><span class="p">]</span>
@@ -2616,7 +2616,7 @@ $$\mathcal{O}\left(h^{2}\right)$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[37]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ - \frac{1}{2 h} f{\left (- h + x \right )} + \frac{1}{2 h} f{\left (h + x \right )}, \quad - \frac{2}{h^{2}} f{\left (x \right )} + \frac{1}{h^{2}} f{\left (- h + x \right )} + \frac{1}{h^{2}} f{\left (h + x \right )}, \quad - \frac{1}{2 h^{3}} f{\left (- 2 h + x \right )} + \frac{1}{h^{3}} f{\left (- h + x \right )} - \frac{1}{h^{3}} f{\left (h + x \right )} + \frac{1}{2 h^{3}} f{\left (2 h + x \right )}, \quad \frac{6}{h^{4}} f{\left (x \right )} + \frac{1}{h^{4}} f{\left (- 2 h + x \right )} - \frac{4}{h^{4}} f{\left (- h + x \right )} - \frac{4}{h^{4}} f{\left (h + x \right )} + \frac{1}{h^{4}} f{\left (2 h + x \right )}\right ]$$
 </div>
@@ -2628,7 +2628,7 @@ $$\left [ - \frac{1}{2 h} f{\left (- h + x \right )} + \frac{1}{2 h} f{\left (h 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Na razpolago imamo 5 funkcijskih vrednosti (pri legi: $x-2h, x-h, x, x+h, x+2h$), ki jih damo v seznam:</p>
+<p>Na razpolago imamo 5 funkcijskih vrednosti (pri legah $x-2h, x-h, x, x+h, x+2h$), ki jih damo v seznam:</p>
 </div>
 </div>
 </div>
@@ -2772,8 +2772,8 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 <p>Uteži za centralno diferenčno metodo lahko izračunamo tudi z uporabo <code>scipy.misc.central_diff_weight</code>:</p>
 <div class="highlight"><pre><span></span><span class="n">central_diff_weights</span><span class="p">(</span><span class="n">Np</span><span class="p">,</span> <span class="n">ndiv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
-<p><code>Np</code> predstavlja število točk čez katere želimo izračunati odvod, <code>ndiv</code> pa stopnjo odvoda (privzeto 1).
-Za več infrmacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.misc.central_diff_weights.html">dokumentacijo</a>.</p>
+<p><code>Np</code> predstavlja število točk, čez katere želimo izračunati odvod, <code>ndiv</code> pa stopnjo odvoda (privzeto 1).
+Za več informacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.misc.central_diff_weights.html">dokumentacijo</a>.</p>
 </div>
 </div>
 </div>
@@ -2830,7 +2830,7 @@ Za več infrmacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/gen
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Opomba: <code>SymPy.finite_diff_weights</code> omogoča izračun uteži tudi pri nekonstantnem koraku; v podrobnosti tukaj ne bomo šli in radovednega bralca napotimo na <a href="http://docs.sympy.org/latest/modules/calculus/index.html#sympy.calculus.finite_diff.finite_diff_weights">dokumentacijo</a>.</p>
+<p>Opomba: <code>SymPy.finite_diff_weights</code> omogoča izračun uteži tudi pri nekonstantnem koraku; v podrobnosti ne bomo šli in radovednega bralca napotimo na <a href="http://docs.sympy.org/latest/modules/calculus/index.html#sympy.calculus.finite_diff.finite_diff_weights">dokumentacijo</a>.</p>
 </div>
 </div>
 </div>
@@ -2860,7 +2860,7 @@ kjer je $f_o'(x_i)$ numerična ocena odvoda v točki $x_i$ in $e$ ocena napake.<
 $$f(x_i)=f_o'(x_i, h)+K\,h^n,$$
 kjer je $K$ neznana konstanta.</p>
 <p>Če korak razpolovimo in predostavimo, da se $K$ ne spremeni, velja:
-$$f(x_i)=f_o'\left(x_i, \frac{h}{2}\right)+K\,\left(\frac{h}{2}\right)^n,$$</p>
+$$f(x_i)=f_o'\left(x_i, \frac{h}{2}\right)+K\,\left(\frac{h}{2}\right)^n.$$</p>
 </div>
 </div>
 </div>
@@ -2897,7 +2897,7 @@ $$\overline{f}(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pri koraku $h$ je imamo funkcijske vrednosti definirane pri:</p>
+<p>Pri koraku $h$ imamo funkcijske vrednosti definirane pri:</p>
 </div>
 </div>
 </div>
@@ -2927,7 +2927,7 @@ $$\overline{f}(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{2
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In pri koraku $2h$:</p>
+<p>Pri koraku $2h$:</p>
 </div>
 </div>
 </div>
@@ -3120,7 +3120,7 @@ $$-0.988215164087$$
 <li><strong>diferenčno shemo naprej</strong>, ki odvod točke aproksimira z vrednostmi funkcije v naslednjih  točkah in </li>
 <li><strong>diferenčno shemo nazaj</strong>, ki odvod točke aproksimira z vrednostmi v predhodnih točkah.</li>
 </ul>
-<p>Izpeljave so podobne kakor smo prikazali za centralno diferenčno shemo, zato ji tukaj ne bomo obravnavali in bomo prikazali samo končni rezultat.</p>
+<p>Izpeljave so podobne, kakor smo prikazali za centralno diferenčno shemo, zato ji tukaj ne bomo obravnavali in bomo prikazali samo končni rezultat.</p>
 </div>
 </div>
 </div>
@@ -3674,7 +3674,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Očitno je, da je odvod take funkcije enak 1.</p>
-<p>Poglejmo kako ga izračunamo numerično:</p>
+<p>Poglejmo, kako ga izračunamo numerično:</p>
 </div>
 </div>
 </div>
@@ -3777,7 +3777,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Zgoraj smo se osredotočili na napako metode. Pri numeričnem odvajanju pa moramo biti zelo pozorni tudi na <strong>zaokrožiteno</strong> (ali tudi <em>upodobitveno</em>) napako!</p>
+<p>Zgoraj smo se osredotočili na napako metode. Pri numeričnem odvajanju pa moramo biti zelo pozorni tudi na <strong>zaokrožitveno</strong> (ali tudi <em>upodobitveno</em>) napako!</p>
 </div>
 </div>
 </div>
@@ -3798,9 +3798,9 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 <li><code>float16</code> -
  16-bitni zapis: predznak 1 bit, 5 bitov eksponent, 10 bitov mantisa</li>
 <li><code>float32</code> -
-  32-bitni zapis: predznak 1 bit, 8 bitov eksponent, 23 bitov mantisa</li>
+ 32-bitni zapis: predznak 1 bit, 8 bitov eksponent, 23 bitov mantisa</li>
 <li><code>float64</code> -
-  64-bitni zapis: predznak 1 bit, 11 bitov eksponent, 52 bitov mantisa (to je privzeta natančnost).</li>
+ 64-bitni zapis: predznak 1 bit, 11 bitov eksponent, 52 bitov mantisa (to je privzeta natančnost).</li>
 </ol>
 <p>Za več o tipih v <code>numpy</code> glejte <a href="http://docs.scipy.org/doc/numpy/user/basics.types.html">dokumentacijo</a></p>
 </div>
@@ -3845,7 +3845,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kot primer si poglejmo seštevanje: k številu <code>1.</code> prištejemo polovico osnovne zaokrožitvene napake <code>eps16</code> in pretvorimo v tip <code>float16</code>, ugotovimo, da nova vrednost še vedno enaka vrednosti <code>1.</code>:</p>
+<p>Kot primer si poglejmo seštevanje: k številu <code>1.</code> prištejemo polovico osnovne zaokrožitvene napake <code>eps16</code> in pretvorimo v tip <code>float16</code>, ugotovimo, da je nova vrednost še vedno enaka vrednosti <code>1.</code>:</p>
 </div>
 </div>
 </div>
@@ -3902,7 +3902,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Definiajmo še funkcijo za analitično določljiv odvod (to bomo pozneje potrebovali za določitev relativne napake):</p>
+<p>Definirajmo še funkcijo za analitično določljiv odvod (to bomo pozneje potrebovali za določitev relativne napake):</p>
 </div>
 </div>
 </div>
@@ -3972,7 +3972,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Uporabimo sedaj centralno diferencčno shemo za prvi odvod. Pri tem naj bodo števila zapisana z natančnostjo <code>dtype</code>, s pomočjo točnega odvoda pa se izračuna še relativna napaka:</p>
+<p>Uporabimo sedaj centralno diferenčno shemo za prvi odvod. Pri tem naj bodo števila zapisana z natančnostjo <code>dtype</code>, s pomočjo točnega odvoda pa se izračuna še relativna napaka:</p>
 </div>
 </div>
 </div>
@@ -3995,7 +3995,7 @@ D+w8dXATfXP4AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Poglejmo primer odvoda pri $x=1.0$ (python funkcija vrne vrednost in relativno napako):</p>
+<p>Poglejmo primer odvoda pri $x=1,0$ (Python funkcija vrne vrednost in relativno napako):</p>
 </div>
 </div>
 </div>
@@ -4078,7 +4078,7 @@ $$\left ( -0.367885572526, \quad -1.66667500023e-05\right )$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In izračunamo oceno odvodov za različne natančnosti zapisa (zaradi deljenja z 0 dobimo opozorilu):</p>
+<p>Izračunamo oceno odvodov za različne natančnosti zapisa (zaradi deljenja z 0 dobimo opozorilo):</p>
 </div>
 </div>
 </div>
@@ -4111,7 +4111,7 @@ $$\left ( -0.367885572526, \quad -1.66667500023e-05\right )$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In izrišemo različne tipe v odvisnosti od velikosti koraka $h$. Najprej uvozimo potrebne knjižnice:</p>
+<p>Izrišemo različne tipe v odvisnosti od velikosti koraka $h$. Najprej uvozimo potrebne knjižnice:</p>
 </div>
 </div>
 </div>
@@ -4158,7 +4158,7 @@ $$\left ( -0.367885572526, \quad -1.66667500023e-05\right )$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In jo prikažimo:</p>
+<p>Prikažimo jo:</p>
 </div>
 </div>
 </div>
@@ -4820,9 +4820,9 @@ AABJRU5ErkJggg==
 <ol>
 <li>Za batni mehanizem na spodnji sliki strojno izpeljite kinematiko gibanja bata, če se kolenasta gred giblje po zakonu $\varphi(t)=\omega\,t$.
 <img src="./fig/batni_mehanizem.png" width="300"/></li>
-<li>Za kotno hitrosti $\omega=2\,\pi\,50\,$rad/s izrišite lego bata v treh obratih gredi. Uporabite: $r=0.03\,$m in $l=0.1\,$m.</li>
+<li>Za kotno hitrosti $\omega=2\,\pi\,50\,$rad/s izrišite lego bata v treh obratih gredi. Uporabite: $r=0,03\,$m in $l=0,1\,$m.</li>
 <li>Simbolno odvajajte lego $x(t)$, da pridobite pospešek $\ddot x(t)$.</li>
-<li>Pripravite funkcijo za klicanje simbolnih izrazov za lego $x(t)$ in pospešek $\ddot x(t)$ iz <code>numpy</code></li>
+<li>Pripravite funkcijo za klicanje simbolnih izrazov za lego $x(t)$ in pospešek $\ddot x(t)$ iz <code>numpy</code>.</li>
 <li>S pomočjo <code>scipy</code> pripravite centralno diferenčno shemo za 2. odvod čez 3, 5, in 7 točk.</li>
 <li>Raziščite funkcijo <code>numpy.convolve</code> in z njo na podlagi numeričnih vrednosti za $x$ numerično izračunajte pospešek $\ddot x$. Kje je odvod pravilen?</li>
 <li>S centralno diferenčno shemo 2. odvoda čez tri točke ste izračunali notranje točke, nastavite diferenčno shemo naprej za izračun prve točke z natančnostjo $\mathcal{O}(h^{2})$.</li>
@@ -4836,7 +4836,7 @@ AABJRU5ErkJggg==
 </li>
 </ol>
 <p>Opomba:
-Dodatek k domačim nalogam: 6. vprašanje bi lahko nadaljevali in zašumljene podatke gladili ter nato izvedli odvajanje. Glajenje izvedite s konvolucijo med [0.21194156,  0.57611688,  0.21194156] in $x$.</p>
+Dodatek k domačim nalogam: 6. vprašanje bi lahko nadaljevali in zašumljene podatke gladili ter nato izvedli odvajanje. Glajenje izvedite s konvolucijo med [0,21194156,  0,57611688,  0,21194156] in $x$.</p>
 </div>
 </div>
 </div>
@@ -4852,7 +4852,7 @@ Dodatek k domačim nalogam: 6. vprašanje bi lahko nadaljevali in zašumljene po
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://www.youtube.com/watch?v=ZJkGI5DZQv8&list=PLYdroRCLMg5OvLx1EtY1ByvveJeTEXQd_&index=18">Video predavanja na temo numeričnega odvajanja</a></p>
+<p><a href="https://www.youtube.com/watch?v=ZJkGI5DZQv8&list=PLYdroRCLMg5OvLx1EtY1ByvveJeTEXQd_&index=18">Video predavanja na temo numeričnega odvajanja</a>.</p>
 </div>
 </div>
 </div>
