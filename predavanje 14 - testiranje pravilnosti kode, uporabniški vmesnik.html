@@ -1467,7 +1467,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Obstaja več možnosti testiranja kode, pogosto se uporabljajo sledeči</p>
+<p>Obstaja več možnosti testiranja kode, pogosto se uporabljajo sledeče:</p>
 <ul>
 <li><a href="https://docs.python.org/library/unittest.html"><code>unittest</code></a> (je vgrajen v Python),</li>
 <li><a href="http://nose.readthedocs.io/en/latest/"><code>nose</code></a>,</li>
@@ -1481,7 +1481,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">¶</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo s <code>pip</code> ali <code>conda</code> ukazom.</p>
+<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">¶</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo z ukazom <code>pip</code> ali <code>conda</code>.</p>
 <p>Nekatere lastnosti:</p>
 <ul>
 <li>vrne opis testa, ki ni bil uspešen,</li>
@@ -1495,7 +1495,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če v ukazni vrstici poženete <code>pytest</code> bo program sam poiskal trenutno mapo in vse podmape za datoteke oblike <code>test_*.py</code> ali <code>*_test.py</code> (napredno iskanje je navedeno v <a href="https://docs.pytest.org/en/latest/goodpractices.html#test-discovery">dokumentaciji</a>).</p>
+<p>Če v ukazni vrstici poženete <code>pytest</code>, bo program sam poiskal trenutno mapo in vse podmape za datoteke oblike <code>test_*.py</code> ali <code>*_test.py</code> (napredno iskanje je navedeno v <a href="https://docs.pytest.org/en/latest/goodpractices.html#test-discovery">dokumentaciji</a>).</p>
 </div>
 </div>
 </div>
@@ -1549,8 +1549,8 @@ test_prvi.py:5: AssertionError
 <p>Za osnovno uporabo pri numeričnih izračunih je treba še izpostaviti modul <code>numpy.testing</code> (<a href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html#">dokumentacija</a>), ki nudi podporo za testiranje numeričnih polj.</p>
 <p>Izbrane funkcije so:</p>
 <ul>
-<li><code>assert_allclose(dejansko, pričakovano[, rtol, ...])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_allclose.html#numpy.testing.assert_allclose">dokumentacija</a>) preveri enakost do zahtevane natančnosti</li>
-<li><code>assert_array_less(x, y[, err_msg, verbose])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less">dokumentacija</a>) preveri ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
+<li><code>assert_allclose(dejansko, pričakovano[, rtol, ...])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_allclose.html#numpy.testing.assert_allclose">dokumentacija</a>) preveri enakost do zahtevane natančnosti,</li>
+<li><code>assert_array_less(x, y[, err_msg, verbose])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less">dokumentacija</a>) preveri, ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
 <li><code>assert_string_equal(dejansko, pričakovano)</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_string_equal.html#numpy.testing.assert_string_equal">dokumentacija</a>) preveri enakost niza.</li>
 </ul>
 </div>
@@ -1608,7 +1608,7 @@ test_prvi.py:5: AssertionError
 <p>Tudi za programiranje uporabniškega vmesnika obstaja veliko različnih načinov/modulov. Nekaj najpogosteje uporabljenih:</p>
 <ul>
 <li><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> temelji na <a href="https://www.qt.io/">Qt</a>, ki predstavlja najbolj razširjeno platforma za uporabniške vmesnike,</li>
-<li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em> vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a>, a žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
+<li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em>, vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a>, a žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
 <li><a href="http://kivy.org/">Kivy</a> za hiter razvoj modernih uporabniških vmesnikov (ni tako zrel kakor npr. Qt),</li>
 <li><a href="https://www.wxwidgets.org/">wxWidgets</a> široko uporabljena prosta platforma za izdelavo uporabniških vmesnikov.</li>
 </ul>
@@ -1689,7 +1689,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Bistveni grafični elementi ki jih pri takem uporabniškem vmesniku uporabimo so:</p>
+<p>Bistveni grafični elementi, ki jih pri takem uporabniškem vmesniku uporabimo, so:</p>
 <ul>
 <li><em>Menu Bar</em>,</li>
 <li><em>Toolbars</em>,</li>
@@ -1705,7 +1705,7 @@ test_prvi.py:5: AssertionError
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ni potrebno definirati vseh; spodaj si bomo pogledali primer, ko bomo definirali <em>Status bar</em>, <em>Central Widget</em> in <em>Menu Bar</em>. Ponavadi vse elemente definiramo pri inicializaciji instance razreda (metoda <code>__init__</code>).</p>
-<p>Tukaj izpostavimo, da grafični vmesnik temelji na t.i. <em>Widgetih</em>, (za na primer gumb, tabelo, datum itd.). Prikaz nekaterih možnosti je prikazan v:</p>
+<p>Tukaj izpostavimo, da grafični vmesnik temelji na t. i. <em>Widgetih</em>, (za na primer gumb, tabelo, datum itd.). Prikaz nekaterih možnosti je prikazan v:</p>
 <ul>
 <li><a href="http://doc.qt.io/qt-5/gallery-windows.html">Qt 5 Windows galeriji</a>,</li>
 <li><a href="http://doc.qt.io/qt-5/gallery.html">Qt5 galeriji</a> in</li>
@@ -1766,7 +1766,7 @@ test_prvi.py:5: AssertionError
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Program potem poženemo znotraj <code>try</code> stavka</p>
+<p>Program potem poženemo znotraj stavka <code>try</code>:</p>
 </div>
 </div>
 </div>
@@ -1847,7 +1847,7 @@ test_prvi.py:5: AssertionError
 </ul>
 </li>
 <li>Za modul zgoraj pripravite skripto za testiranje (uporabite <code>numpy.testing</code>).</li>
-<li>V <code>uporabniski_vmesnik_simple.py</code> inicializijski metodi <code>__init__</code> zakomentirajte vse klice na metode <code>self.init...</code> razen na metodo: <code>self.init_status_bar()</code>. Poženite program v navadnem načinu. Nastavite <em>break</em> točko na <code>self.setGeometry(50, 50, 600, 400)</code> in poženite program v <em>debug</em> načinu.</li>
+<li>V <code>uporabniski_vmesnik_simple.py</code> inicializijski metodi <code>__init__</code> zakomentirajte vse klice na metode <code>self.init ...</code> razen na metodo: <code>self.init_status_bar()</code>. Poženite program v navadnem načinu. Nastavite <em>break</em> točko na <code>self.setGeometry(50, 50, 600, 400)</code> in poženite program v <em>debug</em> načinu.</li>
 <li><p>Nadaljujte prejšnjo točko in poiščite bližnjico za pomikanje po vrsticah:</p>
 <ul>
 <li>s preskokom vrstice,</li>
@@ -1857,7 +1857,7 @@ test_prvi.py:5: AssertionError
 </ul>
 </li>
 <li>Odkomentirajte prej (zgoraj) zakomentirane vrstice. Dodajte tretji gumb, ki naj program zapre.</li>
-<li>Dodajte še kakšen <em>Widget</em> s seznama: <a href="http://doc.qt.io/qt-5/gallery-windows.html">http://doc.qt.io/qt-5/gallery-windows.html</a> </li>
+<li>Dodajte še kakšen <em>Widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
 </ol>
 </div>
 </div>

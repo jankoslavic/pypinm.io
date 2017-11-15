@@ -1883,38 +1883,17 @@ Korak: 1
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [16]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
-<div class="output_text output_subarea output_execute_result">
-<pre>array([-14.        , -24.66666667, -16.66666667])</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Kakor smo navedli zgoraj, ob spremembi vektorja konstant ponovna Gaussova eliminacija ni potrebna. Izvesti je treba samo direktno in nato obratno vstavljanje. Poglejmo primer:</p>
+<p>Kakor smo navedli zgoraj, ob spremembi vektorja konstant $\mathbf{b}$ ponovna Gaussova eliminacija ni potrebna. Izvesti je treba samo direktno in nato obratno vstavljanje. Poglejmo primer:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">,</span> <span class="mf">7.</span><span class="p">])</span>
@@ -1932,7 +1911,7 @@ Korak: 1
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[17]:</div>
+<div class="prompt output_prompt">Out[16]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-4.33333333, -7.88888889, -4.55555556])</pre>
 </div>
@@ -1942,7 +1921,7 @@ Korak: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -1953,7 +1932,7 @@ Korak: 1
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
+<div class="prompt output_prompt">Out[17]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-1.,  6.,  7.])</pre>
 </div>
@@ -1979,7 +1958,7 @@ Korak: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
@@ -2001,7 +1980,7 @@ Korak: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
@@ -2022,7 +2001,7 @@ C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarni
 </div>
 </div>
 <div class="output_area">
-<div class="prompt output_prompt">Out[20]:</div>
+<div class="prompt output_prompt">Out[19]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ nan, -inf,  inf])</pre>
 </div>
@@ -2077,7 +2056,7 @@ tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največj
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gaussova_eliminacija_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -2110,7 +2089,7 @@ tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največj
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span>
@@ -2121,7 +2100,7 @@ tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največj
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[22]:</div>
+<div class="prompt output_prompt">Out[21]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 0., -6.,  6.],
        [-6.,  6., -6.],
@@ -2133,7 +2112,7 @@ tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največj
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ab</span> <span class="o">=</span> <span class="n">gaussova_eliminacija_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2180,7 +2159,7 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">LU_razcep_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -2227,7 +2206,7 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
@@ -2241,7 +2220,7 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span> <span class="o">=</span> <span class="n">LU_razcep_pivotiranje</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">prikazi_korake</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -2280,7 +2259,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span>
@@ -2291,7 +2270,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
+<div class="prompt output_prompt">Out[26]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 8.  , -6.  ,  3.  ],
        [ 0.  , -6.  ,  6.  ],
@@ -2319,7 +2298,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">piv</span>
@@ -2330,7 +2309,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[28]:</div>
+<div class="prompt output_prompt">Out[27]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([2, 0, 1])</pre>
 </div>
@@ -2348,7 +2327,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli</span> <span class="k">import</span> <span class="n">orodja</span>
@@ -2359,7 +2338,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">orodja</span><span class="o">.</span><span class="n">LU_resitev_pivotiranje</span><span class="p">(</span><span class="n">lu</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">piv</span><span class="p">)</span>
@@ -2371,7 +2350,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[30]:</div>
+<div class="prompt output_prompt">Out[29]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ -3.66666667, -14.11111111, -16.44444444])</pre>
 </div>
@@ -2389,7 +2368,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@r</span>
@@ -2400,7 +2379,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[31]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.,  36.,   6.])</pre>
 </div>
@@ -2465,7 +2444,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="k">import</span> <span class="n">lu_factor</span><span class="p">,</span> <span class="n">lu_solve</span>
@@ -2510,7 +2489,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>            
@@ -2524,7 +2503,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span> <span class="o">=</span> <span class="n">lu_factor</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -2535,7 +2514,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu</span>
@@ -2546,7 +2525,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[35]:</div>
+<div class="prompt output_prompt">Out[34]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 8.  , -6.  ,  3.  ],
        [ 0.  , -6.  ,  6.  ],
@@ -2558,7 +2537,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">piv</span>
@@ -2569,7 +2548,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[36]:</div>
+<div class="prompt output_prompt">Out[35]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([2, 2, 2], dtype=int32)</pre>
 </div>
@@ -2587,7 +2566,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">lu_solve</span><span class="p">((</span><span class="n">lu</span><span class="p">,</span> <span class="n">piv</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
@@ -2599,7 +2578,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[37]:</div>
+<div class="prompt output_prompt">Out[36]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ -3.66666667, -14.11111111, -16.44444444])</pre>
 </div>
@@ -2617,7 +2596,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@r</span>
@@ -2628,7 +2607,7 @@ Pivot vrsta: [ 0. -6.  6.]
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[38]:</div>
+<div class="prompt output_prompt">Out[37]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.,  36.,   6.])</pre>
 </div>
@@ -2678,7 +2657,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lu_piv</span> <span class="o">=</span> <span class="n">lu_factor</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
@@ -2690,7 +2669,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[39]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(array([[ 8.  , -6.  ,  3.  ],
         [ 0.  , -6.  ,  6.  ],
@@ -2711,7 +2690,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -2722,7 +2701,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[40]:</div>
+<div class="prompt output_prompt">Out[39]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1.,  0.,  0.],
        [ 0.,  1.,  0.],
@@ -2742,7 +2721,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1">#zeros_like vrne matriko oblike in tipa matrike A z vrednostmi 0</span>
@@ -2764,7 +2743,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A_inv</span>
@@ -2775,7 +2754,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[42]:</div>
+<div class="prompt output_prompt">Out[41]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
        [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
@@ -2795,7 +2774,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@A_inv</span>
@@ -2806,11 +2785,11 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[43]:</div>
+<div class="prompt output_prompt">Out[42]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[  1.00000000e+00,   0.00000000e+00,   1.11022302e-16],
-       [  0.00000000e+00,   1.00000000e+00,  -1.11022302e-16],
-       [  5.55111512e-17,   0.00000000e+00,   1.00000000e+00]])</pre>
+       [ -1.11022302e-16,   1.00000000e+00,  -1.11022302e-16],
+       [  1.66533454e-16,   0.00000000e+00,   1.00000000e+00]])</pre>
 </div>
 </div>
 </div>
@@ -2826,7 +2805,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
@@ -2838,11 +2817,11 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[44]:</div>
+<div class="prompt output_prompt">Out[43]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[-0.16666667, -0.16666667,  0.        ],
-       [-0.27777778, -0.44444444, -0.33333333],
-       [-0.11111111, -0.44444444, -0.33333333]])</pre>
+<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
+       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
+       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
 </div>
 </div>
 </div>
@@ -2858,7 +2837,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In [44]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
@@ -2870,7 +2849,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[45]:</div>
+<div class="prompt output_prompt">Out[44]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
        [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
@@ -2957,7 +2936,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In [45]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># število enačb enako številu neznank</span>
@@ -2972,7 +2951,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
+<div class="prompt output_prompt">Out[45]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 1.,  2.])</pre>
 </div>
@@ -2990,7 +2969,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In [46]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">,</span><span class="n">A</span><span class="p">])</span> 
@@ -3004,7 +2983,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[47]:</div>
+<div class="prompt output_prompt">Out[46]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1.01764052,  2.00400157],
        [ 2.00978738,  3.02240893],
@@ -3019,7 +2998,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In [47]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">b</span><span class="p">])</span>
@@ -3032,7 +3011,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[48]:</div>
+<div class="prompt output_prompt">Out[47]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 5.00761038,  8.00121675,  5.00443863,  8.00333674,  5.01494079,
         7.99794842])</pre>
@@ -3051,7 +3030,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In [48]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">pinv</span><span class="p">(</span><span class="n">vA</span><span class="p">)</span>
@@ -3063,7 +3042,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[49]:</div>
+<div class="prompt output_prompt">Out[48]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 0.94512271,  2.02675939])</pre>
 </div>
@@ -3089,7 +3068,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In [49]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit # preverite hitrost!</span>
@@ -3103,12 +3082,12 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[50]:</div>
+<div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ -4.44089210e-16,   2.77555756e-15,   0.00000000e+00,
-          3.33066907e-15,  -1.11022302e-15,   2.77555756e-15],
-       [  9.99200722e-16,  -6.66133815e-16,   6.66133815e-16,
-         -6.66133815e-16,   1.11022302e-15,  -1.11022302e-15]])</pre>
+<pre>array([[  8.88178420e-15,  -8.21565038e-15,   9.65894031e-15,
+         -8.65973959e-15,   1.04360964e-14,  -7.10542736e-15],
+       [ -5.66213743e-15,   4.71844785e-15,  -5.66213743e-15,
+          4.49640325e-15,  -6.21724894e-15,   3.55271368e-15]])</pre>
 </div>
 </div>
 </div>
@@ -3176,7 +3155,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -3198,7 +3177,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
@@ -3210,7 +3189,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[52]:</div>
+<div class="prompt output_prompt">Out[51]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ 0.,  0.,  0.])</pre>
 </div>
@@ -3228,7 +3207,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#naredimo kopijo, da ne povozimo podatkov</span>
@@ -3240,7 +3219,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K</span>
@@ -3251,7 +3230,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[54]:</div>
+<div class="prompt output_prompt">Out[53]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 0., -1.,  1.],
        [-1.,  0., -1.],
@@ -3273,7 +3252,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -3324,7 +3303,7 @@ Norma 0.04590845211691733
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In [55]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="nd">@x</span>
@@ -3335,7 +3314,7 @@ Norma 0.04590845211691733
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[56]:</div>
+<div class="prompt output_prompt">Out[55]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([-14.01517799,  35.9969644 ,   6.        ])</pre>
 </div>
