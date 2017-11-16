@@ -2652,7 +2652,7 @@ bisekcija(f, 0., 1., izpis=False)
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1.32 ms ± 151 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>1.12 ms ± 222 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -3070,7 +3070,7 @@ DMYYY85hgcEYY8w5LDAYY4w5hwUGY4wx57DAYIwx5hz/HwZprwLMTIMhAAAAAElFTkSuQmCC
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>241 µs ± 8.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>232 µs ± 15.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -3346,7 +3346,7 @@ Rešitev: 0.73460351, D: 0.00000
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>449 µs ± 28.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>361 µs ± 38.9 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -3498,7 +3498,7 @@ Rešitev: 3.142, D: 0.00002
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>221 µs ± 7.77 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>170 µs ± 16.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -3766,7 +3766,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>33.7 µs ± 2.69 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<pre>23.3 µs ± 2.52 µs per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre>
 </div>
 </div>
@@ -3853,7 +3853,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>15.9 µs ± 764 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<pre>9.83 µs ± 1.41 µs per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre>
 </div>
 </div>
@@ -4180,8 +4180,8 @@ $$f(x) = x^4 - 6.4\,x^3 + 6.45\,x^2 + 20.538\,x - 31.752.$$</li>
 <li>Numerično najdite vse ničle s sekantno metodo (uporabite <code>scipy</code>).</li>
 <li>Numerično najdite vse ničle z Newtonovo metodo (uporabite <code>scipy</code>).</li>
 <li>Podatke:
-  $$x=[0, 1, 2, 3, 4, 5]$$
-  $$y=[0.95, 0.93, 0.87, 0.77, 0.64, 0.49]$$
+ $$x=[0, 1, 2, 3, 4, 5]$$
+ $$y=[0.95, 0.93, 0.87, 0.77, 0.64, 0.49]$$
 aproksimirajte s funkcijo $\cos(a\,x)$ (z uporabo <code>scipy.optimize.curve_fit</code> določite konstanto $a$).</li>
 <li>Na intervalu $x=[0, 50]$ z bisekcijsko metodo poiščite vse ničle najdene funkcije $\cos(a\,x)$.</li>
 <li>Na intervalu $x=[0, 50]$ z Newtonovo metodo poiščite vse ničle najdene funkcije $\cos(a\,x)$.</li>
@@ -4191,9 +4191,9 @@ $$x^2 + y -2=0\qquad\textrm{in}\qquad  y^2 - 4=0.$$</li>
 <li>Na predhodnem vprašanju preizkusite različne metode (glejte pomoč).</li>
 <li><p>Z uporabo bisekcijske metode dimenzionirajte prikazani upogibno obremenjeni nosilec dolžine $L$ (obremenjen s točkovno silo $F$). Določite velikost polnega krožnega prereza $d$.
 <img src="./fig/nal-num_iskanje_nicel-1.jpg"/>
-  $F = 1 \mathrm{kN}$</p>
+$F = 1 \mathrm{kN}$</p>
 <p>$L = 1 \mathrm{m}$<br/>
-  $\sigma_{dop} = 120 \mathrm{MPa}$</p>
+$\sigma_{dop} = 120 \mathrm{MPa}$</p>
 <p>Reševanje:</p>
 <p>$\sigma_u \leq \sigma_{dop} \to \frac{F\,L}{W} = \frac{F\,L\,32}{\pi\,d^3} = \sigma_{dop}$</p>
 </li>

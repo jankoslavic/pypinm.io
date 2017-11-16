@@ -2757,7 +2757,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$y'=\frac{1}{h}\cdot$</td>
+<td style="text-align:center">$y_i'=\frac{1}{h}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">-0.5</td>
 <td style="text-align:center">0</td>
@@ -2765,7 +2765,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y''=\frac{1}{h^2}\cdot$</td>
+<td style="text-align:center">$y_i''=\frac{1}{h^2}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-2</td>
@@ -2773,7 +2773,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y'''=\frac{1}{h^3}\cdot$</td>
+<td style="text-align:center">$y_i'''=\frac{1}{h^3}\cdot$</td>
 <td style="text-align:center">-0.5</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">0</td>
@@ -2781,7 +2781,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 <td style="text-align:center">0.5</td>
 </tr>
 <tr>
-<td style="text-align:center">$y^{(4)}=\frac{1}{h^4}\cdot$</td>
+<td style="text-align:center">$y_i^{(4)}=\frac{1}{h^4}\cdot$</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-4</td>
 <td style="text-align:center">6</td>
@@ -2806,7 +2806,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Uteži za centralno diferenčno metodo lahko izračunamo tudi z uporabo <code>scipy.misc.central_diff_weight</code>:</p>
+<p>Uteži za centralno diferenčno metodo lahko izračunamo tudi z uporabo <code>scipy.misc.central_diff_weight()</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.misc.central_diff_weights.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">central_diff_weights</span><span class="p">(</span><span class="n">Np</span><span class="p">,</span> <span class="n">ndiv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 <p><code>Np</code> predstavlja število točk, čez katere želimo izračunati odvod, <code>ndiv</code> pa stopnjo odvoda (privzeto 1).
@@ -3143,7 +3143,7 @@ $$-0.988215164087$$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$y'=\frac{1}{h}\cdot$</td>
+<td style="text-align:center">$y_i'=\frac{1}{h}\cdot$</td>
 <td style="text-align:center">-1</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">0</td>
@@ -3151,7 +3151,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y''=\frac{1}{h^2}\cdot$</td>
+<td style="text-align:center">$y_i''=\frac{1}{h^2}\cdot$</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-2</td>
 <td style="text-align:center">1</td>
@@ -3159,7 +3159,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y'''=\frac{1}{h^3}\cdot$</td>
+<td style="text-align:center">$y_i'''=\frac{1}{h^3}\cdot$</td>
 <td style="text-align:center">-1</td>
 <td style="text-align:center">3</td>
 <td style="text-align:center">-3</td>
@@ -3167,7 +3167,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y^{(4)}=\frac{1}{h^4}\cdot$</td>
+<td style="text-align:center">$y_i^{(4)}=\frac{1}{h^4}\cdot$</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-4</td>
 <td style="text-align:center">6</td>
@@ -3197,7 +3197,7 @@ $$-0.988215164087$$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$y'=\frac{1}{2h}\cdot$</td>
+<td style="text-align:center">$y_i'=\frac{1}{2h}\cdot$</td>
 <td style="text-align:center">-3</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">-1</td>
@@ -3206,7 +3206,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y''=\frac{1}{h^2}\cdot$</td>
+<td style="text-align:center">$y_i''=\frac{1}{h^2}\cdot$</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">-5</td>
 <td style="text-align:center">4</td>
@@ -3215,7 +3215,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y'''=\frac{1}{2h^3}\cdot$</td>
+<td style="text-align:center">$y_i'''=\frac{1}{2h^3}\cdot$</td>
 <td style="text-align:center">-5</td>
 <td style="text-align:center">18</td>
 <td style="text-align:center">-24</td>
@@ -3224,7 +3224,7 @@ $$-0.988215164087$$
 <td style="text-align:center">0</td>
 </tr>
 <tr>
-<td style="text-align:center">$y^{(4)}=\frac{1}{h^4}\cdot$</td>
+<td style="text-align:center">$y_i^{(4)}=\frac{1}{h^4}\cdot$</td>
 <td style="text-align:center">3</td>
 <td style="text-align:center">-14</td>
 <td style="text-align:center">26</td>
@@ -3262,7 +3262,7 @@ $$-0.988215164087$$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$y'=\frac{1}{h}\cdot$</td>
+<td style="text-align:center">$y_i'=\frac{1}{h}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
@@ -3270,7 +3270,7 @@ $$-0.988215164087$$
 <td style="text-align:center">1</td>
 </tr>
 <tr>
-<td style="text-align:center">$y''=\frac{1}{h^2}\cdot$</td>
+<td style="text-align:center">$y_i''=\frac{1}{h^2}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">1</td>
@@ -3278,7 +3278,7 @@ $$-0.988215164087$$
 <td style="text-align:center">1</td>
 </tr>
 <tr>
-<td style="text-align:center">$y'''=\frac{1}{h^3}\cdot$</td>
+<td style="text-align:center">$y_i'''=\frac{1}{h^3}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">-1</td>
 <td style="text-align:center">3</td>
@@ -3286,7 +3286,7 @@ $$-0.988215164087$$
 <td style="text-align:center">1</td>
 </tr>
 <tr>
-<td style="text-align:center">$y^{(4)}=\frac{1}{h^4}\cdot$</td>
+<td style="text-align:center">$y_i^{(4)}=\frac{1}{h^4}\cdot$</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-4</td>
 <td style="text-align:center">6</td>
@@ -3316,7 +3316,7 @@ $$-0.988215164087$$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$y'=\frac{1}{2h}\cdot$</td>
+<td style="text-align:center">$y_i'=\frac{1}{2h}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
@@ -3325,7 +3325,7 @@ $$-0.988215164087$$
 <td style="text-align:center">3</td>
 </tr>
 <tr>
-<td style="text-align:center">$y''=\frac{1}{h^2}\cdot$</td>
+<td style="text-align:center">$y_i''=\frac{1}{h^2}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">-1</td>
@@ -3334,7 +3334,7 @@ $$-0.988215164087$$
 <td style="text-align:center">2</td>
 </tr>
 <tr>
-<td style="text-align:center">$y'''=\frac{1}{2h^3}\cdot$</td>
+<td style="text-align:center">$y_i'''=\frac{1}{2h^3}\cdot$</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">3</td>
 <td style="text-align:center">-14</td>
@@ -3343,7 +3343,7 @@ $$-0.988215164087$$
 <td style="text-align:center">5</td>
 </tr>
 <tr>
-<td style="text-align:center">$y^{(4)}=\frac{1}{h^4}\cdot$</td>
+<td style="text-align:center">$y_i^{(4)}=\frac{1}{h^4}\cdot$</td>
 <td style="text-align:center">-2</td>
 <td style="text-align:center">11</td>
 <td style="text-align:center">-24</td>
@@ -3368,7 +3368,7 @@ $$-0.988215164087$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Za izračun numeričnih odvodov (centralna diferenčna shema 2. reda) lahko uporabimo tudi <code>numpy.gradient</code>:</p>
+<p>Za izračun numeričnih odvodov (centralna diferenčna shema 2. reda) lahko uporabimo tudi <code>numpy.gradient()</code> (<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">varargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 <p>kjer <code>f</code> predstavlja tabelo vrednosti (v obliki numeričnega polja) funkcije, katere odvod iščemo. <code>f</code> je lahko ene ali več dimenzij. Pozicijski parametri <code>varargs</code> definirajo razdaljo med vrednostmi argumenta funkcije <code>f</code>; privzeta vrednost je 1. Ta vrednost je lahko skalar, lahko pa tudi seznam vrednosti neodvisne spremenljivke (ali tudi kombinacija obojega). Gradientna metoda na robovih uporabi shemo naprej oziroma nazaj; parameter <code>edge_order</code> definira red sheme, ki se uporabi na robovih (izbiramo lahko med 1 ali 2, privzeta vrednost je 1).</p>
