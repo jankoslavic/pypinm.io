@@ -1596,6 +1596,13 @@ $$f(x) = a_0\,x+ a_1$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za vrednosti iz tabele $x_i, y_i$ bi lahko iskali vrednosti $a_0$ in $a_1$, pri katerih bi bila vsota absolutne vrednosti odstopkov $S$ najmanjša:</p>
 <p>$$P(a_0, a_1) = \sum_{i=0}^{n-1} |y_i - (a_0\,x_i+a_1)|.$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker pa taka funkcija $P(a_0, a_1)$ ni zvezno odvedljiva,raje uporabimo <strong>metodo najmanjših kvadratov</strong>:</p>
 <p>$$S(a_0, a_1) = \sum_{i=0}^{n-1} \left(y_i - (a_0\,x_i+a_1)\right)^2.$$</p>
 <p>Takšna funkcija $S(a_0, a_1)$ je zvezna in zvezno odvedljiva. S parcialnim odvajanjem po parametrih $a_0$ in $a_1$ lahko najdemo stacionarno točko (parcialna odvoda sta enaka 0). Postopek si bomo za linearno funkcijo pogledali v naslednjem poglavju.</p>
@@ -1814,13 +1821,13 @@ b: [ 764.185  243.7  ]
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="5e01e9b0-1d0f-4ad5-8910-4e1ee69e3422"></div>
+<div id="9cb37f0d-c49e-49ea-811f-00da6c4ba8c7"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#5e01e9b0-1d0f-4ad5-8910-4e1ee69e3422');
+var element = $('#9cb37f0d-c49e-49ea-811f-00da6c4ba8c7');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "b81a3b1847e848689cbedc4e40739230", "version_major": 2, "version_minor": 0}
+{"model_id": "8b342f5aaca5483c866894447ae6cfe4", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 </div>
@@ -1933,7 +1940,7 @@ var element = $('#5e01e9b0-1d0f-4ad5-8910-4e1ee69e3422');
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Linearno aproksimacijo, predstavljeno zgoraj, bomo posplošili za poljubni polinom stopnje $m$:</p>
-<p>$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{v=0}^{m}a_s\,\underbrace{x^{m-s}}_{f_v(x)},$$</p>
+<p>$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{s=0}^{m}a_s\,\underbrace{x^{m-s}}_{f_s(x)},$$</p>
 <p>kjer $f_s(x)=x^{m-s}$ imenujemo bazna funkcija ($s=0,1,2,\dots,m$).</p>
 <p>Tabela podatkov naj bo definirana z $x_i, y_i$, kjer je $i=0,1,2,\dots,n-1$.</p>
 <p>Opomba: zaradi kompaktnosti zapisa bomo konstante $a$ zapisali v vektorski obliki $\mathbf{a}=[a_0, a_1,\dots,a_m]$.</p>
