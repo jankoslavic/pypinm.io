@@ -1820,7 +1820,15 @@ QgjhYP4f2rz9u2EGmdcAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Inkrementalno reševanje temelji na ideji, da v kolikor ima funkcija $f(x)$ pri $x_0$ in $x_1$ različna predznaka, potem je vmes vsaj ena ničla. Zaprti interval $[x_0, x_1]$ razdelimo torej na odseke širine $\Delta x$; na odseku, kjer opazimo spremembo predznaka, je vsaj ena ničla funkcije. Metoda je prikazana na sliki.
+<p>Inkrementalno reševanje temelji na ideji, da v kolikor ima funkcija $f(x)$ pri $x_0$ in $x_1$ različna predznaka, potem je vmes vsaj ena ničla. Zaprti interval $[x_0, x_1]$ razdelimo torej na odseke širine $\Delta x$; na odseku, kjer opazimo spremembo predznaka, je vsaj ena ničla funkcije.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Metoda je prikazana na sliki.
 <img src="./fig/inkrementalna.png" width="400"/></p>
 </div>
 </div>
@@ -2957,7 +2965,7 @@ DMYYY85hgcEYY8w5LDAYY4w5hwUGY4wx57DAYIwx5hz/HwZprwLMTIMhAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>V primeru iskanja v okolici pola, pa nas program na to opozori (klic funkcije je tukaj zakomentiran, sicer se avtomatsko generiranje ne izvede pravilno):</p>
+<p>V primeru iskanja v okolici pola, pa nas program na to opozori (klic funkcije je tukaj zakomentiran, sicer se avtomatsko generiranje tukaj prekine):</p>
 </div>
 </div>
 </div>
@@ -3164,6 +3172,13 @@ DMYYY85hgcEYY8w5LDAYY4w5hwUGY4wx57DAYIwx5hz/HwZprwLMTIMhAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sekantna metoda zahteva dva začetna približka $x_0$ in $x_1$ in funkcijo $f(x)$. Ob predpostavki linearne interpolacije med točkama $x_0, f(x_0)$ in $x_1, f(x_1)$ (skozi točki potegnemo <em>sekanto</em>, od tukaj tudi ime), se določi $x_2$, kjer ima linearna interpolacijska funkcija ničlo. $x_2$ predstavlja nov približek ničle.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na sliko:
 <img src="./fig/sekantna.png" width="400"/></p>
 </div>
@@ -3212,6 +3227,13 @@ DMYYY85hgcEYY8w5LDAYY4w5hwUGY4wx57DAYIwx5hz/HwZprwLMTIMhAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Konvergenca pomeni, da zaporedje približkov konvergira k rešitvi enačbe $\alpha$ ($\alpha$ je rešitev enačbe).</p>
 <p><strong>Red konvergence</strong> označuje hitrost konvergiranja.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Z $\varepsilon$ označimo napako približka in z vsakim korakom iteracije napako linearno zmanjšamo, bi to zapisali:</p>
 <p>$$\varepsilon_n = C\,\varepsilon_{n-1}^1,$$</p>
 <p>kjer bi bila $C$ konstanta, napaka $\varepsilon$ bi pa imela potenco 1; posledično je red konvergence 1!</p>
@@ -3223,7 +3245,7 @@ DMYYY85hgcEYY8w5LDAYY4w5hwUGY4wx57DAYIwx5hz/HwZprwLMTIMhAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Red konvergence <em>sekantne metode je višji</em> in jo je mogoče oceniti z:</p>
+<p>Red konvergence <em>sekantne metode je višja</em> in jo je mogoče oceniti z:</p>
 <p>$$\varepsilon_n = C\,\varepsilon_{n-1}^{1.618}.$$</p>
 <p>Iz zgornje ocene sledi, da se na vsakem koraku iteracije število točnih cifer poveča za približno 60%. Ker je red konvegence višji od 1 in manjši od kvadratične, tako konvergenco imenujemo <em>superlinearna</em> konvergenca.</p>
 </div>
@@ -3795,7 +3817,15 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
-<p>Če v funkcijo <code>newton</code> poleg funkcije <code>func</code> in začetne vrednosti <code>x0</code> podamo tudi prvi odvod <code>fprime</code>, se dejansko uporabi Newtonova metoda; če podamo tudi drugi odvod <code>fprime2</code>, se uporabi Halleyeva metoda, ki temelji na izrazu:</p>
+<p>Če v funkcijo <code>newton</code> poleg funkcije <code>func</code> in začetne vrednosti <code>x0</code> podamo tudi prvi odvod <code>fprime</code>, se dejansko uporabi Newtonova metoda.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Če podamo tudi drugi odvod <code>fprime2</code>, se uporabi Halleyeva metoda, ki temelji na izrazu:</p>
 <p>$$x_{n+1}=x_{n}-\frac{2f(x_{n})f'(x_{n})}{2\,f'^{2}(x_{n})-f(x_{n})f''(x_{n})}$$</p>
 </div>
 </div>
