@@ -4918,7 +4918,7 @@ $$1.44044796026$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Rombergova metoda temelji na Richardsovi ekstrapolaciji. Predpostavimo, da integral $\int_a^b f(x)\textrm{d}x$ integriramo na intervalu $[a,b]$, ki ga razdelimo na $n=1,2,4,8, \dots$ podintervalov.</p>
+<p>Rombergova metoda temelji na Richardsonovi ekstrapolaciji. Predpostavimo, da integral $\int_a^b f(x)\textrm{d}x$ integriramo na intervalu $[a,b]$, ki ga razdelimo na $n=1,2,4,8, \dots$ podintervalov.</p>
 <p>Rezultat trapeznega pravila pri $n=1$ označimo z $R_{\underbrace{1}_{n},\underbrace{1}_{j}}$, pri čemer $j$ označuje natančnost pridobljenega rezultata $\mathcal{O}(h^{2j})$.</p>
 </div>
 </div>
@@ -4943,7 +4943,7 @@ $$1.44044796026$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Na podlagi Richardsove ekstrapolacije izračunamo boljši približek</p>
+<p>Na podlagi Richardsonove ekstrapolacije izračunamo boljši približek</p>
 <ul>
 <li>$R_{2,2} = R_{2,1} + \frac{1}{3}\left(R_{2,1}-R_{1,1}\right)$, korak $h_2=h/2$, red natančnosti $\mathcal{O}(h_2^4)$,</li>
 <li>$R_{3,2} = R_{3,1} + \frac{1}{3}\left(R_{3,1}-R_{2,1}\right)$, korak $h_3=h/4$, red natančnosti $\mathcal{O}(h_3^4)$,</li>
@@ -4957,7 +4957,7 @@ $$1.44044796026$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nato nadaljujemo z Richardsovo ekstrapolacijo:</p>
+<p>Nato nadaljujemo z Richardsonovo ekstrapolacijo:</p>
 <ul>
 <li>$R_{3,3} = R_{3,2} + \frac{1}{15}\left(R_{3,2}-R_{2,2}\right)$, korak $h_3=h/4$, red natančnosti $\mathcal{O}(h_3^6)$,</li>
 <li>$\dots$</li>
@@ -4970,7 +4970,7 @@ $$1.44044796026$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Richardsovo extrapolacijo lahko posplošimo:</p>
+<p>Richardsonovo extrapolacijo lahko posplošimo:</p>
 <ul>
 <li>$R_{n,j} = R_{n,j-1} + \frac{1}{4^{j-1}-1}\left(R_{n,j-1}-R_{n-1,j-1}\right)$, korak $h_n=h/(2^{n-1})$, red natančnosti $\mathcal{O}(h_n^{2j})$</li>
 </ul>
@@ -5224,7 +5224,7 @@ $$1.44042242117$$
 <li><code>y</code> tabela funkcijskih vrednosti, ki jih integriramo,</li>
 <li><code>dx</code> širina ekvidistantnih podintervalov oz korak integriranja,</li>
 <li><code>axis</code> or integriranja (pomembno v primeru večdimenzijskega numeričnega polja),</li>
-<li><code>show</code> če je <code>True</code> prikaže elemente Richardsove ekstrapolacije.</li>
+<li><code>show</code> če je <code>True</code> prikaže elemente Richardsonove ekstrapolacije.</li>
 </ul>
 </div>
 </div>
