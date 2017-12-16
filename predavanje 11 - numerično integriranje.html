@@ -1484,7 +1484,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pripravimo si vozlišča. Osnovni korak naj bo $h=0.25$, v tem primeru imamo štiri štiri podintervale in pet vozlišč, pri koraku $2h$ so tri vozliščne točke in in pri koraku $4h$ samo dve (skrajni):</p>
+<p>Pripravimo si vozlišča. Osnovni korak naj bo $h=0.25$, v tem primeru imamo štiri štiri podintervale in pet vozlišč, pri koraku $2h$ so tri vozliščne točke in pri koraku $4h$ samo dve (skrajni):</p>
 </div>
 </div>
 </div>
@@ -1537,7 +1537,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In [78]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1545,7 +1545,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 <span class="n">rc</span><span class="p">(</span><span class="s1">'font'</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">'family'</span><span class="p">:</span><span class="s1">'sans-serif'</span><span class="p">,</span><span class="s1">'sans-serif'</span><span class="p">:[</span><span class="s1">'Helvetica'</span><span class="p">]})</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">'text'</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="k">def</span> <span class="nf">fig</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">fig_motivacija</span><span class="p">():</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">xg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">'$\int_1^2\,x\,\sin(x)\,</span><span class="se">\\</span><span class="s1">textrm</span><span class="si">{d}</span><span class="s1">x$'</span><span class="p">,</span> <span class="p">(</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'$x\,\sin(x)$'</span><span class="p">)</span>
@@ -1569,10 +1569,10 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [79]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_motivacija</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1877,7 +1877,7 @@ $$1.4404224209802097$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Trapezno pravilo vrednosti podintegralske funkcije $f()x$ na (pod)intervalu $[x_0, x_1]$ interpolira z linearno funkcijo. Za dve vozliščni točki to pomeni, da površino pod grafom funkcije približno izračunamo kot:</p>
+<p>Trapezno pravilo vrednosti podintegralske funkcije $f(x)$ na (pod)intervalu $[x_0, x_1]$ interpolira z linearno funkcijo. Za dve vozliščni točki to pomeni, da površino pod grafom funkcije približno izračunamo kot:</p>
 <p>$$I_{\textrm{trapezno}}=\sum_{i=0}^{n=1}A_i\,f(x_i)=\frac{h}{2}\cdot\left(f(x_0)+f(x_1)\right).$$</p>
 <p>In so uteži:</p>
 <p>$$A_0 = A_1 = \frac{1}{2}\,h.$$</p>
@@ -3817,7 +3817,7 @@ $$\left [ \frac{3 h}{8}, \quad \frac{9 h}{8}, \quad \frac{9 h}{8}, \quad \frac{3
 <p>Simpsonovo 3/8 pravilo je:</p>
 <p>$$I_{\textrm{Simpsonovo 3/8}}=\frac{3h}{8}\left(y_0+3\,y_1+3\,y_2+y_3\right)$$</p>
 <p>Ocena napake je (vir: Burden, Faires, Burden: Numerical Analysis 10th Ed):
-$$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{8a0}f^{(4)}(\xi).$$</p>
+$$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{80}f^{(4)}(\xi).$$</p>
 </div>
 </div>
 </div>
