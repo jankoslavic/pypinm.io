@@ -1701,7 +1701,7 @@ kjer je $m$ masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora in
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija desne strani / prvega odvoda $f(t,y)$ je:</p>
 <p>$$f(t,y)=g-c\,
-\frac{v}{m}$$</p>
+\frac{y}{m}$$</p>
 <p>in začetni pogoj:
 $$y_0=0.$$</p>
 </div>
@@ -1720,8 +1720,8 @@ $$y_0=0.$$</p>
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">g</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">v</span><span class="o">/</span><span class="n">m</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">g</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">m</span>
 </pre></div>
 </div>
 </div>
@@ -3075,10 +3075,10 @@ kjer je $y_{n,h}$ numerični približek rešitve in $E_h$ napaka metode. Ker je 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Podobno lahko za velikost koraka $2h$ zapišemo:</p>
-<p>$$y(t_n)=y_{n,2h}+E_{2h},$$
-kjer je $y_{n,2h}$ numerični približek rešitve in $E_{2h}$ napaka metode:</p>
-<p>$$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
+<p>Podobno lahko za velikost koraka $2h$ zapišemo:
+$$y(t_n)=y_{n,2h}+E_{2h},$$</p>
+<p>kjer je $y_{n,2h}$ numerični približek rešitve in $E_{2h}$ napaka metode:
+$$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 </div>
@@ -3199,8 +3199,8 @@ kjer je $y_{n,2h}$ numerični približek rešitve in $E_{2h}$ napaka metode:</p>
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">g</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">v</span><span class="o">/</span><span class="n">m</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">g</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">m</span>
 </pre></div>
 </div>
 </div>
@@ -4451,7 +4451,7 @@ $$m\,g+F_y=m\,v_y',$$</p>
 <div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor_sila</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_zračni_upor_sila</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>  <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span> <span class="o">=</span> <span class="n">y</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">vx</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">,</span> <span class="n">g</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">vy</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">vx</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">vy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">])</span>
 </pre></div>
@@ -4523,8 +4523,8 @@ $$m\,g+F_y=m\,v_y',$$</p>
 <div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_RK4</span> <span class="o">=</span> <span class="n">runge_kutta_4_sistem</span><span class="p">(</span><span class="n">f_zračni_upor_sila</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">y_odeint</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">f_zračni_upor_sila_odeint</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">9.81</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.7</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_RK4</span> <span class="o">=</span> <span class="n">runge_kutta_4_sistem</span><span class="p">(</span><span class="n">f_zračni_upor_sila</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">y_odeint</span> <span class="o">=</span> <span class="n">odeint</span><span class="p">(</span><span class="n">f_zračni_upor_sila_odeint</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mf">9.81</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -7495,13 +7495,13 @@ $$-0.3037048743129991$$
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="82e02579-2399-4a77-9522-ec62f7cca3ab"></div>
+<div id="ba739bda-4a72-4ec8-a113-37e8f9a6bd89"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#82e02579-2399-4a77-9522-ec62f7cca3ab');
+var element = $('#ba739bda-4a72-4ec8-a113-37e8f9a6bd89');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "7e8ecf044a3c4fe5b4a237abac509131", "version_major": 2, "version_minor": 0}
+{"model_id": "c2de435a0d08462a9bf0fe9f0b246482", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 </div>
