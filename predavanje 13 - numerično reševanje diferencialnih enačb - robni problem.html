@@ -4381,7 +4381,7 @@ BhERCVBiEBGRACUGEREJUGIQEZEAJQYREQlQYhARkYD/Dzg7iZXBb+CxAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [71]:</div>
+<div class="prompt input_prompt">In [45]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="mf">10.</span>
@@ -4400,13 +4400,13 @@ BhERCVBiEBGRACUGEREJUGIQEZEAJQYREQlQYhARkYD/Dzg7iZXBb+CxAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Nato pripravimo matriko koeficientov (matrika je dimenzije <code>(n+2, n+2)</code>:</p>
+<p>Nato pripravimo matriko koeficientov (matrika je dimenzije <code>(n+2, n+2)</code>, v prvi in v zadnji dve vrstici bi lahko zapisali tudi vrednosti 0, to bomo pozneje popravili):</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [72]:</div>
+<div class="prompt input_prompt">In [46]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> \
@@ -4422,7 +4422,7 @@ BhERCVBiEBGRACUGEREJUGIQEZEAJQYREQlQYhARkYD/Dzg7iZXBb+CxAAAAAElFTkSuQmCC
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[72]:</div>
+<div class="prompt output_prompt">Out[46]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 6., -4.,  1.,  0.],
        [-4.,  6., -4.,  1.],
@@ -4443,11 +4443,11 @@ BhERCVBiEBGRACUGEREJUGIQEZEAJQYREQlQYhARkYD/Dzg7iZXBb+CxAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In [49]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">h</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">F_0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">I</span><span class="p">)</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span> <span class="n">h</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">F_0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">E</span><span class="o">*</span><span class="n">I</span><span class="p">)</span>
 <span class="n">b</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -4456,9 +4456,9 @@ BhERCVBiEBGRACUGEREJUGIQEZEAJQYREQlQYhARkYD/Dzg7iZXBb+CxAAAAAElFTkSuQmCC
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[47]:</div>
+<div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([  0.00000000e+00,  -0.00000000e+00,  -7.48966545e-10,
+<pre>array([  0.00000000e+00,   0.00000000e+00,  -7.48966545e-10,
         -1.49717894e-09])</pre>
 </div>
 </div>
@@ -4477,7 +4477,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -4499,7 +4499,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -4513,7 +4513,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[:</span><span class="mi">5</span><span class="p">,:</span><span class="mi">5</span><span class="p">]</span>
@@ -4524,7 +4524,7 @@ robnim pogojem.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[50]:</div>
+<div class="prompt output_prompt">Out[52]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 0.,  1.,  0.,  0.,  0.],
        [ 1., -2.,  1.,  0.,  0.],
@@ -4538,7 +4538,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:,</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -4549,7 +4549,7 @@ robnim pogojem.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[51]:</div>
+<div class="prompt output_prompt">Out[53]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 6., -4.,  1.,  0.,  0.],
        [-4.,  6., -4.,  1.,  0.],
@@ -4563,7 +4563,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -4574,7 +4574,7 @@ robnim pogojem.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[52]:</div>
+<div class="prompt output_prompt">Out[54]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([  0.00000000e+00,   0.00000000e+00,  -7.48966545e-10,
         -1.49717894e-09,  -2.24388381e-09])</pre>
@@ -4585,7 +4585,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In [55]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -4596,7 +4596,7 @@ robnim pogojem.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[53]:</div>
+<div class="prompt output_prompt">Out[55]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([ -2.24388381e-09,  -1.49717894e-09,  -7.48966545e-10,
          0.00000000e+00,   0.00000000e+00])</pre>
@@ -4615,7 +4615,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In [56]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_mkr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -4634,7 +4634,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In [57]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Poves ob polsinusni obremenitvi'</span><span class="p">)</span>
@@ -4922,7 +4922,7 @@ hFLgERGRhFLgERGRhFLgERGRhPr/AVDQYLUpr0yRAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In [58]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
@@ -4942,7 +4942,7 @@ hFLgERGRhFLgERGRhFLgERGRhPr/AVDQYLUpr0yRAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [57]:</div>
+<div class="prompt input_prompt">In [59]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">F_0</span><span class="p">,</span> <span class="n">l</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'w, x, E, I, F_0, l'</span><span class="p">)</span>
@@ -4961,7 +4961,7 @@ hFLgERGRhFLgERGRhFLgERGRhPr/AVDQYLUpr0yRAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [58]:</div>
+<div class="prompt input_prompt">In [60]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="o">-</span><span class="n">E</span><span class="o">*</span><span class="n">I</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-</span><span class="n">F_0</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">l</span><span class="p">))</span>
@@ -4973,7 +4973,7 @@ hFLgERGRhFLgERGRhFLgERGRhPr/AVDQYLUpr0yRAAAAAElFTkSuQmCC
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[58]:</div>
+<div class="prompt output_prompt">Out[60]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- E I \frac{d^{4}}{d x^{4}}  w{\left (x \right )} - F_{0} \sin{\left (\frac{\pi x}{l} \right )} = 0$$
 </div>
@@ -4991,7 +4991,7 @@ $$- E I \frac{d^{4}}{d x^{4}}  w{\left (x \right )} - F_{0} \sin{\left (\frac{\p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [59]:</div>
+<div class="prompt input_prompt">In [61]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -5003,7 +5003,7 @@ $$- E I \frac{d^{4}}{d x^{4}}  w{\left (x \right )} - F_{0} \sin{\left (\frac{\p
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[59]:</div>
+<div class="prompt output_prompt">Out[61]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$C_{1} + C_{2} x + C_{3} x^{2} + C_{4} x^{3} - \frac{F_{0} l^{4}}{\pi^{4} E I} \sin{\left (\frac{\pi x}{l} \right )}$$
 </div>
@@ -5021,7 +5021,7 @@ $$C_{1} + C_{2} x + C_{3} x^{2} + C_{4} x^{3} - \frac{F_{0} l^{4}}{\pi^{4} E I} 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [60]:</div>
+<div class="prompt input_prompt">In [62]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -5032,7 +5032,7 @@ $$C_{1} + C_{2} x + C_{3} x^{2} + C_{4} x^{3} - \frac{F_{0} l^{4}}{\pi^{4} E I} 
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[60]:</div>
+<div class="prompt output_prompt">Out[62]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$C_{1}$$
 </div>
@@ -5050,7 +5050,7 @@ $$C_{1}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [61]:</div>
+<div class="prompt input_prompt">In [63]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -5061,7 +5061,7 @@ $$C_{1}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[61]:</div>
+<div class="prompt output_prompt">Out[63]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$2 C_{3}$$
 </div>
@@ -5079,7 +5079,7 @@ $$2 C_{3}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [62]:</div>
+<div class="prompt input_prompt">In [64]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c1c3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'C1'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">'C3'</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
@@ -5098,7 +5098,7 @@ $$2 C_{3}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [63]:</div>
+<div class="prompt input_prompt">In [65]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
@@ -5110,7 +5110,7 @@ $$2 C_{3}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[63]:</div>
+<div class="prompt output_prompt">Out[65]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$C_{2} l + C_{4} l^{3}$$
 </div>
@@ -5128,7 +5128,7 @@ $$C_{2} l + C_{4} l^{3}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [64]:</div>
+<div class="prompt input_prompt">In [66]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq1</span><span class="p">,</span> <span class="s1">'C2'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -5140,7 +5140,7 @@ $$C_{2} l + C_{4} l^{3}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[64]:</div>
+<div class="prompt output_prompt">Out[66]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- C_{4} l^{2}$$
 </div>
@@ -5158,7 +5158,7 @@ $$- C_{4} l^{2}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [65]:</div>
+<div class="prompt input_prompt">In [67]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq2</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
@@ -5170,7 +5170,7 @@ $$- C_{4} l^{2}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[65]:</div>
+<div class="prompt output_prompt">Out[67]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$6 C_{4} l$$
 </div>
@@ -5188,7 +5188,7 @@ $$6 C_{4} l$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [66]:</div>
+<div class="prompt input_prompt">In [68]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">C4</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
@@ -5203,7 +5203,7 @@ $$6 C_{4} l$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[66]:</div>
+<div class="prompt output_prompt">Out[68]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$0$$
 </div>
@@ -5221,7 +5221,7 @@ $$0$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [67]:</div>
+<div class="prompt input_prompt">In [69]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">resitev</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="s1">'C2'</span><span class="p">,</span> <span class="n">C2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="s1">'C4'</span><span class="p">,</span> <span class="n">C4</span><span class="p">)</span>
@@ -5233,7 +5233,7 @@ $$0$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[67]:</div>
+<div class="prompt output_prompt">Out[69]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- \frac{F_{0} l^{4}}{\pi^{4} E I} \sin{\left (\frac{\pi x}{l} \right )}$$
 </div>
@@ -5251,7 +5251,7 @@ $$- \frac{F_{0} l^{4}}{\pi^{4} E I} \sin{\left (\frac{\pi x}{l} \right )}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [68]:</div>
+<div class="prompt input_prompt">In [70]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">podatki</span> <span class="o">=</span> <span class="p">{</span><span class="n">E</span><span class="p">:</span> <span class="mf">2.1e11</span><span class="p">,</span> <span class="n">I</span><span class="p">:</span> <span class="mf">2.1e-5</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">F_0</span><span class="p">:</span><span class="mf">1e3</span><span class="p">}</span>
@@ -5265,7 +5265,7 @@ $$- \frac{F_{0} l^{4}}{\pi^{4} E I} \sin{\left (\frac{\pi x}{l} \right )}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [69]:</div>
+<div class="prompt input_prompt">In [71]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Upogib ob polsinusni obremenitvi'</span><span class="p">)</span>
@@ -5572,7 +5572,7 @@ hUcppZRbaeFRSinlVlp4lFJKuZUWHqWUUm6lhUcppZRb/T+JbaeQvLu1DAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [70]:</div>
+<div class="prompt input_prompt">In [72]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_ana</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_mkr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_pol_sin</span><span class="p">)]</span>
@@ -5583,7 +5583,7 @@ hUcppZRbaeFRSinlVlp4lFJKuZUWHqWUUm6lhUcppZRb/T+JbaeQvLu1DAAAAABJRU5ErkJggg==
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[70]:</div>
+<div class="prompt output_prompt">Out[72]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ -0.0232759411601, \quad -0.0232798479985, \quad -0.0232759509119\right ]$$
 </div>
