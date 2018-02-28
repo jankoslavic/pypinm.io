@@ -1751,7 +1751,7 @@ pi = 3.14
 <ul>
 <li><code>fill</code> je lahko katerikoli znak,</li>
 <li><code>align</code> označuje poravnavo, možnosti: <code>"<"</code> | <code>">"</code> | <code>"="</code> | <code>"^"</code>,</li>
-<li><code>sign</code> označuje predznak, možnosti:            ::=  <code>"+"</code> | <code>"-"</code> | <code>" "</code>,</li>
+<li><code>sign</code> označuje predznak, možnosti: <code>"+"</code> | <code>"-"</code> | <code>" "</code>,</li>
 <li><code>width</code> definira minimalno skupno širino,</li>
 <li><code>grouping_option</code> možnosti združevanja, možnosti:  <code>"_"</code> | <code>","</code></li>
 <li><code>precision</code> definira število števk po decimalnem ločilu,</li>
@@ -1862,7 +1862,7 @@ pi = 3.14
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Generični primer funkcije je (<a href="https://docs.python.org/tutorial/controlflow.html#defining-functions">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ime_funckije</span><span class="p">(</span><span class="n">parametri</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ime_funkcije</span><span class="p">(</span><span class="n">parametri</span><span class="p">):</span>
     <span class="sd">'''docstring'''</span>
     <span class="p">[</span><span class="n">koda</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">vsebina</span>
@@ -3258,7 +3258,7 @@ konec
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -3269,7 +3269,7 @@ konec
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span> -n1000
@@ -3285,7 +3285,7 @@ for element in seznam:
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>766 µs ± 52 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>474 µs ± 33.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
@@ -3302,7 +3302,7 @@ for element in seznam:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span> -n1000
@@ -3316,7 +3316,7 @@ rezultat = [element**2 for element in seznam]
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>887 µs ± 162 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<pre>366 µs ± 21 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre>
 </div>
 </div>
