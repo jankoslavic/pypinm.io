@@ -7,6 +7,7 @@ import nbformat
 import shutil
 
 EXCLUDE_NOTEBOOKS = ['NM2016.ipynb',
+					 'NM2017.ipynb',
                      'PiNM2016-17.ipynb',
                      'Predavanje 10b - Taylorjeve vrste.ipynb',
                      'working.ipynb']
