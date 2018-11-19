@@ -1480,7 +1480,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$">Razcep LU matrike koeficientov $\mathbf{A}$<a class="anchor-link" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$">¶</a></h2><p>V nadaljevanju bomo pokazali, da Gaussova eliminacija dejanjsko predstavlja razcep LU matrike koeficientov $\mathbf{A}$. Pri tem te si bomo pomagali s simbolnim izračunom, zato uvozimo paket <code>sympy</code>:</p>
+<h2 id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$">Razcep LU matrike koeficientov $\mathbf{A}$<a class="anchor-link" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$">¶</a></h2><p>V nadaljevanju bomo pokazali, da Gaussova eliminacija dejanjsko predstavlja razcep LU matrike koeficientov $\mathbf{A}$. Pri tem si bomo pomagali s simbolnim izračunom, zato uvozimo paket <code>sympy</code>:</p>
 </div>
 </div>
 </div>
@@ -1621,8 +1621,10 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 <p>Iz zgornje eliminacije ugotovimo:</p>
 <ol>
 <li>matrika $\mathbf{U}$ je enaka matriki, ki jo dobimo, če izvedemo Gaussovo eliminacijo nad matriko koeficientov $\mathbf{A}$.</li>
-<li>izven diagonalni členi $\mathbf{L}$ so faktorji, ki smo jih uporabili pri Gaussovi eliminaciji.</li>
 </ol>
+<ul>
+<li>izven diagonalni členi $\mathbf{L}$ so faktorji, ki smo jih uporabili pri Gaussovi eliminaciji.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1654,7 +1656,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Izvedimo Gaussovo eliminacijo in koeficiente, s katerim množimo pivotno vrsto <code>m</code>, shranjuje v matriko <code>L</code> na mesto z indeksi, kot jih ima v matriki $\mathbf{A}$ eliminirani element.</p>
+<p>Izvedimo Gaussovo eliminacijo in koeficiente, s katerim množimo pivotno vrsto <code>m</code>, shranimo v matriko <code>L</code> na mesto z indeksi, kot jih ima v matriki $\mathbf{A}$ eliminirani element.</p>
 </div>
 </div>
 </div>
@@ -1994,9 +1996,9 @@ Korak: 1
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
+<pre>c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
   """Entry point for launching an IPython kernel.
-C:\Users\Janko\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
+c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
   """Entry point for launching an IPython kernel.
 </pre>
 </div>
@@ -2652,7 +2654,7 @@ kjer je $\mathbf{b}_i$ $i$-ti stolpec matrike $\mathbf{B}=\mathbf{I}$.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>Numerična zahtevnost:</em> izvedemo razcep LU nad matriko $\mathbf{A}$ (računski obseg reda $n^3$) in nato 
-poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $i$). Skupni računski obseg je torej $3\,n^3$.</p>
+poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $i$). Skupni računski obseg je torej še vedno reda $n^3$. (Če bi $n$ krat izvajali Gaussovo eliminacijo, bi bil obseg reda $n^4$.)</p>
 </div>
 </div>
 </div>
@@ -2704,9 +2706,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[39]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ 1.,  0.,  0.],
-       [ 0.,  1.,  0.],
-       [ 0.,  0.,  1.]])</pre>
+<pre>array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]])</pre>
 </div>
 </div>
 </div>
@@ -2757,9 +2759,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[41]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
-       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
-       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
+<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
+       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
+       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
 </div>
 </div>
 </div>
@@ -2788,9 +2790,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[42]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[  1.00000000e+00,   0.00000000e+00,   1.11022302e-16],
-       [ -1.11022302e-16,   1.00000000e+00,  -1.11022302e-16],
-       [  1.66533454e-16,   0.00000000e+00,   1.00000000e+00]])</pre>
+<pre>array([[ 1.00000000e+00,  0.00000000e+00,  1.11022302e-16],
+       [-1.11022302e-16,  1.00000000e+00, -1.11022302e-16],
+       [ 1.66533454e-16,  0.00000000e+00,  1.00000000e+00]])</pre>
 </div>
 </div>
 </div>
@@ -2820,9 +2822,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[43]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
-       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
-       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
+<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
+       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
+       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
 </div>
 </div>
 </div>
@@ -2852,9 +2854,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[44]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ -1.66666667e-01,  -1.66666667e-01,   1.38777878e-17],
-       [ -2.77777778e-01,  -4.44444444e-01,  -3.33333333e-01],
-       [ -1.11111111e-01,  -4.44444444e-01,  -3.33333333e-01]])</pre>
+<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
+       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
+       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
 </div>
 </div>
 </div>
@@ -2954,7 +2956,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[45]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 1.,  2.])</pre>
+<pre>array([1., 2.])</pre>
 </div>
 </div>
 </div>
@@ -2986,12 +2988,12 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[46]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ 1.01764052,  2.00400157],
-       [ 2.00978738,  3.02240893],
-       [ 1.01867558,  1.99022722],
-       [ 2.00950088,  2.99848643],
-       [ 0.99896781,  2.00410599],
-       [ 2.00144044,  3.01454274]])</pre>
+<pre>array([[1.01764052, 2.00400157],
+       [2.00978738, 3.02240893],
+       [1.01867558, 1.99022722],
+       [2.00950088, 2.99848643],
+       [0.99896781, 2.00410599],
+       [2.00144044, 3.01454274]])</pre>
 </div>
 </div>
 </div>
@@ -3014,8 +3016,8 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[47]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 5.00761038,  8.00121675,  5.00443863,  8.00333674,  5.01494079,
-        7.99794842])</pre>
+<pre>array([5.00761038, 8.00121675, 5.00443863, 8.00333674, 5.01494079,
+       7.99794842])</pre>
 </div>
 </div>
 </div>
@@ -3045,7 +3047,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[48]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 0.94512271,  2.02675939])</pre>
+<pre>array([0.94512271, 2.02675939])</pre>
 </div>
 </div>
 </div>
@@ -3085,10 +3087,10 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[  8.88178420e-15,  -8.21565038e-15,   9.65894031e-15,
-         -8.65973959e-15,   1.04360964e-14,  -7.10542736e-15],
-       [ -5.66213743e-15,   4.71844785e-15,  -5.66213743e-15,
-          4.49640325e-15,  -6.21724894e-15,   3.55271368e-15]])</pre>
+<pre>array([[ 8.88178420e-15, -8.21565038e-15,  9.65894031e-15,
+        -8.65973959e-15,  1.04360964e-14, -7.10542736e-15],
+       [-5.66213743e-15,  4.71844785e-15, -5.66213743e-15,
+         4.49640325e-15, -6.21724894e-15,  3.55271368e-15]])</pre>
 </div>
 </div>
 </div>
@@ -3192,7 +3194,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 <div class="output_area">
 <div class="prompt output_prompt">Out[51]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([ 0.,  0.,  0.])</pre>
+<pre>array([0., 0., 0.])</pre>
 </div>
 </div>
 </div>
@@ -3344,11 +3346,11 @@ Norma 0.04590845211691733
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na sliki je prikazano paličje. Ob delovanju sil $F_1$ in $F_2$ se v palicah razvijejo notranje sile $P_i$. Dimenzije paličja zagotavljata kota $\alpha$ in $\beta$.
-<img src="./fig/palicje_2.2_15.png" width="300"/>
+<img src="./fig/palicje_2.2_15.png" width="300">
 Sile v palicah izračunamo s pomočjo sistema linearnih enačb.</p>
 <ol>
 <li>V simbolni obliki zapišite ravnotežje sil za točko 1 v $x$ in $y$ smeri (namig: naloga je posplošitev naloge 15 na strani 81 v knjigi Numerical methods in Eng with Py 3 z nastavkom za rešitev):
-<img src="./fig/palicje_2.2_15_resitev.png" width="300"/>
+<img src="./fig/palicje_2.2_15_resitev.png" width="300">
  Zgornji nastavek ima napako v predzadnji vrstici. Rešitev sistema v knjigi je: $P_{1} = -42000, P_{2}=-12000, P_{3}= 42426, P_{4} = -12000, P_{5} = 16971, P_{6} = 12000$
 ).</li>
 <li>V simbolni obliki zapišite ravnotežje sil za točko 2 v $x$ in $y$ smeri.</li>
@@ -3378,7 +3380,7 @@ Sile v palicah izračunamo s pomočjo sistema linearnih enačb.</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Analizirajte, koliko e-mailov dobite na dan:
-<img src="./fig/povprecje_emailov.jpg" width="300"/>
+<img src="./fig/povprecje_emailov.jpg" width="300">
 <a href="https://plot.ly/ipython-notebooks/graph-gmail-inbox-data/">https://plot.ly/ipython-notebooks/graph-gmail-inbox-data/</a>
 (Nasvet: sledite kodi in uporabite <code>matplotlib</code> za prikaz).</p>
 </div>

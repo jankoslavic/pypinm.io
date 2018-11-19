@@ -3273,10 +3273,10 @@ konec
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span> -n1000
-rezultat = []
-for element in seznam:
-    rezultat.append(element**2)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it -n1000
+<span class="n">rezultat</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">seznam</span><span class="p">:</span>
+    <span class="n">rezultat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3306,8 +3306,8 @@ for element in seznam:
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span> -n1000
-rezultat = [element**2 for element in seznam]
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it -n1000
+<span class="n">rezultat</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">seznam</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -3580,9 +3580,11 @@ rezultat = [element**2 for element in seznam]
 <p><strong>Kje Python išče module?</strong></p>
 <ol>
 <li>V trenutni mapi (to je tista, v kateri ste prožili <code>jupyter notebook</code>),</li>
+</ol>
+<ul>
 <li>v mapah, definiranih v <code>PYTHONPATH</code>,</li>
 <li>v mapah, kjer je nameščen Python (poddirektorij <code>site-packages</code>).</li>
-</ol>
+</ul>
 </div>
 </div>
 </div>
@@ -3737,11 +3739,11 @@ rezultat = [element**2 for element in seznam]
 <div class="prompt input_prompt">In [65]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span>
-datoteka = open('data/data.txt', mode='w')
-for d in data:
-    datoteka.write(f'{d:7.2e}\n' )
-datoteka.close()
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
+<span class="n">datoteka</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'data/data.txt'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'w'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">datoteka</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s1">'</span><span class="si">{d:7.2e}</span><span class="se">\n</span><span class="s1">'</span> <span class="p">)</span>
+<span class="n">datoteka</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -3771,9 +3773,9 @@ datoteka.close()
 <div class="prompt input_prompt">In [66]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">timeit</span>
-with open('data/data.pkl', 'wb') as datoteka:
-    pickle.dump(data, datoteka, protocol=-1) 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'data/data.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">datoteka</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">datoteka</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -3992,8 +3994,10 @@ with open('data/data.pkl', 'wb') as datoteka:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Nekateri-moduli">Nekateri moduli<a class="anchor-link" href="#Nekateri-moduli">¶</a></h2><ol>
 <li><code>openpyxl</code> za pisanje in branje Excel xlsx/xlsm datotek: <a href="http://openpyxl.readthedocs.org/en/latest/index.html#">vir</a>,</li>
-<li>Regularni izrazi (zelo močno orodje za iskanje po nizih): <a href="https://docs.python.org/library/re.html">vir</a>.</li>
 </ol>
+<ul>
+<li>Regularni izrazi (zelo močno orodje za iskanje po nizih): <a href="https://docs.python.org/library/re.html">vir</a>.</li>
+</ul>
 </div>
 </div>
 </div>
