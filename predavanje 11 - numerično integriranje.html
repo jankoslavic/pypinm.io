@@ -1538,12 +1538,12 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">rc</span> <span class="c1"># to uvozimo, da so fonti na sliki latex ustrezni</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">'font'</span><span class="p">,</span><span class="o">**</span><span class="p">{</span><span class="s1">'family'</span><span class="p">:</span><span class="s1">'sans-serif'</span><span class="p">,</span><span class="s1">'sans-serif'</span><span class="p">:[</span><span class="s1">'Helvetica'</span><span class="p">]})</span>
+<span class="c1">#rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})</span>
 <span class="n">rc</span><span class="p">(</span><span class="s1">'text'</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="k">def</span> <span class="nf">fig_motivacija</span><span class="p">():</span>
@@ -1570,7 +1570,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_motivacija</span><span class="p">()</span>
@@ -1580,14 +1580,6 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\matplotlib\font_manager.py:1238: UserWarning: findfont: Font family ['sans-serif'] not found. Falling back to DejaVu Sans.
-  (prop.get_family(), self.defaultFamily[fontext]))
-</pre>
-</div>
-</div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_png output_subarea ">
@@ -1608,7 +1600,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
@@ -1623,7 +1615,7 @@ kjer so $A_i$ uteži, $x_i$ pa vozlišča na intervalu $[a, b]$ in je $m+1$ šte
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt output_prompt">Out[12]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404224209802097$$
 </div>
@@ -1693,7 +1685,7 @@ $$1.4404224209802097$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In [13]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">trapezno</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
@@ -1719,7 +1711,7 @@ $$1.4404224209802097$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_trapezno</span> <span class="o">=</span> <span class="n">trapezno</span><span class="p">(</span><span class="n">y2v</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h2v</span><span class="p">)</span>
@@ -1731,7 +1723,7 @@ $$1.4404224209802097$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
+<div class="prompt output_prompt">Out[14]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.3300329192296299$$
 </div>
@@ -1749,7 +1741,7 @@ $$1.3300329192296299$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fig_trapezno</span><span class="p">():</span>
@@ -1778,7 +1770,7 @@ $$1.3300329192296299$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In [16]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_trapezno</span><span class="p">()</span>
@@ -1788,14 +1780,6 @@ $$1.3300329192296299$$
 </div>
 <div class="output_wrapper">
 <div class="output">
-<div class="output_area">
-<div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\matplotlib\font_manager.py:1238: UserWarning: findfont: Font family ['sans-serif'] not found. Falling back to DejaVu Sans.
-  (prop.get_family(), self.defaultFamily[fontext]))
-</pre>
-</div>
-</div>
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_png output_subarea ">
@@ -1887,7 +1871,7 @@ $$I_{\textrm{trapezno sest}}=\sum_{i=0}^{n}A_i\,f(x_i)=\left(\frac{y_0}{2} + y_1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">trapezno_sest</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
@@ -1913,7 +1897,7 @@ $$I_{\textrm{trapezno sest}}=\sum_{i=0}^{n}A_i\,f(x_i)=\left(\frac{y_0}{2} + y_1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In [18]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x3v</span>
@@ -1924,7 +1908,7 @@ $$I_{\textrm{trapezno sest}}=\sum_{i=0}^{n}A_i\,f(x_i)=\left(\frac{y_0}{2} + y_1
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
+<div class="prompt output_prompt">Out[18]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([1. , 1.5, 2. ])</pre>
 </div>
@@ -1934,7 +1918,7 @@ $$I_{\textrm{trapezno sest}}=\sum_{i=0}^{n}A_i\,f(x_i)=\left(\frac{y_0}{2} + y_1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In [19]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">h3v</span>
@@ -1945,7 +1929,7 @@ $$I_{\textrm{trapezno sest}}=\sum_{i=0}^{n}A_i\,f(x_i)=\left(\frac{y_0}{2} + y_1
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt output_prompt">Out[19]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$0.5$$
 </div>
@@ -1963,7 +1947,7 @@ $$0.5$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_trapezno_sest</span> <span class="o">=</span> <span class="n">trapezno_sest</span><span class="p">(</span><span class="n">y3v</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h3v</span><span class="p">)</span>
@@ -1975,7 +1959,7 @@ $$0.5$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+<div class="prompt output_prompt">Out[20]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.413137699567856$$
 </div>
@@ -1993,7 +1977,7 @@ $$1.413137699567856$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fig_trapezno_sest</span><span class="p">():</span>
@@ -2024,7 +2008,7 @@ $$1.413137699567856$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_trapezno_sest</span><span class="p">()</span>
@@ -2139,7 +2123,7 @@ $$I_h^* = \frac{4}{3}\,I_h - \frac{1}{3}\,I_{2h}$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In [23]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">I_trapezno</span><span class="p">,</span> <span class="n">I_trapezno_sest</span><span class="p">]</span>
@@ -2150,7 +2134,7 @@ $$I_h^* = \frac{4}{3}\,I_h - \frac{1}{3}\,I_{2h}$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+<div class="prompt output_prompt">Out[23]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.3300329192296299, \quad 1.413137699567856\right ]$$
 </div>
@@ -2168,7 +2152,7 @@ $$\left [ 1.3300329192296299, \quad 1.413137699567856\right ]$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In [24]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_trapezno_boljši</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">I_trapezno_sest</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="n">I_trapezno</span>
@@ -2225,7 +2209,7 @@ Boljši približek: 1.4408392930139313
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
@@ -2238,7 +2222,7 @@ Boljši približek: 1.4408392930139313
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
+<div class="prompt output_prompt">Out[25]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.413137699567856$$
 </div>
@@ -2321,7 +2305,7 @@ $$\int_{a}^b f(x)\,dx.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In [26]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'x x0, x1, h'</span><span class="p">)</span>
@@ -2340,12 +2324,12 @@ $$\int_{a}^b f(x)\,dx.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In [27]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lagrange</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">vozlišča_predpona</span><span class="o">=</span><span class="s1">'x'</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vozlišča_predpona</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">vozlišča</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'</span><span class="si">{0:s}</span><span class="s1">:</span><span class="si">{1:g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vozlišča_predpona</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> 
+        <span class="n">vozlišča</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">f</span><span class="s1">'</span><span class="si">{vozlišča_predpona}</span><span class="s1">:</span><span class="si">{n}</span><span class="s1">'</span><span class="p">)</span> 
     <span class="n">coeffs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="n">numer</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2378,7 +2362,7 @@ $$\int_{a}^b f(x)\,dx.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lag</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -2390,7 +2374,7 @@ $$\int_{a}^b f(x)\,dx.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[21]:</div>
+<div class="prompt output_prompt">Out[28]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \frac{x - x_{1}}{x_{0} - x_{1}}, \quad \frac{x - x_{0}}{- x_{0} + x_{1}}\right ]$$
 </div>
@@ -2408,7 +2392,7 @@ $$\left [ \frac{x - x_{1}}{x_{0} - x_{1}}, \quad \frac{x - x_{0}}{- x_{0} + x_{1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In [29]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">int0</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">lag</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">))</span>
@@ -2420,7 +2404,7 @@ $$\left [ \frac{x - x_{1}}{x_{0} - x_{1}}, \quad \frac{x - x_{0}}{- x_{0} + x_{1
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[22]:</div>
+<div class="prompt output_prompt">Out[29]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- \frac{x_{0}^{2}}{2 x_{0} - 2 x_{1}} + \frac{x_{0} x_{1}}{x_{0} - x_{1}} + \frac{x_{1}^{2}}{2 x_{0} - 2 x_{1}} - \frac{x_{1}^{2}}{x_{0} - x_{1}}$$
 </div>
@@ -2438,7 +2422,7 @@ $$- \frac{x_{0}^{2}}{2 x_{0} - 2 x_{1}} + \frac{x_{0} x_{1}}{x_{0} - x_{1}} + \f
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In [30]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">int1</span> <span class="o">=</span> <span class="n">int0</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
@@ -2450,7 +2434,7 @@ $$- \frac{x_{0}^{2}}{2 x_{0} - 2 x_{1}} + \frac{x_{0} x_{1}}{x_{0} - x_{1}} + \f
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[23]:</div>
+<div class="prompt output_prompt">Out[30]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- \frac{x_{0} - x_{1}}{2}$$
 </div>
@@ -2468,7 +2452,7 @@ $$- \frac{x_{0} - x_{1}}{2}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">zamenjave</span> <span class="o">=</span> <span class="p">{</span><span class="n">x1</span><span class="p">:</span> <span class="n">x0</span><span class="o">+</span><span class="n">h</span><span class="p">}</span>
@@ -2480,7 +2464,7 @@ $$- \frac{x_{0} - x_{1}}{2}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[24]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\frac{h}{2}$$
 </div>
@@ -2498,7 +2482,7 @@ $$\frac{h}{2}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In [32]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'x, x0, x1, h'</span><span class="p">)</span>
@@ -2513,7 +2497,7 @@ $$\frac{h}{2}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[25]:</div>
+<div class="prompt output_prompt">Out[32]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \frac{h}{2}, \quad \frac{h}{2}\right ]$$
 </div>
@@ -2560,7 +2544,7 @@ $$E_{\textrm{trapezno}}= -\frac{h^3}{12}f''(\xi).$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In [33]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'x, x0, x1, x2, h'</span><span class="p">)</span>
@@ -2575,7 +2559,7 @@ $$E_{\textrm{trapezno}}= -\frac{h^3}{12}f''(\xi).$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[26]:</div>
+<div class="prompt output_prompt">Out[33]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \frac{h}{3}, \quad \frac{4 h}{3}, \quad \frac{h}{3}\right ]$$
 </div>
@@ -2604,7 +2588,7 @@ $$E_{\textrm{Simpsonovo}}= -\frac{h^5}{90}f^{(4)}(\xi).$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_Simps</span> <span class="o">=</span> <span class="n">h3v</span><span class="o">/</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y3v</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -2616,7 +2600,7 @@ $$E_{\textrm{Simpsonovo}}= -\frac{h^5}{90}f^{(4)}(\xi).$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
+<div class="prompt output_prompt">Out[34]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.440839293013931$$
 </div>
@@ -2634,7 +2618,7 @@ $$1.440839293013931$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In [35]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">interpolate</span>
@@ -2645,7 +2629,7 @@ $$1.440839293013931$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In [36]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fig_Simpsonovo</span><span class="p">():</span>
@@ -2677,7 +2661,7 @@ $$1.440839293013931$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In [37]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_Simpsonovo</span><span class="p">()</span>
@@ -2723,7 +2707,7 @@ $$1.440839293013931$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In [38]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">integrate</span>
@@ -2735,7 +2719,7 @@ $$1.440839293013931$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[31]:</div>
+<div class="prompt output_prompt">Out[38]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>(array([0.375, 1.125, 1.125, 0.375]), -0.0375)</pre>
 </div>
@@ -2761,7 +2745,7 @@ $$1.440839293013931$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In [39]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'x, x0, x1, x2, x3, h'</span><span class="p">)</span>
@@ -2776,7 +2760,7 @@ $$1.440839293013931$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[32]:</div>
+<div class="prompt output_prompt">Out[39]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \frac{3 h}{8}, \quad \frac{9 h}{8}, \quad \frac{9 h}{8}, \quad \frac{3 h}{8}\right ]$$
 </div>
@@ -2805,7 +2789,7 @@ $$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{80}f^{(4)}(\xi).$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In [40]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y4v</span>
@@ -2816,7 +2800,7 @@ $$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{80}f^{(4)}(\xi).$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[33]:</div>
+<div class="prompt output_prompt">Out[40]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([0.84147098, 1.2959172 , 1.65901326, 1.81859485])</pre>
 </div>
@@ -2826,7 +2810,7 @@ $$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{80}f^{(4)}(\xi).$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_Simps38</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">h4v</span><span class="o">/</span><span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y4v</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -2838,7 +2822,7 @@ $$E_{\textrm{Simpsonovo 3/8}}= -\frac{3\,h^5}{80}f^{(4)}(\xi).$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[34]:</div>
+<div class="prompt output_prompt">Out[41]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.440607154083917$$
 </div>
@@ -2856,7 +2840,7 @@ $$1.440607154083917$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In [42]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fig_Simpsonovo38</span><span class="p">():</span>
@@ -2890,7 +2874,7 @@ $$1.440607154083917$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In [43]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_Simpsonovo38</span><span class="p">()</span>
@@ -2955,7 +2939,7 @@ f(x_0)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In [44]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">simpsonovo_sest</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
@@ -2973,7 +2957,7 @@ f(x_0)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In [45]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_Simps_sest</span> <span class="o">=</span> <span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y5v</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">h5v</span><span class="p">)</span>
@@ -2985,7 +2969,7 @@ f(x_0)
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[38]:</div>
+<div class="prompt output_prompt">Out[45]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404479602639093$$
 </div>
@@ -3003,7 +2987,7 @@ $$1.4404479602639093$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In [46]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fig_Simpsonovo_sest</span><span class="p">():</span>
@@ -3033,7 +3017,7 @@ $$1.4404479602639093$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In [47]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig_Simpsonovo_sest</span><span class="p">()</span>
@@ -3141,7 +3125,7 @@ kjer je $\eta$ neznana vrednost na intervalu $[a, b]$.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In [48]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">I_Simps</span><span class="p">,</span> <span class="n">I_Simps_sest</span><span class="p">]</span>
@@ -3152,7 +3136,7 @@ kjer je $\eta$ neznana vrednost na intervalu $[a, b]$.</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[41]:</div>
+<div class="prompt output_prompt">Out[48]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.440839293013931, \quad 1.4404479602639093\right ]$$
 </div>
@@ -3170,7 +3154,7 @@ $$\left [ 1.440839293013931, \quad 1.4404479602639093\right ]$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In [49]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">I_Simps_boljši</span> <span class="o">=</span> <span class="mi">16</span><span class="o">/</span><span class="mi">15</span><span class="o">*</span><span class="n">I_Simps_sest</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">15</span><span class="o">*</span><span class="n">I_Simps</span>
@@ -3236,7 +3220,7 @@ Boljši približek: 1.4404218714139077
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In [50]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">simps</span>
@@ -3247,7 +3231,7 @@ Boljši približek: 1.4404218714139077
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In [51]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#%%timeit</span>
@@ -3259,7 +3243,7 @@ Boljši približek: 1.4404218714139077
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[44]:</div>
+<div class="prompt output_prompt">Out[51]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404479602639095$$
 </div>
@@ -3356,7 +3340,7 @@ $$1.4404479602639095$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In [52]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x9v</span><span class="p">,</span> <span class="n">h9v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># korak h9v = 0.125 (9 vozlišč)</span>
@@ -3376,7 +3360,7 @@ $$1.4404479602639095$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In [53]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># O(h^2)</span>
@@ -3392,7 +3376,7 @@ $$1.4404479602639095$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[46]:</div>
+<div class="prompt output_prompt">Out[53]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.3300329192296296, \quad 1.413137699567856, \quad 1.4336203950898958, \quad 1.4387231057529137\right ]$$
 </div>
@@ -3410,7 +3394,7 @@ $$\left [ 1.3300329192296296, \quad 1.413137699567856, \quad 1.4336203950898958,
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In [54]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># O(h^4)</span>
@@ -3425,7 +3409,7 @@ $$\left [ 1.3300329192296296, \quad 1.413137699567856, \quad 1.4336203950898958,
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[47]:</div>
+<div class="prompt output_prompt">Out[54]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.4408392930139313, \quad 1.440447960263909, \quad 1.4404240093072531\right ]$$
 </div>
@@ -3443,7 +3427,7 @@ $$\left [ 1.4408392930139313, \quad 1.440447960263909, \quad 1.4404240093072531\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In [55]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">[::</span><span class="mi">4</span><span class="p">],</span> <span class="mi">4</span><span class="o">*</span><span class="n">h9v</span><span class="p">),</span> <span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">h9v</span><span class="p">),</span> <span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">,</span> <span class="n">h9v</span><span class="p">)]</span>
@@ -3454,7 +3438,7 @@ $$\left [ 1.4408392930139313, \quad 1.440447960263909, \quad 1.4404240093072531\
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[48]:</div>
+<div class="prompt output_prompt">Out[55]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.440839293013931, \quad 1.4404479602639093, \quad 1.4404240093072522\right ]$$
 </div>
@@ -3472,7 +3456,7 @@ $$\left [ 1.440839293013931, \quad 1.4404479602639093, \quad 1.4404240093072522\
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In [56]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># O(h6)</span>
@@ -3487,7 +3471,7 @@ $$\left [ 1.440839293013931, \quad 1.4404479602639093, \quad 1.4404240093072522\
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[49]:</div>
+<div class="prompt output_prompt">Out[56]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.4404218714139077, \quad 1.4404224125768095\right ]$$
 </div>
@@ -3505,7 +3489,7 @@ $$\left [ 1.4404218714139077, \quad 1.4404224125768095\right ]$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In [57]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a4h</span><span class="p">,</span> <span class="n">a2h</span><span class="p">,</span> <span class="n">ah</span> <span class="o">=</span> <span class="p">[</span><span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">[::</span><span class="mi">4</span><span class="p">],</span> <span class="mi">4</span><span class="o">*</span><span class="n">h9v</span><span class="p">),</span> <span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">[::</span><span class="mi">2</span><span class="p">],</span> <span class="mi">2</span><span class="o">*</span><span class="n">h9v</span><span class="p">),</span> <span class="n">simpsonovo_sest</span><span class="p">(</span><span class="n">y9v</span><span class="p">,</span> <span class="n">h9v</span><span class="p">)]</span>
@@ -3517,7 +3501,7 @@ $$\left [ 1.4404218714139077, \quad 1.4404224125768095\right ]$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[50]:</div>
+<div class="prompt output_prompt">Out[57]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 1.4404218714139077, \quad 1.4404224125768086\right ]$$
 </div>
@@ -3535,7 +3519,7 @@ $$\left [ 1.4404218714139077, \quad 1.4404224125768086\right ]$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In [58]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># O(h8)</span>
@@ -3548,7 +3532,7 @@ $$\left [ 1.4404218714139077, \quad 1.4404224125768086\right ]$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[51]:</div>
+<div class="prompt output_prompt">Out[58]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404224211666967$$
 </div>
@@ -3600,7 +3584,7 @@ $$1.4404224211666967$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In [59]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">romb</span>
@@ -3611,7 +3595,7 @@ $$1.4404224211666967$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In [60]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y9v</span>
@@ -3622,7 +3606,7 @@ $$1.4404224211666967$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[53]:</div>
+<div class="prompt output_prompt">Out[60]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([0.84147098, 1.01505104, 1.18623077, 1.34872795, 1.49624248,
        1.62261343, 1.72197541, 1.78891084, 1.81859485])</pre>
@@ -3633,7 +3617,7 @@ $$1.4404224211666967$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In [61]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">romb</span><span class="p">(</span><span class="n">y9v</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">h9v</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3659,7 +3643,7 @@ $$1.4404224211666967$$
 </div>
 </div>
 <div class="output_area">
-<div class="prompt output_prompt">Out[54]:</div>
+<div class="prompt output_prompt">Out[61]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404224211666958$$
 </div>
@@ -3811,7 +3795,7 @@ $$\textrm{d}x=\frac{b-a}{2}\textrm{d}\xi.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In [62]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A0</span><span class="p">,</span> <span class="n">A1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">w0</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'A0, A1, x, a, b, w0, x0'</span><span class="p">)</span> <span class="c1"># simboli</span>
@@ -3825,7 +3809,7 @@ $$\textrm{d}x=\frac{b-a}{2}\textrm{d}\xi.$$</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[55]:</div>
+<div class="prompt output_prompt">Out[62]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$- A_{0} a + A_{0} b - \frac{A_{1} a^{2}}{2} + \frac{A_{1} b^{2}}{2} = w_{0} \left(A_{0} + A_{1} x_{0}\right)$$
 </div>
@@ -3843,7 +3827,7 @@ $$- A_{0} a + A_{0} b - \frac{A_{1} a^{2}}{2} + \frac{A_{1} b^{2}}{2} = w_{0} \l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In [63]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">([</span><span class="n">eq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">eq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">A0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)],</span> <span class="p">[</span><span class="n">w0</span><span class="p">,</span> <span class="n">x0</span><span class="p">])</span>
@@ -3854,7 +3838,7 @@ $$- A_{0} a + A_{0} b - \frac{A_{1} a^{2}}{2} + \frac{A_{1} b^{2}}{2} = w_{0} \l
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[56]:</div>
+<div class="prompt output_prompt">Out[63]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \left ( - a + b, \quad \frac{a + b}{2}\right )\right ]$$
 </div>
@@ -3915,11 +3899,11 @@ $$P_{2v-1}(x)=\sum_{i=0}^{2v-1} A_i\,x^i.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [57]:</div>
+<div class="prompt input_prompt">In [64]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">P_etc</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="s1">'A'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">'x'</span><span class="p">):</span>                       <span class="c1"># n je stopnja polinoma</span>
-    <span class="n">Ai</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'</span><span class="si">{0:s}</span><span class="s1">:</span><span class="si">{1:g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># seznam A_i</span>
+    <span class="n">Ai</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">f</span><span class="s1">'</span><span class="si">{A}</span><span class="s1">:{n+1}'</span><span class="p">)</span>  <span class="c1"># seznam A_i</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                              <span class="c1"># spremenljivka x</span>
     <span class="k">return</span> <span class="n">Ai</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="nb">sum</span><span class="p">([</span><span class="n">Ai</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
 </pre></div>
@@ -3937,13 +3921,13 @@ $$P_{2v-1}(x)=\sum_{i=0}^{2v-1} A_i\,x^i.$$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [58]:</div>
+<div class="prompt input_prompt">In [65]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># število vozlišč</span>
 <span class="n">Ai</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">P_etc</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">xi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'x:</span><span class="si">{0:g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="c1"># seznam x_i</span>
-<span class="n">wi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">'w:</span><span class="si">{0:g}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="c1"># seznam w_i</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">f</span><span class="s1">'x:</span><span class="si">{v}</span><span class="s1">'</span><span class="p">)</span> <span class="c1"># seznam x_i</span>
+<span class="n">wi</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="n">f</span><span class="s1">'w:</span><span class="si">{v}</span><span class="s1">'</span><span class="p">)</span> <span class="c1"># seznam w_i</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Vozlišča: </span><span class="si">{xi}</span><span class="se">\n</span><span class="s1">Uteži:    </span><span class="si">{wi}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3972,7 +3956,7 @@ Uteži:    (w0, w1)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [59]:</div>
+<div class="prompt input_prompt">In [66]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">P</span>
@@ -3983,7 +3967,7 @@ Uteži:    (w0, w1)
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[59]:</div>
+<div class="prompt output_prompt">Out[66]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$A_{0} + A_{1} x + A_{2} x^{2} + A_{3} x^{3}$$
 </div>
@@ -4001,7 +3985,7 @@ $$A_{0} + A_{1} x + A_{2} x^{2} + A_{3} x^{3}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [60]:</div>
+<div class="prompt input_prompt">In [67]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">eqs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">integrate</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">coeff</span><span class="p">(</span><span class="n">A_</span><span class="p">),</span>\
@@ -4016,7 +4000,7 @@ $$A_{0} + A_{1} x + A_{2} x^{2} + A_{3} x^{3}$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[60]:</div>
+<div class="prompt output_prompt">Out[67]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ 2 = w_{0} + w_{1}, \quad 0 = w_{0} x_{0} + w_{1} x_{1}, \quad \frac{2}{3} = w_{0} x_{0}^{2} + w_{1} x_{1}^{2}, \quad 0 = w_{0} x_{0}^{3} + w_{1} x_{1}^{3}\right ]$$
 </div>
@@ -4034,7 +4018,7 @@ $$\left [ 2 = w_{0} + w_{1}, \quad 0 = w_{0} x_{0} + w_{1} x_{1}, \quad \frac{2}
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [61]:</div>
+<div class="prompt input_prompt">In [68]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eqs</span><span class="p">,</span> <span class="n">sym</span><span class="o">.</span><span class="n">flatten</span><span class="p">((</span><span class="n">xi</span><span class="p">,</span> <span class="n">wi</span><span class="p">)))</span>
@@ -4046,7 +4030,7 @@ $$\left [ 2 = w_{0} + w_{1}, \quad 0 = w_{0} x_{0} + w_{1} x_{1}, \quad \frac{2}
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[61]:</div>
+<div class="prompt output_prompt">Out[68]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad 1\right ), \quad \left ( \frac{\sqrt{3}}{3}, \quad - \frac{\sqrt{3}}{3}, \quad 1, \quad 1\right )\right ]$$
 </div>
@@ -4068,57 +4052,72 @@ $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Tukaj je podana tabela vozlišč in uteži za eno, dve in tri vozlišča (za meje $a=-1$, $b=1$):</p>
+<p>Spodaj je podana tabela vozlišč in uteži za eno, dve in tri vozlišča (za meje $a=-1$, $b=1$):</p>
+<p><strong>Število točk 1:</strong></p>
 <table>
 <thead><tr>
-<th style="text-align:center">Število točk</th>
+<th style="text-align:center">$i$</th>
 <th style="text-align:center">Vozlišče  $x_i$</th>
 <th style="text-align:center">Utež $w_i$</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
 <td style="text-align:center">0</td>
 <td style="text-align:center">2</td>
 </tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">--</td>
-<td style="text-align:center"></td>
+</tbody>
+</table>
+<p><strong>Število točk 2:</strong></p>
+<table>
+<thead><tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">Vozlišče  $x_i$</th>
+<th style="text-align:center">Utež $w_i$</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td style="text-align:center">2</td>
+<td style="text-align:center">0</td>
 <td style="text-align:center">$-\frac{\sqrt{3}}{3}$</td>
 <td style="text-align:center">1</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
+<td style="text-align:center">1</td>
 <td style="text-align:center">$+\frac{\sqrt{3}}{3}$</td>
 <td style="text-align:center">1</td>
 </tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">--</td>
-<td style="text-align:center"></td>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Število točk 3:</strong></p>
+<table>
+<thead><tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">Vozlišče  $x_i$</th>
+<th style="text-align:center">Utež $w_i$</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td style="text-align:center"></td>
+<td style="text-align:center">0</td>
 <td style="text-align:center">$-\frac{\sqrt{15}}{5}$</td>
 <td style="text-align:center">$\frac{5}{9}$</td>
 </tr>
 <tr>
-<td style="text-align:center">3</td>
+<td style="text-align:center">1</td>
 <td style="text-align:center">$0$</td>
 <td style="text-align:center">$\frac{8}{9}$</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
+<td style="text-align:center">2</td>
 <td style="text-align:center">$\frac{\sqrt{15}}{5}$</td>
 <td style="text-align:center">$\frac{5}{9}$</td>
 </tr>
@@ -4155,7 +4154,7 @@ $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [62]:</div>
+<div class="prompt input_prompt">In [69]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">Gaussova</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">vozlišč</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -4191,7 +4190,7 @@ $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [63]:</div>
+<div class="prompt input_prompt">In [70]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -4211,7 +4210,7 @@ $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [64]:</div>
+<div class="prompt input_prompt">In [71]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Gaussova</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">vozlišč</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -4222,7 +4221,7 @@ $$\left [ \left ( - \frac{\sqrt{3}}{3}, \quad \frac{\sqrt{3}}{3}, \quad 1, \quad
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[64]:</div>
+<div class="prompt output_prompt">Out[71]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4962424799060816$$
 </div>
@@ -4232,7 +4231,7 @@ $$1.4962424799060816$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [65]:</div>
+<div class="prompt input_prompt">In [72]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Gaussova</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">vozlišč</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -4243,7 +4242,7 @@ $$1.4962424799060816$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[65]:</div>
+<div class="prompt output_prompt">Out[72]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4401440184517882$$
 </div>
@@ -4253,7 +4252,7 @@ $$1.4401440184517882$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [66]:</div>
+<div class="prompt input_prompt">In [73]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Gaussova</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">vozlišč</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -4264,7 +4263,7 @@ $$1.4401440184517882$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[66]:</div>
+<div class="prompt output_prompt">Out[73]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404229491215061$$
 </div>
@@ -4301,7 +4300,7 @@ $$1.4404229491215061$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [67]:</div>
+<div class="prompt input_prompt">In [74]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="k">import</span> <span class="n">fixed_quad</span>
@@ -4313,7 +4312,7 @@ $$1.4404229491215061$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[67]:</div>
+<div class="prompt output_prompt">Out[74]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.440422949121506$$
 </div>
@@ -4331,7 +4330,7 @@ $$1.440422949121506$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [68]:</div>
+<div class="prompt input_prompt">In [75]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Gaussova</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">vozlišč</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -4342,7 +4341,7 @@ $$1.440422949121506$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[68]:</div>
+<div class="prompt output_prompt">Out[75]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$1.4404229491215061$$
 </div>
@@ -4403,7 +4402,7 @@ $$1.4404229491215061$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [69]:</div>
+<div class="prompt input_prompt">In [76]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">integrate</span>
@@ -4414,7 +4413,7 @@ $$1.4404229491215061$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [70]:</div>
+<div class="prompt input_prompt">In [77]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -4425,7 +4424,7 @@ $$1.4404229491215061$$
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[70]:</div>
+<div class="prompt output_prompt">Out[77]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left ( 1.4404224209802095, \quad 1.5991901369585387e-14\right )$$
 </div>
@@ -4471,7 +4470,7 @@ Funkcija <code>scipy.integrate.dblquad()</code> izračuna dvojni integral <code>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [71]:</div>
+<div class="prompt input_prompt">In [78]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># integracijska funkcija je enostavna, konstanta = 1!</span>
@@ -4488,7 +4487,7 @@ Funkcija <code>scipy.integrate.dblquad()</code> izračuna dvojni integral <code>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[71]:</div>
+<div class="prompt output_prompt">Out[78]:</div>
 <div class="output_latex output_subarea output_execute_result">
 $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
@@ -4519,7 +4518,7 @@ $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [72]:</div>
+<div class="prompt input_prompt">In [79]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">pospešek</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
@@ -4541,7 +4540,7 @@ $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [73]:</div>
+<div class="prompt input_prompt">In [80]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -4560,7 +4559,7 @@ $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [74]:</div>
+<div class="prompt input_prompt">In [81]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">pospešek</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
@@ -4580,7 +4579,7 @@ $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [75]:</div>
+<div class="prompt input_prompt">In [82]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">cumtrapz</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -4599,7 +4598,7 @@ $$\left ( 1.5707963267948986, \quad 1.0002356720661965e-09\right )$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [76]:</div>
+<div class="prompt input_prompt">In [83]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Pospesek'</span><span class="p">)</span>
