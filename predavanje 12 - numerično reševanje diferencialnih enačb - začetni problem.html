@@ -1462,7 +1462,7 @@ $$y(t_0)=y_0.$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Cilj reševanja diferencialne enačbe je izračunati funkcijo $y(t)$, ki reši zgoraj definiran začetni problem. Ob določenih pogojih funkcije $f(t, y)$ ima začetni problem enolično rešitev na intevalu, ki vsebuje $a$.</p>
+<p>Cilj reševanja diferencialne enačbe je izračunati funkcijo $y(t)$, ki reši zgoraj definiran začetni problem. Ob določenih pogojih funkcije $f(t, y)$ ima začetni problem enolično rešitev na intevalu, ki vsebuje $t_0$.</p>
 </div>
 </div>
 </div>
@@ -1511,7 +1511,7 @@ $$y(t+h)=y(t)+y'(t, y(t))\,h +
 <ol>
 <li>Postavimo $i=0$, $t_0$, $y_0=y(t_0)$.</li>
 <li>Izračun vrednosti funkcije pri $t_{i+1}=t_i+h$:
-$$y_{i+1}= y_i + f(t_i, y_i))h.$$</li>
+$$y_{i+1}= y_i + f(t_i, y_i)\,h.$$</li>
 <li>$i=i+1$ in nadaljevanje v koraku 2.</li>
 </ol>
 </div>
@@ -1521,7 +1521,7 @@ $$y_{i+1}= y_i + f(t_i, y_i))h.$$</li>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Diferencialno enačbo rešujemo na intervalu $[a,b]$ in velja $h=(b-a)/n$. $n$ je število integracijskih korakov (kolikokrat izvedemo korak 2 v zgornjem algoritmu).</p>
+<p>Diferencialno enačbo rešujemo na intervalu $[t_0,t_n]$ in velja $h=(t_n-t_0)/n$. $n$ je število integracijskih korakov (kolikokrat izvedemo korak 2 v zgornjem algoritmu).</p>
 <p>Numerična rešitev začetnega problema:
 $$y_0, y_1, y_2,\dots, y_{n}$$</p>
 <p>pri vrednostih neodvisne spremenljivke:
@@ -1995,7 +1995,7 @@ $$y(t+h)=y(t)+f(t,y)\,h + \frac{1}{2}f'(t,y)\,h^2+\mathcal{O}(h^3).$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ker je desna stran $f(t,y)$ odvisna od neodvisne $t$ in odvisne spremenljivke $y$, moramo uporabiti pri odvajanju implicitno odvajanje:
+<p>Ker je desna stran $f(t,y)$ odvisna od neodvisne $t$ in odvisne spremenljivke $y$, moramo uporabiti implicitno odvajanje:
 $$f'(t,y)=\frac{\partial f(t,y)}{\partial t}+\frac{\partial f(t,y)}{\partial y}\,\underbrace{\frac{\textrm{d} y}{\textrm{d} t}}_{y'=f(t,y)}
 =\frac{\partial f(t,y)}{\partial t}+\frac{\partial f(t,y)}{\partial y}\,{f(t, y)}.$$</p>
 </div>
@@ -2057,7 +2057,7 @@ f{\large(}t,y{\large)}+
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vstavimo sedaj izpeljani $B$ nazaj izraz za $y(t+h)_{\textrm{Runge-Kutta}}$:
+<p>Vstavimo sedaj izpeljani $B$ nazaj v izraz za $y(t+h)_{\textrm{Runge-Kutta}}$:
 $$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+c_0\,f\left(t,y\right)\,h +c_1
 {\LARGE(}
 f{\large(}t,y{\large)}+
@@ -4394,10 +4394,10 @@ $$-0.3037048743129991$$
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="ef9bc758-b44d-4d5e-bf33-1d50da840196"></div>
+<div id="56cdef4c-345e-49d9-bc9c-0e94c6d69327"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ef9bc758-b44d-4d5e-bf33-1d50da840196');
+var element = $('#56cdef4c-345e-49d9-bc9c-0e94c6d69327');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "2e4a2f2047834737bc8c048a16bae476", "version_major": 2, "version_minor": 0}
