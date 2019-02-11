@@ -9,6 +9,7 @@ import shutil
 EXCLUDE_NOTEBOOKS = ['NM2016.ipynb',
 					 'NM2017.ipynb',
                      'PiNM2016-17.ipynb',
+					 'PiNM2018-19.ipynb',
                      'Predavanje 10b - Taylorjeve vrste.ipynb',
                      'working.ipynb']
 PAGEFILE = """title: {title}
