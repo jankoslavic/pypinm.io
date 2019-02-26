@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Uvod-1" href="#Uvod"><span class="toc-item-num">1  </span>Uvod</a></span></li><li><span><a data-toc-modified-id="Metoda-najmanjših-kvadratov-za-linearno-funkcijo-2" href="#Metoda-najmanjših-kvadratov-za-linearno-funkcijo"><span class="toc-item-num">2  </span>Metoda najmanjših kvadratov za linearno funkcijo</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Uporaba-psevdo-inverzne-matrike-2.1" href="#Uporaba-psevdo-inverzne-matrike"><span class="toc-item-num">2.1  </span>Uporaba psevdo inverzne matrike</a></span></li></ul></li><li><span><a data-toc-modified-id="Metoda-najmanjših-kvadratov-za-poljubni-polinom-3" href="#Metoda-najmanjših-kvadratov-za-poljubni-polinom"><span class="toc-item-num">3  </span>Metoda najmanjših kvadratov za poljubni polinom</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled-3.1" href="#Numerični-zgled"><span class="toc-item-num">3.1  </span>Numerični zgled</a></span></li><li><span><a data-toc-modified-id="Uporaba-numpy-za-aproksimacjo-s-polinomom-3.2" href="#Uporaba-numpy-za-aproksimacjo-s-polinomom"><span class="toc-item-num">3.2  </span>Uporaba <code>numpy</code> za aproksimacjo s polinomom</a></span></li></ul></li><li><span><a data-toc-modified-id="Aproksimacija-s-poljubno-funkcijo-4" href="#Aproksimacija-s-poljubno-funkcijo"><span class="toc-item-num">4  </span>Aproksimacija s poljubno funkcijo</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Aproksimacija-s-harmonsko-funkcijo-4.1" href="#Aproksimacija-s-harmonsko-funkcijo"><span class="toc-item-num">4.1  </span>Aproksimacija s harmonsko funkcijo</a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-5" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">5  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-6" href="#Dodatno"><span class="toc-item-num">6  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Aproksimacija-z-zlepki-in-uporabo-SciPy-6.1" href="#Aproksimacija-z-zlepki-in-uporabo-SciPy"><span class="toc-item-num">6.1  </span>Aproksimacija z zlepki in uporabo <code>SciPy</code></a></span></li></ul></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod">Uvod<a class="anchor-link" href="#Uvod">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V strojniški praksi se pogosto srečamo s tabelo podatkov, ki so lahko obremenjeni z merilnimi ali numeričnimi napakami.</p>
 <p>Oglejmo si primer meritve (linearne) vzmeti ($x$ je raztezek, $y$ je pomerjena sila):</p>
@@ -1446,8 +1620,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si podatke na sliki, najprej uvozimo potrebne pakete:</p>
 </div>
@@ -1480,8 +1653,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za konkreten primer bi bilo, glede na poznavanje fizikalnega ozadja linearne vzmeti, primerno, da bi meritve poskušali popisati z linearno funkcijo:
 $$f(x) = a_0\,x+ a_1$$</p>
@@ -1489,88 +1661,73 @@ $$f(x) = a_0\,x+ a_1$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poznamo tabelo $n$ podatkov $x_i, y_i$ za $i=0,1,\dots,n-1$; teh je več, kot jih potrebujemo za določitev dveh konstant $a_0$ in $a_1$, zato imamo torej predoločen sistem linearnih enačb:</p>
-<p>$$y_i=a_0\,x_i+a_1\quad\textrm{za}\quad i=0,1,\dots,n-1.$$</p>
-<p>Iščemo taki vrednosti konstanti $a_0$ in $a_1$, da se bo funkcija $f(x)$ v znanih točkah $x_i$ <em>najbolje</em> ujemala z $y_i$.</p>
+$$y_i=a_0\,x_i+a_1\quad\textrm{za}\quad i=0,1,\dots,n-1.$$<p>Iščemo taki vrednosti konstanti $a_0$ in $a_1$, da se bo funkcija $f(x)$ v znanih točkah $x_i$ <em>najbolje</em> ujemala z $y_i$.</p>
 <p>Najprej torej potrebujemo kriterij za <em>najboljše</em> ujemanje.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za vrednosti iz tabele $x_i, y_i$ bi lahko iskali vrednosti $a_0$ in $a_1$, pri katerih bi bila vsota absolutne vrednosti odstopkov $S$ najmanjša:</p>
-<p>$$P(a_0, a_1) = \sum_{i=0}^{n-1} |y_i - (a_0\,x_i+a_1)|.$$</p>
+$$P(a_0, a_1) = \sum_{i=0}^{n-1} |y_i - (a_0\,x_i+a_1)|.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker pa taka funkcija $P(a_0, a_1)$ ni zvezno odvedljiva,raje uporabimo <strong>metodo najmanjših kvadratov</strong>:</p>
-<p>$$S(a_0, a_1) = \sum_{i=0}^{n-1} \left(y_i - (a_0\,x_i+a_1)\right)^2.$$</p>
-<p>Takšna funkcija $S(a_0, a_1)$ je zvezna in zvezno odvedljiva. S parcialnim odvajanjem po parametrih $a_0$ in $a_1$ lahko najdemo stacionarno točko (parcialna odvoda sta enaka 0). Postopek si bomo za linearno funkcijo pogledali v naslednjem poglavju.</p>
+$$S(a_0, a_1) = \sum_{i=0}^{n-1} \left(y_i - (a_0\,x_i+a_1)\right)^2.$$<p>Takšna funkcija $S(a_0, a_1)$ je zvezna in zvezno odvedljiva. S parcialnim odvajanjem po parametrih $a_0$ in $a_1$ lahko najdemo stacionarno točko (parcialna odvoda sta enaka 0). Postopek si bomo za linearno funkcijo pogledali v naslednjem poglavju.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Metoda-najmanjših-kvadratov-za-linearno-funkcijo">Metoda najmanjših kvadratov za linearno funkcijo<a class="anchor-link" href="#Metoda-najmanjših-kvadratov-za-linearno-funkcijo">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poiskati moramo konstanti $a_0$, $a_1$, da bo vsota kvadratov razlik med funkcijo in tabelirano vrednostjo ($x_i, y_i$, kjer $i=0,1,\dots, n-1$ in je $n$ število tabeliranih podatkov):</p>
-<p>$$S(a_0, a_1) = \sum_{i=0}^{n-1} \left(y_i - (a_0\,x_i+a_1)\right)^2$$</p>
-<p>najmanjša. Vrednost bo najmanjša v stacionarni točki, ki jo določimo s parcialnim odvodom po parametrih $a_0$ in $a_1$.</p>
+$$S(a_0, a_1) = \sum_{i=0}^{n-1} \left(y_i - (a_0\,x_i+a_1)\right)^2$$<p>najmanjša. Vrednost bo najmanjša v stacionarni točki, ki jo določimo s parcialnim odvodom po parametrih $a_0$ in $a_1$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej izvedemo parcialni odvod po parametru $a_0$:</p>
-<p>$$\frac{\partial S(a_0, a_1)}{\partial a_0} = 2\,\sum_{i=0}^{n-1} \left(y_i - a_0\,x_i-a_1\right)\,(-x_i)$$</p>
-<p>Izraz uredimo:</p>
-<p>$$\frac{\partial S(a_0, a_1)}{\partial a_0} =-2\left(\sum_{i=0}^{n-1} y_i\,x_i -a_0\,\sum_{i=0}^{n-1} x_i^2- a_1\,\sum_{i=0}^{n-1} x_i\right)$$</p>
+$$\frac{\partial S(a_0, a_1)}{\partial a_0} = 2\,\sum_{i=0}^{n-1} \left(y_i - a_0\,x_i-a_1\right)\,(-x_i)$$<p>Izraz uredimo:</p>
+$$\frac{\partial S(a_0, a_1)}{\partial a_0} =-2\left(\sum_{i=0}^{n-1} y_i\,x_i -a_0\,\sum_{i=0}^{n-1} x_i^2- a_1\,\sum_{i=0}^{n-1} x_i\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno postopamo še za $a_1$:</p>
-<p>$$\frac{\partial S(a_0, a_1)}{\partial a_1} = 2\,\sum_{i=0}^{n-1} \left(y_i  - a_0\,x_i- a_1\right)\,(-1)$$</p>
-<p>$$\frac{\partial S(a_0, a_1)}{\partial a_1} = -2\left(\sum_{i=0}^{n-1} y_i -a_0\,\sum_{i=0}^{n-1} x_i- a_1\,\sum_{i=0}^{n-1}1\right)$$</p>
+$$\frac{\partial S(a_0, a_1)}{\partial a_1} = 2\,\sum_{i=0}^{n-1} \left(y_i  - a_0\,x_i- a_1\right)\,(-1)$$$$\frac{\partial S(a_0, a_1)}{\partial a_1} = -2\left(\sum_{i=0}^{n-1} y_i -a_0\,\sum_{i=0}^{n-1} x_i- a_1\,\sum_{i=0}^{n-1}1\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker v stacionarni točki velja $\partial S(a_0, a_1)/\partial a_0=0$ in $\partial S(a_0, a_1)/\partial a_1=0$, iz zgornjih izrazov izpeljemo:</p>
-<p>$$a_0\,\sum_{i=0}^{n-1} x_i^2 + a_1\,\sum_{i=0}^{n-1} x_i=\sum_{i=0}^{n-1} y_i\,x_i$$</p>
-<p>in</p>
-<p>$$a_0\,\sum_{i=0}^{n-1} x_i+ a_1\,n=\sum_{i=0}^{n-1} y_i.$$</p>
+$$a_0\,\sum_{i=0}^{n-1} x_i^2 + a_1\,\sum_{i=0}^{n-1} x_i=\sum_{i=0}^{n-1} y_i\,x_i$$<p>in</p>
+$$a_0\,\sum_{i=0}^{n-1} x_i+ a_1\,n=\sum_{i=0}^{n-1} y_i.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dobili smo sistem dveh linearnih enačb za neznanki $a_0$ in $a_1$, ki ga znamo rešiti. Imenujemo ga <em>normalni sistem</em> (število enačb je enako številu neznank).</p>
 <p>Zapišimo normalni sistem v matrični obliki:</p>
@@ -1608,18 +1765,15 @@ b: [764.185 243.7  ]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj moramo rešiti linearni sistem:</p>
-<p>$$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$</p>
-<p>Opomba, tukaj smo vektor neznank zapisali kot $\mathbf{a}=(a_0, a_1)$.</p>
+$$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznank zapisali kot $\mathbf{a}=(a_0, a_1)$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sistem rešimo:</p>
 </div>
@@ -1648,8 +1802,7 @@ b: [764.185 243.7  ]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo še število pogojenosti:</p>
 </div>
@@ -1677,8 +1830,7 @@ b: [764.185 243.7  ]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj si bomo pogledali še rezultat. Najprej pripravimo sliko, ki bo vsebovala tudi informacijo o vsoti kvadratov odstopanja $f(x_i)$ od tabeliranih vrednosti $y_i$.</p>
 </div>
@@ -1730,10 +1882,10 @@ b: [764.185 243.7  ]
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="ebcec011-3567-4a9f-a28f-2d1f3051fee6"></div>
+<div id="401514e3-4f31-43b8-bbd4-86d3f1fe4d79"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
+var element = $('#401514e3-4f31-43b8-bbd4-86d3f1fe4d79');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "835d1c63db9a4b88b194bf8be9b788c9", "version_major": 2, "version_minor": 0}
@@ -1744,8 +1896,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-psevdo-inverzne-matrike">Uporaba psevdo inverzne matrike<a class="anchor-link" href="#Uporaba-psevdo-inverzne-matrike">¶</a></h2><p>Do podobnega rezultata lahko pridemo z uporabo psevdo inverzne matrike. Iščemo $y(x)=a_0\,x+a_1$ in nastavimo predoločen sistem $\mathbf{A}\,\mathbf{a}=\mathbf{y}$, kjer je matrika koeficientov $\mathbf{A}$ definirana glede na vrednosti $x_i$ ($i=0,1,\dots,n-1$):</p>
 </div>
@@ -1778,8 +1929,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vektor konstant smo označili z $\mathbf{b}$, v našem primeru pa je to kar vektor vrednosti $\mathbf{y}$ z elementi $y_i$ ($i=0,1,2,\dots,n-1$):</p>
 </div>
@@ -1807,11 +1957,10 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vektor konstant $\mathbf{a}$ določimo z uporabo psevdo inverzne matrike:</p>
-<p>$$\mathbf{a}=\mathbf{A}^{+}\,\mathbf{y}$$</p>
+$$\mathbf{a}=\mathbf{A}^{+}\,\mathbf{y}$$
 </div>
 </div>
 </div>
@@ -1837,103 +1986,87 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Metoda-najmanjših-kvadratov-za-poljubni-polinom">Metoda najmanjših kvadratov za poljubni polinom<a class="anchor-link" href="#Metoda-najmanjših-kvadratov-za-poljubni-polinom">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Linearno aproksimacijo, predstavljeno zgoraj, bomo posplošili za poljubni polinom stopnje $m$:</p>
-<p>$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{s=0}^{m}a_s\,\underbrace{x^{m-s}}_{f_s(x)},$$</p>
-<p>kjer $f_s(x)=x^{m-s}$ imenujemo bazna funkcija ($s=0,1,2,\dots,m$).</p>
+$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{s=0}^{m}a_s\,\underbrace{x^{m-s}}_{f_s(x)},$$<p>kjer $f_s(x)=x^{m-s}$ imenujemo bazna funkcija ($s=0,1,2,\dots,m$).</p>
 <p>Tabela podatkov naj bo definirana z $x_i, y_i$, kjer je $i=0,1,2,\dots,n-1$.</p>
 <p>Opomba: zaradi kompaktnosti zapisa bomo konstante $a$ zapisali v vektorski obliki $\mathbf{a}=[a_0, a_1,\dots,a_m]$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo metodo najmanjših kvadratov:</p>
-<p>$$S(\mathbf{a}) = \sum_{i=0}^{n-1} \left(y_i - f(\mathbf{a}, x_i)\right)^2= \sum_{i=0}^{n-1} \left(y_i - \sum_{s=0}^{m}a_s\,x_i^{m-s}\right)^2.$$</p>
-<p>Potreben pogoj za nastop ekstrema funkcije $m+1$ neodvisnih spremenljivk je, da najdemo stacionarno točko za vsak $a_v$, iščemo torej $\partial S(\mathbf{a})/\partial a_v=0$ (namesto $s$ smo uporabili indeks $v$).</p>
+$$S(\mathbf{a}) = \sum_{i=0}^{n-1} \left(y_i - f(\mathbf{a}, x_i)\right)^2= \sum_{i=0}^{n-1} \left(y_i - \sum_{s=0}^{m}a_s\,x_i^{m-s}\right)^2.$$<p>Potreben pogoj za nastop ekstrema funkcije $m+1$ neodvisnih spremenljivk je, da najdemo stacionarno točko za vsak $a_v$, iščemo torej $\partial S(\mathbf{a})/\partial a_v=0$ (namesto $s$ smo uporabili indeks $v$).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej določimo parcialni odvod za izbrani $a_v$:</p>
-<p>$$\frac{\partial S(\mathbf{a})}{\partial a_v} = \sum_{i=0}^{n-1} - 2\,\left(y_i - \sum_{s=0}^{m}a_s\,x_i^{m-s}\right)\,x_i^{m-v}$$</p>
-<p>Opomba: $\frac{\partial}{\partial a_v}\left(\sum_{s=0}^{m}a_s\,x_i^{m-s}\right)=x_i^{m-v}$.</p>
+$$\frac{\partial S(\mathbf{a})}{\partial a_v} = \sum_{i=0}^{n-1} - 2\,\left(y_i - \sum_{s=0}^{m}a_s\,x_i^{m-s}\right)\,x_i^{m-v}$$<p>Opomba: $\frac{\partial}{\partial a_v}\left(\sum_{s=0}^{m}a_s\,x_i^{m-s}\right)=x_i^{m-v}$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker je parcialni odvod v stacionarni točki enak 0, zgornji izraz preoblikujemo:</p>
-<p>$$\sum_{i=0}^{n-1} \left(\sum_{s=0}^{m}a_s\,x^{m-s}\right)\,x_i^{m-v}=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$</p>
+$$\sum_{i=0}^{n-1} \left(\sum_{s=0}^{m}a_s\,x^{m-s}\right)\,x_i^{m-v}=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izraz uredimo:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$\sum_{i=0}^{n-1} \sum_{s=0}^m a_s\,x_i^{2m-s-v}=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$</p>
-<p>Zamenjamo vrstni red seštevanja ter izpeljemo:</p>
-<p>$$\sum_{s=0}^m \left(a_s \sum_{i=0}^{n-1} \,x_i^{2m-s-v}\right)=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}\quad\textrm{za:}\quad v=0,1,\dots,m$$</p>
+$$\sum_{i=0}^{n-1} \sum_{s=0}^m a_s\,x_i^{2m-s-v}=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$<p>Zamenjamo vrstni red seštevanja ter izpeljemo:</p>
+$$\sum_{s=0}^m \left(a_s \sum_{i=0}^{n-1} \,x_i^{2m-s-v}\right)=\sum_{i=0}^{n-1} y_i\,x_i^{m-v}\quad\textrm{za:}\quad v=0,1,\dots,m$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izpeljali smo enačbo $v$ sistema $m+1$ linearnih enačb:</p>
-<p>$$\mathbf{A}\,{\mathbf{a}}=\mathbf{b}$$</p>
+$$\mathbf{A}\,{\mathbf{a}}=\mathbf{b}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Element $A_{v,s}$ matrike koeficientov je:</p>
-<p>$$A_{v,s}= \sum_{i=0}^{n-1} x_i^{2m-v-s},$$</p>
-<p>Element vektorja konstant je:</p>
-<p>$$b_{v}= \sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$</p>
+$$A_{v,s}= \sum_{i=0}^{n-1} x_i^{2m-v-s},$$<p>Element vektorja konstant je:</p>
+$$b_{v}= \sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo podatke iz prve naloge in poskusimo aproksimirati s polinomom 2. stopnje ($m=2$).</p>
 <p>Tabela podatkov je:</p>
@@ -1983,11 +2116,10 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo matriko koeficientov:</p>
-<p>$$A_{v,s}= \sum_{i=0}^{n-1} x_i^{2m-v-s}$$</p>
+$$A_{v,s}= \sum_{i=0}^{n-1} x_i^{2m-v-s}$$
 </div>
 </div>
 </div>
@@ -2020,11 +2152,10 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo še vektor konstant:</p>
-<p>$$b_{v}= \sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$</p>
+$$b_{v}= \sum_{i=0}^{n-1} y_i\,x_i^{m-v}$$
 </div>
 </div>
 </div>
@@ -2053,8 +2184,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo število pogojenosti:</p>
 </div>
@@ -2082,8 +2212,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo sistem:</p>
 </div>
@@ -2112,19 +2241,16 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na definicijo aproksimacijskega polinoma:</p>
-<p>$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{v=0}^{m}a_v\,x^{m-v}$$</p>
-<p>Kar v konkretnem primeru je aproksimacijski polinom:</p>
-<p>$$f(x)=3.18393375\,x^2 + 14.64106847\,x -1.22621065$$</p>
+$$f(a_0,a_1,\dots,a_{m}, x) = \sum_{v=0}^{m}a_v\,x^{m-v}$$<p>Kar v konkretnem primeru je aproksimacijski polinom:</p>
+$$f(x)=3.18393375\,x^2 + 14.64106847\,x -1.22621065$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo numerično implementacijo:</p>
 </div>
@@ -2149,8 +2275,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo:</p>
 </div>
@@ -2182,8 +2307,7 @@ var element = $('#ebcec011-3567-4a9f-a28f-2d1f3051fee6');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še napako aproksimacije:
 $$e_i=y_i - f(x_i)$$</p>
@@ -2215,24 +2339,21 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: višje stopnje polinoma kot uporabimo, večja je verjetnost slabe pogojenosti. Iz tega razloga s stopnjo polinoma ne pretiravamo (v praksi uporabljamo predvsem nizke stopnje)!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-numpy-za-aproksimacjo-s-polinomom">Uporaba <code>numpy</code> za aproksimacjo s polinomom<a class="anchor-link" href="#Uporaba-numpy-za-aproksimacjo-s-polinomom">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si, kako uporabimo knjižnico <code>numpy</code> za polinomsko aproksimacijo.</p>
 <p>Najprej uporabimo funkcijo <code>numpy.polyfit</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html">dokumentacija</a>):</p>
@@ -2244,8 +2365,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si uporabo za predhodno obravnavani primer:</p>
 </div>
@@ -2295,8 +2415,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko imamo koeficiente, lahko ustvarimo objekt polinoma s klicem <code>numpy.poly1d</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html#numpy.poly1d">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -2306,8 +2425,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer:</p>
 </div>
@@ -2325,8 +2443,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izrišimo vrednosti:</p>
 </div>
@@ -2357,8 +2474,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo ničle polinoma:</p>
 </div>
@@ -2386,16 +2502,14 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Aproksimacija-s-poljubno-funkcijo">Aproksimacija s poljubno funkcijo<a class="anchor-link" href="#Aproksimacija-s-poljubno-funkcijo">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri aproksimaciji nismo omejeni zgolj na polinome. Tabele podatkov lahko aproksimiramo:</p>
 <ul>
@@ -2408,16 +2522,14 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Aproksimacija-s-harmonsko-funkcijo">Aproksimacija s harmonsko funkcijo<a class="anchor-link" href="#Aproksimacija-s-harmonsko-funkcijo">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tabela podatkov je definirana kot:</p>
 </div>
@@ -2436,8 +2548,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo tabelo podatkov:</p>
 </div>
@@ -2467,8 +2578,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Aproksimacijo z nelinearno funkcijo bomo izvedli s pomočjo <code>scipy.optimize.curve_fit</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">curve_fit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">absolute_sigma</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2479,8 +2589,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo najprej Python funkcijo, katere prvi parameter je neodvisna spremenljivka <code>x</code>, nato pa sledijo parametri, ki jih želimo določiti:</p>
 </div>
@@ -2499,16 +2608,14 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>kjer je <code>A</code> amplitua, <code>ω</code> krožna frekvenca in <code>ϕ</code> faza harmonske funkcije. S pomočjo slike lahko ugibamo prve približke: <code>A=1</code>, <code>ω=1</code>, <code>ϕ=0</code></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj uvozimo <code>curve_fit</code> in izvedemo optimizacijski postopek:</p>
 </div>
@@ -2548,8 +2655,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunali smo pričakovane vrednosti (glejte zgoraj).</p>
 </div>
@@ -2604,16 +2710,14 @@ $$e_i=y_i - f(x_i)$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Podatki:
@@ -2646,16 +2750,14 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naredite <em>.exe</em> svojega programa:</p>
 <ul>
@@ -2669,16 +2771,14 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Aproksimacija-z-zlepki-in-uporabo-SciPy">Aproksimacija z zlepki in uporabo <code>SciPy</code><a class="anchor-link" href="#Aproksimacija-z-zlepki-in-uporabo-SciPy">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tabela podatkov naj bo:</p>
 </div>
@@ -2736,8 +2836,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si objekt <code>scipy.interpolate.UnivariateSpline</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html">dokumentacija</a>), ki omogoča tako interpolacijo kot aproksimacijo z zlepki:</p>
 <div class="highlight"><pre><span></span><span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -2747,8 +2846,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opcijski parameter <code>s</code> določa vrednost, katere vsota kvadratov razlik aproksimacijskega zlepka in aproksimacijskih točk ne sme preseči:</p>
 <div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">((</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">spl</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o"><=</span> <span class="n">s</span>
@@ -2760,8 +2858,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Aproksimacijo z zlepki izvedemo tako, da ob tabeli podatkov <code>x</code> in <code>y</code> definiramo še parameter <code>s</code>.  Izvedimo interpolacijo:</p>
 </div>
@@ -2805,8 +2902,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedimo še aproksimacijo:</p>
 </div>
@@ -2850,8 +2946,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dejanski preostanek:</p>
 </div>

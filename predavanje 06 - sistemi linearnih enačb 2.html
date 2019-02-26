@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Razcep-LU-1" href="#Razcep-LU"><span class="toc-item-num">1  </span>Razcep LU</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$-1.1" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$"><span class="toc-item-num">1.1  </span>Razcep LU matrike koeficientov $\mathbf{A}$</a></span></li><li><span><a data-toc-modified-id="Numerična-implementacija-razcepa-LU-1.2" href="#Numerična-implementacija-razcepa-LU"><span class="toc-item-num">1.2  </span>Numerična implementacija razcepa LU</a></span></li></ul></li><li><span><a data-toc-modified-id="Pivotiranje-2" href="#Pivotiranje"><span class="toc-item-num">2  </span>Pivotiranje</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Gaussova-eliminacija-z-delnim-pivotiranjem-2.1" href="#Gaussova-eliminacija-z-delnim-pivotiranjem"><span class="toc-item-num">2.1  </span>Gaussova eliminacija z delnim pivotiranjem</a></span></li><li><span><a data-toc-modified-id="Razcep-LU-z-delnim-pivotiranjem-2.2" href="#Razcep-LU-z-delnim-pivotiranjem"><span class="toc-item-num">2.2  </span>Razcep LU z delnim pivotiranjem</a></span></li></ul></li><li><span><a data-toc-modified-id="Modul-SciPy-3" href="#Modul-SciPy"><span class="toc-item-num">3  </span>Modul <code>SciPy</code></a></span></li><li><span><a data-toc-modified-id="Računanje-inverzne-matrike-4" href="#Računanje-inverzne-matrike"><span class="toc-item-num">4  </span>Računanje inverzne matrike</a></span></li><li><span><a data-toc-modified-id="Reševanje-predoločenih-sistemov-5" href="#Reševanje-predoločenih-sistemov"><span class="toc-item-num">5  </span>Reševanje predoločenih sistemov</a></span></li><li><span><a data-toc-modified-id="Iterativne-metode-6" href="#Iterativne-metode"><span class="toc-item-num">6  </span>Iterativne metode</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Gauss-Seidlova-metoda-6.1" href="#Gauss-Seidlova-metoda"><span class="toc-item-num">6.1  </span>Gauss-Seidlova metoda</a></span></li><li><span><a data-toc-modified-id="Zgled-6.2" href="#Zgled"><span class="toc-item-num">6.2  </span>Zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-7" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">7  </span>Nekaj vprašanj za razmislek!</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Dodatno-7.1" href="#Dodatno"><span class="toc-item-num">7.1  </span>Dodatno</a></span></li></ul></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Razcep-LU">Razcep LU<a class="anchor-link" href="#Razcep-LU">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za rešitev sistema linearnih enačb zahteva Gaussov eliminacijski postopek najmanjše število računskih operacij.</p>
 <p>V primeru, ko se matrika koeficientov $\mathbf{A}$ ne spreminja in se spreminja zgolj vektor konstant $\mathbf{b}$, se je mogoče izogniti ponovni Gaussovi eliminaciji matrike koeficientov. Z razcepom matrike $\mathbf{A}$ lahko pridemo do rešitve z manj računskimi operacijami. V ta namen si bomo pogledali razcep LU!</p>
@@ -1432,20 +1606,18 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poljubno matriko lahko zapišemo kot produkt dveh matrik:
 $$\mathbf{A}=\mathbf{B}\,\mathbf{C}.$$
 Pri tem je možnosti za zapis matrik $\mathbf{B}$ in $\mathbf{C}$ neskončno veliko.</p>
 <p>Pri razcepu LU zahtevamo, da je matrika $\mathbf{B}$ spodnje trikotna in matrika $\mathbf{C}$ zgornje trikotna:</p>
-<p>$$\mathbf{A}=\mathbf{L}\,\mathbf{U}.$$</p>
+$$\mathbf{A}=\mathbf{L}\,\mathbf{U}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vsaka od matrik $\mathbf{L}$ in $\mathbf{U}$ ima $(n+1)\,n/2$ neničelnih elementov; skupaj torej $n^2+n$ neznank. Znana matrika $\mathbf{A}$ definira $n^2$ vrednosti. Za enolično določitev matrik $\mathbf{L}$ in $\mathbf{U}$ torej manjka 
 $n$ enačb. Tukaj bomo uporabili razcep LU, ki dodatne enačbe pridobi s pogojem $L_{ii}=1$, $i=0, 1,\dots,n-1$.</p>
@@ -1453,8 +1625,7 @@ $n$ enačb. Tukaj bomo uporabili razcep LU, ki dodatne enačbe pridobi s pogojem
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sistem linearnih enačb:
 $$\mathbf{A}\mathbf{x}=\mathbf{b}$$
@@ -1465,8 +1636,7 @@ $$\mathbf{L}\,\underbrace{\mathbf{U}\,\mathbf{x}}_{\mathbf{y}}=\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej izračunamo vektor $\mathbf{y}$:
 $$\mathbf{L}\,\mathbf{y}=\mathbf{b}.\qquad \textrm{(direktno vstavljanje)}$$
@@ -1477,8 +1647,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Razcep-LU-matrike-koeficientov-$\mathbf{A}$">Razcep LU matrike koeficientov $\mathbf{A}$<a class="anchor-link" href="#Razcep-LU-matrike-koeficientov-$\mathbf{A}$">¶</a></h2><p>V nadaljevanju bomo pokazali, da Gaussova eliminacija dejanjsko predstavlja razcep LU matrike koeficientov $\mathbf{A}$. Pri tem si bomo pomagali s simbolnim izračunom, zato uvozimo paket <code>sympy</code>:</p>
 </div>
@@ -1497,8 +1666,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikaz začnimo na primeru simbolno zapisanih matrik $\mathbf{L}$ in $\mathbf{U}$ dimenzije $3\times 3$:</p>
 </div>
@@ -1523,8 +1691,7 @@ določimo $\mathbf{x}$.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matrika koeficientov $\mathbf{A}$ zapisana z elementi matrik $\mathbf{L}$ in  $\mathbf{U}$ torej je:</p>
 </div>
@@ -1553,8 +1720,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\L_{21} U_{11} & L_{21} U_{12} + 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedimo sedaj Gaussovo eliminacijo nad matriko koeficientov $\mathbf{A}$.</p>
 <p>S pomočjo prve vrstice izvedemo Gaussovo eliminacijo v prvem stolpcu:</p>
@@ -1585,8 +1751,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & L_{32} 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nadaljujemo v drugem stolpcu:</p>
 </div>
@@ -1615,8 +1780,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iz zgornje eliminacije ugotovimo:</p>
 <ol>
@@ -1629,8 +1793,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija-razcepa-LU">Numerična implementacija razcepa LU<a class="anchor-link" href="#Numerična-implementacija-razcepa-LU">¶</a></h2><p>Numerično implementacijo si bomo pogledali na sistemu, ki je definiran kot:</p>
 </div>
@@ -1653,8 +1816,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedimo Gaussovo eliminacijo in koeficiente, s katerim množimo pivotno vrsto <code>m</code>, shranimo v matriko <code>L</code> na mesto z indeksi, kot jih ima v matriki $\mathbf{A}$ eliminirani element.</p>
 </div>
@@ -1724,8 +1886,7 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dopolnimo diagonalo $\mathbf{L}$:</p>
 </div>
@@ -1767,8 +1928,7 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj rešimo spodnje trikotni sistem enačb $\mathbf{L}\,\mathbf{y}=\mathbf{b}$:</p>
 </div>
@@ -1810,8 +1970,7 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nadaljujemo z reševanjem zgornje trikotnega sistema $\mathbf{U}\,\mathbf{x}=\mathbf{y}$:</p>
 </div>
@@ -1887,8 +2046,7 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kakor smo navedli zgoraj, ob spremembi vektorja konstant $\mathbf{b}$ ponovna Gaussova eliminacija ni potrebna. Izvesti je treba samo direktno in nato obratno vstavljanje. Poglejmo primer:</p>
 </div>
@@ -1944,16 +2102,14 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Pivotiranje">Pivotiranje<a class="anchor-link" href="#Pivotiranje">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si spodnji sistem enačb:</p>
 </div>
@@ -1974,8 +2130,7 @@ Korak: 1
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če bi izvedli Gaussovo eliminacijo v prvem stolpcu matrike $\mathbf{A}$:</p>
 </div>
@@ -2013,8 +2168,7 @@ c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_la
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da imamo težavo z deljenjem z 0 v prvi vrstici. Elementarne operacije, ki jih nad sistemom lahko izvajamo, dovoljujejo zamenjavo poljubnih vrstic. Sistem lahko preuredimo tako, da pivotni element ni enak 0. Vseeno se lahko zgodi, da ima pivotni element, s katerim delimo, zelo majhno vrednost $\varepsilon$. Ker bi to povečevalo zaokrožitveno napako, izmed vseh vrstic za pivotno vrstico izberemo tisto, katere pivot ima največjo absolutno vrednost.</p>
 <p>Če med Gaussovo eliminacijo zamenjamo vrstice tako, da je pivotni element največji, to imenujemo <strong>pivotiranje vrstic</strong> ali tudi <strong>delno pivotiranje</strong>. Tako dosežemo, da je Gaussova eliminacija numerično stabilna.</p>
@@ -2022,8 +2176,7 @@ c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_la
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pokazati je mogoče, da pri reševanju sistema enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$, pri katerem je matrika $\mathbf{A}$ diagonalno dominantna, pivotiranje po vrsticah ni potrebno. Reševanje je brez pivotiranja numerično stabilno.</p>
 <p>Pravokotna matrika $\mathbf{A}$ dimenzije $n$ je <strong>diagonalno dominantna</strong>, če je absolutna vrednost diagonalnega elementa vsake vrstice večja od vsote absolutnih vrednosti ostalih elementov v vrstici:
@@ -2032,16 +2185,14 @@ $$\left|A_{ii}\right|> \sum_{j=1, j\ne i}^n \left|A_{ij}\right|$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Gaussova-eliminacija-z-delnim-pivotiranjem">Gaussova eliminacija z delnim pivotiranjem<a class="anchor-link" href="#Gaussova-eliminacija-z-delnim-pivotiranjem">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo Gaussovo eliminacijo z <strong>delnim pivotiranjem</strong>. Brez delnega pivotiranja v $i$-tem koraku eliminacije izberemo vrstico $i$ za pivotiranje. Pri delnem pivotiranju pa najprej preverimo, ali je $i$-ti diagonalni element po absolutni vrednosti največji element v stolpcu $i$ na ali pod diagonalo; če ni, zamenjamo vrstico $i$ s 
 tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največji element. Z delnim pivotiranjem zmanjšamo vpliv zaokrožitvene napake na rezultat.</p>
@@ -2050,8 +2201,7 @@ tisto vrstico pod njo, v kateri je v stolpcu $i$ po absolutni vrednosti največj
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Algoritem za Gaussovo eliminacijo z delnim pivotiranjem torej je:</p>
 </div>
@@ -2145,16 +2295,14 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Razcep-LU-z-delnim-pivotiranjem">Razcep LU z delnim pivotiranjem<a class="anchor-link" href="#Razcep-LU-z-delnim-pivotiranjem">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno kakor pri Gaussovi eliminaciji lahko tudi razcep LU razširimo z delnim pivotiranjem. Reševanje tako postane numerično <strong>stabilno</strong>. Pri tem moramo shraniti informacijo o zamenjavi vrstic, ki jo potem posredujemo v funkcijo za rešitev ustreznih trikotnih sistemov.</p>
 </div>
@@ -2200,8 +2348,7 @@ Pivot vrsta: [ 0. -6.  6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer:</p>
 </div>
@@ -2253,8 +2400,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V zgornjem primeru smo uporabili kompaketen način zapisa trikotnih matrik $\mathbf{L}$ in $\mathbf{U}$; vsaka je namreč definirana s 6 elementi, pri matriki $\mathbf{L}$ pa vemo, da so diagonalni elementi enaki 1. Matrika <code>lu</code> tako vsebuje $3\times3=9$ elementov:</p>
 </div>
@@ -2284,16 +2430,14 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na diagonali in nad diagonalo so vrednosti zgornje trikotne matrike $\mathbf{U}$, pod diagonalo pa so poddiagonalni elementi matrike $\mathbf{L}$. Pri izračunu rešitve bomo upoštevali, da so diagonalne vrednosti $\mathbf{L}$ enake 1.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerični seznam <code>piv</code> nam pove, kako so bile zamenjane vrstice, kar je treba upoštevati pri izračunu rešitve:</p>
 </div>
@@ -2321,8 +2465,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Določimo sedaj še rešitev (koda za računanje rešitve je v modulu <code>orodja.py</code>)</p>
 </div>
@@ -2362,8 +2505,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverjanje rešitve:</p>
 </div>
@@ -2391,24 +2533,21 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Modul-SciPy">Modul <code>SciPy</code><a class="anchor-link" href="#Modul-SciPy">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Modul <code>SciPy</code> temelji na <code>numpy</code> modulu in vsebuje veliko različnih visokonivojskih programov/modulov/funkcij. Teoretično ozadje modulov so seveda različni numerični algoritmi; nekatere spoznamo tudi v okviru tega učbenika. Dober vir teh numeričnih algoritmov v povezavi s <code>SciPy</code> predstavlja <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/">dokumentacija</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kratek pregled hierarhije modula:</p>
 <ul>
@@ -2422,8 +2561,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Problem lastnih vrednosti (redke matrike) (<a href="http://docs.scipy.org/doc/scipy/reference/sparse.html">scipy.sparse</a>)</li>
@@ -2438,8 +2576,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si, kako je znotraj <code>SciPy</code> implementiran <em>razcep LU</em>:</p>
 </div>
@@ -2457,8 +2594,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija <code>scipy.linalg.lu_factor</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_factor.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">lu_factor</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">overwrite_a</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2468,8 +2604,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><code>lu</code> - $\mathbf{L}$ \ $\mathbf{U}$ matrika (matrika, ki je enake dimenzije kot <code>a</code>, vendar pod diagonalo vsebuje elemente $\mathbf{L}$, preostali elementi pa definirajo $\mathbf{U}$; diagonalni elementi $\mathbf{L}$ imajo vrednosti 1.</li>
@@ -2479,8 +2614,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>lu_factor</code> uporabljamo v paru s funkcijo <code>scipy.linalg.lu_solve</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lu_solve.html">dokumentacija</a>), ki nam poda rešitev sistema:</p>
 <div class="highlight"><pre><span></span><span class="n">lu_solve</span><span class="p">(</span><span class="n">lu_and_piv</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">trans</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">overwrite_b</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2560,8 +2694,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pridobimo rešitev:</p>
 </div>
@@ -2590,8 +2723,7 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo ustreznost rešitve:</p>
 </div>
@@ -2619,16 +2751,14 @@ Pivot vrsta: [ 0. -6.  6.]
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Računanje-inverzne-matrike">Računanje inverzne matrike<a class="anchor-link" href="#Računanje-inverzne-matrike">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inverzno matriko h kvadratni matriki $\textbf{A}$ reda $n\times n$ označimo z $\textbf{A}^{-1}$. Je matrika reda $n\times n$,  takšna, da velja 
 $$\mathbf{A}\,\mathbf{A}^{-1} = \mathbf{A}^{-1}\,\mathbf{A} = \mathbf{I},$$
@@ -2640,8 +2770,7 @@ Matrika $\mathbf{X}$ je inverzna matriki $\mathbf{A}$: $\mathbf{A}^{-1}=\mathbf{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračun inverzne matrike je torej enak reševanju $n$ sistemov $n$ linarnih enačb:
 $$\mathbf{A}\,\mathbf{x}_i=\mathbf{b}_i,\qquad i=0,1,2,\dots,n-1,$$
@@ -2650,8 +2779,7 @@ kjer je $\mathbf{b}_i$ $i$-ti stolpec matrike $\mathbf{B}=\mathbf{I}$.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>Numerična zahtevnost:</em> izvedemo razcep LU nad matriko $\mathbf{A}$ (računski obseg reda $n^3$) in nato 
 poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak $i$). Skupni računski obseg je torej še vedno reda $n^3$. (Če bi $n$ krat izvajali Gaussovo eliminacijo, bi bil obseg reda $n^4$.)</p>
@@ -2683,8 +2811,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj se sedaj pokaže smisel razcepa LU; razcep namreč izračunamo samo enkrat in potem za vsak vektor konstant poiščemo rešitev tako, da rešimo dva trikotna sistema. Če bi sisteme reševali po Gaussovi metodi, bi rabili $(n^3+n^2)\,n$ računskih operacij.</p>
 <p>Izračunajmo inverzno matriko od matrike $\textbf{A}$. Najprej z uporabo <code>np.identity()</code> pripravimo enotsko matriko:</p>
@@ -2715,8 +2842,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato rešimo sistem enačb za vsak stolpec enotske matrike:</p>
 </div>
@@ -2737,8 +2863,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev torej je:</p>
 </div>
@@ -2768,8 +2893,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo rešitev:</p>
 </div>
@@ -2799,8 +2923,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev z uporabo Numpy:</p>
 </div>
@@ -2831,8 +2954,7 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z ustrezno uporabo funkcij iz modula <code>SciPy</code> lahko do rešitve pridemo še hitreje. V funkcijo <code>lu_solve</code> lahko vstavimo vektor $\mathbf{b}$ ali matriko $\mathbf{B}$, katere posamezni stolpec $i$ predstavlja nov vektor konstant $\mathbf{b}_i$.</p>
 </div>
@@ -2863,16 +2985,14 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Reševanje-predoločenih-sistemov">Reševanje predoločenih sistemov<a class="anchor-link" href="#Reševanje-predoločenih-sistemov">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kadar rešujemo sistem $m$ linearnih enačbami z $n$ neznankami ter velja $m>n$ in je rang $n+1$, imamo predoločeni sistem.</p>
 <p>Predoločeni (tudi <strong>nekonsistenten sistem</strong>):
@@ -2882,8 +3002,7 @@ nima rešitve. Lahko pa poiščemo najboljši približek rešitve z metodo <stro
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vsota kvadratov preostankov je definirana s skalarnim produktom:
 $$\left\lVert r\right\rVert ^2=(\mathbf{A}\,\mathbf{x}-\mathbf{b})^T\,(\mathbf{A}\,\mathbf{x}-\mathbf{b})$$
@@ -2894,8 +3013,7 @@ kjer smo upoštevali, da zaradi skalarne vrednosti velja: $\mathbf{b}^T\mathbf{A
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev enačbe, gradient vsote kvadratov, določa njen minimum:
 $$\nabla_x\,\left\lVert r\right\rVert^2=2\mathbf{A}^T\mathbf{A}\,\mathbf{x}-2\mathbf{A}^T\,\mathbf{b}=0$$
@@ -2907,8 +3025,7 @@ $$\mathbf{x}=\left(\mathbf{A}^T\mathbf{A}\right)^{-1}\mathbf{A}^T\,\mathbf{b}.$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z vpeljavo <strong>psevdo inverzne matrike</strong>: 
 $$\mathbf{A}^+=\left(\mathbf{A}^T\mathbf{A}\right)^{-1}\mathbf{A}^T$$
@@ -2918,8 +3035,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Psevdo inverzno matriko lahko izračunamo z uporabo funkcij:</p>
 <ul>
@@ -2930,8 +3046,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer sistema z enolično rešitvijo:</p>
 </div>
@@ -2963,8 +3078,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naredimo sedaj predoločeni sistem (funkcija <code>numpy.vstack</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">dokumentacija</a>) sestavi sezname po stolpcih, <code>numpy.random.seed</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.seed.html">dokumentacija</a>) ponastavi generator naključnih števil na vrednost semena <code>seed</code>, <code>numpy.random.normal</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html">dokumentacija</a>) pa generira normalno porazdeljeni seznam dolžine <code>size</code> in standardne deviacije <code>scale</code>):</p>
 </div>
@@ -3024,8 +3138,7 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo sedaj predoločen sistem:</p>
 </div>
@@ -3054,16 +3167,14 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vidimo, da predoločeni sistem z naključnimi vrednostmi (simulacija šuma pri meritvi) poda podoben rezultat kakor rešitev brez šuma. V kolikor bi nivo šuma povečevali, bi se odstopanje od enolične rešitve povečevalo.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Psevdo inverzno matriko lahko določimo tudi sami in preverimo razliko z vgrajeno funkcijo:</p>
 </div>
@@ -3097,16 +3208,14 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Iterativne-metode">Iterativne metode<a class="anchor-link" href="#Iterativne-metode">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto se srečamo z velikimi sistemi linearnih enačb, katerih matrika koeficientov ima malo od nič različnih elementov (take matrike imenujemo <strong>redke</strong> ali tudi <strong>razpršene</strong>, angl. <em>sparse</em>).</p>
 <p>Pri reševanju takih sistemov linearnih enačb se zelo dobro izkažejo iterativne metode; prednosti v primerjavi z direktnimi metodami so:</p>
@@ -3118,16 +3227,14 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Gauss-Seidlova-metoda">Gauss-Seidlova metoda<a class="anchor-link" href="#Gauss-Seidlova-metoda">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V nadaljevanju si bomo pogledali idejo <em>Gauss-Seidelove</em> iterativne metode. Najprej sistem enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$ zapišemo kot:
 $$\sum_{j=0}^{n-1} A_{ij}x_j=b_i\qquad{}i=0,1,\dots,n-1.$$</p>
@@ -3137,20 +3244,18 @@ $$A_{ii}\,x_{i}^{(k-1)} +\sum_{j=0, j\ne i}^{n-1} A_{ij}x_{j}^{(k-1)}=b_i\qquad{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker približki $x_{j}^{(k-1)}$ ne izpolnjujejo natančno linearnega problema, lahko iz zgornje enačbe določimo nov približek $x_{i}^{(k)}$:
 $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum_{j=i+1}^{n-1} A_{ij}x_{j}^{(k-1)}\right)$$</p>
 <p>Vsoto smo razdelili na dva dela in za izračun $i$-tega člena upoštevali v $k$-ti iteraciji že določene člene z indeksom manjšim od $i$.</p>
 <p>Iterativni pristop prekinemo, ko dosežemo želeno natančnost rešitve $\epsilon$:</p>
-<p>$$||x_{i}^{(k)}-x_{i}^{(k-1)}||<\epsilon$$</p>
+$$||x_{i}^{(k)}-x_{i}^{(k-1)}||<\epsilon$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">¶</a></h2>
 </div>
@@ -3171,8 +3276,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Začetni približek:</p>
 </div>
@@ -3201,8 +3305,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo matriko $\mathbf{A}$ brez diagonalnih elementov (Zakaj? Poskusite odgovoriti spodaj, ko bomo izvedli iteracije.)</p>
 </div>
@@ -3244,8 +3347,7 @@ $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedemo iteracije:
 $$x_{i}^{(k)} =\frac{1}{A_{ii}}\left(b_i-\sum_{j=0}^{i-1} A_{ij}x_{j}^{(k)}-\sum_{j=i+1}^{n-1} A_{ij}x_{j}^{(k-1)}\right)$$
@@ -3297,8 +3399,7 @@ Norma 0.04590845211691733
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo rešitev</p>
 </div>
@@ -3326,24 +3427,21 @@ Norma 0.04590845211691733
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metoda deluje dobro, če je matrika diagonalno dominantna (obstajajo pa metode, ki delujejo tudi, ko matrika ni diagonalno dominantna, glejte npr.: J. Petrišič, Reševanje enačb, 1996, str 149: Metoda konjugiranih gradientov).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na sliki je prikazano paličje. Ob delovanju sil $F_1$ in $F_2$ se v palicah razvijejo notranje sile $P_i$. Dimenzije paličja zagotavljata kota $\alpha$ in $\beta$.
 <img src="./fig/palicje_2.2_15.png" width="300">
@@ -3368,16 +3466,14 @@ Sile v palicah izračunamo s pomočjo sistema linearnih enačb.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Analizirajte, koliko e-mailov dobite na dan:
 <img src="./fig/povprecje_emailov.jpg" width="300">

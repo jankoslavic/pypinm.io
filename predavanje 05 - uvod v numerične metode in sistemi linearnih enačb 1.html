@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Uvod-v-numerične-metode-1" href="#Uvod-v-numerične-metode"><span class="toc-item-num">1  </span>Uvod v numerične metode</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zaokrožitvena-napaka-1.1" href="#Zaokrožitvena-napaka"><span class="toc-item-num">1.1  </span>Zaokrožitvena napaka</a></span></li><li><span><a data-toc-modified-id="Napaka-metode-1.2" href="#Napaka-metode"><span class="toc-item-num">1.2  </span>Napaka metode</a></span></li></ul></li><li><span><a data-toc-modified-id="Uvod-v-sisteme-linearnih-enačb-2" href="#Uvod-v-sisteme-linearnih-enačb"><span class="toc-item-num">2  </span>Uvod v sisteme linearnih enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="O-rešitvi-sistema-linearnih-enačb-2.1" href="#O-rešitvi-sistema-linearnih-enačb"><span class="toc-item-num">2.1  </span>O rešitvi sistema linearnih enačb</a></span></li><li><span><a data-toc-modified-id="Norma-in-pogojenost-sistemov-enačb-2.2" href="#Norma-in-pogojenost-sistemov-enačb"><span class="toc-item-num">2.2  </span>Norma in pogojenost sistemov enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-slabo-pogojene-matrike-2.2.1" href="#Primer-slabo-pogojene-matrike"><span class="toc-item-num">2.2.1  </span>Primer slabo pogojene matrike</a></span></li></ul></li><li><span><a data-toc-modified-id="Numerično-reševanje-sistemov-linearnih-enačb-2.3" href="#Numerično-reševanje-sistemov-linearnih-enačb"><span class="toc-item-num">2.3  </span>Numerično reševanje sistemov linearnih enačb</a></span></li></ul></li><li><span><a data-toc-modified-id="Gaussova-eliminacija-3" href="#Gaussova-eliminacija"><span class="toc-item-num">3  </span>Gaussova eliminacija</a></span><ul class="toc-item"><li><ul class="toc-item"><li><span><a data-toc-modified-id="Povzetek-Gaussove-eliminacije-3.0.1" href="#Povzetek-Gaussove-eliminacije"><span class="toc-item-num">3.0.1  </span>Povzetek Gaussove eliminacije</a></span></li></ul></li><li><span><a data-toc-modified-id="Numerična-zahtevnost-3.1" href="#Numerična-zahtevnost"><span class="toc-item-num">3.1  </span>Numerična zahtevnost</a></span></li><li><span><a data-toc-modified-id="Uporaba-knjižnjice-numpy-3.2" href="#Uporaba-knjižnjice-numpy"><span class="toc-item-num">3.2  </span>Uporaba knjižnjice <code>numpy</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-4" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">4  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-5" href="#Dodatno"><span class="toc-item-num">5  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-simbolnega-reševanja-sistema-linearnih-enačb-v-okviru-sympy-5.1" href="#Primer-simbolnega-reševanja-sistema-linearnih-enačb-v-okviru-sympy"><span class="toc-item-num">5.1  </span>Primer simbolnega reševanja sistema linearnih enačb v okviru <code>sympy</code></a></span></li></ul></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod-v-numerične-metode">Uvod v numerične metode<a class="anchor-link" href="#Uvod-v-numerične-metode">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kadar želimo simulirati izbrani fizikalni proces, ponavadi postopamo takole:</p>
 <ol>
@@ -1440,24 +1614,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matematični model poskušamo rešiti analitično, saj taka rešitev ni obremenjena z napakami. Iz tega razloga se v okviru matematike učimo reševanja sistema enačb, integriranja, odvajanja in podobno. Bistvo <strong>numeričnih metod</strong> je, da matematične modele rešujemo <strong>numerično</strong>, torej na podlagi <strong>diskretnih vrednosti</strong>. Kakor bomo spoznali pozneje, nam numerični pristop v primerjavi z analitičnim omogoča reševanje bistveno obsežnejših in kompleksnejših problemov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zaokrožitvena-napaka">Zaokrožitvena napaka<a class="anchor-link" href="#Zaokrožitvena-napaka">¶</a></h2><p>V nadaljevanju si bomo pogledali nekatere omejitve in izzive numeričnega pristopa. Prva omejitev je, da so v računalniku realne vrednosti vedno zapisane s končno natančnostjo. V Pythonu se števila pogosto zapišejo v dvojni natančnosti s približno 15 signifikantnimi števkami.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Število z dvojno natančnostjo se v Pythonu imenuje <strong>float64</strong> in je zapisano v spomin v binarni obliki v 64 bitih (11 bitov eksponent in 53 bitov mantisa (1 bit za predznak)). Ker je mantisa definirana na podlagi 52 binarnih števk, se lahko pojavi pri njegovem zapisu <em>relativna napaka</em> največ $\epsilon\approx2.2\cdot 10^{-16}$. Ta napaka se imenuje <strong>osnovna zaokrožitvena napaka</strong> in se lahko pojavi pri vsakem vmesnem
 izračunu!</p>
@@ -1465,8 +1636,7 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če je korakov veliko, lahko napaka zelo naraste in zato je pomembno, da je njen vpliv na rezultat čim manjši!</p>
 <p>Spodaj je primer podrobnejših informacij za tip podatkov z dvojno natančnostjo (<code>float</code>); pri tem si pomagamo z vgrajenim modulom <code>sys</code> za klic parametrov in funkcij python sistema (<a href="https://docs.python.org/3/library/sys.html">dokumentacija</a>):</p>
@@ -1497,8 +1667,7 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poleg števila z dvojno natančnostjo se uporabljajo drugi tipi podatkov; dober pregled različnih tipov je prikazan v okviru <a href="https://docs.scipy.org/doc/numpy-1.10.1/user/basics.types.html">numpy</a> in <a href="https://docs.python.org/3/library/stdtypes.html">python</a> dokumentacije.</p>
 <p>Tukaj si poglejmo primer tipa <code>int8</code>, kar pomeni celo število zapisano z 8 biti (8 bit = 1 byte). Z njim lahko v dvojiškem sistemu zapišemo cela števila od -128 do +127:</p>
@@ -1529,16 +1698,14 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Napaka-metode">Napaka metode<a class="anchor-link" href="#Napaka-metode">¶</a></h2><p>Poleg zaokrožitvene napake pa se pogosto srečamo tudi z <strong>napako metode</strong> ali <strong>metodično napako</strong>, ki jo naredimo takrat, ko natančen analitični postopek reševanja matematičnega modela zamenjamo s približnim numeričnim.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pomembna lastnost numeričnih algoritmov je <strong>stabilnost</strong>. To pomeni, da majhna sprememba vhodnih podatkov povzroči majhno spremembo rezultatov. Če se ob majhni spremembi na vhodu rezultati zelo spremenijo, pravimo, da je <strong>algoritem nestabilen</strong>. V praksi torej uporabljamo stabilne algoritme; bomo pa pozneje spoznali, da je stabilnost lahko pogojena tudi z vhodnimi podatki!</p>
 <p>Poznamo pa tudi nestabilnost matematičnega modela/naloge/enačbe; v tem primeru govorimo o <strong>slabi pogojenosti</strong>.</p>
@@ -1546,16 +1713,14 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Med izvajanjem numeričnega izračuna se napake lahko širijo. Posledično je rezultat operacije manj natančen (ima manj zanesljivih števk), kakor pa je zanesljivost podatkov izračuna.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj splošen pristop k oceni napake. Točno vrednost označimo z $r$, približek z $a_1$; velja $r=a_1+e_1$, kjer je $e_1$ napaka. Če z numeričnim algoritmom  izračunamo bistveno boljši približek $a_2$, velja $r=a_2+e_2$.</p>
 <p>Ker velja $a_1+e_1=a_2+e_2$, lahko ob predpostavki $\left|e_1\right|>>\left|e_2\right|$ in $\left|e_2\right|\approx 0$ izpeljemo $a_2-a_1=e_1-e_2\approx e_1$.</p>
@@ -1563,8 +1728,7 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$\left|a_1-a_2\right|$ je torej pesimistična ocena absolutne napake,</p>
 <p>$\left|\frac{a_1-a_2}{a_2}\right|$ pa ocena relativne napake.</p>
@@ -1572,8 +1736,7 @@ izračunu!</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod-v-sisteme-linearnih-enačb">Uvod v sisteme linearnih enačb<a class="anchor-link" href="#Uvod-v-sisteme-linearnih-enačb">¶</a></h1><p>Pod zgornjim naslovom razumemo sistem $m$ linearnih enačb ($E_i, i=0, 1,\dots,m-1$) z $n$ neznankami ($x_j, j=0,1,\dots,n-1$):
 $$
@@ -1590,18 +1753,15 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sistem enačb lahko zapišemo tudi v matrični obliki:</p>
-<p>$$\mathbf{A}\,\mathbf{x}=\mathbf{b}$$</p>
-<p>kjer sta $\mathbf{A}$ in $\mathbf{b}$ znana matrika in vektor, vektor $\mathbf{x}$ pa ni znan. Matriko $\mathbf{A}$ imenujemo <strong>matrika koeficientov</strong>, vektor $\mathbf{b}$ <strong>vektor konstant</strong> (tudi: vektor prostih členov ali vektor stolpec desnih strani) in $\mathbf{x}$ <strong>vektor neznank</strong>. Če matriki $\mathbf{A}$ dodamo kot stolpec vektor $\mathbf{b}$, dobimo t. i. <strong>razširjeno matriko</strong> in jo označimo $[\mathbf{A}|\mathbf{b}]$.</p>
+$$\mathbf{A}\,\mathbf{x}=\mathbf{b}$$<p>kjer sta $\mathbf{A}$ in $\mathbf{b}$ znana matrika in vektor, vektor $\mathbf{x}$ pa ni znan. Matriko $\mathbf{A}$ imenujemo <strong>matrika koeficientov</strong>, vektor $\mathbf{b}$ <strong>vektor konstant</strong> (tudi: vektor prostih členov ali vektor stolpec desnih strani) in $\mathbf{x}$ <strong>vektor neznank</strong>. Če matriki $\mathbf{A}$ dodamo kot stolpec vektor $\mathbf{b}$, dobimo t. i. <strong>razširjeno matriko</strong> in jo označimo $[\mathbf{A}|\mathbf{b}]$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba glede zapisa:</p>
 <ul>
@@ -1613,16 +1773,14 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="O-rešitvi-sistema-linearnih-enačb">O rešitvi sistema linearnih enačb<a class="anchor-link" href="#O-rešitvi-sistema-linearnih-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če nad sistemom linearnih enačb izvajamo <strong>elementarne operacije</strong>:</p>
 <ul>
@@ -1635,8 +1793,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo elementarnih operacij nad vrsticami matrike $\mathbf{A}$ jo lahko preoblikujemo v t. i. <strong>vrstično kanonično obliko</strong>:</p>
 <ol>
@@ -1652,8 +1809,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer preoblikovanja matrike $\mathbf{A}$:</p>
 </div>
@@ -1685,8 +1841,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Očitno ima neničelni element <code>A[0,0]</code> vrednost 1 in je pivotni element. Prvo vrstico <code>A[0,:]</code> pomnožimo z $-4$ in produkt prištejemo drugi vrstici <code>A[1,:]-4A[0,:]</code>:</p>
 </div>
@@ -1717,8 +1872,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno naredimo za tretjo vrstico:</p>
 </div>
@@ -1749,8 +1903,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Drugo vrstico sedaj delimo z <code>A[1,1]</code>, da dobimo pivot:</p>
 </div>
@@ -1781,8 +1934,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odštejemo drugo vrstico od ostalih, da dobimo v drugem stolpcu ničle povsod, razen v drugi vrstici vrednost 1:</p>
 </div>
@@ -1837,8 +1989,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Imamo dve neničelni vrstici; Matrika <code>A</code> ima dva pivota in predstavlja dve linearno neodvisni enačbi. Rang matrike je 2.</p>
 </div>
@@ -1868,8 +2019,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rang matrike pa lahko določimo tudi s pomočjo <code>numpy</code> funkcije <code>numpy.linalg.matrix_rank</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.matrix_rank.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -1900,8 +2050,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če velja $r=\textbf{rang}(\mathbf{A})=\textbf{rang}([\mathbf{A}|\mathbf{b}])$, potem rešitev <strong>obstaja</strong> (rečemo tudi, da je sistem <strong>konsistenten</strong>).</p>
 <p>Konsistenten sistem ima:</p>
@@ -1913,8 +2062,7 @@ Koeficienti $A_{i,j}$ in $b_i$ so znana števila.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej se bomo omejili na sistem $m=n$ linearnih enačb z $n$ neznankami ter velja $n=r$:
 $$\mathbf{A}\,\mathbf{x}=\mathbf{b}.$$</p>
@@ -1924,8 +2072,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer sistema, ko so <strong>enačbe linearno odvisne</strong> ($r<n$):</p>
 </div>
@@ -1958,8 +2105,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo <code>numpy</code> knjižnice poglejmo sedaj rang matrike koeficientov in razširjene matrike ter determinanto z uporabo <code>numpy.linalg.det</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.det.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">det</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -1991,8 +2137,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še primer, ko <strong>rešitve sploh ni</strong> (nekonsistenten sistem):</p>
 </div>
@@ -2047,16 +2192,14 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Norma-in-pogojenost-sistemov-enačb">Norma in pogojenost sistemov enačb<a class="anchor-link" href="#Norma-in-pogojenost-sistemov-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerična naloga je slabo pogojena, če majhna sprememba podatkov povzroči veliko spremembo rezultata. V primeru <em>majhne spremembe podatkov</em>, ki povzročijo <em>majhno spremembo rezultatov</em>, pa je naloga <strong>dobro pogojena</strong>.</p>
 <p>Sistem enačb je ponavadi dobro pogojen, če so absolutne vrednosti diagonalnih elementov matrike koeficientov velike v primerjavi z absolutnimi vrednostmi izven diagonalnih elementov.</p>
@@ -2064,18 +2207,15 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za sistem linearnih enačb $\mathbf{A}\,\mathbf{x}=\mathbf{b}$ lahko računamo <strong>število pogojenosti</strong> (<em>angl.</em> condition number):</p>
-<p>$$\textrm{cond}(\textbf{A})=||\textbf{A}||\,||\textbf{A}^{-1}||.$$</p>
-<p>Z $||\textbf{A}||$ je označena <strong>norma</strong> matrike.</p>
+$$\textrm{cond}(\textbf{A})=||\textbf{A}||\,||\textbf{A}^{-1}||.$$<p>Z $||\textbf{A}||$ je označena <strong>norma</strong> matrike.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Obstaja več načinov računanja norme; navedimo dve:</p>
 <ul>
@@ -2088,8 +2228,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogojenost računamo z vgrajeno funkcijo <code>numpy.linalg.cond</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.cond.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">cond</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -2099,8 +2238,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če je število pogojenosti majhno, potem je matrika dobro pogojena in obratno - pri slabi pogojenosti se število pogojenosti zelo poveča.</p>
 <p>Žal je izračun pogojenosti matrike numerično relativno zahteven.</p>
@@ -2108,24 +2246,21 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Primer-slabo-pogojene-matrike">Primer slabo pogojene matrike<a class="anchor-link" href="#Primer-slabo-pogojene-matrike">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo slabo pogojen sistem, kjer bomo z malenkostno spremembo na matriki koeficientov povzročili veliko spremembo rešitve.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matrika koeficientov:</p>
 </div>
@@ -2155,8 +2290,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vektor konstant:</p>
 </div>
@@ -2187,8 +2321,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo rang in determinanto:</p>
 </div>
@@ -2217,8 +2350,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Od druge enačbe odšejemo prvo:</p>
 </div>
@@ -2248,8 +2380,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Določimo <code>x1</code>:</p>
 </div>
@@ -2278,8 +2409,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preostane še določitev <code>x0</code>:</p>
 </div>
@@ -2308,8 +2438,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Malenkostno spremenimo matriko koeficientov in ponovimo reševanje:</p>
 </div>
@@ -2339,8 +2468,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ponovimo izračun:</p>
 </div>
@@ -2363,8 +2491,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primerjamo obe rešitvi:</p>
 </div>
@@ -2413,24 +2540,21 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da je malenkostna sprememba enega koeficienta v matriki koeficientov povzročila veliko spremembo v rezultatu. Majhni spremembi podatkov se ne moremo izogniti, zaradi zapisa podatkov v računalniku.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerično-reševanje-sistemov-linearnih-enačb">Numerično reševanje sistemov linearnih enačb<a class="anchor-link" href="#Numerično-reševanje-sistemov-linearnih-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo dva, v principu različna pristopa k reševanju sistemov linearnih enačb:</p>
 <p>A) <strong>Direktni pristop</strong>: nad sistemom enačb izvajamo elementarne operacije, s katerimi predelamo sistem enačb v lažje rešljivega,</p>
@@ -2439,8 +2563,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Gaussova-eliminacija">Gaussova eliminacija<a class="anchor-link" href="#Gaussova-eliminacija">¶</a></h1><p>Predpostavimo, da rešujemo sistem $n$ enačb za $n$ neznank, ki ima rang $n$. Tak sistem je enolično rešljiv.</p>
 <p>Gaussova eliminacija spada med direktne metode, saj s pomočjo elementarnih vrstičnih operacij sistem enačb prevedemo v zgornje poravnani trikotni sistem (pod glavno diagonalo v razširjeni matriki so vrednosti nič).</p>
@@ -2448,8 +2571,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej pripravimo razširjeno matriko koeficientov:
 $$\begin{bmatrix}
@@ -2466,8 +2588,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Gaussovo eliminacijo si bomo pogledali na zgledu:</p>
 </div>
@@ -2512,8 +2633,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Korak 0: prvo vrstico pomnožimo z <code>Ab[1,0]/Ab[0,0]=-6/8</code> in odštejemo od druge:</p>
 </div>
@@ -2544,8 +2664,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato prvo vrstico pomnožimo z <code>Ab[2,0]/Ab[0,0]=3/8</code> in odštejemo od tretje:</p>
 </div>
@@ -2576,8 +2695,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Korak 1: drugo vrstico pomnožimo z <code>Ab[2,1]/Ab[1,1]=-3.75/1.5</code> in odštejemo od tretje:</p>
 </div>
@@ -2608,8 +2726,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo pripravljenega modula <code>moduli/gauss_prikaz.py</code> lahko postopek tudi animiramo:
 <img src="./fig/gauss_eliminacija.gif" width="350"></p>
@@ -2617,8 +2734,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dobili smo zgornje trikotno matriko in Gaussova eliminacija je končana. Lahko izračunamo rešitev, torej določimo vektor neznank $x$ z <strong>obratnim vstavljanjem</strong>.</p>
 <p>Iz zadnje vrstice zgornje trikotne matrike izračunamo $x_2$:</p>
@@ -2672,8 +2788,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo predzadnje vrstice izračunamo $x_1$:</p>
 </div>
@@ -2725,8 +2840,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo prve vrstice nato izračunamo $x_0$:</p>
 </div>
@@ -2778,8 +2892,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo rešitev:</p>
 </div>
@@ -2807,16 +2920,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Povzetek-Gaussove-eliminacije">Povzetek Gaussove eliminacije<a class="anchor-link" href="#Povzetek-Gaussove-eliminacije">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V modul <code>orodja.py</code> shranimo funkciji:</p>
 </div>
@@ -2852,8 +2963,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Algoritem, s katerim iz zgornje trikotnega sistema enačb $\mathbf{U}\,\mathbf{x}=\mathbf{b}$ izračunamo rešitev, imenujemo <strong>obratno vstavljanje</strong> (angl. <em>back substitution</em>); $\mathbf{U}$ je zgornje trikotna matrika.</p>
 <p>V kolikor bi reševali sistem $\mathbf{L}\,\mathbf{x}=\mathbf{b}$ in je $\mathbf{L}$ spodnje trikotna matrika, bi to metodo imenovali <strong>direktno vstavljanje</strong> (angl. <em>forward substitution</em>).</p>
@@ -2906,16 +3016,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-zahtevnost">Numerična zahtevnost<a class="anchor-link" href="#Numerična-zahtevnost">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerično zahtevnost ocenjujemo po številu matematičnih operacij, ki so potrebne za izračun. 
 Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo približno $n^3/3$ matematičnih operacij. Za določitev neznank $\mathbf{x}$ potrebujemo še dodatnih približno $n^2$ operacij.</p>
@@ -2925,16 +3033,14 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-knjižnjice-numpy">Uporaba knjižnjice <code>numpy</code><a class="anchor-link" href="#Uporaba-knjižnjice-numpy">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Reševanje sistema linearnih enačb z <code>numpy.linalg.solve</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -2965,16 +3071,14 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li><p>Za sistem enačb: 
@@ -3015,16 +3119,14 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejte si strani:</p>
 <ul>
@@ -3036,8 +3138,7 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Primer-simbolnega-reševanja-sistema-linearnih-enačb-v-okviru-sympy">Primer simbolnega reševanja sistema linearnih enačb v okviru <code>sympy</code><a class="anchor-link" href="#Primer-simbolnega-reševanja-sistema-linearnih-enačb-v-okviru-sympy">¶</a></h2>
 </div>

@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Uvod-1" href="#Uvod"><span class="toc-item-num">1  </span>Uvod</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zapis-(ene)-diferencialne-enačbe-1.1" href="#Zapis-(ene)-diferencialne-enačbe"><span class="toc-item-num">1.1  </span>Zapis (ene) diferencialne enačbe</a></span></li></ul></li><li><span><a data-toc-modified-id="Eulerjeva-metoda-2" href="#Eulerjeva-metoda"><span class="toc-item-num">2  </span>Eulerjeva metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Napaka-Eulerjeve-metode-2.1" href="#Napaka-Eulerjeve-metode"><span class="toc-item-num">2.1  </span>Napaka Eulerjeve metode</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Ocena-napake-2.1.1" href="#Ocena-napake"><span class="toc-item-num">2.1.1  </span>Ocena napake</a></span></li></ul></li><li><span><a data-toc-modified-id="Komentar-na-implicitno-Eulerjevo-metodo-2.2" href="#Komentar-na-implicitno-Eulerjevo-metodo"><span class="toc-item-num">2.2  </span>Komentar na implicitno Eulerjevo metodo</a></span></li><li><span><a data-toc-modified-id="Numerična-implementacija-2.3" href="#Numerična-implementacija"><span class="toc-item-num">2.3  </span>Numerična implementacija</a></span></li><li><span><a data-toc-modified-id="Numerični-zgled-2.4" href="#Numerični-zgled"><span class="toc-item-num">2.4  </span>Numerični zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Metoda-Runge-Kutta-drugega-reda-3" href="#Metoda-Runge-Kutta-drugega-reda"><span class="toc-item-num">3  </span>Metoda Runge-Kutta drugega reda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Ideja-pristopa-Runge-Kutta-3.1" href="#Ideja-pristopa-Runge-Kutta"><span class="toc-item-num">3.1  </span>Ideja pristopa Runge-Kutta</a></span></li></ul></li><li><span><a data-toc-modified-id="Metoda-Runge-Kutta-četrtega-reda-4" href="#Metoda-Runge-Kutta-četrtega-reda"><span class="toc-item-num">4  </span>Metoda Runge-Kutta četrtega reda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Napaka-metode-Runge-Kutta-četrtega-reda-4.1" href="#Napaka-metode-Runge-Kutta-četrtega-reda"><span class="toc-item-num">4.1  </span>Napaka metode Runge-Kutta četrtega reda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Ocena-napake-4.1.1" href="#Ocena-napake"><span class="toc-item-num">4.1.1  </span>Ocena napake</a></span></li></ul></li><li><span><a data-toc-modified-id="Numerična-implementacija-4.2" href="#Numerična-implementacija"><span class="toc-item-num">4.2  </span>Numerična implementacija</a></span></li><li><span><a data-toc-modified-id="Numerični-zgled-4.3" href="#Numerični-zgled"><span class="toc-item-num">4.3  </span>Numerični zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-scipy-za-reševanje-navadnih-diferencialnih-enačb-5" href="#Uporaba-scipy-za-reševanje-navadnih-diferencialnih-enačb"><span class="toc-item-num">5  </span>Uporaba <code>scipy</code> za reševanje navadnih diferencialnih enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="scipy.integrate.solve_ivp-5.1" href="#scipy.integrate.solve_ivp"><span class="toc-item-num">5.1  </span><code>scipy.integrate.solve_ivp</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled-5.1.1" href="#Numerični-zgled"><span class="toc-item-num">5.1.1  </span>Numerični zgled</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Sistem-navadnih-diferencialnih-enačb-6" href="#Sistem-navadnih-diferencialnih-enačb"><span class="toc-item-num">6  </span>Sistem navadnih diferencialnih enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerična-implementacija-6.1" href="#Numerična-implementacija"><span class="toc-item-num">6.1  </span>Numerična implementacija</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled-6.1.1" href="#Numerični-zgled"><span class="toc-item-num">6.1.1  </span>Numerični zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Preoblikovanje-diferencialne-enačbe-višjega-reda-v-sistem-diferencialnih-enačb-prvega-reda-6.2" href="#Preoblikovanje-diferencialne-enačbe-višjega-reda-v-sistem-diferencialnih-enačb-prvega-reda"><span class="toc-item-num">6.2  </span>Preoblikovanje diferencialne enačbe višjega reda v sistem diferencialnih enačb prvega reda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled-6.2.1" href="#Numerični-zgled"><span class="toc-item-num">6.2.1  </span>Numerični zgled</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Stabilnost-reševanja-diferencialnih-enačb*-7" href="#Stabilnost-reševanja-diferencialnih-enačb*"><span class="toc-item-num">7  </span>Stabilnost reševanja diferencialnih enačb*</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-preprostega-nihala-7.1" href="#Primer-preprostega-nihala"><span class="toc-item-num">7.1  </span>Primer preprostega nihala</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled-7.1.1" href="#Numerični-zgled"><span class="toc-item-num">7.1.1  </span>Numerični zgled</a></span></li><li><span><a data-toc-modified-id="Zakaj-je-Eulerjeva-metoda-tako-nestabilna?-7.1.2" href="#Zakaj-je-Eulerjeva-metoda-tako-nestabilna?"><span class="toc-item-num">7.1.2  </span>Zakaj je Eulerjeva metoda tako nestabilna?</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-8" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">8  </span>Nekaj vprašanj za razmislek!</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-Van-der-Polovega-nihala-8.1" href="#Primer-Van-der-Polovega-nihala"><span class="toc-item-num">8.1  </span>Primer Van der Polovega nihala</a></span></li><li><span><a data-toc-modified-id="Simbolno-reševanje-diferencialne-enačbe-drugega-reda-8.2" href="#Simbolno-reševanje-diferencialne-enačbe-drugega-reda"><span class="toc-item-num">8.2  </span>Simbolno reševanje diferencialne enačbe drugega reda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Izpeljava-gibalne-enačbe-8.2.1" href="#Izpeljava-gibalne-enačbe"><span class="toc-item-num">8.2.1  </span>Izpeljava gibalne enačbe</a></span></li><li><span><a data-toc-modified-id="Simbolno-preoblikovanje-diferencialne-enačbe-v-sistem-diferencialnih-enačb-prvega-reda-8.2.2" href="#Simbolno-preoblikovanje-diferencialne-enačbe-v-sistem-diferencialnih-enačb-prvega-reda"><span class="toc-item-num">8.2.2  </span>Simbolno preoblikovanje diferencialne enačbe v sistem diferencialnih enačb prvega reda</a></span></li></ul></li></ul></li></ul></div>
@@ -1431,24 +1607,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod">Uvod<a class="anchor-link" href="#Uvod">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zapis-(ene)-diferencialne-enačbe">Zapis (ene) diferencialne enačbe<a class="anchor-link" href="#Zapis-(ene)-diferencialne-enačbe">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Predpostavimo, da je mogoče diferencialno enačbo prvega reda zapisati v <em>eksplicitni</em> obliki:
 $$y'=f(t, y),$$
@@ -1459,16 +1632,14 @@ $$y(t_0)=y_0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cilj reševanja diferencialne enačbe je izračunati funkcijo $y(t)$, ki reši zgoraj definiran začetni problem. Ob določenih pogojih funkcije $f(t, y)$ ima začetni problem enolično rešitev na intevalu, ki vsebuje $t_0$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri numeričnem reševanju vedno računamo tabelo funkcije $y(t_i)$, ki reši dan začetni problem. Pri tem so vozlišča $t_i$ običajno ekvidistantna:
 $$t_0, t_0+h, t_0+2h,\dots$$
@@ -1478,16 +1649,14 @@ in $h$ imenujemo (časovni) korak (integracije).</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Eulerjeva-metoda">Eulerjeva metoda<a class="anchor-link" href="#Eulerjeva-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Eksplicitna Eulerjeva metoda</strong> temelji na razvoju funkcije $y$ v Taylorjevo vrsto:
 $$y(t+h)=y(t)+y'(t, y(t))\,h + 
@@ -1496,16 +1665,14 @@ $$y(t+h)=y(t)+y'(t, y(t))\,h +
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naredimo napako metode $\mathcal{O}(h^2)$, ker zanemarimo odvode drugega in višjih redov; sedaj lahko ob znani vrednosti $y(t)$ in odvodu $y'(t)=f(t,y)$ ocenimo vrednosti pri naslednjem časovnem koraku $t+h$. Ko imamo enkrat znane vrednosti pri $t+h$, ponovimo postopek!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Koraki Eulerjeve metode:</p>
 <ol>
@@ -1518,8 +1685,7 @@ $$y_{i+1}= y_i + f(t_i, y_i)\,h.$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferencialno enačbo rešujemo na intervalu $[t_0,t_n]$ in velja $h=(t_n-t_0)/n$. $n$ je število integracijskih korakov (kolikokrat izvedemo korak 2 v zgornjem algoritmu).</p>
 <p>Numerična rešitev začetnega problema:
@@ -1530,8 +1696,7 @@ $$t_0, t_1, t_2\, \dots \, t_n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Napaka-Eulerjeve-metode">Napaka Eulerjeve metode<a class="anchor-link" href="#Napaka-Eulerjeve-metode">¶</a></h2><p>Napaka Eulerjeve metode na vsakem koraku je reda $\mathcal{O}(h^2)$.</p>
 <p>Ker na intervalu od $t_0$ do $t_n$ tako napako naredimo $n$-krat, je kumulativna napaka $n\,\mathcal{O}(h^2)=\frac{t_n-t_0}{h}\,\mathcal{O}(h^2)=\mathcal{O}(h)$.</p>
@@ -1540,8 +1705,7 @@ $$t_0, t_1, t_2\, \dots \, t_n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Ocena-napake">Ocena napake<a class="anchor-link" href="#Ocena-napake">¶</a></h3><p>Točna rešitev $y(t_n)$ pri velikosti koraka $h$ je:
 $$y(t_n)=y_{n,h}+E_h,$$
@@ -1551,8 +1715,7 @@ $$E_h=k\,h.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno lahko za velikost koraka $2h$ zapišemo:
 $$y(t_n)=y_{n,2h}+E_{2h},$$
@@ -1562,8 +1725,7 @@ $$E_{2h}=k\,2\,h.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ob predpostavki, da je konstanta $k$ pri koraku $h$ in koraku $2h$ enaka, lahko določimo oceno napake pri boljšem približku $E_h$. Očitno velja:
 $$y_{n,h}+k\,h=y_{n,2h}+2\,k\,h$$
@@ -1573,26 +1735,23 @@ $$E_h=k\,h=y_{n,h}-y_{n,2h}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Komentar-na-implicitno-Eulerjevo-metodo">Komentar na implicitno Eulerjevo metodo<a class="anchor-link" href="#Komentar-na-implicitno-Eulerjevo-metodo">¶</a></h2><p>Pri eksplicitni Eulerjevi metodi računamo rešitev pri $t_{i+1}$ iz izračunane vrednosti pri $t_i$.</p>
 <p>V kolikor bi nastopala neznana vrednost rešitve pri $t_{i+1}$, to je $y_{i+1}$, tudi na desni strani, bi govorili o <strong>implicitni Eulerjevi metodi</strong> (ali <em>povratni Eulerjevi metodi</em>):</p>
-<p>$$y_{i+1}=y_i+f(t_{i+1}, y_{i+1})\,h.$$</p>
+$$y_{i+1}=y_i+f(t_{i+1}, y_{i+1})\,h.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker se iskana vrednost $y_{i+1}$ nahaja na obeh straneh enačbe, moramo za določitev $y_{i+1}$ rešiti (nelinearno) enačbo. Prednost implicitne Eulerjeve metode je, da je bolj stabilna (npr. v primeru togih sistemov, ki jih bomo spoznali pozneje) kakor eksplicitna oblika, vendar pa je numerično bolj zahtevna (zaradi računanja rešitve enačbe).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2><p>Najprej uvozimo potrebne knjižnice:</p>
 </div>
@@ -1612,8 +1771,7 @@ $$E_h=k\,h=y_{n,h}-y_{n,2h}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato definirajmo Eulerjevo metodo:</p>
 </div>
@@ -1647,8 +1805,7 @@ $$E_h=k\,h=y_{n,h}-y_{n,2h}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo funkcijo za oceno napake (v numeričnem smislu bi bilo bolje oceno napake vključiti v funkcijo <code>euler</code>, vendar jo zaradi jasnosti predstavimo ločeno):</p>
 </div>
@@ -1677,8 +1834,7 @@ $$E_h=k\,h=y_{n,h}-y_{n,2h}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h2><p>Kot primer rešimo diferencialno enačbo, ki opisuje padanje telesa, ki je izpostavljeno sili teže in zračnemu uporu:
 <img src="fig/padanje_telesa.png" width="150"></p>
@@ -1686,31 +1842,26 @@ $$E_h=k\,h=y_{n,h}-y_{n,2h}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na II. Newtonov zakon, lahko zapišemo diferencialno enačbo:</p>
-<p>$$m\,g-c\,v=m\,v',$$
-kjer je $m$ masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora in $v$ hitrost. Diferencialno enačbo bi hoteli rešiti glede na začetni pogoj:</p>
-<p>$$v(0)=0\,\textrm{m/s}.$$</p>
+$$m\,g-c\,v=m\,v',$$<p>kjer je $m$ masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora in $v$ hitrost. Diferencialno enačbo bi hoteli rešiti glede na začetni pogoj:</p>
+$$v(0)=0\,\textrm{m/s}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija desne strani / prvega odvoda $f(t,y)$ je:</p>
-<p>$$f(t,y)=g-c\,
-\frac{y}{m}$$</p>
-<p>in začetni pogoj:
+$$f(t,y)=g-c\,
+\frac{y}{m}$$<p>in začetni pogoj:
 $$y_0=0.$$</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo funkcijo desnih strani:</p>
 </div>
@@ -1729,8 +1880,7 @@ $$y_0=0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo začetni pogoj in časovni vektor, kjer nas zanima rezultat:</p>
 </div>
@@ -1760,8 +1910,7 @@ $$y_0=0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kličemo funkcijo <code>euler</code> za izračun vrednosti $y$ (hitrost $v$):</p>
 </div>
@@ -1792,8 +1941,7 @@ $$y_0=0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -1826,8 +1974,7 @@ $$y_0=0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo sedaj vpliv časovnega koraka:</p>
 </div>
@@ -1864,8 +2011,7 @@ $$y_0=0.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da se numerična napaka pri spremembi koraka iz 1 na 0,1 bistveno zmanjša!</p>
 <p>Ocenimo še napako pri 100 in 1000 odsekih:</p>
@@ -1919,16 +2065,14 @@ $$-0.0016379862244946253$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko smo korak zmanjšali na desetino, se je proporcionalno zmanjšala tudi napaka (prvi red napake).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še primer, ko je zračni upor <code>c</code> argument funkcije <code>euler</code> in je prek <code>**kwargs</code> posredovan v funkcijo <code>f_zračni_upor()</code>:</p>
 </div>
@@ -1965,16 +2109,14 @@ $$-0.0016379862244946253$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Metoda-Runge-Kutta-drugega-reda">Metoda Runge-Kutta drugega reda<a class="anchor-link" href="#Metoda-Runge-Kutta-drugega-reda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Eulerjeva metoda je prvega reda (prvega reda je namreč globalna napaka $\mathcal{O}(h)$). Če bi želeli izpeljati metodo drugega reda napake, bi si morali pomagati z razvojem $y(t+h)$ v Taylorjevo vrsto, kjer bomo zanemarili tretji in višje odvode:
 $$y(t+h)=y(t)+y'(t)\,h + \frac{1}{2}y''(t)\,h^2+\mathcal{O}(h^3).$$
@@ -1983,8 +2125,7 @@ Lokalna napaka metode bo tako tretjega reda, globalna pa drugega reda.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo zamenjavi $y'(t)=f(t,y)$ in $y''(t)=f'(t,y)$:
 $$y(t+h)=y(t)+f(t,y)\,h + \frac{1}{2}f'(t,y)\,h^2+\mathcal{O}(h^3).$$</p>
@@ -1992,8 +2133,7 @@ $$y(t+h)=y(t)+f(t,y)\,h + \frac{1}{2}f'(t,y)\,h^2+\mathcal{O}(h^3).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker je desna stran $f(t,y)$ odvisna od neodvisne $t$ in odvisne spremenljivke $y$, moramo uporabiti implicitno odvajanje:
 $$f'(t,y)=\frac{\partial f(t,y)}{\partial t}+\frac{\partial f(t,y)}{\partial y}\,\underbrace{\frac{\textrm{d} y}{\textrm{d} t}}_{y'=f(t,y)}
@@ -2002,8 +2142,7 @@ $$f'(t,y)=\frac{\partial f(t,y)}{\partial t}+\frac{\partial f(t,y)}{\partial y}\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vstavimo v izraz za Taylorjevo vrsto:
 $$y(t+h)_{\textrm{Taylor}}=y(t+h)=y(t)+f(t,y)\,h + \frac{1}{2}\,{\LARGE(}
@@ -2014,34 +2153,30 @@ $$y(t+h)_{\textrm{Taylor}}=y(t+h)=y(t)+f(t,y)\,h + \frac{1}{2}\,{\LARGE(}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Ideja-pristopa-Runge-Kutta">Ideja pristopa Runge-Kutta<a class="anchor-link" href="#Ideja-pristopa-Runge-Kutta">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornjo dilemo metoda <em>Runge-Kutta</em> (razvita leta 1901) rešuje z idejo, ki smo jo sicer že srečali pri Gaussovi integraciji: točnejšo rešitev poskuša najti s uteženo dodatno vrednostjo funkcije $f$:</p>
-<p>$$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+c_0\,f\left(t,y\right)\,h +c_1
-\underbrace{f{\large(}t+p\,h,y+q\,h\,f(t,y){\large)}}_{A}\,h.$$</p>
+$$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+c_0\,f\left(t,y\right)\,h +c_1
+\underbrace{f{\large(}t+p\,h,y+q\,h\,f(t,y){\large)}}_{A}\,h.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>kjer so $c_0$, $c_1$, $p$ in $q$ neznane konstante (načeloma od 0 do vključno 1). Če bi v zgornjem izrazu uporabili $c_1=0$, bi izpeljali metodo prvega reda; z dodatno funkcijsko vrednostjo ($A$) pa se bo izkazalo, da  bomo izpeljali metodo drugega reda.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iskanje neznanih konstant $c_0$, $c_1$, $p$, $q$ nadaljujemo z zapisom $A$ v obliki Taylorjeve vrste prvega reda:
 $$f{\large(}t+p\,h,y+q\,h\,f(t,y){\large)}=
@@ -2054,8 +2189,7 @@ f{\large(}t,y{\large)}+
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vstavimo sedaj izpeljani $B$ nazaj v izraz za $y(t+h)_{\textrm{Runge-Kutta}}$:
 $$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+c_0\,f\left(t,y\right)\,h +c_1
@@ -2069,29 +2203,26 @@ f{\large(}t,y{\large)}+
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nadaljujemo z izpeljevanjem in enačbo preoblikujemo, da bo podobna zgoraj izpeljani s Taylorjevo vrsto $y(t+h)_{\textrm{Taylor}}$:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+(c_0+c_1)\,f\left(t,y\right)\,h +\frac{1}{2}
+$$y(t+h)_{\textrm{Runge-Kutta}}=y(t)+(c_0+c_1)\,f\left(t,y\right)\,h +\frac{1}{2}
 {\LARGE(}
 \frac{\partial f(t,y)}{\partial t}\,2\,c_1\,p+
 2\,c_1\,q\,\frac{\partial f(t,y)}{\partial y}\,f(t, y)
 {\LARGE)}
-\,h^2.$$</p>
+\,h^2.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primerjajmo sedaj z zgoraj izpeljanim izrazom:
 $$y(t+h)_{\textrm{Taylor}}=y(t)+f(t,y)\,h + \frac{1}{2}\,{\LARGE(}
@@ -2101,46 +2232,39 @@ $$y(t+h)_{\textrm{Taylor}}=y(t)+f(t,y)\,h + \frac{1}{2}\,{\LARGE(}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da za enakost mora veljati:</p>
-<p>$$c_0+c_1=1,\qquad 2\,c_1\,p=1,\qquad 2\,c_1\,q=1.$$</p>
-<p>Imamo torej tri enačbe in štiri neznanke. Eno od konstant si tako lahko poljubno izberemo, ostale tri pa izračunamo. Če na primer izberemo $c_0=0$, bi to imenovali <em>spremenjena Eulerjeva metoda</em> in bi ostali parametri bili: $c_1=1$, $p=q=1/2$. Izbira parametrov nima bistvenega vpliva rešitev. Sicer pa velja omeniti, da metodo Runge-Kutta drugega reda redko uporabljamo, saj obstajajo boljše metode.</p>
+$$c_0+c_1=1,\qquad 2\,c_1\,p=1,\qquad 2\,c_1\,q=1.$$<p>Imamo torej tri enačbe in štiri neznanke. Eno od konstant si tako lahko poljubno izberemo, ostale tri pa izračunamo. Če na primer izberemo $c_0=0$, bi to imenovali <em>spremenjena Eulerjeva metoda</em> in bi ostali parametri bili: $c_1=1$, $p=q=1/2$. Izbira parametrov nima bistvenega vpliva rešitev. Sicer pa velja omeniti, da metodo Runge-Kutta drugega reda redko uporabljamo, saj obstajajo boljše metode.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Parametre $c_0$, $c_1$, $p$ in $q$ vstavimo v prvo enačbo tega poglavja. Ko je definiran začetni čas $t_0$ in začetni pogoj $y_0$, uporabimo metodo Runge-Kutta drugega reda:</p>
-<p>$$y_{i+1} = y_i + f\left(t_i+\frac{1}{2}\,h, y_i+\frac{1}{2}\,h\,f(t_i,y_i)\right)\,h.$$</p>
+$$y_{i+1} = y_i + f\left(t_i+\frac{1}{2}\,h, y_i+\frac{1}{2}\,h\,f(t_i,y_i)\right)\,h.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Metoda-Runge-Kutta-četrtega-reda">Metoda Runge-Kutta četrtega reda<a class="anchor-link" href="#Metoda-Runge-Kutta-četrtega-reda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno kot smo izpeljali metodo Runge-Kutta drugea reda, se izpelje metodo Runge Kutta četrtega reda. Tudi pri metodi četrtega reda obstaja več različic in kot metoda Runge-Kutta četrtega reda razumemo naslednjo metodo:</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>$$y_{i+1}=y_i+\frac{1}{6}(k_0+2\,k_1+2\,k_2+k_3),$$
-kjer so:
+$$y_{i+1}=y_i+\frac{1}{6}(k_0+2\,k_1+2\,k_2+k_3),$$<p>kjer so:
 $$\begin{align}
 k_0&=h\,f(t_i,y_i)\\
 k_1&=h\,f\left(t_i+\frac{h}{2},y_i+\frac{k_0}{2}\right)\\
@@ -2152,8 +2276,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Koraki metode Runge-Kutta četrtega reda so:</p>
 <ol>
@@ -2167,35 +2290,30 @@ $$y_{i+1}=y_i+\frac{1}{6}(k_0+2\,k_1+2\,k_2+k_3),$$</li>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Napaka-metode-Runge-Kutta-četrtega-reda">Napaka metode Runge-Kutta četrtega reda<a class="anchor-link" href="#Napaka-metode-Runge-Kutta-četrtega-reda">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metodo Runge-Kutta četrtega reda imenujemo tako zato, ker ima lokalno napako petega reda $\mathcal{O}(h^5)$, vendar pa to napako naredimo $n$-krat, zato je globalna napaka četrtega reda $\mathcal{O}(h^4)$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Ocena-napake">Ocena napake<a class="anchor-link" href="#Ocena-napake">¶</a></h3><p>Točen rezultat $y(t_n)$ pri velikosti koraka $h$ je:</p>
-<p>$$y(t_n)=y_{n,h}+E_h,$$
-kjer je $y_{n,h}$ numerični približek rešitve in $E_h$ napaka metode. Ker je globalna napaka četrtega reda, lahko napako zapišemo tako:</p>
-<p>$$E_h=k\,h^4.$$</p>
+$$y(t_n)=y_{n,h}+E_h,$$<p>kjer je $y_{n,h}$ numerični približek rešitve in $E_h$ napaka metode. Ker je globalna napaka četrtega reda, lahko napako zapišemo tako:</p>
+$$E_h=k\,h^4.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno lahko za velikost koraka $2h$ zapišemo:
 $$y(t_n)=y_{n,2h}+E_{2h},$$</p>
@@ -2205,29 +2323,25 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ob predpostavki, da je konstanta $k$ pri koraku $h$ in koraku $2h$ enaka, lahko izračunamo oceno napake pri boljšem približku $E_h$.</p>
 <p>Najprej je res:</p>
-<p>$$y_{n,h}+k\,h^4=y_{n,2h}+16\,k\,h^4,$$</p>
+$$y_{n,h}+k\,h^4=y_{n,2h}+16\,k\,h^4,$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>sledi:</p>
-<p>$$15\,k\,h^4=y_{n,h}-y_{n,2h}$$</p>
-<p>in nato določimo <em>oceno napake</em> natančnejše rešitve:</p>
-<p>$$E_h=\frac{y_{n,h}-y_{n,2h}}{15}.$$</p>
+$$15\,k\,h^4=y_{n,h}-y_{n,2h}$$<p>in nato določimo <em>oceno napake</em> natančnejše rešitve:</p>
+$$E_h=\frac{y_{n,h}-y_{n,2h}}{15}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
@@ -2271,8 +2385,7 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija za oceno napake:</p>
 </div>
@@ -2301,16 +2414,14 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo sedaj primer izračuna hitrosti padajoče mase:</p>
 </div>
@@ -2329,8 +2440,7 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podajmo začetni pogoj in časovni vektor, kjer nas zanima rezultat:</p>
 </div>
@@ -2360,8 +2470,7 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za primerjavo izračunajmo rešitev s funkcijo <code>euler</code> ter <code>runge_kutta_4</code>:</p>
 </div>
@@ -2380,8 +2489,7 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -2416,8 +2524,7 @@ $$E_{2h}=k\,(2\,h)^4=16\,k\,h^4.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še numerično napako:</p>
 </div>
@@ -2470,40 +2577,35 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri zmanjšanju koraka na desetino, se je napaka zmanjšala za približno $10^4$-krat (kar ustreza pričakovanjem za metodo četrtega reda).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uporaba-scipy-za-reševanje-navadnih-diferencialnih-enačb">Uporaba <code>scipy</code> za reševanje navadnih diferencialnih enačb<a class="anchor-link" href="#Uporaba-scipy-za-reševanje-navadnih-diferencialnih-enačb">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Paket <code>scipy</code> ima implementiranih <a href="https://docs.scipy.org/doc/scipy/reference/integrate.html#solving-initial-value-problems-for-ode-systems">veliko numeričnih metod</a> za reševanje začetnih problemov navadnih diferencialnih enačb. Tukaj si bomo ogledali funkcijo <code>scipy.integrate.solve_ivp</code>, ki je primerna za večino začetnih problemov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="scipy.integrate.solve_ivp"><code>scipy.integrate.solve_ivp</code><a class="anchor-link" href="#scipy.integrate.solve_ivp">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sintaksa za uporabo (IVP - <em>angl.</em> Initial Value Problem):</p>
 <div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'RK45'</span><span class="p">,</span> 
@@ -2514,8 +2616,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pojasnilo vseh argumentov je v <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy-integrate-solve-ivp">dokumentaciji</a>, tukaj bomo izpostavili nekatere:</p>
 <ul>
@@ -2531,8 +2632,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat klicanja <code>solve_ivp</code> je objekt z atributi (izbrani):</p>
 <ul>
@@ -2545,16 +2645,14 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo začetni pogoj in časovni vektor, kjer nas zanima rezultat (prikažemo samo prvih deset elementov):</p>
 </div>
@@ -2584,8 +2682,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Argumente (npr.: <code>c=0.4</code>) v funkcijo <code>fun</code> vpeljemo prek <code>lambda</code> izraza (<a href="https://docs.python.org/tutorial/controlflow.html#lambda-expressions">dokumentacija</a>):</p>
 </div>
@@ -2604,8 +2701,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj uporabljen <code>lambda</code> izraz <code>lambda t, y: f_zračni_upor(t, y, c=0.4)</code> je ekvivalenten:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ime_funkcije</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -2615,8 +2711,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo rezultat:</p>
 </div>
@@ -2657,16 +2752,14 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker je <code>solve_ivp</code> že pripravljen za sistem navadnih diferencialnih enačb prvega reda, je rezultat podan v dveh dimenzijah. Iskan rezultat je torej: <code>y_ivp.y[0]</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za primerjavo še rezultat z lastno implementacijo Runge-Kutta 4. reda:</p>
 </div>
@@ -2706,8 +2799,7 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -2742,16 +2834,14 @@ $$3.859904988227451e-12$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Sistem-navadnih-diferencialnih-enačb">Sistem navadnih diferencialnih enačb<a class="anchor-link" href="#Sistem-navadnih-diferencialnih-enačb">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo si pogledali reševanje začetnega problema ene navadne diferencialne enačbe; sedaj bomo reševanje posplošili na <em>začetni problem za sistem $m$ navadnih diferencialnih enačb prvega reda</em>.</p>
 <p>Takšen sistem zapišemo:
@@ -2763,16 +2853,14 @@ S $t$ smo označili neodvisno spremenljivko (ni nujno, da je to vedno čas) in $
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Računamo rešitev sistema $m$ diferencialnih enačb $\mathbf{y}'=\mathbf{f}(t, \mathbf{y})$ pri $a=t_0, t_1,\dots,t_{n-1}=b$, to je $m$ funkcijskih vrednosti na vsakem koraku $y_k(t_i)$, $k=0,1,\dots,m-1$ in $i=0,1,\dots,n-1$. Lahko se dokaže, da lahko uporabimo vsako metodo, ki smo jo izpeljali za diferencialne enačbe prvega reda tudi za sistem navadnih diferencialnih enačb prvega reda, če zamenjamo skalarne veličine z ustreznimi vektorskimi.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2><p>Metodi Euler in Runge-Kutta četrtega reda potrebujeta zgolj malenkostne popravke (<code>y0</code> je numerično polje <code>f</code> vrne seznam vrednosti odvodov):</p>
 </div>
@@ -2845,8 +2933,7 @@ S $t$ smo označili neodvisno spremenljivko (ni nujno, da je to vedno čas) in $
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h3><p>Padanje mase nadgradimo v ravninsko gibanje; velikost sile upora zraka naj bo definirana kot:
 $$|\mathbf{F}(\mathbf{v})|=c\,|\mathbf{v}|^2.$$
@@ -2856,8 +2943,7 @@ Sila upora zraka deluje v nasprotno stran kot kaže vektor hitrosti.
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ob pomoči slike, definiramo silo v $x$ smeri:
 $$F_x=-c\,\left(v_x^2+v_y^2\right)\,\cos(\alpha)=-c\,\left(v_x^2+v_y^2\right)\,\frac{v_x}{\sqrt{v_x^2+v_y^2}}=-c\,v_x\,\sqrt{v_x^2+v_y^2}.$$</p>
@@ -2867,20 +2953,16 @@ $$F_y=-c\,v_y\,\sqrt{v_x^2+v_y^2}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na drugi Newtonov zakon zapišemo sistem dveh (vezanih) diferencialnih enačb prvega reda:</p>
-<p>$$F_x=m\,v_x',$$
-$$m\,g+F_y=m\,v_y',$$</p>
-<p>$m$ je masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora ter $v_x$ in $v_y$ hitrost v $x$ oz $y$ smeri. Diferencialno enačbo bi želeli rešiti glede na začetni pogoj:</p>
-<p>$$v_x(0)=v_y(0)=5\,\textrm{m/s}.$$</p>
+$$F_x=m\,v_x',$$$$m\,g+F_y=m\,v_y',$$<p>$m$ je masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora ter $v_x$ in $v_y$ hitrost v $x$ oz $y$ smeri. Diferencialno enačbo bi želeli rešiti glede na začetni pogoj:</p>
+$$v_x(0)=v_y(0)=5\,\textrm{m/s}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo seznam desnih strani:</p>
 </div>
@@ -2900,8 +2982,7 @@ $$m\,g+F_y=m\,v_y',$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo začetni pogoj in časovni vektor, kjer nas zanima rezultat:</p>
 </div>
@@ -2931,8 +3012,7 @@ $$m\,g+F_y=m\,v_y',$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za primerjavo izračunajmo rešitev s funkcijo <code>runge_kutta_4</code> ter <code>solve_ivp</code>:</p>
 </div>
@@ -2951,8 +3031,7 @@ $$m\,g+F_y=m\,v_y',$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo rezultat:</p>
 </div>
@@ -3003,8 +3082,7 @@ $$m\,g+F_y=m\,v_y',$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -3039,50 +3117,42 @@ $$m\,g+F_y=m\,v_y',$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Preoblikovanje-diferencialne-enačbe-višjega-reda-v-sistem-diferencialnih-enačb-prvega-reda">Preoblikovanje diferencialne enačbe višjega reda v sistem diferencialnih enačb prvega reda<a class="anchor-link" href="#Preoblikovanje-diferencialne-enačbe-višjega-reda-v-sistem-diferencialnih-enačb-prvega-reda">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo, kako navadno diferencialno enačbo poljubnega reda $n$:</p>
-<p>$$y^{(n)}=f(t, y, y', y'',\dots,y^{(n-1)}),$$</p>
-<p>pri začetnih pogojih:
+$$y^{(n)}=f(t, y, y', y'',\dots,y^{(n-1)}),$$<p>pri začetnih pogojih:
 $$y(t_0)=k_0,\quad y'(t_0)=k_1,\quad\dots\quad y^{(n-1)}(t_0)=k_{n-1}$$</p>
 <p>preoblikujemo v sistem diferencialnih enačb prvega reda.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej namesto odvodov vpeljemo nove spremenljivke:</p>
-<p>$$y_i=y^{(i)}, \qquad i=0,1,\dots,n-1.$$</p>
-<p>Diferencialna enačba $n$-tega reda zapisana z novimi spremenljivkami je:</p>
-<p>$$y_{n-1}'=f(t, y_0, y_1, y_2,\dots,y_{n-1}).$$</p>
+$$y_i=y^{(i)}, \qquad i=0,1,\dots,n-1.$$<p>Diferencialna enačba $n$-tega reda zapisana z novimi spremenljivkami je:</p>
+$$y_{n-1}'=f(t, y_0, y_1, y_2,\dots,y_{n-1}).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nove funkcije odvajamo po neodvisni spremenljivki:</p>
-<p>$$y_i'=y^{(i+1)}=y_{i+1}, \qquad i=0,1,\dots,n-2$$
-in
+$$y_i'=y^{(i+1)}=y_{i+1}, \qquad i=0,1,\dots,n-2$$<p>in
 $$y_{n-1}'=f(t, y_0, y_1, y_2,\dots,y_{n-1}).$$</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dobili smo sistem navadnih diferencialnih enačb prvega reda:
 $$
@@ -3099,16 +3169,14 @@ $$y_0(t_0)=k_0,\quad y_1(t_0)=k_1,\quad\dots\quad y_{(n-1)}(t_0)=k_{n-1}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vrnemo se  k padajoči masi:
 <img src="fig/padanje_telesa_vezano.png" width="250"></p>
@@ -3116,29 +3184,24 @@ $$y_0(t_0)=k_0,\quad y_1(t_0)=k_1,\quad\dots\quad y_{(n-1)}(t_0)=k_{n-1}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vendar tokrat drugi Newtonov zakon zapišimo glede na pomik (diferencialna enačba drugega reda):</p>
-<p>$$F_x=m\,x'',$$
-$$m\,g+F_y=m\,y'',$$</p>
-<p>$m$ je masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora ter $x''$ in $y''$ pospešek v izbranem koordinatnem sistemu. Začetni pogoji:</p>
-<p>$$x(0)=y(0)=0\,\textrm{m}\qquad\textrm{in}\qquad x'(0)= y'(0)=5\,\textrm{m/s}.$$</p>
+$$F_x=m\,x'',$$$$m\,g+F_y=m\,y'',$$<p>$m$ je masa, $g$ gravitacijski pospešek, $c$ koeficient zračnega upora ter $x''$ in $y''$ pospešek v izbranem koordinatnem sistemu. Začetni pogoji:</p>
+$$x(0)=y(0)=0\,\textrm{m}\qquad\textrm{in}\qquad x'(0)= y'(0)=5\,\textrm{m/s}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Imamo sistem dveh diferencialnih enačb drugega reda. Z uvedbo novih spremenljivk $y_i$:</p>
-<p>$$y_0= x,\quad y_1= x',\quad y_2= y,\quad y_3= y'.$$</p>
+$$y_0= x,\quad y_1= x',\quad y_2= y,\quad y_3= y'.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo sistem diferencialnih enačb prvega reda:
 $$
@@ -3153,8 +3216,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo Pythonovo funkcijo desnih strani / prvih odvodov:</p>
 </div>
@@ -3174,8 +3236,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo začetni pogoj in časovni vektor, kjer nas zanima rezultat:</p>
 </div>
@@ -3205,8 +3266,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunamo rešitev:</p>
 </div>
@@ -3224,8 +3284,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo rezultat ($[x, x', y, y']$):</p>
 </div>
@@ -3256,8 +3315,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultate; najprej hitrost, nato lego ($y$ koordinata je pozitivna navzdol)!</p>
 </div>
@@ -3318,16 +3376,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Stabilnost-reševanja-diferencialnih-enačb*">Stabilnost reševanja diferencialnih enačb*<a class="anchor-link" href="#Stabilnost-reševanja-diferencialnih-enačb*">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerično reševane diferencialnih enačb je izpostavljeno <em>napaki metode</em> in <em>zaokrožitveni napaki</em>. Te napake so pri različnih numeričnih metodah različne.</p>
 <p>Reševanje diferencialne enačbe je <strong>stabilno</strong>, če majhna sprememba začetnega pogoja vodi v majhno spremembo izračunane rešitve; sicer govorimo o <strong>nestabilnosti reševanja</strong>.</p>
@@ -3336,59 +3392,50 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Primer-preprostega-nihala">Primer preprostega nihala<a class="anchor-link" href="#Primer-preprostega-nihala">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si najprej primer reševanja diferencialne enačbe preprostega nihala.
 <img src="./fig/Slavic-slika-3.6.png" width="150"></p>
 <p>Slika (vir: Slavič, Dinamika, mehanska nihanja in mehanika tekočin, 2014) prikazuje dinamski sistem (masa $m$, togost $k$), katerega diferencialna enačba je</p>
-<p>$$m\, x'' + k\,x=0.$$</p>
+$$m\, x'' + k\,x=0.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tako diferencialno enačbo preoblikujemo v standardno obliko lastnega nihanja:</p>
-<p>$$x'' + \omega_0^2\,x=0,$$</p>
-<p>kjer je lastna krožna frekvenca:</p>
-<p>$$\omega_0=\sqrt{\frac{k}{m}}$$</p>
-<p>in pričakujemo odziv oblike:</p>
-<p>$$x(t)=A\,\cos(\omega_0\,t)+B\,\sin(\omega_0\,t).$$</p>
+$$x'' + \omega_0^2\,x=0,$$<p>kjer je lastna krožna frekvenca:</p>
+$$\omega_0=\sqrt{\frac{k}{m}}$$<p>in pričakujemo odziv oblike:</p>
+$$x(t)=A\,\cos(\omega_0\,t)+B\,\sin(\omega_0\,t).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če so začetni pogoji:</p>
-<p>$$x(0\,\textrm{s})=x_0\qquad\textrm{in}\qquad x'(0\,\textrm{s})=0\,\textrm{m/s},$$</p>
-<p>je rešitev začetnega problema:</p>
-<p>$$x(t)=x_0\,\cos(\omega_0\,t).$$</p>
+$$x(0\,\textrm{s})=x_0\qquad\textrm{in}\qquad x'(0\,\textrm{s})=0\,\textrm{m/s},$$<p>je rešitev začetnega problema:</p>
+$$x(t)=x_0\,\cos(\omega_0\,t).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerični-zgled">Numerični zgled<a class="anchor-link" href="#Numerični-zgled">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej definirajmo vektor začetnih pogojev in funkcijo desnih strani / prvih odvodov (diferencialno enačbo drugega reda pretvorimo v sistem diferencialnih enačb prvega reda $\mathbf{y}'=\mathbf{f}(t, \mathbf{y})$), kjer velja $y_0=x, y_1=x'$:</p>
 </div>
@@ -3415,8 +3462,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo podatke in analitično rešitev:</p>
 </div>
@@ -3440,8 +3486,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev s pomočjo metod Euler in Runge-Kutta četrtega reda:</p>
 </div>
@@ -3464,8 +3509,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo rezultate:</p>
 </div>
@@ -3501,16 +3545,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da je Eulerjeva metoda nestabilna in če bi povečali korak, bi postala nestabilna tudi metoda Runge-Kutta četrtega reda.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Zakaj-je-Eulerjeva-metoda-tako-nestabilna?">Zakaj je Eulerjeva metoda tako nestabilna?<a class="anchor-link" href="#Zakaj-je-Eulerjeva-metoda-tako-nestabilna?">¶</a></h3>
 </div>
@@ -3539,37 +3581,32 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spomnimo se Eulerjeve metode:</p>
-<p>$$x(t+h)=x(t)+x'(t)\,h,$$</p>
-<p>ki nam pove, da pomik $x(t+h)$ določimo glede na lego $x(t)$ in hitrost $x'(t)$. Začetni pogoji izhajajo iz skrajnega odmika $x(t=0)=1$ in takrat je hitrost $x'(t=0)=0$, kar pomeni, da bo $x(t+h)=1$. Že v prvem koraku torej naredimo razmeroma veliko napako. Vendar zakaj potem začne vrednost alternirajoče naraščati?</p>
+$$x(t+h)=x(t)+x'(t)\,h,$$<p>ki nam pove, da pomik $x(t+h)$ določimo glede na lego $x(t)$ in hitrost $x'(t)$. Začetni pogoji izhajajo iz skrajnega odmika $x(t=0)=1$ in takrat je hitrost $x'(t=0)=0$, kar pomeni, da bo $x(t+h)=1$. Že v prvem koraku torej naredimo razmeroma veliko napako. Vendar zakaj potem začne vrednost alternirajoče naraščati?</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spomnimo se, da je analitična rešitev $x(t)=x_0\,\cos(\omega_0\,t)$ in je torej $x'(t)=-\omega_0\,x_0\,\sin(\omega_0\,t)$.</p>
 <p>Vstavimo pripravljena izraza v Eulerjevo metodo in uredimo:</p>
-<p>$$x(t+h)=x(t)+x'(t)\,h=x_0\,\left(\cos(\omega_0\,t)-\omega_0\,h\,\sin(\omega_0\,t)\right).$$</p>
+$$x(t+h)=x(t)+x'(t)\,h=x_0\,\left(\cos(\omega_0\,t)-\omega_0\,h\,\sin(\omega_0\,t)\right).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Predpostavimo, da gledamo stanje ob takem času $t=\pi/(2\omega_0)$, ko velja $\cos(\omega_0\,t)=0$ in $\sin(\omega_0\,t)=1$:</p>
-<p>$$x(t+h)=x_0\,\underbrace{\left(-\omega_0\,h\right)}_{A}.$$</p>
+$$x(t+h)=x_0\,\underbrace{\left(-\omega_0\,h\right)}_{A}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V kolikor bo absolutna vrednost izraza $A$ večja kot 1, bo pri času $t+h$ vrednost večja kot v predhodnem koraku in v sledečem verjetno spet. Sledi, da lahko pride do nestabilnosti. Da se je izognemo, mora veljati:
 $$|A|<1\qquad\rightarrow\qquad h<\frac{1}{\omega_0}.$$</p>
@@ -3577,24 +3614,21 @@ $$|A|<1\qquad\rightarrow\qquad h<\frac{1}{\omega_0}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: v nekaterih knjigah boste videli tudi vrednost $h<2/\omega_0$; enoliče meje za vse diferencialne enačbe ni mogoče definirati; v splošnem pa velja, da je korak definiran relativno glede na najkrajšo periodo $T$ v diferencialni enačbi (npr.: $h<2/\omega_0$ je v bistvu enako $h<2/(2\pi/T)$ oziroma $h<T/\pi$). Perioda $T$ je definirana glede na najvišjo lastno frekvenco sistema $T=1/f_{\textrm{max}}$, ki jo izračunamo iz lastne vrednosti sistema.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Na sliki (vir: Numerical Methods in Engineering With Python 3, 3rd Ed, Jaan Kiusalaas) je prikazan izstrelek mase $m$, ki ga izstrelimo s hitrosjo $v_0$ pod kotom $\alpha$. Če je sila upora zraka: $F=c\,v^{3/2}$, potem sta gibalni enačbi:
@@ -3612,16 +3646,14 @@ Sistem dveh diferencialnih enačb drugega reda zapišite v sistem diferencialnih
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Primer-Van-der-Polovega-nihala">Primer Van der Polovega nihala<a class="anchor-link" href="#Primer-Van-der-Polovega-nihala">¶</a></h2><p>Namen tega primera je pokazati, kako lahko izbira integratorja vpliva na hitrost reševanja problema! Van der Polovo nihalo je opisano <a href="http://en.wikipedia.org/wiki/Van_der_Pol_oscillator">tukaj</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo seznam odvodov:</p>
 </div>
@@ -3661,8 +3693,7 @@ Sistem dveh diferencialnih enačb drugega reda zapišite v sistem diferencialnih
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev po metodi RK45 (gre za eksplicitno shemo, ki ni primerna za toge sisteme diferencialnih enačb; reševanje je zelo počasno, zato rešitev računamo samo do <code>t1/100</code>):</p>
 </div>
@@ -3680,8 +3711,7 @@ Sistem dveh diferencialnih enačb drugega reda zapišite v sistem diferencialnih
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Implicitna shema BDF (<em>angl.</em> Backward Differentiation Formulas) se tukaj izkaže kot bistveno bolj primerna. Zaradi stabilnosti, so koraki lahko bistveno večji in zato je reševanje bistveno hitrejše:</p>
 </div>
@@ -3724,16 +3754,14 @@ Sistem dveh diferencialnih enačb drugega reda zapišite v sistem diferencialnih
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Simbolno-reševanje-diferencialne-enačbe-drugega-reda">Simbolno reševanje diferencialne enačbe drugega reda<a class="anchor-link" href="#Simbolno-reševanje-diferencialne-enačbe-drugega-reda">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo primer, prikazan na sliki, kjer je masa $m$ na klancu naklona $\alpha$. Koeficient trenja je $\mu$, težnostni pospešek pa $g$. Začetna hitrost je $\dot y(0\,\textrm{s})=v_0$, pomik $y(0\,\textrm{s})=0\,\textrm{m}$.
 <img src="./fig/masa_na_klancu.png" width="350">
@@ -3742,8 +3770,7 @@ Gibalna enačba (samo za smer $y$) je definirana glede na II. Newtonov zakon (gl
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Izpeljava-gibalne-enačbe">Izpeljava gibalne enačbe<a class="anchor-link" href="#Izpeljava-gibalne-enačbe">¶</a></h3>
 </div>
@@ -3774,8 +3801,7 @@ $$m \frac{d^{2}}{d t^{2}} y{\left (t \right )} = - g m \mu \cos{\left (\alpha \r
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev enačbe je:</p>
 </div>
@@ -3804,8 +3830,7 @@ $$y{\left (t \right )} = C_{1} + C_{2} t + \frac{g t^{2} \left(- \mu \cos{\left 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Da določimo $C_1$ in $C_2$, vstavimo $t=0\,\textrm{s}$:</p>
 </div>
@@ -3833,8 +3858,7 @@ $$C_{1}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato odvajamo po času in ponovno vstavimo $t=0\,\textrm{s}$:</p>
 </div>
@@ -3862,8 +3886,7 @@ $$C_{2}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na začetne pogoje smo torej določili konstante:</p>
 </div>
@@ -3881,8 +3904,7 @@ $$C_{2}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sledi rešitev:</p>
 </div>
@@ -3911,8 +3933,7 @@ $$\frac{g t^{2} \left(- \mu \cos{\left (\alpha \right )} + \sin{\left (\alpha \r
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo si funkciji za numerični klic:</p>
 </div>
@@ -3948,8 +3969,7 @@ Hitrost pri 0s: 1m/s
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo prikaz:</p>
 </div>
@@ -4009,16 +4029,14 @@ Hitrost pri 0s: 1m/s
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Simbolno-preoblikovanje-diferencialne-enačbe-v-sistem-diferencialnih-enačb-prvega-reda">Simbolno preoblikovanje diferencialne enačbe v sistem diferencialnih enačb prvega reda<a class="anchor-link" href="#Simbolno-preoblikovanje-diferencialne-enačbe-v-sistem-diferencialnih-enačb-prvega-reda">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spomnimo se izvorne diferencialne enačbe:</p>
 </div>
@@ -4046,8 +4064,7 @@ $$m \frac{d^{2}}{d t^{2}} y{\left (t \right )} = - g m \mu \cos{\left (\alpha \r
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo nove spremenljivke in pripravimo funkcijo $f$:</p>
 </div>
@@ -4078,8 +4095,7 @@ $$g \left(- \mu \cos{\left (\alpha \right )} + \sin{\left (\alpha \right )}\righ
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Povežimo sedaj nove spremenljivke.</p>
 <p>$d y_0/dt$ naj bo enako $y_1$:</p>
@@ -4109,8 +4125,7 @@ $$\frac{d}{d t} \operatorname{y_{0}}{\left (t \right )} = \operatorname{y_{1}}{\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvod $d y_1/dt$ (v bistvu je to $y''$) naj bo enak funkciji $f$:</p>
 </div>
@@ -4139,8 +4154,7 @@ $$\frac{d}{d t} \operatorname{y_{1}}{\left (t \right )} = g \left(- \mu \cos{\le
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornje izraze zapišemo v vektorski obliki:
 $$\mathbf{y}'=\mathbf{f}(t, \mathbf{y}).$$</p>
@@ -4192,8 +4206,7 @@ $$\left [ \operatorname{y_{1}}{\left (t \right )}, \quad g \left(- \mu \cos{\lef
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spomnimo se sedaj <code>f_vec</code>:</p>
 </div>
@@ -4221,8 +4234,7 @@ $$\left [ \operatorname{y_{1}}{\left (t \right )}, \quad g \left(- \mu \cos{\lef
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če rešujemo numerično, potem funkcijo $\mathbf{f}(t, \mathbf{y})$ zapišemo:</p>
 </div>
@@ -4263,8 +4275,7 @@ $$-0.3037048743129991$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo funkcijo pri začetnem času $t=0\,$s in pri začetnih pogojih $[y_0, y_1]=[0, v_0]$:</p>
 </div>
@@ -4314,8 +4325,7 @@ $$-0.3037048743129991$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo sedaj Eulerjevo metodo:</p>
 </div>
@@ -4350,8 +4360,7 @@ $$-0.3037048743129991$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo in primerjamo z analitično rešitvijo:</p>
 </div>
@@ -4394,10 +4403,10 @@ $$-0.3037048743129991$$
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="031a4e9f-5f8f-4b14-9b22-07abb0a31a60"></div>
+<div id="510ada3f-cc23-408f-b5c2-07e1abe40fc5"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#031a4e9f-5f8f-4b14-9b22-07abb0a31a60');
+var element = $('#510ada3f-cc23-408f-b5c2-07e1abe40fc5');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1a7750db51ab48e18ef0dd6bc5d04f6b", "version_major": 2, "version_minor": 0}

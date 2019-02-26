@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Funkcija-print-1" href="#Funkcija-print"><span class="toc-item-num">1  </span>Funkcija print</a></span></li><li><span><a data-toc-modified-id="Oblikovanje-nizov-2" href="#Oblikovanje-nizov"><span class="toc-item-num">2  </span>Oblikovanje nizov</a></span></li><li><span><a data-toc-modified-id="Funkcije-3" href="#Funkcije"><span class="toc-item-num">3  </span>Funkcije</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Posredovanje-argumentov-v-funkcije-3.1" href="#Posredovanje-argumentov-v-funkcije"><span class="toc-item-num">3.1  </span>Posredovanje argumentov v funkcije</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-dobre-prakse-pri-definiranju-argumentov-3.1.1" href="#Primer-dobre-prakse-pri-definiranju-argumentov"><span class="toc-item-num">3.1.1  </span>Primer dobre prakse pri definiranju argumentov</a></span></li><li><span><a data-toc-modified-id="Posredovanje-funkcij-kot-argument-3.1.2" href="#Posredovanje-funkcij-kot-argument"><span class="toc-item-num">3.1.2  </span>Posredovanje funkcij kot argument</a></span></li></ul></li><li><span><a data-toc-modified-id="Docstring-funkcije-3.2" href="#Docstring-funkcije"><span class="toc-item-num">3.2  </span>Docstring funkcije</a></span></li><li><span><a data-toc-modified-id="Lokalna/globalna-imena-3.3" href="#Lokalna/globalna-imena"><span class="toc-item-num">3.3  </span>Lokalna/globalna imena</a></span></li><li><span><a data-toc-modified-id="return-3.4" href="#return"><span class="toc-item-num">3.4  </span><code>return</code></a></span></li><li><span><a data-toc-modified-id="Anonimna-funkcija/izraz-3.5" href="#Anonimna-funkcija/izraz"><span class="toc-item-num">3.5  </span>Anonimna funkcija/izraz</a></span></li></ul></li><li><span><a data-toc-modified-id="Delo-z-datotekami-4" href="#Delo-z-datotekami"><span class="toc-item-num">4  </span>Delo z datotekami</a></span></li><li><span><a data-toc-modified-id="Obravnavanje-izjem-5" href="#Obravnavanje-izjem"><span class="toc-item-num">5  </span>Obravnavanje izjem</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Proženje-izjem-5.1" href="#Proženje-izjem"><span class="toc-item-num">5.1  </span>Proženje izjem</a></span></li></ul></li><li><span><a data-toc-modified-id="Izpeljevanje-seznamov-6" href="#Izpeljevanje-seznamov"><span class="toc-item-num">6  </span>Izpeljevanje seznamov</a></span></li><li><span><a data-toc-modified-id="Osnove-modulov-7" href="#Osnove-modulov"><span class="toc-item-num">7  </span>Osnove modulov</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Uvoz-modulov-in-Jupyter-notebook-7.1" href="#Uvoz-modulov-in-Jupyter-notebook"><span class="toc-item-num">7.1  </span>Uvoz modulov in Jupyter notebook</a></span></li><li><span><a data-toc-modified-id="Modul-pickle-7.2" href="#Modul-pickle"><span class="toc-item-num">7.2  </span>Modul <code>pickle</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-8" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">8  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-9" href="#Dodatno"><span class="toc-item-num">9  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Oblikovanje-datuma-in-časa-9.1" href="#Oblikovanje-datuma-in-časa"><span class="toc-item-num">9.1  </span>Oblikovanje datuma in časa</a></span></li><li><span><a data-toc-modified-id="Uporabljajte-www.stackoverflow.com!-9.2" href="#Uporabljajte-www.stackoverflow.com!"><span class="toc-item-num">9.2  </span>Uporabljajte <a href="http://www.stackoverflow.com" target="_blank">www.stackoverflow.com</a>!</a></span></li><li><span><a data-toc-modified-id="Nekateri-moduli-9.3" href="#Nekateri-moduli"><span class="toc-item-num">9.3  </span>Nekateri moduli</a></span></li><li><span><a data-toc-modified-id="Modul-sys-9.4" href="#Modul-sys"><span class="toc-item-num">9.4  </span>Modul <code>sys</code></a></span></li><li><span><a data-toc-modified-id="Modul-os-9.5" href="#Modul-os"><span class="toc-item-num">9.5  </span>Modul <code>os</code></a></span></li></ul></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Funkcija-print">Funkcija print<a class="anchor-link" href="#Funkcija-print">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>print</code> predstavlja eno od najbolj pogosto uporabljenih funkcij. Vse podane argumente izpiše, mednje da presledek, na koncu pa gre v novo vrstico.</p>
 <p>Poglejmo primer:</p>
@@ -1454,8 +1628,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za bolj splošno uporabo glejmo <a href="https://docs.python.org/library/functions.html#print">dokumentacijo</a>:</p>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
@@ -1472,8 +1645,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri argumentu <code>end</code> smo zgoraj uporabili t. i. <strong>izhodni znak</strong> (angl. <em>escape character</em>): <strong>\</strong>.</p>
 <p>Namen izhodnega znaka je, da sledečemu znaku da poseben pomen, nekatere pogoste uporabe so:</p>
@@ -1489,8 +1661,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer (kako ponavadi ne programiramo):</p>
 </div>
@@ -1520,8 +1691,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In še primer z izhodnimi znaki:</p>
 </div>
@@ -1554,16 +1724,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Oblikovanje-nizov">Oblikovanje nizov<a class="anchor-link" href="#Oblikovanje-nizov">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri oblikovanju/formatiranju nizov imamo na voljo več orodij:</p>
 <ul>
@@ -1603,16 +1771,14 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>f-niz</em> je implementiran od Python verzije 3.6 naprej (<a href="https://www.python.org/dev/peps/pep-0498/">PEP 498</a>) in predstavlja najbolj enostaven način oblikovanja. Ostala načina navajamo zgolj zato, da se bralec seznani z njimi in da naredimo povezavo na dokumentacijo.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>f-niz</em> se vedno začne s <strong>f</strong> pred prvim narekovajem in omogoča zelo splošno oblikovanje (glejte <a href="https://docs.python.org/reference/lexical_analysis.html#f-strings">dokumentacijo</a>).</p>
 <p>Vrednost, ki jo želimo znotraj niza oblikovati, damo v zavite oklepaje:</p>
@@ -1622,8 +1788,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V zavitih oklepajih je:</p>
 <ul>
@@ -1641,8 +1806,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer:</p>
 </div>
@@ -1673,8 +1837,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno bi lahko naredili z metodo <em>format</em> in se sklicali na indeks argumenta:</p>
 </div>
@@ -1703,8 +1866,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer z uporabo slovarja:</p>
 </div>
@@ -1743,8 +1905,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oblikovanje s <em>fmt</em> (angl. <em>Format Specification Mini-Language</em>) je  izredno bogato. Del za dvopičjem je v  splošnem (glejte <a href="https://docs.python.org/library/string.html#formatspec">dokumentacijo</a>):</p>
 <pre><code>[[fill]align][sign][#][0][width][grouping_option][.precision][type]</code></pre>
@@ -1762,8 +1923,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Besedili poravnavamo levo z <code>"<"</code>, desno z <code>">"</code> in sredinsko <code>"^"</code>. Primer sredinske/desne poravnave (širina 20 znakov):</p>
 </div>
@@ -1835,32 +1995,28 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oblikovanje datuma, ure si lahko pogledate v dodatku spodaj.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Funkcije">Funkcije<a class="anchor-link" href="#Funkcije">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V Pythonu je veliko funkcij že vgrajenih (glejte <a href="https://docs.python.org/library/functions.html">dokumentacijo</a>); funkcije pa lahko tudi napišemo sami ali jih uvozimo iz t. i. modulov (zgoraj smo uvozili <code>datetime</code>, več si bomo pogledali pozneje).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Generični primer funkcije je (<a href="https://docs.python.org/tutorial/controlflow.html#defining-functions">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ime_funkcije</span><span class="p">(</span><span class="n">parametri</span><span class="p">):</span>
@@ -1872,8 +2028,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri tem izpostavimo:</p>
 <ul>
@@ -1888,8 +2043,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer preproste funkcije:</p>
 </div>
@@ -1930,16 +2084,14 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Posredovanje-argumentov-v-funkcije">Posredovanje argumentov v funkcije<a class="anchor-link" href="#Posredovanje-argumentov-v-funkcije">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python pozna dva načina posredovanja argumentov:</p>
 <ul>
@@ -1950,8 +2102,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si oba načina na primeru:</p>
 </div>
@@ -2000,16 +2151,14 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Priporočeno je, da argumente posredujemo z <em>imenom</em>; s tem zmanjšamo možnost napake!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če ne podamo imena, potem se privzame ime glede na vrstni red argumentov; primer:</p>
 </div>
@@ -2037,8 +2186,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V kolikor mešamo <em>pozicijsko</em> in <em>poimensko</em> posredovanje argumentov, morajo <strong>najprej biti navedeni pozicijski argumenti, šele nato poimenski</strong>. Pri tem poimenski ne sme ponovno definirati pozicijskega; ker je <code>dolžina</code> prvi argument, bi klicanje take kode:</p>
 <div class="highlight"><pre><span></span><span class="n">površina</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dolžina</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -2048,8 +2196,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Primer-dobre-prakse-pri-definiranju-argumentov">Primer dobre prakse pri definiranju argumentov<a class="anchor-link" href="#Primer-dobre-prakse-pri-definiranju-argumentov">¶</a></h3><p>Pogosto funkcije dopolnjujemo in dodajamo nove argumente ali pa število argumentov funkciji sploh ne moremo vnaprej definirati!</p>
 <p>Python s tem nima težav. Argumente, ki niso eksplicitno definirani obvladamo z:</p>
@@ -2061,8 +2208,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -2104,8 +2250,7 @@ pi = 3.14
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj pa pripravimo drugo, nadgrajeno, verzijo (omogoča enako uporabo kot prva verzija):</p>
 </div>
@@ -2176,8 +2321,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Posredovanje-funkcij-kot-argument">Posredovanje funkcij kot argument<a class="anchor-link" href="#Posredovanje-funkcij-kot-argument">¶</a></h3><p>Tukaj bi želeli izpostaviti, da so argumenti lahko tudi druge funkcije.</p>
 <p>Poglejmo si primer:</p>
@@ -2203,8 +2347,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Imamo torej dve funkciji <code>oblika_a</code> in <code>oblika_b</code>, ki malenkost drugače oblikujeta numerično vrednost.</p>
 <p>Poglejmo uporabo:</p>
@@ -2256,16 +2399,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Docstring-funkcije">Docstring funkcije<a class="anchor-link" href="#Docstring-funkcije">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>docstring</em> je neobvezen del definicije funkcije, ki dokumentira funkcijo in njeno uporabo. Iz tega stališča je zelo priporočeno, da ga uporabimo.</p>
 <p><a href="https://docs.python.org/tutorial/controlflow.html#documentation-strings">Dokumentacija</a> za docstring navaja bistvene elemente:</p>
@@ -2278,8 +2419,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer dokumentirane funkcije:</p>
 </div>
@@ -2306,8 +2446,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer klica s privzetimi argumenti (med klicem funkcije lahko s pritiskom [shift]+[tab] dostopamo do pomoči):</p>
 </div>
@@ -2335,8 +2474,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Lokalna/globalna-imena">Lokalna/globalna imena<a class="anchor-link" href="#Lokalna/globalna-imena">¶</a></h2><p>Preprosto vodilo pri funkcijah je: <strong>funkcija vidi ven, drugi pa ne vidijo noter</strong>. Funkcija ima notranja imena, ki se ne prekrivajo z istimi imeni v drugih funkcijah.</p>
 <p>Poglejmo si primer:</p>
@@ -2380,8 +2518,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker ime <code>notranja</code> zunaj funkcije <code>prva</code> ni definirano, bi klicanje:</p>
 <div class="highlight"><pre><span></span><span class="n">notranja</span>
@@ -2391,16 +2528,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj velja omeniti, da je <strong>posredovanje zunanjih imen v funkcijo mimo argumentov funkcije odsvetovano</strong>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="return"><code>return</code><a class="anchor-link" href="#return">¶</a></h2><p>Ukaz <code>return</code> vrne vrednosti iz funkcije. Doslej smo spoznali rezultate v obliki ene spremenljivke; ta spremenljivka pa je lahko tudi terka.</p>
 <p>Poglejmo si primer:</p>
@@ -2441,8 +2576,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat funkcije lahko ujamemo tako:</p>
 </div>
@@ -2471,8 +2605,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ali tako, da vrednosti razpakiramo (to sicer velja v splošnem za terke):</p>
 </div>
@@ -2501,16 +2634,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Anonimna-funkcija/izraz">Anonimna funkcija/izraz<a class="anchor-link" href="#Anonimna-funkcija/izraz">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Anonimna funkcija (glejte <a href="https://docs.python.org/tutorial/controlflow.html#lambda-expressions">dokumentacijo</a>) je funkcija, kateri ne damo imena (zato je <em>anonimna</em>), ampak jo definiramo z ukazom <code>lambda</code>. Tipična uporaba je:</p>
 <div class="highlight"><pre><span></span><span class="k">lambda</span> <span class="p">[</span><span class="n">seznam</span> <span class="n">parametrov</span><span class="p">]:</span> <span class="n">izraz</span>
@@ -2519,8 +2650,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>lambda</code> funkcijo si bomo pogledali na primeru razvrščanja:</p>
 </div>
@@ -2538,8 +2668,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>od najmanjše do največje vrednosti. To lahko izvedemo z vgrajeno metodo <code>sort</code> (<a href="https://docs.python.org/3/library/stdtypes.html#list.sort">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sort</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -2553,8 +2682,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: <code>list.sort()</code> izvede razvrščanje na obstoječem seznamu in ne vrne seznama. Funkcija <code>sorted()</code> (glejte <a href="https://docs.python.org/3/library/functions.html#sorted">dokumentacijo</a>) pa vrne seznam urejenih vrednosti.</p>
 <p>Poglejmo primer:</p>
@@ -2585,8 +2713,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj uporabimo ključ, kjer se bo za primerjavo vrednosti razvrščanja uporabila kvadratna vrednost:</p>
 </div>
@@ -2615,16 +2742,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Delo-z-datotekami">Delo z datotekami<a class="anchor-link" href="#Delo-z-datotekami">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Delo z datotekami je pomembno, saj podatke pogosto shranjujemo v datoteke ali jih beremo iz njih. Datoteko, iz katere želimo brati ali vanjo pisati, moramo najprej odpreti. To izvedemo z ukazom <code>open</code> (<a href="https://docs.python.org/library/functions.html#open">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
@@ -2635,8 +2760,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Argument <code>mode</code> je lahko:</p>
 <ul>
@@ -2652,8 +2776,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zadnji trije zanki (<code>'b'</code>, <code>'t'</code>, <code>'+'</code>) se uporabljajo v kombinaciji s prvimi tremi (<code>'r'</code>, <code>'w'</code>, <code>'x'</code>). Primer: <code>mode='r+b'</code> pomeni branje in pisanje binarne datoteke.</p>
 <p>Podrobneje bomo spoznali samo branje in pisanje tekstovnih datotek.</p>
@@ -2662,8 +2785,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Privzeto je <code>mode='r'</code> (oz. <code>'rt'</code>, ker je privzet tekstovni način), kar pomeni, da se datoteko odpre za branje v tekstovni obliki.</p>
 <p>Poglejmo si najprej pisanje v (tekstovno) datoteko (<code>mode='w'</code>):</p>
@@ -2682,16 +2804,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>'data/prikaz vpisa.txt'</code> predstavlja relativno pot (glede na mesto, kjer se poganja <em>Jupyter notebook</em>) do datoteke.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zapišimo prvo vrstico s pomočjo metode <code>write</code>:</p>
 </div>
@@ -2719,16 +2839,14 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metoda <code>write</code> vrne število zapisanih zankov. Če boste v tem trenutku pogledali vsebino datoteke, je velika možnost, da je še prazna. Razlog je v tem, da je vsebina še v medpolnilniku, ki se izprazni na disk samo občasno ali ob zaprtju datoteke (razlog za tako delovanje je v hitrosti zapisa na disk; za podrobnosti glejte dokumentacijo argumenta <code>buffering</code> funkcije <code>open</code>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zapišimo drugo vrstico:</p>
 </div>
@@ -2756,8 +2874,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vpišimo sedaj še nekaj številčnih vrednosti:</p>
 </div>
@@ -2776,8 +2893,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Datoteko zapremo:</p>
 </div>
@@ -2795,8 +2911,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj datoteko odpremo za branje in pisanje? <code>mode='r+'</code>:</p>
 </div>
@@ -2814,8 +2929,7 @@ slika:)
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo vse vrstice s <code>for</code> zanko; v spodnji kodi nam <code>datoteka</code> v vsakem klicu vrne eno vrstico:</p>
 </div>
@@ -2851,8 +2965,7 @@ druga vrstica
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri uvodu v funkcijo <code>print</code> smo omenili argument <code>file</code>, ki definira datoteko, v katero se piše (privzet je standardni izhod oz. <em>zaslon</em>). Če kot argument <code>file</code> posredujemo datoteko, ki je odprta za pisanje:</p>
 </div>
@@ -2871,16 +2984,14 @@ druga vrstica
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>se vsebina zapiše v datoteko. Rezultat lahko preverite v datoteki!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj je lepa priložnost, da spoznamo stavek <code>with</code> (<a href="https://docs.python.org/reference/compound_stmts.html#with">dokumentacija</a>). Celovitost stavka <code>with</code> presega namen tega predmeta, je pa zelo preprosta uporaba pri delu z datotekami, zato si poglejmo primer:</p>
 </div>
@@ -2918,24 +3029,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Stavek <code>with</code> rezultat funkcije <code>open</code> shrani v (<em>as</em>) ime <code>datoteka</code>, potem pa za vsako vrstico izpišemo vrednosti. Pri izhodu iz stavka <code>with</code> se samodejno pokliče metoda <code>datoteka.close()</code>. Stavek <code>with</code> nam torej omogoča pisanje pregledne in kompaktne kode.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Obravnavanje-izjem">Obravnavanje izjem<a class="anchor-link" href="#Obravnavanje-izjem">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri programiranju se relativno pogosto pojavijo izjeme; na primer: deljenje z nič.</p>
 <div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
@@ -2951,24 +3059,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V primeru izjeme Python opozori na to in prekine izvajanje. Ni dobro, da se program prekine ali zruši; iz tega razloga bi zgornjo situacijo programer začetnik verjetno reševal s stavkom <code>if</code>. Takšen pristop pa ni preveč uporaben niti splošen in zato je v večini modernih programskih jezikih uveljavljeno obravnavanje izjem.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo nekatere osnove, ki bodo študentom predvsem olajšale branje in razumevanje kode od drugih avtorjev.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izjeme obvladujemo s stavkom <code>try</code>:</p>
 <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -2982,16 +3087,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V stavki <code>try</code> se <code>except</code> izvede, če se v kodi <code>[koda0]</code> pojavi izjema, <code>finally</code> je opcijski in  se izvede v vsakem primeru ob izhodu iz stavka <code>try</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer, ko enostavno nadaljujemo z izvajanjem:</p>
 </div>
@@ -3012,16 +3115,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ukaz <code>pass</code> uporabimo, ko sintaksa zahteva stavek (kodo) za izvajanje, vendar ne želimo nobenega ukrepa (glejte <a href="https://docs.python.org/tutorial/controlflow.html#pass-statements">dokumentacijo</a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo <code>except</code> lahko lovimo tudi različne izjeme, to naredimo tako:</p>
 </div>
@@ -3055,8 +3156,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj uporabimo isto kodo za primer deljenja števila z nizom:</p>
 </div>
@@ -3090,8 +3190,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Proženje-izjem">Proženje izjem<a class="anchor-link" href="#Proženje-izjem">¶</a></h2><p>Izjeme pa lahko tudi sami prožimo; to naredimo z ukazom <code>raise</code> (<a href="https://docs.python.org/tutorial/errors.html#raising-exceptions">dokumentacija</a>).</p>
 <p>Primer proženja napake je:</p>
@@ -3101,8 +3200,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>preprost, vendar celovit, primer, ko bi pričakovali, da je <code>ime_osebe</code> tipa <code>str</code>:</p>
 </div>
@@ -3136,24 +3234,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Izpeljevanje-seznamov">Izpeljevanje seznamov<a class="anchor-link" href="#Izpeljevanje-seznamov">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri programiranju se pogosto srečujemo s tem, da moramo izvajati operacije na posameznem elementu seznama. Predhodno smo že spoznali zanko <code>for</code>, ki jo lahko uporabimo v takem primeru.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oglejmo si primer, kjer izračunamo kvadrat števil:</p>
 </div>
@@ -3185,8 +3280,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mnogo enostavneje lahko isti rezultat dosežemo s t. i. <strong>izpeljevanjem seznamov</strong> (angl. <em>list comprehensions</em>, glejte <a href="https://docs.python.org/tutorial/datastructures.html#list-comprehensions">dokumentacijo</a>).</p>
 <p>Zgornji primer bi bil:</p>
@@ -3217,16 +3311,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izpeljevanje seznamov predstavlja koda <code>[element**2 for element in seznam]</code>, ki v bistvu pove to, kar je napisano: izračunaj kvadrat za vsak element v seznamu. Da je rezultat seznam, nakazujejo oglati oklepaji.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izpeljevanje seznamov ima sledečo sintakso:</p>
 <div class="highlight"><pre><span></span><span class="p">[</span><span class="n">koda</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">seznam</span><span class="p">]</span>
@@ -3240,8 +3332,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preglednost/kompaktnost smo lahko že presodili. Kako preverimo hitrost? Najlažje to naredimo s t. i. magičnim ukazom <code>%%timeit</code>, torej <strong>meri čas</strong> (glejte <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">dokumentacijo</a>); spodaj bomo uporabili blokovni magični ukaz (označuje ga <code>%%</code>):</p>
 <pre><code>%%timeit -n1000</code></pre>
@@ -3250,8 +3341,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej daljši način:</p>
 </div>
@@ -3294,8 +3384,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato izpeljevanje seznamov (bolj pregledno in malenkost hitreje):</p>
 </div>
@@ -3325,8 +3414,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si še dva uporabna primera:</p>
 <ul>
@@ -3337,8 +3425,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri izračunu nove vrednosti izraz <code>if</code> vstavimo v del pred <code>for</code>:</p>
 </div>
@@ -3367,8 +3454,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto pa za določene elemente izračuna sploh ne želimo izvesti, v tem primeru izraz <code>if</code> vstavimo za seznam:</p>
 </div>
@@ -3396,16 +3482,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Osnove-modulov">Osnove modulov<a class="anchor-link" href="#Osnove-modulov">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z moduli lahko na enostaven način uporabimo že napisano kodo. Preprosto povedano, moduli nam v Pythonu omogočajo relativno enostavno ohranjanje preglednosti in reda. Ponavadi v modul zapakiramo neko zaključeno funkcijo, skupino funkcij ali npr. objekt (pozneje bomo spoznali, kaj je objekt).</p>
 <p>Za podroben opis uvažanja modulov glejte <a href="https://docs.python.org/reference/import.html#the-import-system">dokumentacijo</a>.</p>
@@ -3413,8 +3497,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V mapi <code>moduli</code> se nahaja datoteka <code>prvi_modul.py</code>, ki ima sledečo vsebino:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kvadrat</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -3424,16 +3507,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Pomembno</strong>: pogosto module hierarhično razporejamo po direktorijih. <strong>Samo</strong> če je v določenem direktoriju datoteka (lahko tudi prazna) <strong>__init__.py</strong>, potem se tak direktorij obnaša kot modul. V zgornjem primeru taka datoteka obstaja in posledično se mapa <code>moduli</code> obnaša kot <em>modul</em>, v tem modulu je pa <em>podmodul</em> <code>prvi_modul</code> (datoteka pa je <code>prvi_modul.py</code>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Module tipično uvažamo na dva načina:</p>
 <p><strong>Prvi način</strong>:</p>
@@ -3448,8 +3529,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V kolikor želimo uvoziti funkcije v modulu <code>prvi_modul</code>, to naredimo tako:</p>
 </div>
@@ -3467,8 +3547,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj lahko funkcijo <code>kvadrat</code> kličemo tako:</p>
 </div>
@@ -3496,8 +3575,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z ukazom <code>from</code> lahko uvozimo samo del modula. Primer:</p>
 </div>
@@ -3515,8 +3593,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj kličemo neposredno funkcijo <code>kvadrat</code>:</p>
 </div>
@@ -3544,8 +3621,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcije ali module lahko tudi preimenujemo. Primer:</p>
 </div>
@@ -3574,8 +3650,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Kje Python išče module?</strong></p>
 <ol>
@@ -3589,24 +3664,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uvoz-modulov-in-Jupyter-notebook">Uvoz modulov in Jupyter notebook<a class="anchor-link" href="#Uvoz-modulov-in-Jupyter-notebook">¶</a></h2><p>V tej knjigi bomo, zaradi pedagoških razlogov, module vedno uvažali takrat, ko jih bomo prvič potrebovali. <strong>Pravila dobre prakse in pregledne kode priporočajo, da se uvoze vseh modulov izvede na vrhu Jupyter notebooka!</strong></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Modul-pickle">Modul <code>pickle</code><a class="anchor-link" href="#Modul-pickle">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Modul <code>pickle</code> bomo velikokrat uporabljali za zelo hitro in kompaktno shranjevanje in branje podatkov.
 <code>pickle</code> vrednosti spremenljivke shrani v taki obliki, kot so zapisane v spominu. V primeru racionalnih števil tako  <strong>ne izgublja na natančnosti</strong> (zapis v tekstovno obliko izgublja natančnost, saj definiramo število izpisanih števk, ki pa je lahko manjše od števila decimalnih mest v spominu). Poleg tega pa je zapis v <strong>spominu ponavadi manj zahteven</strong> kakor zapis v tekstovni obliki. Ker vrednosti ni treba pretvarjati v/iz tekstovno/e obliko/e, je pisanje/branje tudi <strong>zelo hitro</strong>! Tukaj si bomo pogledali osnovno uporabo, celovito je <code>pickle</code> opisan v  <a href="https://docs.python.org/library/pickle.html">dokumentaciji</a>.</p>
@@ -3614,8 +3686,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>pickle</code> ima dve pomembni metodi:</p>
 <ul>
@@ -3626,8 +3697,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabo si bomo pogledali na primeru. Najprej uvozimo modul:</p>
 </div>
@@ -3645,8 +3715,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zapišimo vrednosti slovarja <code>a</code> v datoteko <code>data/stanje1.pkl</code>:</p>
 </div>
@@ -3667,16 +3736,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da so datoteko odprli za pisanje v binarni obliki <code>wb</code>. Pomembno je tudi, da uporabimo zadnjo verzijo protokola (parameter <code>protocol</code>); privzeta ni optimirana za hitrost in ne zapiše v binarni obliki.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj vrednosti preberimo nazaj v <code>b</code> in ga prikažemo:</p>
 </div>
@@ -3707,8 +3774,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo trdili, da je pristop zelo hiter; preverimo to.</p>
 <p>Najprej pripravimo podatke (seznam 50000 vrednosti tipa <code>ind</code>):</p>
@@ -3727,8 +3793,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pisanje v tekstovni obliki</p>
 </div>
@@ -3761,8 +3826,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pisanje s pomočjo <code>pickle</code>:</p>
 </div>
@@ -3793,24 +3857,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Gre skoraj za 20 kratno pohitritev!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Odprite datoteko za zapis in vanjo vpišite formatirani (skupaj 7 mest, 3 decimalna mesta) seznam v dveh stolpcih. Razločevalni znak med stolpci naj bo prazen znak ' '.</li>
@@ -3834,16 +3895,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Oblikovanje-datuma-in-časa">Oblikovanje datuma in časa<a class="anchor-link" href="#Oblikovanje-datuma-in-časa">¶</a></h2><p>Najprej uvozimo modul za delo z datumom in časom <code>datetime</code> in prikažemo trenutni čas z datumom (uporabimo funkcijo <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime.now"><code>now()</code></a>):</p>
 </div>
@@ -3873,8 +3932,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podatek o času oblikujemo:</p>
 </div>
@@ -3902,8 +3960,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oblikovanje datuma in ure sledi metodam:</p>
 <ul>
@@ -3915,8 +3972,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer pretvorbe tipa <code>datetime</code> v niz (glede na zgoraj smo dodali še %a, da se izpiše ime dneva):</p>
 </div>
@@ -3944,8 +4000,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj v obratno smer, torej iz niza v <code>datetime</code>:</p>
 </div>
@@ -3973,24 +4028,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporabljajte-www.stackoverflow.com!">Uporabljajte www.stackoverflow.com!<a class="anchor-link" href="#Uporabljajte-www.stackoverflow.com!">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="http://www.stackoverflow.com">http://www.stackoverflow.com</a></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Nekateri-moduli">Nekateri moduli<a class="anchor-link" href="#Nekateri-moduli">¶</a></h2><ol>
 <li><code>openpyxl</code> za pisanje in branje Excel xlsx/xlsm datotek: <a href="http://openpyxl.readthedocs.org/en/latest/index.html#">vir</a>,</li>
@@ -4002,16 +4054,14 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Modul-sys">Modul <code>sys</code><a class="anchor-link" href="#Modul-sys">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python ima veliko število vgrajenih modulov (in še veliko se jih lahko prenese s spleta, npr. <a href="https://pypi.org/">tukaj</a>), ki dodajo različne funkcionalnosti.</p>
 <p>Modul <code>sys</code> omogoča dostop do objektov, ki jih uporablja interpreter.</p>
@@ -4031,8 +4081,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mape, kjer se iščejo moduli, lahko preverimo z ukazom <code>sys.path</code> (<a href="https://docs.python.org/2/library/sys.html#sys.path">dokumentacija</a>):</p>
 </div>
@@ -4071,24 +4120,21 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Modul-os">Modul <code>os</code><a class="anchor-link" href="#Modul-os">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Modul <code>os</code> je namenjen delu z operacijskim sistemom in skrbi za združljivost z različnimi operacijskimi sistemi (če npr. napišete program na sistemu <em>Windows</em>, bo delal tudi na sistemu <em>linux</em>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo modul:</p>
 </div>
@@ -4106,8 +4152,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogljemo trenutno mapo:</p>
 </div>
@@ -4135,8 +4180,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali trenutno mapo v absolutni obliki:</p>
 </div>
@@ -4164,8 +4208,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kako najdemo vse datoteke in mape v direktoriju?</p>
 </div>
@@ -4183,8 +4226,7 @@ konec
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo prve štiri s končnico <code>ipynb</code>:</p>
 </div>
@@ -4223,8 +4265,7 @@ Našel sem datoteko: Predavanje 02 - Print, delo z datotekami, funkcije, moduli.
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za več glejte <a href="https://docs.python.org/3.7/library/os.path.html#module-os.path">dokumentacijo</a>.</p>
 </div>

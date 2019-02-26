@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Uvod-1" href="#Uvod"><span class="toc-item-num">1  </span>Uvod</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Omejitve-funkcije-$f(x)$-1.1" href="#Omejitve-funkcije-$f(x)$"><span class="toc-item-num">1.1  </span>Omejitve funkcije $f(x)$</a></span></li><li><span><a data-toc-modified-id="Zgled-1.2" href="#Zgled"><span class="toc-item-num">1.2  </span>Zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Inkrementalna-metoda-2" href="#Inkrementalna-metoda"><span class="toc-item-num">2  </span>Inkrementalna metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerična-implementacija-2.1" href="#Numerična-implementacija"><span class="toc-item-num">2.1  </span>Numerična implementacija</a></span></li></ul></li><li><span><a data-toc-modified-id="Iterativna-inkrementalna-metoda-3" href="#Iterativna-inkrementalna-metoda"><span class="toc-item-num">3  </span>Iterativna inkrementalna metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerična-implementacija-3.1" href="#Numerična-implementacija"><span class="toc-item-num">3.1  </span>Numerična implementacija</a></span></li></ul></li><li><span><a data-toc-modified-id="Bisekcijska-metoda-4" href="#Bisekcijska-metoda"><span class="toc-item-num">4  </span>Bisekcijska metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Ocena-napake-4.1" href="#Ocena-napake"><span class="toc-item-num">4.1  </span>Ocena napake</a></span></li><li><span><a data-toc-modified-id="Numerična-implementacija-4.2" href="#Numerična-implementacija"><span class="toc-item-num">4.2  </span>Numerična implementacija</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Iskanje-ničle-v-okolici-pola-4.2.1" href="#Iskanje-ničle-v-okolici-pola"><span class="toc-item-num">4.2.1  </span>Iskanje ničle v okolici pola</a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-scipy.optimize.bisect-4.3" href="#Uporaba-scipy.optimize.bisect"><span class="toc-item-num">4.3  </span>Uporaba <code>scipy.optimize.bisect</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Sekantna-metoda-5" href="#Sekantna-metoda"><span class="toc-item-num">5  </span>Sekantna metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Ocena-napake-5.1" href="#Ocena-napake"><span class="toc-item-num">5.1  </span>Ocena napake</a></span></li><li><span><a data-toc-modified-id="Konvergenca-in-red-konvergence-5.2" href="#Konvergenca-in-red-konvergence"><span class="toc-item-num">5.2  </span>Konvergenca in red konvergence</a></span></li><li><span><a data-toc-modified-id="Numerična-implementacija-5.3" href="#Numerična-implementacija"><span class="toc-item-num">5.3  </span>Numerična implementacija</a></span></li><li><span><a data-toc-modified-id="Uporaba-scipy.optimize.newton-5.4" href="#Uporaba-scipy.optimize.newton"><span class="toc-item-num">5.4  </span>Uporaba <code>scipy.optimize.newton</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Newtonova-metoda-6" href="#Newtonova-metoda"><span class="toc-item-num">6  </span>Newtonova metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Red-konvegence-6.1" href="#Red-konvegence"><span class="toc-item-num">6.1  </span>Red konvegence</a></span></li><li><span><a data-toc-modified-id="Numerična-implementacija-6.2" href="#Numerična-implementacija"><span class="toc-item-num">6.2  </span>Numerična implementacija</a></span></li><li><span><a data-toc-modified-id="Uporaba-scipy.optimize.newton-6.3" href="#Uporaba-scipy.optimize.newton"><span class="toc-item-num">6.3  </span>Uporaba <code>scipy.optimize.newton</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Reševanje-sistemov-nelinarnih-enačb-7" href="#Reševanje-sistemov-nelinarnih-enačb"><span class="toc-item-num">7  </span>Reševanje sistemov nelinarnih enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerična-implementacija-7.1" href="#Numerična-implementacija"><span class="toc-item-num">7.1  </span>Numerična implementacija</a></span></li><li><span><a data-toc-modified-id="Uporaba-scipy.optimize.root-7.2" href="#Uporaba-scipy.optimize.root"><span class="toc-item-num">7.2  </span>Uporaba <code>scipy.optimize.root</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-8" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">8  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-9" href="#Dodatno"><span class="toc-item-num">9  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Uporaba-sympy.solve-za-reševanje-enačb-9.1" href="#Uporaba-sympy.solve-za-reševanje-enačb"><span class="toc-item-num">9.1  </span>Uporaba <code>sympy.solve</code> za reševanje enačb</a></span></li></ul></li></ul></div>
@@ -1415,26 +1591,22 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod">Uvod<a class="anchor-link" href="#Uvod">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V okviru reševanja enačb obravnavamo poljubno enačbo, ki je odvisna od spremenljivke $x$ in iščemo rešitev:</p>
-<p>$$f(x)=0.$$</p>
-<p>Rešitvam enačbe rečemo tudi <em>koreni</em> (angl. <em>roots</em>). Koren enačbe $f(x)=0$ je hkrati tudi ničla funkcije $y=f(x)$.</p>
+$$f(x)=0.$$<p>Rešitvam enačbe rečemo tudi <em>koreni</em> (angl. <em>roots</em>). Koren enačbe $f(x)=0$ je hkrati tudi ničla funkcije $y=f(x)$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija $y=f(x)$ ima lahko ničle stopnje:</p>
 <ul>
@@ -1446,32 +1618,28 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj je pomembno izpostaviti, da iščemo rešitev poljubne enačbe $f(x)=0$. Če za linearne, kvadratne ali kubične enačbe, lahko določimo analitične rešitve; za večino nelinearnih enačb analitične rešitve ne moremo določiti. Iz tega razloga so numerični pristopi toliko bolj pomembni.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Omejitve-funkcije-$f(x)$">Omejitve funkcije $f(x)$<a class="anchor-link" href="#Omejitve-funkcije-$f(x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za funkcijo $y=f(x)$ zahtevamo, da je na zaprtem intervalu $[x_0, x_1]$ zvezna. Pri računanju ničel, se bomo omejili samo na ničle prve stopnje.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">¶</a></h2><p>Poljubno funkcijo $y=f(x)$ lahko definiramo s <em>Pythonovo funkcijo</em>; za zgled tukaj definirajmo polinom:</p>
 </div>
@@ -1490,8 +1658,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker pa gre za polinom $x^3-10x^2+5$ s koeficienti <code>[1, -10, 0, 5]</code> pa je bolje, da ga definiramo s pomočjo <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html"><code>np.poly1d</code></a>:</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -1506,8 +1673,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo <code>numpy</code> in definirajmo polinom:</p>
 </div>
@@ -1539,8 +1705,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo funkcijo $f(x)$:</p>
 </div>
@@ -1574,8 +1739,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da so ničle funkcije $f(x)$ blizu -0,7 in +0,7. Objekt <code>poly1d</code> ima atribut <code>roots</code> ali tudi <code>r</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html">glejte dokumentacijo</a>), ki vrne te ničle:</p>
 </div>
@@ -1603,32 +1767,28 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V nadaljevanju bo naš cilj numerično določiti ničlo za poljubno funkcijo <code>f</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Inkrementalna-metoda">Inkrementalna metoda<a class="anchor-link" href="#Inkrementalna-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inkrementalno reševanje temelji na ideji, da v kolikor ima funkcija $f(x)$ pri $x_0$ in $x_1$ različna predznaka, potem je vmes vsaj ena ničla. Zaprti interval $[x_0, x_1]$ razdelimo torej na odseke širine $\Delta x$; na odseku, kjer opazimo spremembo predznaka, je vsaj ena ničla funkcije.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metoda je prikazana na sliki.
 <img src="./fig/inkrementalna.png" width="400"></p>
@@ -1636,18 +1796,15 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za ničlo zahtevamo:</p>
-<p>$$\left|x_{i+1}-x_i\right|<\varepsilon\quad\textrm{in}\quad \left|f(x_{i+1})\right|+\left|f(x_{i})\right|<D,$$</p>
-<p>kjer je $\epsilon$ zahtevana natančnost rešitve in $D$ izbrana majhna vrednost, ki prepreči, da bi kot ničlo razpoznali pol (kar sicer zaradi pogoja zveznosti ni mogoče).</p>
+$$\left|x_{i+1}-x_i\right|<\varepsilon\quad\textrm{in}\quad \left|f(x_{i+1})\right|+\left|f(x_{i})\right|<D,$$<p>kjer je $\epsilon$ zahtevana natančnost rešitve in $D$ izbrana majhna vrednost, ki prepreči, da bi kot ničlo razpoznali pol (kar sicer zaradi pogoja zveznosti ni mogoče).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inkrementalna metoda ima nekatere slabosti:</p>
 <ul>
@@ -1659,8 +1816,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inkrementalna metoda spada med t. i. <em>zaprte</em> (angl. <em>bracketed</em>) metode, saj išče ničle funkcije samo na intervalu $[x_0, x_1]$. Pozneje bomo spoznali tudi <em>odprte</em> metode, ki lahko konvergirajo k ničli zunaj podanega intervala.</p>
 <p>Zaradi vseh zgoraj navedenih slabosti inkrementalno metodo pogosto uporabimo samo za izračun začetnega približka ničle.</p>
@@ -1668,16 +1824,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj inkrementalno iskanje ničel funkcije:</p>
 </div>
@@ -1711,8 +1865,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo sedaj uporabo na zgoraj definiranem polinomu:</p>
 </div>
@@ -1741,8 +1894,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ničla je izolirana z natančnostjo 0,001, preverimo še vsoto absolutnih funkcijskih vrednosti:</p>
 </div>
@@ -1770,16 +1922,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da je relativno majhna; bomo pa se s sledečimi metodami trudili rezultat bistveno izboljšati.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo sliko:</p>
 </div>
@@ -1805,8 +1955,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo rezultat:</p>
 </div>
@@ -1835,32 +1984,28 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Da smo torej na intervalu $[0, 1]$ izračunali rešitev z natančnostjo $\Delta x=0,001$, smo morali 1000-krat klicati funkcijo $f(x)$. Gre za zelo neučinkovito metodo, zato bomo iskali boljše načine; najprej s preprostim iterativnim inkrementalnim pristopom.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Iterativna-inkrementalna-metoda">Iterativna inkrementalna metoda<a class="anchor-link" href="#Iterativna-inkrementalna-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iterativna inkrementalna metoda v prvi iteraciji z inkrementalno metodo omeji interval iskanja ničel pri relativno velikem koraku. Interval, najden v prvi iteraciji, se v drugi iteraciji razdeli na manjše intervale in ponovi se inkrementalno iskanje ničle. Tretja iteracija se nato omeji na interval določen v drugi in tako dalje. Z iteracijami zaključimo, ko smo dosegli predpisano natančnost rešitve $\epsilon$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metoda je prikazana na sliki:
 <img src="./fig/iterativna_inkrementalna.png" width="400"></p>
@@ -1868,8 +2013,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
@@ -1901,8 +2045,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S 30 klici funkcije $f(x)$ tako dobimo podobno natančnost kot prej v 1000:</p>
 </div>
@@ -1952,8 +2095,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Seveda pa lahko natančnost bistveno izboljšamo z večanjem števila iteracij:</p>
 </div>
@@ -1982,8 +2124,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo še kriterij vsote absolutnih funkcijskih vrednosti, ki mora biti majhen:</p>
 </div>
@@ -2011,24 +2152,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Bisekcijska-metoda">Bisekcijska metoda<a class="anchor-link" href="#Bisekcijska-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na intervalu $[x_0, x_1]$, kjer vemo, da obstaja ničla funkcije (predznaka $f(x_0)$ in $f(x_1)$ se razlikujeta), lahko uporabimo <em>bisekcijsko metodo</em>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ideja metode je:</p>
 <ul>
@@ -2040,8 +2178,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Slika metode:
 <img src="./fig/bisekcijska.png" width="400"></p>
@@ -2049,24 +2186,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bisekcijska metoda spada med <em>zaprte</em> metode, ki vrne ničlo funkcije na podanem intervalu $[x_0, x_1]$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Ocena-napake">Ocena napake<a class="anchor-link" href="#Ocena-napake">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če v začetku začnemo z intervalom $\Delta x = \left|x_1-x_0\right|$, potem je natančnost bisekcijske metode po prvem koraku bisekcije: 
 $$\varepsilon_1 = \Delta x/2,$$
@@ -2078,18 +2212,15 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ponavadi zahtevamo, da je rešitev podana z natančnostjo $\varepsilon$ in iz zgornje enačbe lahko izpeljemo število potrebnih korakov bisekcijske metode:</p>
-<p>$$n = \frac{\log\left(\frac{\Delta x}{\varepsilon}\right)}{\log(2)}.$$</p>
-<p>Seveda je število korakov celo število.</p>
+$$n = \frac{\log\left(\frac{\Delta x}{\varepsilon}\right)}{\log(2)}.$$<p>Seveda je število korakov celo število.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
@@ -2136,8 +2267,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj poskusimo najti ničlo z natančnostjo <code>1e-3</code>:</p>
 </div>
@@ -2166,8 +2296,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V desetih iteracijah smo dobili isto natančen rezultat kakor zgoraj pri iterativni inkrementalni metodi <code>rez30</code>. Poglejmo še izračun ničle s še večjo natančnostjo:</p>
 </div>
@@ -2196,8 +2325,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Hitrost izvajanja lahko preverimo s t. i. <em>magic funkcijo</em> <code>timeit</code> (<a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit">dokumentacija</a>), ki večkrat požene funkcijo in analizira čas izvajanja. Če je pred magic funkcijo dvojni znak <code>%%</code>, se izvede in meri čas celotne celice, če pa le enojni <code>%</code>, pa samo ene vrstice.</p>
 </div>
@@ -2227,8 +2355,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Iskanje-ničle-v-okolici-pola">Iskanje ničle v okolici pola<a class="anchor-link" href="#Iskanje-ničle-v-okolici-pola">¶</a></h3><p>Poglejmo sedaj iskanje ničle funkcije <code>tan</code> v okolici pola (ničla dejansko ne obstaja):</p>
 </div>
@@ -2260,8 +2387,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V primeru iskanja na intervalu $[-1, 1]$ najdemo pravo ničlo:</p>
 </div>
@@ -2290,8 +2416,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V primeru iskanja v okolici pola, pa nas program na to opozori (klic funkcije je tukaj zakomentiran, sicer se avtomatsko generiranje tukaj prekine):</p>
 </div>
@@ -2309,24 +2434,21 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V <code>scipy</code> vgrajena bisekcijska metoda takega preverjanja nima (zaradi hitrosti) in bo vrnila rezultat, ki bo pa napačen. Pri uporabi moramo torej biti previdni.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.optimize.bisect">Uporaba <code>scipy.optimize.bisect</code><a class="anchor-link" href="#Uporaba-scipy.optimize.bisect">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bisekcijska metoda je <em>počasna</em>, vendar zanesljiva metoda iskanja ničel in je implementirana znotraj <code>scipy</code>. Najprej jo uvozimo:</p>
 </div>
@@ -2344,8 +2466,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">2e-12</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">8.8817841970012523e-16</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
     <span class="n">full_output</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -2355,8 +2476,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo uporabo:</p>
 </div>
@@ -2384,8 +2504,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in hitrost:</p>
 </div>
@@ -2414,16 +2533,14 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da je <em>naša</em> implementacija bisekcijske metode približno 5-krat počasnejša.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo še lahko funkcijo <code>tan(x)</code>, najprej na intervalu, kjer je funkcija zvezna:</p>
 </div>
@@ -2451,8 +2568,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potem še v okolici pola, kjer ni zvezna:</p>
 </div>
@@ -2480,32 +2596,28 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>kar je napačna rešitev!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Sekantna-metoda">Sekantna metoda<a class="anchor-link" href="#Sekantna-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sekantna metoda zahteva dva začetna približka $x_0$ in $x_1$ in funkcijo $f(x)$. Ob predpostavki linearne interpolacije med točkama $x_0, f(x_0)$ in $x_1, f(x_1)$ (skozi točki potegnemo <em>sekanto</em>, od tukaj tudi ime), se določi $x_2$, kjer ima linearna interpolacijska funkcija ničlo. $x_2$ predstavlja nov približek ničle.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na sliko:
 <img src="./fig/sekantna.png" width="400"></p>
@@ -2513,45 +2625,38 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>lahko zapišemo (podobna trikotnika sta na sliki označena z rumeno):</p>
-<p>$$\frac{f(x_1)}{x_2 − x_1}= \frac{f(x_0) − f(x_1)}{x_1 − x_0}.$$</p>
-<p>Sledi, da je nov približek ničle:</p>
-<p>$$x_2= x_1-f(x_1)\,\frac{x_1 − x_0}{f(x_1) - f(x_0)}.$$</p>
-<p>V naslednjem koraku pri sekantni metodi izvedemo sledeče zamenjave: $x_0=x_1$ in $x_1=x_2$.</p>
+$$\frac{f(x_1)}{x_2 − x_1}= \frac{f(x_0) − f(x_1)}{x_1 − x_0}.$$<p>Sledi, da je nov približek ničle:</p>
+$$x_2= x_1-f(x_1)\,\frac{x_1 − x_0}{f(x_1) - f(x_0)}.$$<p>V naslednjem koraku pri sekantni metodi izvedemo sledeče zamenjave: $x_0=x_1$ in $x_1=x_2$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sekantna metoda spada med <em>odprte</em> metode, saj lahko najde ničlo funkcije, ki se nahaja zunaj območja $[x_0, x_1]$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Ocena-napake">Ocena napake<a class="anchor-link" href="#Ocena-napake">¶</a></h2><p>Konzervativno lahko napako ocenimo iz razlike med dvema zaporednima približkoma:</p>
-<p>$$\varepsilon = \left|x_{n-1} -x_{n}\right|$$</p>
+$$\varepsilon = \left|x_{n-1} -x_{n}\right|$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Konvergenca-in-red-konvergence">Konvergenca in red konvergence<a class="anchor-link" href="#Konvergenca-in-red-konvergence">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Konvergenca pomeni, da zaporedje približkov konvergira k rešitvi enačbe $\alpha$ ($\alpha$ je rešitev enačbe).</p>
 <p><strong>Red konvergence</strong> označuje hitrost konvergiranja.</p>
@@ -2559,37 +2664,31 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če $\varepsilon$ označimo napako približka in napako z vsakim korakom iteracije linearno zmanjšamo ($C$ je konstanta):</p>
-<p>$$\varepsilon_n = C\,\varepsilon_{n-1}^1,$$</p>
-<p>govorimo o <strong>redu konvergence 1</strong> ($\varepsilon$ ima potenco 1)!</p>
+$$\varepsilon_n = C\,\varepsilon_{n-1}^1,$$<p>govorimo o <strong>redu konvergence 1</strong> ($\varepsilon$ ima potenco 1)!</p>
 <p>Pri predhodno obravnavani bisekcijski metodi napako na vsakem koraku zmanjšamo za $1/2$ ($\varepsilon_n/\varepsilon_{n-1} = C = 1/2$). <em>Bisekcijska metoda ima red konvergence 1.</em></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Red konvergence <em>sekantne metode je višji</em> in jo je mogoče oceniti z:</p>
-<p>$$\varepsilon_n = C\,\varepsilon_{n-1}^{1.618}.$$</p>
-<p>Iz zgornje ocene sledi, da se na vsakem koraku iteracije število točnih cifer poveča za približno 60%. Ker je red konvegence višji od 1 in manjši od kvadratične, tako konvergenco imenujemo <em>superlinearna</em> konvergenca.</p>
+$$\varepsilon_n = C\,\varepsilon_{n-1}^{1.618}.$$<p>Iz zgornje ocene sledi, da se na vsakem koraku iteracije število točnih cifer poveča za približno 60%. Ker je red konvegence višji od 1 in manjši od kvadratične, tako konvergenco imenujemo <em>superlinearna</em> konvergenca.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Še boljšo, kvadratično, konvergenco ima Newtonova metoda. Pri kvadratični konvergenci se na vsakem koraku iteracije število točnih cifer podvoji. Isti red konvergence ima tudi <em>Ridderjeva</em>  metoda, ki je implementirana v paketu <code>scipy</code> (glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.ridder.html">dokumentacijo</a>) in je zaprtega tipa ter sorodna sekantni metodi. Kljub uporabnosti si je tukaj ne bomo podrobno ogledali.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
@@ -2637,8 +2736,7 @@ $$\varepsilon_n = \Delta x/2^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si uporabo:</p>
 </div>
@@ -2674,8 +2772,7 @@ Rešitev: 0.73460351, D: 0.00000
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in hitrost</p>
 </div>
@@ -2704,8 +2801,7 @@ Rešitev: 0.73460351, D: 0.00000
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kakor smo zapisali zgoraj, je sekantna metoda odprtega tipa. Rešitev enačbe je lahko zunaj podanega intervala. Poglejmo si primer:</p>
 </div>
@@ -2745,16 +2841,14 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.optimize.newton">Uporaba <code>scipy.optimize.newton</code><a class="anchor-link" href="#Uporaba-scipy.optimize.newton">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Znotraj <code>scipy</code> je sekantna metoda definirana v okviru <code>scipy.optimize.newton</code> funkcije. Če le-tej namreč ne podamo funkcije, ki definira prvi odvod, potem je uporabljena sekantna metoda (glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html">dokumentacijo</a>).</p>
 <p>Najprej jo uvozimo:</p>
@@ -2773,8 +2867,7 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
@@ -2783,8 +2876,7 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V primeru sekantne metode, se druga meja intervala izračuna glede na kodo:</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">x0</span> <span class="o">>=</span> <span class="mi">0</span><span class="p">:</span>
@@ -2796,8 +2888,7 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si uporabo:</p>
 </div>
@@ -2826,8 +2917,7 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in hitrost</p>
 </div>
@@ -2856,16 +2946,14 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da je naša implementacija sekantne metode podobno hitra.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo še Ridderjevo metodo:</p>
 </div>
@@ -2895,16 +2983,14 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Newtonova-metoda">Newtonova metoda<a class="anchor-link" href="#Newtonova-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V literaturi za <strong>Newtonovo</strong> metodo tudi najdemo izraza <strong>tangentna</strong> in <strong>Newton-Raphsonova</strong> metoda. Potrebuje en začetni približek $x_0$, poleg definicije funkcije $f(x)$ pa tudi njen odvod $f'(x)$.</p>
 <p>Princip delovanja metode je prikazan na sliki:
@@ -2913,8 +2999,7 @@ Rešitev: 3.142, D: 0.00002
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metodo bi lahko izpeljali grafično (s  slike), tukaj pa si poglejmo izpeljavo s pomočjo Taylorjeve vrste:
 $$f(x_{i+1})=f(x_i)+f'(x_i)\,\left(x_{i+1}-x_i\right)+O^2\left(x_{i+1}-x_i\right),$$
@@ -2924,18 +3009,15 @@ $$0=f(x_i)+f'(x_i)\,\left(x_{i+1}-x_i\right)+O^2\left(x_{i+1}-x_i\right).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naredimo napako metode in zanemarimo člene višjega reda v Taylorjevi vrsti. Lahko izpeljemo:</p>
-<p>$$x_{i+1}=x_i-\frac{f(x_i)}{f'(x_i)}.$$</p>
-<p>$x_{i+1}$ je tako nov približek iskane ničle.</p>
+$$x_{i+1}=x_i-\frac{f(x_i)}{f'(x_i)}.$$<p>$x_{i+1}$ je tako nov približek iskane ničle.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Algoritem Newtonove metode je:</p>
 <ol>
@@ -2947,8 +3029,7 @@ $$0=f(x_i)+f'(x_i)\,\left(x_{i+1}-x_i\right)+O^2\left(x_{i+1}-x_i\right).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opombi:</p>
 <ul>
@@ -2959,8 +3040,7 @@ $$0=f(x_i)+f'(x_i)\,\left(x_{i+1}-x_i\right)+O^2\left(x_{i+1}-x_i\right).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo omenili, da je Newtonova metoda ena izmed boljših metod za iskanje ničel funkcij. Ima pa tudi nekaj slabosti/omejitev:</p>
 <ul>
@@ -2972,16 +3052,14 @@ $$0=f(x_i)+f'(x_i)\,\left(x_{i+1}-x_i\right)+O^2\left(x_{i+1}-x_i\right).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Red-konvegence">Red konvegence<a class="anchor-link" href="#Red-konvegence">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Red konvergence Newtonove metode je kvadraten: 
 $$\varepsilon_n = C\,\varepsilon_{n-1}^{2},$$
@@ -2991,16 +3069,14 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Konvergenca je torej hitra, v vsaki novi iteraciji se število točnih števk v približku podvoji.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
@@ -3042,8 +3118,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo polinom <code>f</code> in njegov prvi odvod <code>df</code>:</p>
 </div>
@@ -3064,8 +3139,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo sedaj ničlo:</p>
 </div>
@@ -3094,8 +3168,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo hitrost izvajanja:</p>
 </div>
@@ -3124,24 +3197,21 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.optimize.newton">Uporaba <code>scipy.optimize.newton</code><a class="anchor-link" href="#Uporaba-scipy.optimize.newton">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Znotraj <code>scipy</code> je Newtonova metoda definirana v okviru <code>scipy.optimize.newton</code> funkcije, ki smo jo že spoznali zgoraj pri sekantni metodi (glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html">dokumentacijo</a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 </pre></div>
@@ -3150,17 +3220,15 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če podamo tudi drugi odvod <code>fprime2</code>, se uporabi Halleyeva metoda, ki temelji na izrazu:</p>
-<p>$$x_{n+1}=x_{n}-\frac{2f(x_{n})f'(x_{n})}{2\,f'^{2}(x_{n})-f(x_{n})f''(x_{n})}$$</p>
+$$x_{n+1}=x_{n}-\frac{2f(x_{n})f'(x_{n})}{2\,f'^{2}(x_{n})-f(x_{n})f''(x_{n})}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer uporabe Newtonove metode v <code>scipy.optimize</code>:</p>
 </div>
@@ -3189,8 +3257,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In izmerimo hitrost:</p>
 </div>
@@ -3219,16 +3286,14 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Reševanje-sistemov-nelinarnih-enačb">Reševanje sistemov nelinarnih enačb<a class="anchor-link" href="#Reševanje-sistemov-nelinarnih-enačb">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešujemo sistem enačb, ki ga v vektorski obliki zapišemo takole:
 $$\mathbf{f}(\mathbf{x})=\mathbf{0}.$$
@@ -3243,16 +3308,14 @@ f_{n-1}(x_0,x_1,\dots, x_{n-1})&=&0.\\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Reševanje sistema $n$ nelinearnih enačb je bistveno bolj zahtevno kot reševanje ene same nelinearne enačbe. Tak sistem enačb ima lahko več rešitev in katero izračunamo, je odvisno od začetnih pogojev. Ponavadi nam pri dobri izbiri začetnih pogojev pomaga fizikalni problem, ki ga rešujemo.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za računanje rešitve sistema enačb se <em>Newtonova</em> metoda izkaže kot najenostavnejša in pogosto tudi najboljša (obstajajo tudi druge metode, ki pa so velikokrat variacije Newtonove metode).</p>
 <p>Podobno kot pri izpeljavi Newtonove metode za reševanje ene enačbe, tudi tukaj začnemo z razvojem funkcije $f_i$ v Taylorjevo vrsto:
@@ -3261,8 +3324,7 @@ $$f_i(\mathbf{x}+\Delta \mathbf{x})=f_i(\mathbf{x})+\sum_{j=1}^n \frac{\partial 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Naredimo napako metode, ko zanemarimo člene drugega in višjih redov ter zapišemo izraz v matrični obliki:
 $$\mathbf{f}(\mathbf{x}+\Delta \mathbf{x})=\mathbf{f}(\mathbf{x})+\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x},$$
@@ -3272,8 +3334,7 @@ $$J_{ij}=\frac{\partial f_i}{\partial x_j}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če naj bo $\mathbf{x}+\Delta \mathbf{x}$ rešitev sistema enačb, mora veljati:
 $$\mathbf{0}=\mathbf{f}(\mathbf{x})+\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x}$$
@@ -3283,36 +3344,31 @@ $$\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x}=-\mathbf{f}(\mathbf{x}).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izpeljali smo sistem linearnih enačb, matrika koeficientov je označena z $\mathbf{J}(\mathbf{x})$, vektor neznank je $\Delta\mathbf{x}$ in vektor konstant $-\mathbf{f}(\mathbf{x}).$</p>
 <p>Opomba: analitično računanje Jakobijeve matrike je lahko zamudno in zato jo pogosto približno izračunamo pri $\mathbf{x}$ numerično:</p>
-<p>$$\frac{\partial f_i}{\partial x_j}\approx
-\frac{f_i(\mathbf{x}+\mathbf{e}_j\,h)-f_i(\mathbf{x})}{h},$$</p>
-<p>kjer je $h$ majhen premik in je $\mathbf{e}_j$ enotski pomik v smeri $x_j$. Če se Jakobijeva matrika izračuna numerično, govorimo o sekantni metodi in ne Newtonovi.</p>
+$$\frac{\partial f_i}{\partial x_j}\approx
+\frac{f_i(\mathbf{x}+\mathbf{e}_j\,h)-f_i(\mathbf{x})}{h},$$<p>kjer je $h$ majhen premik in je $\mathbf{e}_j$ enotski pomik v smeri $x_j$. Če se Jakobijeva matrika izračuna numerično, govorimo o sekantni metodi in ne Newtonovi.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri numeričnem izračunu si lahko pomagamo s funkcijo <code>scipy.optimize.approx_fprime</code> (za podrobnosti glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.approx_fprime.html">dokumentacijo</a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerična-implementacija">Numerična implementacija<a class="anchor-link" href="#Numerična-implementacija">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Algoritem torej je:</p>
 <ol>
@@ -3325,27 +3381,23 @@ $$\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x}=-\mathbf{f}(\mathbf{x}).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>* Opomba:</p>
 <p>Napako lahko ocenimo z normo razlike dveh zaporednih približkov:</p>
-<p>$$\sum_j^{n-1}\left|x_{i,j}-x_{i-1,j}\right|<\varepsilon,$$</p>
-<p>kjer je $i$ indeks iteracije in $j$ indeks elementa.</p>
+$$\sum_j^{n-1}\left|x_{i,j}-x_{i-1,j}\right|<\varepsilon,$$<p>kjer je $i$ indeks iteracije in $j$ indeks elementa.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.optimize.root">Uporaba <code>scipy.optimize.root</code><a class="anchor-link" href="#Uporaba-scipy.optimize.root">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija <code>scipy.optimize.root</code> ima obsežno <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html">dokumentacijo</a> in omogoča večje število različnih pristopov:</p>
 <div class="highlight"><pre><span></span><span class="n">root</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">method</span><span class="o">=</span><span class="s1">'hybr'</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3354,8 +3406,7 @@ $$\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x}=-\mathbf{f}(\mathbf{x}).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če uporabimo privzete parametre, moramo definirati zgolj vektorsko funkcijo <code>fun</code> in začetno vrednost <code>x0</code>.</p>
 <p>Uvozimo funkcijo:</p>
@@ -3374,19 +3425,15 @@ $$\mathbf{J}(\mathbf{x})\,\Delta \mathbf{x}=-\mathbf{f}(\mathbf{x}).$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si uporabo na zgledu (gre za zgled na str. 76, Jože Petrišič, Reševanje enačb, 1996, FS, UNI-LJ):</p>
-<p>$$f_0(\mathbf{x})=x_0^2+x_0\,x_1-10=0,$$
-$$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$</p>
-<p>kjer je vektor $\mathbf{x}=[x_0, x_1]$.</p>
+$$f_0(\mathbf{x})=x_0^2+x_0\,x_1-10=0,$$$$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$<p>kjer je vektor $\mathbf{x}=[x_0, x_1]$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej definirajmo Python funkcijo, ki vrne seznam rezultatov funkcij $[f_0(\mathbf{x}),f_1(\mathbf{x})]$:</p>
 </div>
@@ -3406,8 +3453,7 @@ $$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še Jakobijevo matriko:</p>
 </div>
@@ -3427,8 +3473,7 @@ $$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo začetne vrednosti $x_0=1,5$ in $x_1=3,5$ ter rešimo problem:</p>
 </div>
@@ -3467,8 +3512,7 @@ $$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija <code>root</code> vrne obsežen rezultat. Najbolj pomembna sta atribut <code>x</code>, ki predstavlja iskano rešitev, in atribut <code>success</code>, ki pove, ali je rešitev konvergirala:</p>
 </div>
@@ -3517,16 +3561,14 @@ $$f_1(\mathbf{x})=x_1+3\,x_0\,x_1^2-57=0,$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>V simbolni obliki definirajte izraz:
@@ -3560,32 +3602,28 @@ $\sigma_{dop} = 120 \mathrm{MPa}$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tisti, ki ste navdušeni nad <a href="https://www.raspberrypi.org/">Raspberry Pi</a> in uporabljate njihovo kamero (npr. <a href="https://www.raspberrypi.org/products/pi-noir-camera/">tole brez infrardečega filtra</a>), vas bo morebiti zanimala knjižnica <a href="http://picamera.readthedocs.org/">picamera</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-sympy.solve-za-reševanje-enačb">Uporaba <code>sympy.solve</code> za reševanje enačb<a class="anchor-link" href="#Uporaba-sympy.solve-za-reševanje-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za manjše sisteme lahko rešitev najdemo tudi simbolno. Poglejmo si zgornji primer:</p>
 </div>

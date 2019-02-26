@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Reševanje-dvotočkovnih-robnih-problemov-1" href="#Reševanje-dvotočkovnih-robnih-problemov"><span class="toc-item-num">1  </span>Reševanje dvotočkovnih robnih problemov</a></span></li><li><span><a data-toc-modified-id="Strelska-metoda-2" href="#Strelska-metoda"><span class="toc-item-num">2  </span>Strelska metoda</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Numerični-zgled:-poševni-met-2.1" href="#Numerični-zgled:-poševni-met"><span class="toc-item-num">2.1  </span>Numerični zgled: poševni met</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Vertikalni-met-2.1.1" href="#Vertikalni-met"><span class="toc-item-num">2.1.1  </span>Vertikalni met</a></span></li><li><span><a data-toc-modified-id="Poševni-met-2.1.2" href="#Poševni-met"><span class="toc-item-num">2.1.2  </span>Poševni met</a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-scipy.integrate.solve_bvp-2.2" href="#Uporaba-scipy.integrate.solve_bvp"><span class="toc-item-num">2.2  </span>Uporaba <code>scipy.integrate.solve_bvp</code></a></span></li><li><span><a data-toc-modified-id="Numerični-zgled:-nosilec-z-obremenitvijo-2.3" href="#Numerični-zgled:-nosilec-z-obremenitvijo"><span class="toc-item-num">2.3  </span>Numerični zgled: nosilec z obremenitvijo</a></span></li></ul></li><li><span><a data-toc-modified-id="Metoda-končnih-razlik-3" href="#Metoda-končnih-razlik"><span class="toc-item-num">3  </span>Metoda končnih razlik</a></span><ul class="toc-item"><li><ul class="toc-item"><li><span><a data-toc-modified-id="Ocena-napake-3.0.1" href="#Ocena-napake"><span class="toc-item-num">3.0.1  </span>Ocena napake</a></span></li></ul></li><li><span><a data-toc-modified-id="Numerični-zgled:-vertikalni-met-3.1" href="#Numerični-zgled:-vertikalni-met"><span class="toc-item-num">3.1  </span>Numerični zgled: vertikalni met</a></span></li><li><span><a data-toc-modified-id="Numerični-zgled:-nosilec-z-obremenitvijo-3.2" href="#Numerični-zgled:-nosilec-z-obremenitvijo"><span class="toc-item-num">3.2  </span>Numerični zgled: nosilec z obremenitvijo</a></span></li></ul></li><li><span><a data-toc-modified-id="Dodatno:-simbolna-rešitev-nosilca-4" href="#Dodatno:-simbolna-rešitev-nosilca"><span class="toc-item-num">4  </span>Dodatno: simbolna rešitev nosilca</a></span></li></ul></div>
@@ -1415,27 +1591,23 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Reševanje-dvotočkovnih-robnih-problemov">Reševanje dvotočkovnih robnih problemov<a class="anchor-link" href="#Reševanje-dvotočkovnih-robnih-problemov">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pod dvotočkovnim robnim problemom razumemo navadno diferencialno enačbo drugega reda oblike:</p>
-<p>$$\ddot y=f(t, y, \dot y),$$</p>
-<p>ob predpisanih <em>robnih pogojih</em>:</p>
-<p>$$y(a)=\alpha\qquad\textrm{in}\qquad y(b)=\beta.$$</p>
+$$\ddot y=f(t, y, \dot y),$$<p>ob predpisanih <em>robnih pogojih</em>:</p>
+$$y(a)=\alpha\qquad\textrm{in}\qquad y(b)=\beta.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metode, ki smo jih spoznali pri reševanju <em>začetnih problemov</em>, tukaj neposredno niso uporabne, ker nimamo podanega odvoda v začetni točki pri $t=a$.</p>
 <p>V nadaljevanju si bomo pogledali dva različna pristopa k reševanju robnih problemov:</p>
@@ -1447,65 +1619,55 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Strelska-metoda">Strelska metoda<a class="anchor-link" href="#Strelska-metoda">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešujemo robni problem:</p>
-<p>$$\ddot y=f(t, y, \dot y),\qquad y(a)=\alpha,\quad y(b)=\beta,$$</p>
-<p>ki ga prevedemo na začetni problem tako, da si izberemo:</p>
-<p>$$\dot y (a)=u.$$</p>
+$$\ddot y=f(t, y, \dot y),\qquad y(a)=\alpha,\quad y(b)=\beta,$$<p>ki ga prevedemo na začetni problem tako, da si izberemo:</p>
+$$\dot y (a)=u.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Problem rešimo z numeričnimi metodami reševanja začetnega problema in rešitev označimo z $\theta(u, t)$.</p>
 <p>Robni problem rešimo, ko izberemo $u$ tako, da velja:</p>
-<p>$$r(u)=\theta(u,b)-\beta=0.$$</p>
-<p>Dobili smo nelinearno enačbo, ki jo moramo rešiti; za izračun vrednosti mejnih preostankov $r(u)$ moramo numerično rešiti začetni problem.</p>
+$$r(u)=\theta(u,b)-\beta=0.$$<p>Dobili smo nelinearno enačbo, ki jo moramo rešiti; za izračun vrednosti mejnih preostankov $r(u)$ moramo numerično rešiti začetni problem.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za rešitev enačbe $r(u)=0$ lahko uporabimo sekantno metodo. Izberemo $u_0$ in $u_1$ in na $i$-tem koraku izračunamo:</p>
-<p>$$u_{i+1}=u_i-r(u_i)\,\frac{u_{i}-u_{i-1}}{r(u_{i})-r(u_{i-1})},\qquad i=2,3,\dots$$</p>
-<p>Zaključimo, ko je:
+$$u_{i+1}=u_i-r(u_i)\,\frac{u_{i}-u_{i-1}}{r(u_{i})-r(u_{i-1})},\qquad i=2,3,\dots$$<p>Zaključimo, ko je:
 $$\left|r(u_{i+1})\right|<\epsilon.$$</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev strelske metode je obremenjena z napako metode reševanja nelinearne enačbe $\epsilon$ in z napako numerične metode za reševanje začetnega problema.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled:-poševni-met">Numerični zgled: poševni met<a class="anchor-link" href="#Numerični-zgled:-poševni-met">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na sliki je prikazan izstrelek mase $m$, ki ga izstrelimo s hitrostjo $\textbf{v}_0$.
 <img src="./fig/posevni_met.png" width="300"></p>
@@ -1513,52 +1675,45 @@ $$\left|r(u_{i+1})\right|<\epsilon.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Velikost sile upora zraka je $|\textbf{F}|=c\,|\textbf{v}|^2$, potem sta gibalni enačbi:</p>
-<p>$$x''(t)=-F_x/m\qquad\ddot y(t)=-F_y/m-g.$$</p>
-<p>Komponente sile so (glejte izpeljavo pri poglavju iz reševanja začetnega problema sistema diferencialnih enačb):
+$$x''(t)=-F_x/m\qquad\ddot y(t)=-F_y/m-g.$$<p>Komponente sile so (glejte izpeljavo pri poglavju iz reševanja začetnega problema sistema diferencialnih enačb):
 $$F_x=-c\,x'\,\sqrt{x'^2+y'^2},\qquad F_y=-c\,y'\,\sqrt{x'^2+y'^2}.$$</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Vertikalni-met">Vertikalni met<a class="anchor-link" href="#Vertikalni-met">¶</a></h3><p>Najprej predpostavimo, da je $\varphi=90$° in torej v $x$ smeri nimamo gibanja. Zanima nas rešitev, ko izstrelek izstrelimo iz višine $y=0\,$m in mora pri času $t=b=1\,$s biti na višini $y(b)=10\,$m. Definirali smo robni problem:</p>
-<p>$$y''(t)=F_y\,/m-g,\qquad y(0)=0,\quad y(1)=10.$$</p>
+$$y''(t)=F_y\,/m-g,\qquad y(0)=0,\quad y(1)=10.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej moramo enačbo drugega reda:</p>
-<p>$$y''=f(t, y, y') = F_y/m-g$$</p>
-<p>preoblikovati na sistem dveh enačb prvega reda. Uporabimo $y_i=y^{i}$ ter upoštevamo $F_y=-c\,y'\,\sqrt{y'^2}$.</p>
+$$y''=f(t, y, y') = F_y/m-g$$<p>preoblikovati na sistem dveh enačb prvega reda. Uporabimo $y_i=y^{i}$ ter upoštevamo $F_y=-c\,y'\,\sqrt{y'^2}$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvajamo $y_i'=y_{i+1}$ in pripravimo sistem enačb prvega reda:</p>
-<p>$$
+$$
 \begin{array}{rcl}
 y'_0&=&y_1\\
 y'_1&=&-c\,y'\,\sqrt{y'^2}/m-g
 \end{array}
-$$</p>
+$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo seznam funkcij desnih strani:</p>
 </div>
@@ -1577,8 +1732,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo modula <code>numpy</code> in <code>scipy.integrate.solve_ivp</code>:</p>
 </div>
@@ -1597,8 +1751,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ter pripravimo funkcijo za izračun mejnega preostanka pri času $b$ v odvisnosti od začetne hitrosti $v_0$ (privzeti zračni upor je $c=0.1$):</p>
 </div>
@@ -1621,8 +1774,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo mejni preostanek pri začetnem pogoju $v_0=y'=50$ m/s:</p>
 </div>
@@ -1651,8 +1803,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da je masa pri 1 sekundi 5,635 m nad ciljno višino.</p>
 <p>Naš cilj je, da pri 1 sekundi masa doseže lego 10 m z natančnostjo <code>1e-6</code>:</p>
@@ -1672,8 +1823,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedimo sedaj sekantno metodo:</p>
 </div>
@@ -1722,8 +1872,7 @@ Rešitev 25.68650396273202
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj izračunano rešitev:</p>
 </div>
@@ -1744,8 +1893,7 @@ Rešitev 25.68650396273202
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo uporabili <code>lambda</code> izraz (<a href="https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions">dokumentacija</a>). Izraz <code>lambda t, y: f_vert(t, y, c=0.1)</code> je ekvivalenten:</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ime_funkcije</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -1755,8 +1903,7 @@ Rešitev 25.68650396273202
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo <code>matplotlib</code>:</p>
 </div>
@@ -1775,8 +1922,7 @@ Rešitev 25.68650396273202
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -1810,8 +1956,7 @@ Rešitev 25.68650396273202
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Poševni-met">Poševni met<a class="anchor-link" href="#Poševni-met">¶</a></h3><p>Poglejmo si sedaj splošen poševni met (diferencialne enačbe so definirana že zgoraj). Najprej moramo sistem diferencialnih enačb drugega reda preoblikovati v sistem enačb prvega reda.</p>
 <p>Uporabimo:
@@ -1820,24 +1965,22 @@ $$y_0=x,~ y_1=x',~ y_2=y,~ y_3=y'$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in dobimo sistem diferencialnih enačb prvega reda:</p>
-<p>$$
+$$
 \begin{array}{rcl}
 y_0'&=&y_1\\
 y_1'&=&F_x/m\\
 y_2'&=&y_3\\
 y_3'&=&F_y/m-g.\\
 \end{array}
-$$</p>
+$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo seznam funkcij desnih strani:</p>
 </div>
@@ -1857,8 +2000,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo še funkcijo za izračun mejnega preostanka pri času $b=1$ v odvisnosti od vektorja začetne hitrosti $\mathbf{v}_0$:</p>
 </div>
@@ -1881,8 +2023,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo mejni preostanek pri začetnem pogoju $\mathbf{v}_0=[100., 100.]\,$m/s:</p>
 </div>
@@ -1910,8 +2051,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za iskanje korena sistema nelinearnih funkcij smo že spoznali funkcijo <code>scipy.optimize.root</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">root</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">method</span><span class="o">=</span><span class="s1">'hybr'</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
@@ -1933,8 +2073,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potem uporabimo z začetnim ugibanjem $\mathbf{v}_0$:</p>
 </div>
@@ -1952,8 +2091,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešitev je:</p>
 </div>
@@ -1990,8 +2128,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Atribut <code>rešitev.x</code> vsebuje vektor izračunanih rešitev (<code>[19.37894314,  16.55482478]</code>). Preverimo mejni preostanek pri izračunani rešitvi:</p>
 </div>
@@ -2019,8 +2156,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj izračunano rešitev:</p>
 </div>
@@ -2041,8 +2177,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -2078,16 +2213,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.integrate.solve_bvp">Uporaba <code>scipy.integrate.solve_bvp</code><a class="anchor-link" href="#Uporaba-scipy.integrate.solve_bvp">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Namesto <code>scipy.integrate.solve_ivp</code> in <code>scipy.optimize</code> lahko uporabimo vgrajeno funkcijo za reševanje robnih problemov <code>scipy.integrate.solve_bvp</code> (BVP - <em>angl.</em> Boundary Value Problem):</p>
 <div class="highlight"><pre><span></span><span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">solve_bvp</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">bc</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> 
@@ -2098,8 +2231,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pojasnilo vseh argumentov je v <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_bvp.html#scipy-integrate-solve-bvp">dokumentaciji</a>, tukaj bomo izpostavili nekatere:</p>
 <ul>
@@ -2112,8 +2244,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat klicanja <code>solve_bvp</code> je objekt z atributi (izbrani):</p>
 <ul>
@@ -2126,8 +2257,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -2145,8 +2275,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo neodvisno spremenljivko</p>
 </div>
@@ -2164,8 +2293,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In mejni preostanek (želimo, da je pri času <code>b</code> lega $x=10$ m in $y=5$ m):</p>
 </div>
@@ -2184,8 +2312,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še začetne vrednosti hitrosti (kot začetno ugibanje):</p>
 </div>
@@ -2205,8 +2332,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In rešimo robni problem in opis rezultata</p>
 </div>
@@ -2246,8 +2372,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo rezultat:</p>
 </div>
@@ -2283,16 +2408,14 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled:-nosilec-z-obremenitvijo">Numerični zgled: nosilec z obremenitvijo<a class="anchor-link" href="#Numerični-zgled:-nosilec-z-obremenitvijo">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si nosilec:
 <img src="./fig/nosilec.png" width="400"></p>
@@ -2300,20 +2423,17 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poves $w(x)$ nosilca popiše diferencialna enačba četrtega reda:</p>
-<p>$$-E\,I\frac{\textrm{d}^4}{\textrm{d}x^4}w(x)+q(x)=0.$$</p>
-<p>Znane konstante so $E,I,l$ in je $q(x)$ porazdeljena obremenitev.</p>
+$$-E\,I\frac{\textrm{d}^4}{\textrm{d}x^4}w(x)+q(x)=0.$$<p>Znane konstante so $E,I,l$ in je $q(x)$ porazdeljena obremenitev.</p>
 <p>Robni pogoji (členkasto vpet nosilec):
 $$w(0)=w(l)=0\quad\textrm{in}\quad w''(0)=w''(l)=0$$</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Parametri so:</p>
 <ul>
@@ -2326,27 +2446,25 @@ $$w(0)=w(l)=0\quad\textrm{in}\quad w''(0)=w''(l)=0$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej moramo diferencialno enačbo četrtega reda preoblikovati v sistem diferencialnih enačb prvega reda. 
 Uporabimo:
 $$y_0=w,~ y_1=w',~ y_2=w'',~ y_3=w'''$$</p>
 <p>in dobimo sistem diferencialnih enačb prvega reda:</p>
-<p>$$
+$$
 \begin{array}{rcl}
 y_0'&=&y_1\\
 y_1'&=&y_2\\
 y_2'&=&y_3\\
 y_3'&=&q(x)/(EI).\\
 \end{array}
-$$</p>
+$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo različne porazdeljene obremenitve:</p>
 </div>
@@ -2371,8 +2489,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo dolžino (ostale parametre, $I, E$, bomo uporabili privzete):</p>
 </div>
@@ -2418,8 +2535,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo seznam funkcij desne strani:</p>
 </div>
@@ -2442,8 +2558,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo sedaj robne pogoje oz. mejni preostanek (poves in moment sta na robovih enaka nič):</p>
 </div>
@@ -2462,8 +2577,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še začetne vrednosti hitrosti (kot začetno ugibanje):</p>
 </div>
@@ -2483,8 +2597,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In rešimo robni problem (za vse tri tipe obremenitve):</p>
 </div>
@@ -2504,8 +2617,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat prikažimo za konstantno obremenitev:</p>
 </div>
@@ -2538,8 +2650,7 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In primerjavo povesa za različne tipe obremenitve:</p>
 </div>
@@ -2573,28 +2684,24 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Metoda-končnih-razlik">Metoda končnih razlik<a class="anchor-link" href="#Metoda-končnih-razlik">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešujemo robni problem:</p>
-<p>$$y''=f(t, y, y'),\qquad y(a)=\alpha,\quad y(b)=\beta.$$</p>
-<p>Velja torej: $$a=t_0,\quad b=t_{n-1}.$$</p>
+$$y''=f(t, y, y'),\qquad y(a)=\alpha,\quad y(b)=\beta.$$<p>Velja torej: $$a=t_0,\quad b=t_{n-1}.$$</p>
 <p>Pri metodi končnih razlik za reševanje robnega problema uporabimo diferenčno shemo. Predpostavimo, da imamo interval $[a,b]$, na katerem rešujemo diferencialno enačbo (neodvisna spremenljivka) razdeljeno na enake podintervale (točk je $n$):</p>
-<p>$$t=[t_0, t_1,\dots, t_{n-1}].$$</p>
+$$t=[t_0, t_1,\dots, t_{n-1}].$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvode nadomestimo s centralno diferenčno shemo:</p>
 <table>
@@ -2647,38 +2754,33 @@ $$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V $i$-ti točki navadno differencialno enačbo drugega reda s centralimi diferencami zapišemo:</p>
-<p>$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)+\mathcal{O}(h^{2})=f\left(t_i, y_i, 
-\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)+\mathcal{O}(h^{2})\right).$$</p>
+$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)+\mathcal{O}(h^{2})=f\left(t_i, y_i, 
+\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)+\mathcal{O}(h^{2})\right).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če zanemarimo napako metode:</p>
-<p>$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)=f\left(t_i, y_i, 
-\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)\right),\qquad i=1,2,\dots,n-2.$$</p>
-<p>Zgornjo enačbo lahko zapišemo za $n-2$ notranjih točk, kar pomeni, da nam do rešljivega sistema enačb za $n$ neznank manjkata še dve enačbi. Ti dve enačbi sta robna pogoja:</p>
-<p>$$y_0=\alpha,\quad y_{n-1}=\beta.$$</p>
+$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)=f\left(t_i, y_i, 
+\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)\right),\qquad i=1,2,\dots,n-2.$$<p>Zgornjo enačbo lahko zapišemo za $n-2$ notranjih točk, kar pomeni, da nam do rešljivega sistema enačb za $n$ neznank manjkata še dve enačbi. Ti dve enačbi sta robna pogoja:</p>
+$$y_0=\alpha,\quad y_{n-1}=\beta.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V primeru linearnega robnega problema moramo za izračun $n$ neznank $y_i$ rešiti sistem $n$ linearnih enačb (če je pa nelinearen, pa sistem nelinearnih enačb).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Ocena-napake">Ocena napake<a class="anchor-link" href="#Ocena-napake">¶</a></h3><p>Točen rezultat $y(t_{i})$ pri velikosti koraka $h$ je:
 $$y(t_{i})=y_{i,h}+E_{i,h},$$
@@ -2688,8 +2790,7 @@ $$E_{i,h}=k\,h^2,$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno lahko za velikost koraka $2h$ zapišemo:
 $$y(t_{j})=y_{j,2h}+E_{j,2h},$$
@@ -2699,51 +2800,44 @@ $$E_{j,2h}=k\,(2\,h)^2=4\,k\,h^2$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ob predpostavki, da je konstanta $k$ pri koraku $h$ in koraku $2h$ enaka, lahko določimo oceno napake pri boljšem približku $E_h$. Najprej izenačimo točna rezultat $y(t_{i})$ pri koraku $h$ in rezultat $y(t_{j})$ pri koraku $2h$ (velja $i=2\,j$, $j=1,2,\dots$):</p>
-<p>$$y_{i,h}+k\,h^2=y_{j,2h}+4\,k\,h^2$$</p>
+$$y_{i,h}+k\,h^2=y_{j,2h}+4\,k\,h^2$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>sledi:</p>
-<p>$$3\,k\,h^2=y_{2j,h}-y_{j,2h}$$</p>
-<p>in nato izračunamo <em>oceno napake</em>:</p>
-<p>$$E_{j,h}=\frac{y_{2j,h}-y_{j,2h}}{3}.$$</p>
+$$3\,k\,h^2=y_{2j,h}-y_{j,2h}$$<p>in nato izračunamo <em>oceno napake</em>:</p>
+$$E_{j,h}=\frac{y_{2j,h}-y_{j,2h}}{3}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled:-vertikalni-met">Numerični zgled: vertikalni met<a class="anchor-link" href="#Numerični-zgled:-vertikalni-met">¶</a></h2><p>Zgoraj smo vertikalni met rešili s strelsko metodo; uporabimo sedaj metodo končnih razlik. Najprej robni problem:
 $$y''(t)=F_y/m-g,\qquad y(0)=0,\quad y(1)=10.$$
 zapisati s pomočjo centralne diferenčne sheme ($F_y=-c\,y'$):</p>
-<p>$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)= -c\left(\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)\right)/m-g.$$</p>
-<p>(Tukaj smo predpostavili, da je zračni upor linearno odvisen od hitrost. V nasprotnem primeru bi imeli nelinearni robni problem, in posledično razvili sistem nelinearnih enačb.)</p>
+$$\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)= -c\left(\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)\right)/m-g.$$<p>(Tukaj smo predpostavili, da je zračni upor linearno odvisen od hitrost. V nasprotnem primeru bi imeli nelinearni robni problem, in posledično razvili sistem nelinearnih enačb.)</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornji izraz preoblikujemo:
 $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots,n-2.$$</p>
 <p>Robna pogoja sta:</p>
-<p>$$y_0=0,\qquad y_{n-1}=10$$</p>
+$$y_0=0,\qquad y_{n-1}=10$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robni problem smo torej preoblikovali na sistem $n$ linearnih enačb. Poglejmo si sedaj konkreten izračun za $n=11$; najprej definirajmo konstante, časovni vektor <code>t</code> in korak <code>h</code>:</p>
 </div>
@@ -2766,8 +2860,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato nadaljujemo z izračunom tridiagonalne matrike koeficientov <code>A</code>.</p>
 <p>Pomagamo si s funkcijo <code>numpy.diag()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.diag.html">dokumentacija</a>):</p>
@@ -2809,8 +2902,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še vektor konstant:</p>
 </div>
@@ -2828,11 +2920,10 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj <em>popravimo</em> matriko koeficientov <code>A</code> in vektor konstant <code>b</code>, da zadostimo robnim pogojem:</p>
-<p>$$y_0=0,\quad y_{n-1}=10.$$</p>
+$$y_0=0,\quad y_{n-1}=10.$$
 </div>
 </div>
 </div>
@@ -2863,8 +2954,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo sistem linearnih enačb:</p>
 </div>
@@ -2882,8 +2972,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -2918,8 +3007,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>S pomočjo funkcije <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html"><code>numpy.gradient()</code></a> izračunamo še hitrost in pospešek:</p>
 </div>
@@ -2949,8 +3037,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo sedaj še rezultat z dvojnim korakom:</p>
 </div>
@@ -2981,8 +3068,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primerjajmo prvih šest rezultatov pri koraku $2h$:</p>
 </div>
@@ -3011,8 +3097,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>z vsakim drugim rezultatom pri koraku $h$:</p>
 </div>
@@ -3041,8 +3126,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj lahko ocenimo napako:</p>
 </div>
@@ -3071,45 +3155,39 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Numerični-zgled:-nosilec-z-obremenitvijo">Numerični zgled: nosilec z obremenitvijo<a class="anchor-link" href="#Numerični-zgled:-nosilec-z-obremenitvijo">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vrnimo se k robnemu problemu nosilca s polsinusno obremenitvijo ($q(x)=-F_0\,\sin(\pi\,x/l))$), ki smo ga že obravnavali s strelsko metodo.</p>
 <p>Diferencialno enačbo četrtega reda zapišemo s pomočjo centralne diferenčne sheme (za $i$-to točko):</p>
-<p>$$-\frac{E\,I}{h^4}\left(1\,w_{i-2} - 4\,w_{i-1} + 6\,w_{i} - 4\,w_{i+1} + 1\, w_{i+2}\right) - F_0\,\sin(\pi\,x_i/l)= 0.$$</p>
+$$-\frac{E\,I}{h^4}\left(1\,w_{i-2} - 4\,w_{i-1} + 6\,w_{i} - 4\,w_{i+1} + 1\, w_{i+2}\right) - F_0\,\sin(\pi\,x_i/l)= 0.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robni pogoji so štirje, najprej poves na robovih:</p>
-<p>$$w_0=w_{n-1}=0$$</p>
-<p>Ker na robovih ni momenta, je drugi odvod nič. S centralno diferenčno shemo torej zapišemo dodatne enačbe:</p>
-<p>$$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$</p>
+$$w_0=w_{n-1}=0$$<p>Ker na robovih ni momenta, je drugi odvod nič. S centralno diferenčno shemo torej zapišemo dodatne enačbe:</p>
+$$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če za neodvisno spremenljivko $x$ uporabimo $n$ ekvidistantnih točk, potem diferencialno enačbo četrtega reda zapišemo za $n-2$ notranje točke. S tem pridobimo dodatni nefizikalni točki $w_{-1}$ in $w_n$. Če dodamo še štiri robne pogoje, imamo rešljiv sistem linearnih enačb z $n+2$ neznakami in $n+2$ enačbami.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej pripravimo podatke, neodvisno spremenljivko <code>x</code> in korak <code>h</code>:</p>
 </div>
@@ -3133,8 +3211,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato pripravimo matriko koeficientov (matrika je dimenzije <code>(n+2, n+2)</code>, v prvi in v zadnji dve vrstici bi lahko zapisali tudi vrednosti 0, to bomo pozneje popravili):</p>
 </div>
@@ -3170,8 +3247,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še vektor konstant (dodamo en element na koncu in en na začetku):</p>
 </div>
@@ -3201,8 +3277,7 @@ $$(2-c\,h/m)\,y_{i-1}-4\,y_{i}+(2+c\,h/m)\,y_{i+1}=-2\,g\,h^2,\qquad i=1,2,\dots
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj <em>popravimo</em> matriko koeficientov <code>A</code> in vektor konstant <code>b</code>, da zadostimo
 robnim pogojem.</p>
@@ -3225,8 +3300,7 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato $w_{-1}-2\,w_{0}+w_{1}=0$ in $w_{n-2}-2\,w_{n-1}+w_{n}=0$:</p>
 </div>
@@ -3341,8 +3415,7 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo sistem linearnih enačb:</p>
 </div>
@@ -3360,8 +3433,7 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažemo rezultat:</p>
 </div>
@@ -3396,24 +3468,21 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno:-simbolna-rešitev-nosilca">Dodatno: simbolna rešitev nosilca<a class="anchor-link" href="#Dodatno:-simbolna-rešitev-nosilca">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj si bomo pogledali simbolno reševanje robnega problema. Poudariti je treba, da gre tukaj zgolj za zgled, ki ga lahko naredimo za obravnavani nosilec z relativno enostavno polsinusno obremenitvijo. <strong>V praksi so seveda obremenitve in tudi oblike nosilca lahko bistveno bolj zahtevne in takrat druge poti kot numeričnega reševanja skoraj nimamo na voljo.</strong></p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej uvozimo <code>sympy</code>:</p>
 </div>
@@ -3432,8 +3501,7 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo spremenljivke:</p>
 </div>
@@ -3452,8 +3520,7 @@ robnim pogojem.</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo differencialno enačbo (robne pogoje dodamo pozneje):</p>
 </div>
@@ -3482,8 +3549,7 @@ $$- E I \frac{d^{4}}{d x^{4}} w{\left (x \right )} - F_{0} \sin{\left (\frac{\pi
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo:</p>
 </div>
@@ -3512,8 +3578,7 @@ $$C_{1} + C_{2} x + C_{3} x^{2} + C_{4} x^{3} - \frac{F_{0} l^{4} \sin{\left (\f
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iz vrednosti rešitve pri $x=0$:</p>
 </div>
@@ -3541,8 +3606,7 @@ $$C_{1}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in drugega odvoda rešitve pri $x=0$:</p>
 </div>
@@ -3570,8 +3634,7 @@ $$2 C_{3}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>določimo konstanti <code>C1</code> in <code>C3</code> (pomik in moment na levi strani sta enaka nič):</p>
 </div>
@@ -3589,8 +3652,7 @@ $$2 C_{3}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Robni pogoji na desni strani ($x=l$):</p>
 </div>
@@ -3619,8 +3681,7 @@ $$C_{2} l + C_{4} l^{3}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker na desni strani ni pomika, sledi rešitev za konstanto <code>C2</code>:</p>
 </div>
@@ -3649,8 +3710,7 @@ $$- C_{4} l^{2}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker ni momenta, sledi še:</p>
 </div>
@@ -3679,8 +3739,7 @@ $$6 C_{4} l$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Določimo konstanto <code>C4</code>:</p>
 </div>
@@ -3712,8 +3771,7 @@ $$0$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Upoštevajoč izračunane konstante je rešitev:</p>
 </div>
@@ -3742,8 +3800,7 @@ $$- \frac{F_{0} l^{4} \sin{\left (\frac{\pi x}{l} \right )}}{\pi^{4} E I}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo še numerično funkcijo <code>resitev_np()</code>:</p>
 </div>
@@ -3791,8 +3848,7 @@ $$- \frac{F_{0} l^{4} \sin{\left (\frac{\pi x}{l} \right )}}{\pi^{4} E I}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primerjajmo sedaj analitično rešitev, z rešitivijo z metodo končnih razlik in strelsko metodo:</p>
 </div>

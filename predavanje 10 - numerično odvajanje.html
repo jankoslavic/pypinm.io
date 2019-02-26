@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Uvod-1" href="#Uvod"><span class="toc-item-num">1  </span>Uvod</a></span></li><li><span><a data-toc-modified-id="Aproksimacija-prvega-odvoda-po-metodi-končnih-razlik-2" href="#Aproksimacija-prvega-odvoda-po-metodi-končnih-razlik"><span class="toc-item-num">2  </span>Aproksimacija prvega odvoda po metodi končnih razlik</a></span></li><li><span><a data-toc-modified-id="Centralna-diferenčna-shema-3" href="#Centralna-diferenčna-shema"><span class="toc-item-num">3  </span>Centralna diferenčna shema</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Odvod-$f'(x)$-3.1" href="#Odvod-$f'(x)$"><span class="toc-item-num">3.1  </span>Odvod $f'(x)$</a></span></li><li><span><a data-toc-modified-id="Zgled:-$\exp(-x)$-3.2" href="#Zgled:-$\exp(-x)$"><span class="toc-item-num">3.2  </span>Zgled: $\exp(-x)$</a></span></li><li><span><a data-toc-modified-id="Odvod-$f''(x)$-3.3" href="#Odvod-$f''(x)$"><span class="toc-item-num">3.3  </span>Odvod $f''(x)$</a></span></li><li><span><a data-toc-modified-id="Odvod-$f'''(x)$-3.4" href="#Odvod-$f'''(x)$"><span class="toc-item-num">3.4  </span>Odvod $f'''(x)$</a></span></li><li><span><a data-toc-modified-id="Odvod-$f^{(4)}(x)$-3.5" href="#Odvod-$f^{(4)}(x)$"><span class="toc-item-num">3.5  </span>Odvod $f^{(4)}(x)$</a></span></li><li><span><a data-toc-modified-id="Povzetek-centralne-diferenčne-sheme-3.6" href="#Povzetek-centralne-diferenčne-sheme"><span class="toc-item-num">3.6  </span>Povzetek centralne diferenčne sheme</a></span></li><li><span><a data-toc-modified-id="Uporaba-scipy.misc.central_diff_weight-3.7" href="#Uporaba-scipy.misc.central_diff_weight"><span class="toc-item-num">3.7  </span>Uporaba <code>scipy.misc.central_diff_weight</code></a></span></li><li><span><a data-toc-modified-id="Izboljšan-približek---Richardsonova-ekstrapolacija-3.8" href="#Izboljšan-približek---Richardsonova-ekstrapolacija"><span class="toc-item-num">3.8  </span>Izboljšan približek - Richardsonova ekstrapolacija</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zgled-3.8.1" href="#Zgled"><span class="toc-item-num">3.8.1  </span>Zgled</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Necentralna-diferenčna-shema-4" href="#Necentralna-diferenčna-shema"><span class="toc-item-num">4  </span>Necentralna diferenčna shema</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Diferenčna-shema-naprej-4.1" href="#Diferenčna-shema-naprej"><span class="toc-item-num">4.1  </span>Diferenčna shema naprej</a></span></li><li><span><a data-toc-modified-id="Diferenčna-shema-nazaj-4.2" href="#Diferenčna-shema-nazaj"><span class="toc-item-num">4.2  </span>Diferenčna shema nazaj</a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-numpy.gradient-5" href="#Uporaba-numpy.gradient"><span class="toc-item-num">5  </span>Uporaba <code>numpy.gradient</code></a></span></li><li><span><a data-toc-modified-id="Zaokrožitvena-napaka-pri-numeričnem-odvajanju-6" href="#Zaokrožitvena-napaka-pri-numeričnem-odvajanju"><span class="toc-item-num">6  </span>Zaokrožitvena napaka pri numeričnem odvajanju</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zgled-6.1" href="#Zgled"><span class="toc-item-num">6.1  </span>Zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-7" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">7  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-8" href="#Dodatno"><span class="toc-item-num">8  </span>Dodatno</a></span></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uvod">Uvod<a class="anchor-link" href="#Uvod">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vsako elementarno funkcijo lahko analitično odvajamo. Definicija odvoda je:
 $$f'(x)=\lim_{\Delta x \rightarrow 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}.$$</p>
@@ -1432,8 +1606,7 @@ $$f'(x)=\lim_{\Delta x \rightarrow 0}\frac{f(x+\Delta x)-f(x)}{\Delta x}.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V okviru tega poglavja se bomo seznanili s tem, kako numerično izračunamo odvod funkcije $f(x)$; pri tem so vrednosti funkcije $f(x)$ podane tabelarično, kakor je prikazano na sliki:
 <img src="./fig/odvajanje_tabela.png" width="400">
@@ -1442,8 +1615,7 @@ Najprej se bomo osredotočili na ekvidistantno, s korakom $h$, razporejene vredn
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri numeričnem odvajanju imamo dva, v principu različna, pristopa:</p>
 <ol>
@@ -1454,24 +1626,21 @@ Najprej se bomo osredotočili na ekvidistantno, s korakom $h$, razporejene vredn
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Slednji pristop temelji na razliki dveh približno enakih funkcijskih vrednostih, obremenjenih z zaokrožitveno napako, ki jih delimo z majhno vrednostjo: odvod ima posledično bistveno manj signifikantnih števk kakor pa funkcijske vrednosti v tabeli. Numeričnemu odvajanju se izognemo, če imamo to možnost; je pa v nekaterih primerih (npr. reševanje diferencialnih enačb) nepogrešljivo orodje!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Aproksimacija-prvega-odvoda-po-metodi-končnih-razlik">Aproksimacija prvega odvoda po metodi končnih razlik<a class="anchor-link" href="#Aproksimacija-prvega-odvoda-po-metodi-končnih-razlik">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvod $f'(x)$ lahko aproksimiramo na podlagi razvoja Taylorjeve vrste. To metodo imenujemo <strong>metoda končnih razlik</strong> ali tudi <strong>diferenčna metoda</strong>.</p>
 <p>Razvijmo <strong>Taylorjevo vrsto naprej</strong> (naprej, zaradi člena $+h$):
@@ -1480,17 +1649,15 @@ $$f{\left (x + h \right )} =\sum_{n=0}^{\infty}\frac{h^n}{n!}\frac{d^n}{dx^n}f(x
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Člen $\mathcal{O}\left(h^{2}\right)$ označuje napako drugega reda. Če iz enačbe izrazimo prvi odvod:</p>
-<p>$$f'{\left (x \right )}=\frac{1}{h}\left(f{\left (x + h \right )} - f{\left (x \right )}\right) - \underbrace{\frac{h}{2}\,f''(x)+\cdots}_{\mathcal{O}\left(h^{1}\right)}$$</p>
+$$f'{\left (x \right )}=\frac{1}{h}\left(f{\left (x + h \right )} - f{\left (x \right )}\right) - \underbrace{\frac{h}{2}\,f''(x)+\cdots}_{\mathcal{O}\left(h^{1}\right)}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da lahko ocenimo prvi odvod v točki $x_i$ (to je: $f_o'(x_i)$) na podlagi dveh zaporednih funkcijskih vrednosti:
 $$f_o'(x_i)=\frac{1}{h}\left(y_{i+1}-y_i\right)$$
@@ -1500,18 +1667,15 @@ in pri tem naredimo <strong>napako metode</strong>, ki je prvega reda $\mathcal{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Napaka je:</p>
-<p>$$e=-\frac{h}{2}\,f''(\xi),$$</p>
-<p>kjer je $\xi$ neznana vrednost na intervalu $[x_i, x_{i+1}]$ in smo zanemarili višje člene.</p>
+$$e=-\frac{h}{2}\,f''(\xi),$$<p>kjer je $\xi$ neznana vrednost na intervalu $[x_i, x_{i+1}]$ in smo zanemarili višje člene.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Velja torej izraz:
 $$f'(x_i)=f_o'(x_i)+e$$</p>
@@ -1519,8 +1683,7 @@ $$f'(x_i)=f_o'(x_i)+e$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj si poglejmo, kako pridemo do istega rezultata s strojno izpeljavo; najprej uvozimo <code>sympy</code>:</p>
 </div>
@@ -1539,8 +1702,7 @@ $$f'(x_i)=f_o'(x_i)+e$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo simbole:</p>
 </div>
@@ -1559,8 +1721,7 @@ $$f'(x_i)=f_o'(x_i)+e$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato nadaljujemo z razvojem <strong>Taylorjeve vrste naprej</strong> (angl. <em>forward Taylor series</em>):</p>
 </div>
@@ -1588,8 +1749,7 @@ $$f{\left (x \right )} + h \left. \frac{d}{d \xi_{1}} f{\left (\xi_{1} \right )}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Člen $\mathcal{O}\left(h^{2}\right)$ vsebuje člene drugega in višjega reda. V zgornji enačbi je uporabljena začasna spremenljivko za odvajanje $\xi_1$; izvedmo odvajanje in vstavimo $\xi_1=x$:</p>
 </div>
@@ -1617,8 +1777,7 @@ $$f{\left (x \right )} + h \frac{d}{d x} f{\left (x \right )} + O\left(h^{2}\rig
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zapišemo enačbo:</p>
 </div>
@@ -1647,8 +1806,7 @@ $$f{\left (h + x \right )} = f{\left (x \right )} + h \frac{d}{d x} f{\left (x \
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo jo za prvi odvod $f'(x)$:</p>
 </div>
@@ -1677,8 +1835,7 @@ $$\frac{f{\left (h + x \right )} - f{\left (x \right )} + O\left(h^{2}\right)}{h
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V kolikor odvoda drugega in višjih redov ne upoštevamo, smo naredili torej napako:</p>
 </div>
@@ -1707,8 +1864,7 @@ $$O\left(h\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Napaka $\mathcal{O}\left(h^{1}\right)$ je torej prvega reda in če ta člen zanemarimo, naredimo <em>napako metode</em> in dobimo oceno odvoda:</p>
 </div>
@@ -1737,33 +1893,29 @@ $$- \frac{f{\left (x \right )}}{h} + \frac{f{\left (h + x \right )}}{h}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da gre za isti izraz, kakor smo ga izpeljali zgoraj, torej je:</p>
-<p>$$y_i'=\frac{1}{h}\left(-y_i+y_{i+1}\right).$$</p>
+$$y_i'=\frac{1}{h}\left(-y_i+y_{i+1}\right).$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Centralna-diferenčna-shema">Centralna diferenčna shema<a class="anchor-link" href="#Centralna-diferenčna-shema">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Odvod-$f'(x)$">Odvod $f'(x)$<a class="anchor-link" href="#Odvod-$f'(x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej si poglejmo razvoj <strong>Taylorjeve vrste nazaj</strong> (angl. <em>backward Taylor series</em>):</p>
 </div>
@@ -1791,8 +1943,7 @@ $$f{\left (x \right )} - h \frac{d}{d x} f{\left (x \right )} + \frac{h^{2} \fra
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ugotovimo, da se pri razliki vrste naprej in nazaj odštevajo členi sodega reda; definirajmo:</p>
 </div>
@@ -1822,8 +1973,7 @@ $$2 h \frac{d}{d x} f{\left (x \right )} + O\left(h^{3}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izvedemo sledeče korake:</p>
 <ol>
@@ -1852,8 +2002,7 @@ $$2 h \frac{d}{d x} f{\left (x \right )} + O\left(h^{3}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ocena 1. odvoda torej je:</p>
 </div>
@@ -1881,17 +2030,15 @@ $$- \frac{f{\left (- h + x \right )}}{2 h} + \frac{f{\left (h + x \right )}}{2 h
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ali:</p>
-<p>$$y_i'=\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)$$</p>
+$$y_i'=\frac{1}{2h}\left(-y_{i-1}+y_{i+1}\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Napaka metode pa je torej drugega reda:</p>
 </div>
@@ -1919,16 +2066,14 @@ $$O\left(h^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zgled:-$\exp(-x)$">Zgled: $\exp(-x)$<a class="anchor-link" href="#Zgled:-$\exp(-x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si zgled eksponentne funkcije $f(x)=\exp(-x)$ in za točko $x=1,0$ izračunajmo prvi odvod $f'(x)=-\exp(-x)$ pri koraku $h_0=1$ in $h_1=0,1$.</p>
 <p>Najprej pripravimo tabelo numeričnih vrednosti in točen rezultat:</p>
@@ -1957,8 +2102,7 @@ $$O\left(h^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potem uporabimo shemo naprej:</p>
 </div>
@@ -1998,8 +2142,7 @@ $$- \frac{f{\left (x \right )}}{h} + \frac{f{\left (h + x \right )}}{h}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo napako pri $x=1,0$:</p>
 </div>
@@ -2048,16 +2191,14 @@ $$-0.017795866437814445$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potrdimo lahko, da je napaka pri koraku $h/10$ res približno 1/10 tiste pri koraku $h$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo sedaj še napako za centralno diferenčno shemo, ki je drugega reda:</p>
 </div>
@@ -2097,8 +2238,7 @@ $$- \frac{f{\left (- h + x \right )}}{2 h} + \frac{f{\left (h + x \right )}}{2 h
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Analizirajmo napako:</p>
 </div>
@@ -2147,24 +2287,21 @@ $$0.0006134390411555168$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potrdimo lahko, da je napaka pri koraku $h/10$ res približno 1/100 tiste pri koraku $h$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Odvod-$f''(x)$">Odvod $f''(x)$<a class="anchor-link" href="#Odvod-$f''(x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če Taylorjevo vrsto naprej in nazaj seštejemo, se odštejejo lihi odvodi:</p>
 </div>
@@ -2194,8 +2331,7 @@ $$2 f{\left (x \right )} + h^{2} \frac{d^{2}}{d x^{2}} f{\left (x \right )} + O\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Določimo drugi odvod:</p>
 </div>
@@ -2217,8 +2353,7 @@ $$2 f{\left (x \right )} + h^{2} \frac{d^{2}}{d x^{2}} f{\left (x \right )} + O\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ocena drugega odvoda je:</p>
 </div>
@@ -2246,17 +2381,15 @@ $$- \frac{2 f{\left (x \right )}}{h^{2}} + \frac{f{\left (- h + x \right )}}{h^{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ali:</p>
-<p>$$y_i''=\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)$$</p>
+$$y_i''=\frac{1}{h^2}\left(y_{i-1}-2\,y_{i}+y_{i+1}\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Napaka metode pa je ponovno drugega reda:</p>
 </div>
@@ -2284,16 +2417,14 @@ $$O\left(h^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Odvod-$f'''(x)$">Odvod $f'''(x)$<a class="anchor-link" href="#Odvod-$f'''(x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo določiti tretji odvod, moramo Taylorjevo vrsto razviti do stopnje 5:</p>
 </div>
@@ -2322,16 +2453,14 @@ $$- f{\left (- h + x \right )} + f{\left (h + x \right )} = 2 h \frac{d}{d x} f{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporaba 1. odvoda, ki smo ga izpeljali zgoraj, nam ne bi koristila, saj je red napake $\mathcal{O}\left(h^{2}\right)$, kar pomeni, da bi v zgornji pri deljenju s $h^3$ dobili $\mathcal{O}\left(h^{-1}\right)$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo trik: ponovimo razvoj, vendar na podlagi dodatnih točk, ki sta od $x$ oddaljeni za $2h$ in $-2h$:</p>
 </div>
@@ -2360,8 +2489,7 @@ $$- f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 4 h \frac{d}{d x
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj imamo dve enačbi in dve neznanki; sistem bomo rešili po korakih:</p>
 <ol>
@@ -2392,8 +2520,7 @@ $$- f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 4 h \frac{d}{d x
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ocena 3. odvoda je:</p>
 </div>
@@ -2421,17 +2548,15 @@ $$- \frac{f{\left (- 2 h + x \right )}}{2 h^{3}} + \frac{f{\left (- h + x \right
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ali:</p>
-<p>$$y_i'''=\frac{1}{h^3}\left(-y_{i-2}/2+y_{i-1}-y_{i+1}+y_{i+2}/2\right)$$</p>
+$$y_i'''=\frac{1}{h^3}\left(-y_{i-2}/2+y_{i-1}-y_{i+1}+y_{i+2}/2\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potrdimo, da je napaka metode drugega reda:</p>
 </div>
@@ -2459,16 +2584,14 @@ $$O\left(h^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Odvod-$f^{(4)}(x)$">Odvod $f^{(4)}(x)$<a class="anchor-link" href="#Odvod-$f^{(4)}(x)$">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ponovimo podoben postopek kot za 3. odvod, vendar za 4. odvod seštevamo Taylorjevo vrsto (do stopnje 6) naprej in nazaj:</p>
 </div>
@@ -2497,8 +2620,7 @@ $$f{\left (- h + x \right )} + f{\left (h + x \right )} = 2 f{\left (x \right )}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo dodatno enačbo na podlagi točk, ki sta od $x$ oddaljeni za $2h$ in $-2h$:</p>
 </div>
@@ -2527,8 +2649,7 @@ $$f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 2 f{\left (x \righ
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iz dveh enačb določimo 4. odvod:</p>
 </div>
@@ -2551,8 +2672,7 @@ $$f{\left (- 2 h + x \right )} + f{\left (2 h + x \right )} = 2 f{\left (x \righ
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ocena 4. odvoda je:</p>
 </div>
@@ -2580,17 +2700,15 @@ $$\frac{6 f{\left (x \right )}}{h^{4}} + \frac{f{\left (- 2 h + x \right )}}{h^{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ali:</p>
-<p>$$y_i^{(4)}=\frac{1}{h^4}\left(y_{i-2}-4\,y_{i-1}+6\,y_i-4\,y_{i+1}+y_{i+2}\right)$$</p>
+$$y_i^{(4)}=\frac{1}{h^4}\left(y_{i-2}-4\,y_{i-1}+6\,y_i-4\,y_{i+1}+y_{i+2}\right)$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potrdimo, da je napaka metode drugega reda:</p>
 </div>
@@ -2618,24 +2736,21 @@ $$O\left(h^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Povzetek-centralne-diferenčne-sheme">Povzetek centralne diferenčne sheme<a class="anchor-link" href="#Povzetek-centralne-diferenčne-sheme">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo izpeljali prve štiri odvode z napako metode 2. reda. Bistvo zgornjih izpeljav je, da nam dajo uteži, s katerimi moramo množiti funkcijske vrednosti, da izračunamo približek določenega odvoda. Iz tega razloga bomo tukaj te uteži zbrali.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej zberimo vse ocene odvodov v seznam:</p>
 </div>
@@ -2664,8 +2779,7 @@ $$\left [ - \frac{f{\left (- h + x \right )}}{2 h} + \frac{f{\left (h + x \right
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Na razpolago imamo 5 funkcijskih vrednosti (pri legah $x-2h, x-h, x, x+h, x+2h$), ki jih damo v seznam:</p>
 </div>
@@ -2683,8 +2797,7 @@ $$\left [ - \frac{f{\left (- h + x \right )}}{2 h} + \frac{f{\left (h + x \right
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Utež prvega odvoda za funkcijsko vrednosti $f(x-h)$ izračunamo:</p>
 </div>
@@ -2712,8 +2825,7 @@ $$- \frac{1}{2 h}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj posplošimo in izračunajmo uteži za vse funkcijske vrednosti in za vse ocene odvodov:</p>
 </div>
@@ -2743,8 +2855,7 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornje povzetke lahko tudi zapišemo v tabelarični obliki:</p>
 <table>
@@ -2797,16 +2908,14 @@ $$\left [ \left [ 0, \quad - \frac{1}{2 h}, \quad 0, \quad \frac{1}{2 h}, \quad 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-scipy.misc.central_diff_weight">Uporaba <code>scipy.misc.central_diff_weight</code><a class="anchor-link" href="#Uporaba-scipy.misc.central_diff_weight">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uteži za centralno diferenčno metodo lahko izračunamo tudi z uporabo <code>scipy.misc.central_diff_weight()</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.misc.central_diff_weights.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">central_diff_weights</span><span class="p">(</span><span class="n">Np</span><span class="p">,</span> <span class="n">ndiv</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -2817,8 +2926,7 @@ Za več informacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/ge
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo funkcijo:</p>
 </div>
@@ -2836,8 +2944,7 @@ Za več informacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/ge
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>3$.$ odvod (čez pet točk), napaka reda  $\mathcal{O}(h^{2})$:</p>
 </div>
@@ -2866,34 +2973,29 @@ Za več informacij glejte <a href="https://docs.scipy.org/doc/scipy/reference/ge
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: <code>SymPy.finite_diff_weights</code> omogoča izračun uteži tudi pri nekonstantnem koraku; v podrobnosti ne bomo šli in radovednega bralca napotimo na <a href="http://docs.sympy.org/latest/modules/calculus/index.html#sympy.calculus.finite_diff.finite_diff_weights">dokumentacijo</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Izboljšan-približek---Richardsonova-ekstrapolacija">Izboljšan približek - Richardsonova ekstrapolacija<a class="anchor-link" href="#Izboljšan-približek---Richardsonova-ekstrapolacija">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če je točen odvod je izračunan kot:</p>
-<p>$$f'(x_i)=f_o'(x_i)+e,$$</p>
-<p>kjer je $f_o'(x_i)$ numerično izračunan odvod v točki $x_i$ in $e$ ocena napake.</p>
+$$f'(x_i)=f_o'(x_i)+e,$$<p>kjer je $f_o'(x_i)$ numerično izračunan odvod v točki $x_i$ in $e$ ocena napake.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za metodo reda točnosti $n$: $\mathcal{O}(h^{n})$ pri koraku $h$ velja:
 $$f'(x_i)=f_o'(x_i, h)+K\,h^n,$$
@@ -2904,8 +3006,7 @@ $$f'(x_i)=f_o'\left(x_i, \frac{h}{2}\right)+K\,\left(\frac{h}{2}\right)^n.$$</p>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iz obeh enačb izločimo konstanto $K$ in določimo izboljšan približek:
 $$\overline{f}'(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{2^n-1}$$</p>
@@ -2913,8 +3014,7 @@ $$\overline{f}'(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">¶</a></h3><p>Poglejmo si zgled $f(x)=\sin(x)$ (analitični odvod je: $f'(x)=\cos(x)$):</p>
 </div>
@@ -2933,8 +3033,7 @@ $$\overline{f}'(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri koraku $h$ imamo funkcijske vrednosti definirane pri:</p>
 </div>
@@ -2963,8 +3062,7 @@ $$\overline{f}'(x_i)=\frac{2^n\,f_o'\left(x_i, \frac{h}{2}\right)-f_o'(x_i, h)}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Numerični odvod pri $x=\pi$:</p>
 </div>
@@ -2992,8 +3090,7 @@ $$3.141592653589793$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in koraku $h$ je</p>
 </div>
@@ -3023,8 +3120,7 @@ $$-0.9003163161571061$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračun pri koraku $2h$:</p>
 </div>
@@ -3054,8 +3150,7 @@ $$-0.6366197723675814$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo izboljšano oceno za $x=\pi$:</p>
 </div>
@@ -3084,32 +3179,28 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vidimo, da je izboljšana ocena najbližje teoretični vrednosti $\cos(\pi)=-1$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Necentralna-diferenčna-shema">Necentralna diferenčna shema<a class="anchor-link" href="#Necentralna-diferenčna-shema">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Centralna diferenčna shema, ki smo jo spoznali zgoraj, je zelo uporabna in relativno natančna. Ker pa je ne moremo vedno uporabiti (recimo na začetku ali koncu tabele), si moramo pomagati z <strong>necentralnimi diferenčnimi shemami</strong> za računanje odvodov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poznamo:</p>
 <ul>
@@ -3121,16 +3212,14 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Diferenčna-shema-naprej">Diferenčna shema naprej<a class="anchor-link" href="#Diferenčna-shema-naprej">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferenčna shema naprej z redom napake $\mathcal{O}(h^{1})$:</p>
 <table>
@@ -3182,8 +3271,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferenčna shema naprej z redom napake $\mathcal{O}(h^{2})$:</p>
 <table>
@@ -3240,16 +3328,14 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Diferenčna-shema-nazaj">Diferenčna shema nazaj<a class="anchor-link" href="#Diferenčna-shema-nazaj">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferenčna shema nazaj z redom napake $\mathcal{O}(h^{1})$:</p>
 <table>
@@ -3301,8 +3387,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferenčna shema nazaj z redom napake $\mathcal{O}(h^{2})$:</p>
 <table>
@@ -3359,16 +3444,14 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Uporaba-numpy.gradient">Uporaba <code>numpy.gradient</code><a class="anchor-link" href="#Uporaba-numpy.gradient">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za izračun numeričnih odvodov (centralna diferenčna shema 2. reda) lahko uporabimo tudi <code>numpy.gradient()</code> (<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">gradient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">varargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3378,8 +3461,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat funkcije <code>gradient</code> je numerični seznam (ali seznam numeričnih seznamov) z izračunanimi odvodi.</p>
 <p>Za podrobnosti glejte <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.gradient.html">dokumentacijo</a>.</p>
@@ -3387,8 +3469,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabo si bomo pogledali na primeru polinoma $p(x)=3\,x^2+x$:</p>
 </div>
@@ -3419,8 +3500,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo tabelo vrednosti:</p>
 </div>
@@ -3450,8 +3530,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo podatke</p>
 </div>
@@ -3482,8 +3561,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo, kako izračunamo numerični odvod:</p>
 </div>
@@ -3511,8 +3589,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Lahko bi podali tudi seznam vrednosti $x$:</p>
 </div>
@@ -3540,8 +3617,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ne smemo pa pozabiti, da je privzeti koraj enako $\Delta x=1$ in nam klic:</p>
 </div>
@@ -3569,61 +3645,53 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>vrne seveda napačni rezultat, saj nismo podali pravega koraka $\Delta x$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Zaokrožitvena-napaka-pri-numeričnem-odvajanju">Zaokrožitvena napaka pri numeričnem odvajanju<a class="anchor-link" href="#Zaokrožitvena-napaka-pri-numeričnem-odvajanju">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo se osredotočili na napako metode. Pri numeričnem odvajanju pa moramo biti zelo pozorni tudi na <strong>zaokrožitveno</strong> (ali tudi <em>upodobitveno</em>) napako! Poglejmo si prvi odvod (po centralni diferenčni shemi) zapisan z napako metode ($k\,h^2$) in zaokrožitveno napako $\varepsilon$:</p>
-<p>$$y_i'=\frac{1}{2h}\left((-y_{i-1}\pm\varepsilon)+(y_{i+1}\pm\varepsilon)\right) + k\,h^2$$</p>
+$$y_i'=\frac{1}{2h}\left((-y_{i-1}\pm\varepsilon)+(y_{i+1}\pm\varepsilon)\right) + k\,h^2$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V najslabšem primeru se zaokrožitvena napaka sešteje in je skupna napaka:</p>
-<p>$$n=\frac{\varepsilon}{h}+k\,h^2$$</p>
+$$n=\frac{\varepsilon}{h}+k\,h^2$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko je $h$ velik prevladuje napaka metode $k\,h^2$; ko pa je $h$ majhen, pa prevladuje zaokrožitvena napaka. Napaka ima minimum, ko velja:</p>
-<p>$$n'=-\frac{\varepsilon}{h^2}+2\,k\,h=0.$$</p>
-<p>Sledi:</p>
-<p>$$h=\sqrt[3]{\frac{\varepsilon}{2\,k}}.$$</p>
+$$n'=-\frac{\varepsilon}{h^2}+2\,k\,h=0.$$<p>Sledi:</p>
+$$h=\sqrt[3]{\frac{\varepsilon}{2\,k}}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spodaj si bomo pogledali primer, kjer bomo natančnost spreminjali v treh korakih:</p>
 <ol>
@@ -3639,8 +3707,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Določimo sedaj osnovno zaokrožitveno napako za posamezni tip:</p>
 </div>
@@ -3674,8 +3741,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kot primer si poglejmo seštevanje: k številu <code>1.</code> prištejemo polovico osnovne zaokrožitvene napake <code>eps16</code> in pretvorimo v tip <code>float16</code>, ugotovimo, da je nova vrednost še vedno enaka vrednosti <code>1.</code>:</p>
 </div>
@@ -3703,8 +3769,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo najprej funkcijo $\exp(x)$, ki bo dala rezultat natančnosti, ki jo definira parameter <code>dtype</code>:</p>
 </div>
@@ -3723,8 +3788,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo še funkcijo za analitično določljiv odvod (to bomo pozneje potrebovali za določitev relativne napake):</p>
 </div>
@@ -3743,8 +3807,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno kakor zgoraj pri seštevanju, lahko tudi pri vrednosti funkcije ugotovimo, da sprememba vrednosti $x$, ki je manjša od $\epsilon$, vodi v isti rezultat:</p>
 </div>
@@ -3793,8 +3856,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabimo sedaj centralno diferenčno shemo za prvi odvod. Pri tem naj bodo števila zapisana z natančnostjo <code>dtype</code>, s pomočjo točnega odvoda pa se izračuna še relativna napaka:</p>
 </div>
@@ -3816,8 +3878,7 @@ $$-0.9882151640869475$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer odvoda pri $x=1,0$ (Python funkcija vrne vrednost in relativno napako):</p>
 </div>
@@ -3866,8 +3927,7 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo sedaj korak:</p>
 </div>
@@ -3898,8 +3958,7 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunamo oceno odvodov za različne natančnosti zapisa (zaradi deljenja z 0 dobimo opozorilo):</p>
 </div>
@@ -3931,8 +3990,7 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izrišemo različne tipe v odvisnosti od velikosti koraka $h$. Najprej uvozimo potrebne knjižnice:</p>
 </div>
@@ -3951,8 +4009,7 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo sliko:</p>
 </div>
@@ -3978,8 +4035,7 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo jo:</p>
 </div>
@@ -4008,21 +4064,17 @@ $$\left ( -0.3678855725261193, \quad -1.6666750002257943e-05\right )$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri relativno velikem koraku $h$ prevladuje napaka metode, pri majhnem koraku pa zaokrožitvnea napaka; optimalni korak lahko ocenimo glede na:</p>
-<p>$$h=\sqrt[3]{\frac{\varepsilon}{2\,k}}.$$</p>
-<p>V konkretnem primeru velja:</p>
-<p>$$k=-\frac{f'''(x)}{6}=-\frac{-e^{-x}}{6}=\frac{1}{6\,e}\qquad(x=1)$$</p>
-<p>Sledi:</p>
-<p>$$h=\sqrt[3]{3\,\varepsilon\,e}.$$</p>
+$$h=\sqrt[3]{\frac{\varepsilon}{2\,k}}.$$<p>V konkretnem primeru velja:</p>
+$$k=-\frac{f'''(x)}{6}=-\frac{-e^{-x}}{6}=\frac{1}{6\,e}\qquad(x=1)$$<p>Sledi:</p>
+$$h=\sqrt[3]{3\,\varepsilon\,e}.$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunamo primeren korak za 16, 32 in 64-bitni zapis:</p>
 </div>
@@ -4092,24 +4144,21 @@ $$1.2188548432010213e-05$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najbolje se izkaže 64-bitni zapis, vendar pa tudi pri tem korak manjši od cca <code>1e-5</code> ni priporočen!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Za batni mehanizem na spodnji sliki strojno izpeljite kinematiko gibanja bata, če se kolenasta gred giblje po zakonu $\varphi(t)=\omega\,t$.
@@ -4135,16 +4184,14 @@ Dodatek k domačim nalogam: 6. vprašanje bi lahko nadaljevali in zašumljene po
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://www.youtube.com/watch?v=ZJkGI5DZQv8&list=PLYdroRCLMg5OvLx1EtY1ByvveJeTEXQd_&index=18">Video predavanja na temo numeričnega odvajanja</a>.</p>
 </div>

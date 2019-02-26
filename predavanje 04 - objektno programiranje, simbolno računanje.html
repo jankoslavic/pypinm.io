@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Objektno-programiranje-1" href="#Objektno-programiranje"><span class="toc-item-num">1  </span>Objektno programiranje</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Dedovanje-1.1" href="#Dedovanje"><span class="toc-item-num">1.1  </span>Dedovanje</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-dedovanja-razreda-list-(seznam)-1.1.1" href="#Primer-dedovanja-razreda-list-(seznam)"><span class="toc-item-num">1.1.1  </span>Primer dedovanja razreda <code>list</code> (seznam)</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Simbolno-računanje-s-SymPy-2" href="#Simbolno-računanje-s-SymPy"><span class="toc-item-num">2  </span>Simbolno računanje s <code>SymPy</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Definiranje-spremenljivk-in-numerični-izračun-2.1" href="#Definiranje-spremenljivk-in-numerični-izračun"><span class="toc-item-num">2.1  </span>Definiranje spremenljivk in numerični izračun</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Racionalna-števila-2.1.1" href="#Racionalna-števila"><span class="toc-item-num">2.1.1  </span>Racionalna števila</a></span></li><li><span><a data-toc-modified-id="Kompleksna-število-2.1.2" href="#Kompleksna-število"><span class="toc-item-num">2.1.2  </span>Kompleksna število</a></span></li><li><span><a data-toc-modified-id="Numerični-izračun-2.1.3" href="#Numerični-izračun"><span class="toc-item-num">2.1.3  </span>Numerični izračun</a></span></li></ul></li><li><span><a data-toc-modified-id="SymPy-in-NumPy-2.2" href="#SymPy-in-NumPy"><span class="toc-item-num">2.2  </span><code>SymPy</code> in <code>NumPy</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Uporaba-funkcije-lambdify-2.2.1" href="#Uporaba-funkcije-lambdify"><span class="toc-item-num">2.2.1  </span>Uporaba funkcije <code>lambdify</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Grafični-prikaz-2.3" href="#Grafični-prikaz"><span class="toc-item-num">2.3  </span>Grafični prikaz</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Parametrični-izris-2.3.1" href="#Parametrični-izris"><span class="toc-item-num">2.3.1  </span>Parametrični izris</a></span></li><li><span><a data-toc-modified-id="Izris-v-prostoru-2.3.2" href="#Izris-v-prostoru"><span class="toc-item-num">2.3.2  </span>Izris v prostoru</a></span></li></ul></li><li><span><a data-toc-modified-id="Algebra-2.4" href="#Algebra"><span class="toc-item-num">2.4  </span>Algebra</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Uporaba-expand-in-factor-2.4.1" href="#Uporaba-expand-in-factor"><span class="toc-item-num">2.4.1  </span>Uporaba <code>expand</code> in <code>factor</code></a></span></li><li><span><a data-toc-modified-id="Poenostavljanje-izrazov-s-simplify-2.4.2" href="#Poenostavljanje-izrazov-s-simplify"><span class="toc-item-num">2.4.2  </span>Poenostavljanje izrazov s <code>simplify</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-apart-in-together-2.5" href="#Uporaba-apart-in-together"><span class="toc-item-num">2.5  </span>Uporaba <code>apart</code> in <code>together</code></a></span></li><li><span><a data-toc-modified-id="Odvajanje-2.6" href="#Odvajanje"><span class="toc-item-num">2.6  </span>Odvajanje</a></span></li><li><span><a data-toc-modified-id="Integriranje-2.7" href="#Integriranje"><span class="toc-item-num">2.7  </span>Integriranje</a></span></li><li><span><a data-toc-modified-id="Vsota-in-produkt-vrste-2.8" href="#Vsota-in-produkt-vrste"><span class="toc-item-num">2.8  </span>Vsota in produkt vrste</a></span></li><li><span><a data-toc-modified-id="Limitni-račun-2.9" href="#Limitni-račun"><span class="toc-item-num">2.9  </span>Limitni račun</a></span></li><li><span><a data-toc-modified-id="Taylorjeve-vrste-2.10" href="#Taylorjeve-vrste"><span class="toc-item-num">2.10  </span>Taylorjeve vrste</a></span></li><li><span><a data-toc-modified-id="Linearna-algebra-2.11" href="#Linearna-algebra"><span class="toc-item-num">2.11  </span>Linearna algebra</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Matrike-in-vektorji-2.11.1" href="#Matrike-in-vektorji"><span class="toc-item-num">2.11.1  </span>Matrike in vektorji</a></span></li></ul></li><li><span><a data-toc-modified-id="Reševanje-enačb-2.12" href="#Reševanje-enačb"><span class="toc-item-num">2.12  </span>Reševanje enačb</a></span></li><li><span><a data-toc-modified-id="Reševanje-diferencialnih-enačb-2.13" href="#Reševanje-diferencialnih-enačb"><span class="toc-item-num">2.13  </span>Reševanje diferencialnih enačb</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Nedefinirane-funkcije-2.13.1" href="#Nedefinirane-funkcije"><span class="toc-item-num">2.13.1  </span>Nedefinirane funkcije</a></span></li><li><span><a data-toc-modified-id="Diferencialne-enačbe-2.13.2" href="#Diferencialne-enačbe"><span class="toc-item-num">2.13.2  </span>Diferencialne enačbe</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">3  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-4" href="#Dodatno"><span class="toc-item-num">4  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="sympy.mechanics-4.1" href="#sympy.mechanics"><span class="toc-item-num">4.1  </span>sympy.mechanics</a></span></li></ul></li></ul></div>
@@ -1415,16 +1591,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Objektno-programiranje">Objektno programiranje<a class="anchor-link" href="#Objektno-programiranje">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri programiranju poznamo različne pristope, dokumentacija Python-a (<a href="https://docs.python.org/howto/functional.html">docs.python.org</a>) omenja npr:</p>
 <ol>
@@ -1439,24 +1613,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python je objektno orientiran programski jezik, vendar pa nas ne sili v uporabo objektov v vseh primerih. Kot bomo videli pozneje, ima objektno programiranje veliko prednosti, vendar pa je lahko mnogokrat okorno in bi po nepotrebnem naredilo program kompleksen. Iz tega razloga se eksplicitnemu objektnemu programiranju izognemo, če se le da.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Objektno programiranje v Pythonu temelji na <strong>razredih</strong> (<em>class</em>), objekti so pa <strong>instance</strong> (<em>instance</em>) razreda.  Pogledali si bomo zgolj nekatere osnove objektnega programiranja (da boste lažje razumeli kodo drugih avtorjev in jo prirejali svojim potrebam).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Razred definiramo z ukazom <code>class</code> (<a href="https://docs.python.org/tutorial/classes.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ImeRazreda</span><span class="p">:</span>
@@ -1471,8 +1642,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer:</p>
 </div>
@@ -1501,8 +1671,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preden gremo v podrobnosti razumevanja kode, naredimo instanco razreda (torej objekt):</p>
 </div>
@@ -1520,8 +1689,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcije definirane znotraj razreda poimenujemo <strong>metode</strong>, ko jih kličemo na objektih.</p>
 <p>V zgornjem primeru metodo <code>površina</code> uporabimo tako:</p>
@@ -1550,8 +1718,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ime <code>self</code> je referenca na instanco razreda (objekt, ki bo ustvarjen). Imena znotraj razreda postanejo <strong>atributi</strong> objekta.</p>
 <p>Primer atributa `višina˙:</p>
@@ -1580,8 +1747,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Od kje pride rezultat <code>1</code>? Ko ustvarimo objekt, se najprej izvede inicializacijska funkcija <code>__init__()</code>, pri tem se kot argumenti funkcije <code>__init__</code> uporabijo argumenti, ki jih posredujemo v razred.</p>
 <p>Primer:</p>
@@ -1611,8 +1777,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravili smo tudi metodo, ki spremeni atribut <code>širina</code>:</p>
 </div>
@@ -1641,8 +1806,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Atribute lahko spreminjamo tudi neposredno, vendar se temu (zaradi možnosti napake in napačne uporabe) ponavadi izogibamo.</p>
 <p>Primer:</p>
@@ -1672,24 +1836,21 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dedovanje">Dedovanje<a class="anchor-link" href="#Dedovanje">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pomembna lastnost razredov je dedovanje; samo ime pove bistvo: tako kot ljudje dedujemo od svojih staršev, podobno velja tudi za razrede.  Vsak razred (<code>class</code>) tako lahko deduje lastnosti kakega drugega razreda (<a href="https://docs.python.org/tutorial/classes.html#inheritance">dokumentacija</a>). Lahko ima celo več staršev (v te podrobnosti tukaj ne bomo šli).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sintaksa razreda, ki deduje, je:</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Otrok</span><span class="p">(</span><span class="n">Starš</span><span class="p">):</span>
@@ -1701,16 +1862,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: tudi, če razredu ne definiramo <em>starša</em>, deduje razred <code>class</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer, ko novi razred <code>Kvadrat</code> podeduje obstoječega (<code>Pravokotnik</code>):</p>
 </div>
@@ -1737,8 +1896,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo sedaj uporabo:</p>
 </div>
@@ -1756,8 +1914,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Razred <code>Kvadrat</code> nima definicije metode za izračun površine, vendar pa jo je podedoval od razreda <code>Pravokotnik</code> in zato <em>ima metodo</em> za izračun površine:</p>
 </div>
@@ -1785,8 +1942,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V kolikor spremenimo širino, se ustrezno spremeni površina:</p>
 </div>
@@ -1815,16 +1971,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Primer-dedovanja-razreda-list-(seznam)">Primer dedovanja razreda <code>list</code> (seznam)<a class="anchor-link" href="#Primer-dedovanja-razreda-list-(seznam)">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej pripravimo seznam:</p>
 </div>
@@ -1853,8 +2007,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo seznamu dodati vrednost, uporabimo metodo <code>append</code> (to je metoda, ki jo imajo objekti tipa <code>list</code>):</p>
 </div>
@@ -1872,8 +2025,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato seznam prikažemo (najprej uvozimo <code>matplotlib</code>):</p>
 </div>
@@ -1903,8 +2055,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če nekaj takega izvajamo pogosto, potem je bolje, da si pripravimo svoj razred <code>Seznam</code>, ki deduje od <code>list</code> in dodamo metodo za prikaz <code>nariši</code>:</p>
 </div>
@@ -1928,8 +2079,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Instanca objekta je:</p>
 </div>
@@ -1979,8 +2129,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Čeprav nismo definirali metode <code>append</code>, jo je nov razred podedoval po razredu <code>list</code>:</p>
 </div>
@@ -2009,8 +2158,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ima tudi metodo za izris:</p>
 </div>
@@ -2039,16 +2187,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Simbolno-računanje-s-SymPy">Simbolno računanje s <code>SymPy</code><a class="anchor-link" href="#Simbolno-računanje-s-SymPy">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Termin <strong>simbolno računanje</strong> pomeni, da matematične izraze rešujemo strojno v obliki abstraktnih simbolov (in <strong>ne numerično</strong>). Strojno simbolno računanje nam pomaga kadar nas zanima <strong>rezultat v simbolni obliki</strong> in so izrazi preobsežni za klasično reševanje na list in papir. K strojnemu reševanju se zatečemo tudi zaradi zmanjšanja možnosti napake (pri obsežnih izračunih se ljudje lahko zmotimo).</p>
 <p><strong>Simbolno računanje nikakor ni nadomestek numeričnih metod!</strong></p>
@@ -2056,8 +2202,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo nekatere osnove, nekateri priporočeni dodatni viri pa so:</p>
 <ul>
@@ -2069,8 +2214,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>SymPy</code> je eden od sistemov za strojno algebro (CAS - <em>Computer Algebra Systems</em>), ki pa ima poleg zmogljivosti tudi to prednost, da je v celoti napisan v Pythonu (alternativni paket v Pythonu <a href="http://www.sagemath.org/">Sage</a> na primer ni v celoti napisan v Pythonu).</p>
 <p>Nekatera namenska komercialna orodja:</p>
@@ -2082,8 +2226,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej uvozimo modul <code>SymPy</code>; tipično paket uvozimo kot <code>sym</code>:</p>
 </div>
@@ -2101,16 +2244,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo lahko, da se <code>SymPy</code> uvaža tudi <code>from sympy import *</code>. Temu se praviloma izogibamo, saj tako s <code>SymPy</code> imeni po nepotrebnem zapolnimo osnovni imenski prostor programa. V slednjem primeru do funkcij paketa (npr. <code>sympy.Sum</code>) dostopamo neposredno (npr. <code>Sum</code>), kar je lahko privlačno, vendar nas začne motiti, ko dodamo še druge pakete (npr. <code>numpy</code>), kar lahko poleg zmede privede do tega, da se funkcije z enakimi imeni "povozijo".</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zato da dobimo lepo oblikovan LaTeX izpis, uporabimo:</p>
 </div>
@@ -2128,16 +2269,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Definiranje-spremenljivk-in-numerični-izračun">Definiranje spremenljivk in numerični izračun<a class="anchor-link" href="#Definiranje-spremenljivk-in-numerični-izračun">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spremenljivke definiramo takole:</p>
 </div>
@@ -2155,8 +2294,7 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo lahko tip:</p>
 </div>
@@ -2184,16 +2322,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da je spremenljivka <code>x</code> sedaj <code>Symbol</code> iz paketa <code>sympy</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj lahko naredimo preprost izračun:</p>
 </div>
@@ -2221,8 +2357,7 @@ $$k + x^{y}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcijo lahko tudi poimenujemo; tukaj je primer, kjer uporabimo funkcijo sinus in konstanto $\pi$:</p>
 </div>
@@ -2251,16 +2386,14 @@ $$\sin^{2}{\left (x + 1.2 \pi \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bralec se morebiti sprašuje, zakaj potrebujemo <em>novo</em> funkcijo <code>sympy.sin()</code>, saj imamo vendar že tisto iz paketa <code>numpy</code>! Razlog je v tem, da simbolni izračun potrebuje popolnoma drugačno obravnavo kakor numerični in zato je koda zadaj povsem drugačna.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo zapisati enačbo, torej da enačimo en izraz z drugim, to naredimo takole:</p>
 </div>
@@ -2289,8 +2422,7 @@ $$\sin{\left (k x \right )} = 0.5$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri definiranju spremenljivk lahko dodajamo predpostavke:</p>
 </div>
@@ -2329,8 +2461,7 @@ $$\sin{\left (k x \right )} = 0.5$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Predpostavke se potem upoštevajo pri izračunu. V splošnem vemo, da $\sqrt{(x^2)}\ne x$, če pa je $x$ pozitiven, pa velja $\sqrt{(x^2)}= x$ in <code>sympy</code> glede na predpostavke izračuna pravilen rezultat:</p>
 </div>
@@ -2358,8 +2489,7 @@ $$x$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z metodo <code>assumptions0</code> pogledamo predpostavke objekta:</p>
 </div>
@@ -2397,8 +2527,7 @@ $$x$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>SymPy</code> pozna tipe števil (<a href="http://docs.sympy.org/latest/modules/core.html#module-sympy.core.numbers">dokumentacija</a>):</p>
 <ul>
@@ -2412,16 +2541,14 @@ $$x$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Racionalna-števila">Racionalna števila<a class="anchor-link" href="#Racionalna-števila">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo že definirali <em>realna števila</em>. Poglejmo na primeru sedaj <em>racionalna števila</em>:</p>
 </div>
@@ -2461,8 +2588,7 @@ $$\frac{4}{5}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nekateri izračuni:</p>
 </div>
@@ -2511,16 +2637,14 @@ $$\frac{16}{25}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Kompleksna-število">Kompleksna število<a class="anchor-link" href="#Kompleksna-število">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Imaginarno število se zapiše z <code>I</code> (to je drugače kot pri <code>numpy</code>, kjer je imaginarni del definiran z <code>j</code>):</p>
 </div>
@@ -2569,24 +2693,21 @@ $$-1$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Numerični-izračun">Numerični izračun<a class="anchor-link" href="#Numerični-izračun">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri simbolnem izračunu najprej analitične izraze rešimo, poenostavimo itd., nato pa pogosto želimo tudi izračunati konkreten rezultat.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -2616,8 +2737,7 @@ $$e^{x^{x^{x}} + \pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo sedaj namesto $x$ uporabiti vrednost, npr <code>0.5</code>, to naredimo z metodo <code>subs()</code> (<a href="http://docs.sympy.org/latest/tutorial/basic_operations.html#substitution">dokumentacija</a>):</p>
 </div>
@@ -2645,8 +2765,7 @@ $$1.84512555475729 e^{\pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo uporabili konstanto $\pi$ (<a href="http://docs.sympy.org/latest/modules/core.html?highlight=pi#sympy.core.numbers.Pi">dokumentacija</a>); nekatere tipično uporabljene konstante so:</p>
 <ul>
@@ -2658,8 +2777,7 @@ $$1.84512555475729 e^{\pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kot smo videli zgoraj, <code>subs()</code> naredi zamenjavo in potem poenostavitve, ki so očitne; števila $\pi$ ni izračunal v racionalni obliki. To moramo eksplicitno zahtevati z metodo:</p>
 <ul>
@@ -2671,8 +2789,7 @@ $$1.84512555475729 e^{\pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -2700,8 +2817,7 @@ $$205630752.25597888373365145985724589469698354456454413064267071001422894803692
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno je z <code>N</code>:</p>
 </div>
@@ -2729,16 +2845,14 @@ $$205630752.25597888373365145985724589469698354456454413064267071001422894803692
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mimogrede smo pokazali, da pod pogojem, da v izrazu nimamo števil s plavajočo vejico, lahko rezultat prikažemo poljubno natančno (<a href="http://docs.sympy.org/latest/modules/evalf.html">dokumentacija</a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V <code>subs</code> funkciji lahko uporabimo tudi slovar. Primer:</p>
 </div>
@@ -2778,8 +2892,7 @@ $$14$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali seznam terk:</p>
 </div>
@@ -2807,8 +2920,7 @@ $$14$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno ima metoda <code>sympy.evalf()</code> argument <code>subs</code>, ki sprejme slovar zamenjav, primer:</p>
 </div>
@@ -2836,8 +2948,7 @@ $$10000.0$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Metoda <code>sympy.subs</code> pa lahko zamenja simbol (ali izraz) tudi z drugim izrazom:</p>
 </div>
@@ -2865,16 +2976,14 @@ $$2 y + \infty$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="SymPy-in-NumPy"><code>SymPy</code> in <code>NumPy</code><a class="anchor-link" href="#SymPy-in-NumPy">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto <code>sympy</code> povežemo z <code>numpy</code>. Za primer si poglejmo, kako bi izraz:</p>
 </div>
@@ -2904,16 +3013,14 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>numerično učinkovito izračunali pri tisoč vrednostih $x$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej uvozimo paket <code>numpy</code>:</p>
 </div>
@@ -2931,8 +3038,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo numerično polje vrednosti:</p>
 </div>
@@ -2961,8 +3067,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Glede na zapisano zgoraj in predhodno znanje uporabimo izpeljevanje seznamov:</p>
 </div>
@@ -2980,8 +3085,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da je to dolgotrajno, zato izmerimo potreben čas:</p>
 </div>
@@ -3011,16 +3115,14 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Uporaba-funkcije-lambdify">Uporaba funkcije <code>lambdify</code><a class="anchor-link" href="#Uporaba-funkcije-lambdify">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bistveno hitrejši način je uporaba pristopa <code>lambdify</code>, kjer se pripravi prevedena funkcija, optimirana za numerično izvajanje. Sintaksa funkcije <code>sympy.lambdify()</code> je (<a href="http://docs.sympy.org/latest/modules/utilities/lambdify.html#sympy.utilities.lambdify.lambdify">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">simboli</span><span class="p">,</span> <span class="n">funkcija</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3035,8 +3137,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer uporabe:</p>
 </div>
@@ -3055,8 +3156,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo hitrost:</p>
 </div>
@@ -3086,16 +3186,14 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo približno 10.000-kratno pohitritev!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še primer uporabe funkcije več spremenljivk:</p>
 </div>
@@ -3128,24 +3226,21 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Grafični-prikaz">Grafični prikaz<a class="anchor-link" href="#Grafični-prikaz">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>SymPy</code> ima na <code>matplotlib</code> temelječ prikaz podatkov. Prikaz je sicer glede na <code>matplotlib</code> bolj omejen in ga uporabljamo za preproste prikaze. (<a href="http://docs.sympy.org/latest/modules/plotting.html">dokumentacija</a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogledali si bomo preproste primere, ki se navezujejo na funkcijo <code>sympy.plotting.plot</code>; najprej uvozimo funkcijo:</p>
 </div>
@@ -3163,8 +3258,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sintaksa uporabe funkcije <code>sympy.plotting.plot()</code> (<a href="http://docs.sympy.org/latest/modules/plotting.html#plotting-function-reference">dokumentacija</a>) je:</p>
 <div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="n">razpon</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3180,8 +3274,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Minimalni primer ene funkcije:</p>
 </div>
@@ -3217,8 +3310,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opomba: zadnja vrstica opozori na rezultat v obliki instance <code>Plot</code>; izpis objekta <code><sympy.plotting.plot.Plot at 0x...></code> skrijemo z uporabo podpičja:</p>
 <div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">);</span>
@@ -3228,8 +3320,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nekateri pogosti argumenti so:</p>
 <ul>
@@ -3242,8 +3333,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo dve sliki, kjer bo $y$ os logaritemska in bo razpon izrisa od 1 do 5:</p>
 </div>
@@ -3262,8 +3352,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj prvo sliko razširimo z drugo in prikažemo rezultat:</p>
 </div>
@@ -3293,8 +3382,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Parametrični-izris">Parametrični izris<a class="anchor-link" href="#Parametrični-izris">¶</a></h3><p>Podobno uporabljamo funkcijo <code>sympy.plotting.plot_parametric</code> za parametrični izris (<a href="http://docs.sympy.org/latest/modules/plotting.html#sympy.plotting.plot.plot_parametric">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">plot_parametric</span><span class="p">(</span><span class="n">izraz_x</span><span class="p">,</span> <span class="n">izraz_y</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3308,8 +3396,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo funkcijo:</p>
 </div>
@@ -3327,8 +3414,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo uporabo na primeru:</p>
 </div>
@@ -3357,8 +3443,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Izris-v-prostoru">Izris v prostoru<a class="anchor-link" href="#Izris-v-prostoru">¶</a></h3><p>Funkcija <code>sympy.plotting.plot3D</code> (<a href="http://docs.sympy.org/latest/modules/plotting.html#sympy.plotting.plot.plot3d">dokumentacija</a>) za izris v prostoru ima sintakso:</p>
 <div class="highlight"><pre><span></span><span class="n">plot3d</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="n">razpon_x</span><span class="p">,</span> <span class="n">razpon_y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3373,8 +3458,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uvozimo funkcijo:</p>
 </div>
@@ -3392,8 +3476,7 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo uporabo na primeru:</p>
 </div>
@@ -3423,40 +3506,35 @@ $$e^{x} + \sin{\left (x \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za ostale prikaze glejte <a href="http://docs.sympy.org/latest/modules/plotting.html#module-sympy.plotting.plot">dokumentacijo</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Algebra">Algebra<a class="anchor-link" href="#Algebra">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V tem poglavju si bomo pogledali nekatere osnove uporabe <code>SymPy</code> za algebrajske operacije.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Uporaba-expand-in-factor">Uporaba <code>expand</code> in <code>factor</code><a class="anchor-link" href="#Uporaba-expand-in-factor">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo matematični izraz:</p>
 </div>
@@ -3486,8 +3564,7 @@ $$\left(x + 1\right) \left(x + 2\right) \left(x + 3\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in ga sedaj <strong>razčlenimo</strong> (angl. <em>expand</em>, glejte <a href="http://docs.sympy.org/latest/tutorial/simplification.html#expand">dokumentacijo</a>):</p>
 </div>
@@ -3516,8 +3593,7 @@ $$x^{3} + 6 x^{2} + 11 x + 6$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo pogledati koeficiente pred <code>x</code>, to naredimo z metodo <code>coeff()</code>:</p>
 </div>
@@ -3545,8 +3621,7 @@ $$11$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Argumenti funkcije definirajo, kakšno razširitev želimo (<a href="http://docs.sympy.org/latest/tutorial/simplification.html#expand">dokumentacija</a>). Če želimo npr. trigonometrično razširitev, potem uporabimo <code>trig=True</code>:</p>
 </div>
@@ -3596,8 +3671,7 @@ $$\sin{\left (a \right )} \cos{\left (b \right )} + \sin{\left (b \right )} \cos
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Obratna operacija od razčlenitve je <strong>razcepitev</strong> ali <strong>razstavljanje</strong> ali <strong>faktorizacija</strong> (angl. <em>factor</em>, <a href="http://docs.sympy.org/latest/tutorial/simplification.html#factor">dokumentacija</a>):</p>
 </div>
@@ -3625,8 +3699,7 @@ $$\left(x + 1\right) \left(x + 2\right) \left(x + 3\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če nas zanimajo posamezni členi, potem to naredimo s funkcijo <code>sympy.factor_list</code>:</p>
 </div>
@@ -3654,16 +3727,14 @@ $$\left ( 1, \quad \left [ \left ( x + 1, \quad 1\right ), \quad \left ( x + 2, 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Poenostavljanje-izrazov-s-simplify">Poenostavljanje izrazov s <code>simplify</code><a class="anchor-link" href="#Poenostavljanje-izrazov-s-simplify">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija <code>sympy.simplify()</code>  (<a href="http://docs.sympy.org/latest/tutorial/simplification.html#simplify">dokumentacija</a>) poskuša poenostaviti izraze v bolj preproste (npr. s krajšanjem spremenljivk).</p>
 <p>Za posebne namene lahko poenostavimo tudi z:</p>
@@ -3677,8 +3748,7 @@ $$\left ( 1, \quad \left [ \left ( x + 1, \quad 1\right ), \quad \left ( x + 2, 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primeri poenostavljanja:</p>
 </div>
@@ -3748,16 +3818,14 @@ $$\frac{1}{\tan{\left (x \right )}}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-apart-in-together">Uporaba <code>apart</code> in <code>together</code><a class="anchor-link" href="#Uporaba-apart-in-together">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkciji uporabljamo za delo z ulomki:</p>
 </div>
@@ -3786,8 +3854,7 @@ $$\frac{1}{\left(x + 1\right) \left(x + 5\right)}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Razcep na parcialne ulomke (angl. <em>partial fraction decomposition</em>) izvedemo s funkcijo <code>sympy.apart()</code> (<a href="http://docs.sympy.org/latest/tutorial/simplification.html#apart">dokumentacija</a>):</p>
 </div>
@@ -3816,8 +3883,7 @@ $$- \frac{1}{4 \left(x + 5\right)} + \frac{1}{4 \left(x + 1\right)}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in potem ponovno v obratni smeri s funkcijo <code>sympy.together()</code>:</p>
 </div>
@@ -3845,8 +3911,7 @@ $$\frac{1}{\left(x + 1\right) \left(x + 5\right)}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V slednjem primeru pridemo do podobnega rezultata s <code>sympy.simplify()</code>:</p>
 </div>
@@ -3874,24 +3939,21 @@ $$\frac{1}{\left(x + 1\right) \left(x + 5\right)}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Odvajanje">Odvajanje<a class="anchor-link" href="#Odvajanje">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvajanje je načeloma relativno preprosta matematična operacija, ki jo izvedemo s funkcijo <code>sympy.diff()</code> (<a href="http://docs.sympy.org/latest/tutorial/calculus.html#derivatives">dokumentacija</a>):</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo primer:</p>
 </div>
@@ -3921,8 +3983,7 @@ $$\sin{\left (x y \right )} + \cos{\left (y z \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvajajmo ga po $x$:</p>
 </div>
@@ -3950,8 +4011,7 @@ $$y \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali tudi</p>
 </div>
@@ -3979,8 +4039,7 @@ $$y \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvode višjega reda definiramo tako:</p>
 </div>
@@ -4008,8 +4067,7 @@ $$- y^{3} \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali (isti rezultat malo drugače):</p>
 </div>
@@ -4037,8 +4095,7 @@ $$- y^{3} \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvod po več spremenljivkah $\frac{d^3f}{dx\,dy^2}$ izvedemo takole:</p>
 </div>
@@ -4066,16 +4123,14 @@ $$- x \left(x y \cos{\left (x y \right )} + 2 \sin{\left (x y \right )}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Integriranje">Integriranje<a class="anchor-link" href="#Integriranje">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcijo <code>integrate</code> lahko uporabimo za nedoločeno integriranje (<a href="http://docs.sympy.org/latest/modules/integrals/integrals.html#module-sympy.integrals">dokumentacija</a>):</p>
 <pre><code>pythoon
@@ -4093,8 +4148,7 @@ integrate(f, x)</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer nedoločenega integriranja:</p>
 </div>
@@ -4124,16 +4178,14 @@ $$x \cos{\left (y z \right )} + \begin{cases} - \frac{\cos{\left (x y \right )}}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da <code>sympy</code> pravilno upošteva možnost, da je $y=0$.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Še primer določenega integriranja:</p>
 </div>
@@ -4161,8 +4213,7 @@ $$2 \cos{\left (y z \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer, ko so meje v neskončnosti (uporabimo konstanto za neskončnost <code>sympy.oo</code>):</p>
 </div>
@@ -4190,16 +4241,14 @@ $$\sqrt{\pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Vsota-in-produkt-vrste">Vsota in produkt vrste<a class="anchor-link" href="#Vsota-in-produkt-vrste">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vsoto vrste definiramo s pomočju funkcije <code>sympy.Sum()</code> (<a href="http://docs.sympy.org/latest/modules/concrete.html#sympy.concrete.summations.Sum">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">Sum</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="p">(</span><span class="n">spr</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
@@ -4213,8 +4262,7 @@ $$\sqrt{\pi}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer vsote vrste:</p>
 </div>
@@ -4244,8 +4292,7 @@ $$\sum_{n=1}^{\infty} x^{- n}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Šele ko uporabimo metodo <code>doit_()</code>, se izračun izvede:</p>
 </div>
@@ -4273,8 +4320,7 @@ $$\begin{cases} \frac{1}{x \left(1 - \frac{1}{x}\right)} & \text{for}\: \left|{\
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še številčni rezultat:</p>
 </div>
@@ -4302,8 +4348,7 @@ $$0.25$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Produkt vrste definiramo podobno s funkcijo <code>sympy.Product</code> (<a href="http://docs.sympy.org/latest/modules/concrete.html#sympy.concrete.products.Product">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">Product</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="p">(</span><span class="n">spr</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
@@ -4317,8 +4362,7 @@ $$0.25$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -4368,16 +4412,14 @@ $$\frac{1}{120}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Limitni-račun">Limitni račun<a class="anchor-link" href="#Limitni-račun">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Limite računamo s pomočjo funkcije <code>sympy.limit()</code> (<a href="http://docs.sympy.org/latest/tutorial/calculus.html#limits">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
@@ -4392,8 +4434,7 @@ $$\frac{1}{120}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -4444,8 +4485,7 @@ $$1$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za primer si poglejmo uporabo limite na definiciji odvoda:
 $$\frac{\mathrm{d}f}{\mathrm{d}x} = \lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{h}.$$</p>
@@ -4453,8 +4493,7 @@ $$\frac{\mathrm{d}f}{\mathrm{d}x} = \lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo funkcijo <code>f</code> in njen odvod:</p>
 </div>
@@ -4473,8 +4512,7 @@ $$\frac{\mathrm{d}f}{\mathrm{d}x} = \lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Odvod funkcije je:</p>
 </div>
@@ -4502,8 +4540,7 @@ $$y \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Enak rezultat izračunamo tudi z uporabo limite:</p>
 </div>
@@ -4531,16 +4568,14 @@ $$y \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Taylorjeve-vrste">Taylorjeve vrste<a class="anchor-link" href="#Taylorjeve-vrste">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Taylorjeve vrste izračunamo s pomočjo funkcijo <code>sympy.series()</code> (<a href="http://docs.sympy.org/latest/modules/series/series.html#id1">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">'+'</span><span class="p">)</span>
@@ -4557,8 +4592,7 @@ $$y \cos{\left (x y \right )}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -4587,8 +4621,7 @@ $$1 + x + \frac{x^{2}}{2} + \frac{x^{3}}{6} + \frac{x^{4}}{24} + \frac{x^{5}}{12
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo definirati drugo izhodišče (<code>x0=2</code>) in z več členi (<code>n=8</code>), to izvedemo takole:</p>
 </div>
@@ -4617,8 +4650,7 @@ $$e^{2} + \left(x - 2\right) e^{2} + \frac{\left(x - 2\right)^{2} e^{2}}{2} + \f
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rezultat vključuje tudi red veljavnosti; na ta način lahko kontroliramo veljavnosti izvajanja ($\mathcal{O}$).</p>
 <p>Primer:</p>
@@ -4670,8 +4702,7 @@ $$x + O\left(x^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračuna <code>s1</code> in <code>s2</code> imata različna reda veljavnosti, posledično je produkt:</p>
 </div>
@@ -4699,8 +4730,7 @@ $$\left(x + O\left(x^{2}\right)\right) \left(1 - \frac{x^{2}}{2} + \frac{x^{4}}{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>natančen samo do reda $\mathcal{O}(x^2)$, kar <code>sympy</code> ustrezno obravnava:</p>
 </div>
@@ -4729,8 +4759,7 @@ $$x + O\left(x^{2}\right)$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podatek o stopnji veljavnosti lahko odstranimo:</p>
 </div>
@@ -4758,32 +4787,28 @@ $$x$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Linearna-algebra">Linearna algebra<a class="anchor-link" href="#Linearna-algebra">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Matrike-in-vektorji">Matrike in vektorji<a class="anchor-link" href="#Matrike-in-vektorji">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matrike in vektorje definiramo s funkcjo <code>Matrix</code>. Če se pri <code>numpy.array</code> ni treba dosledno držati matematičnega zapisa vektorjev in matrik, je pri <code>sympy</code> to nujno.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer; najprej pripravimo spremenljivke:</p>
 </div>
@@ -4802,8 +4827,7 @@ $$x$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato matriko in stolpični vektor:</p>
 </div>
@@ -4854,8 +4878,7 @@ $$\left[\begin{matrix}b_{1}\\b_{2}\end{matrix}\right]$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj si poglejmo nekatere tipične operacije; najprej množenje matrike in vektorja:</p>
 </div>
@@ -4883,8 +4906,7 @@ $$\left[\begin{matrix}b_{1} m_{11} + b_{2} m_{12}\\b_{1} m_{21} + b_{2} m_{22}\e
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato skalarni produkt dveh vektorjev (paziti moramo na transponiranje enega od vektorjev):</p>
 </div>
@@ -4912,8 +4934,7 @@ $$\left[\begin{matrix}b_{1}^{2} + b_{2}^{2}\end{matrix}\right]$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Determinanta in inverzna matrika:</p>
 </div>
@@ -4962,8 +4983,7 @@ $$\left[\begin{matrix}\frac{m_{22}}{m_{11} m_{22} - m_{12} m_{21}} & - \frac{m_{
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Množenje in potenca matrike:</p>
 </div>
@@ -5012,16 +5032,14 @@ $$\left[\begin{matrix}m_{11}^{2} + m_{12} m_{21} & m_{11} m_{12} + m_{12} m_{22}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Reševanje-enačb">Reševanje enačb<a class="anchor-link" href="#Reševanje-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Enačbe in sistem enačb rešujemo s funkcijo <code>sympy.solve()</code> (<a href="http://docs.sympy.org/latest/modules/solvers/solvers.html#algebraic-equations">dokumentacija</a>). Podprto je reševanje sledečih enačb:</p>
 <ul>
@@ -5035,8 +5053,7 @@ $$\left[\begin{matrix}m_{11}^{2} + m_{12} m_{21} & m_{11} m_{12} + m_{12} m_{22}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sintaksa je:</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">*</span><span class="n">symbols</span><span class="p">,</span> <span class="o">**</span><span class="n">flags</span><span class="p">)</span>
@@ -5051,8 +5068,7 @@ $$\left[\begin{matrix}m_{11}^{2} + m_{12} m_{21} & m_{11} m_{12} + m_{12} m_{22}
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -5104,8 +5120,7 @@ $$\left [ 0.523598775598299, \quad 2.61799387799149\right ]$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo rešitev (opazimo, da smo našli samo dve od neskončno rešitev):</p>
 </div>
@@ -5137,8 +5152,7 @@ $$\left [ 0.523598775598299, \quad 2.61799387799149\right ]$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kvadratna enačba:</p>
 </div>
@@ -5167,8 +5181,7 @@ $$\left [ \frac{- b + \sqrt{- 4 a c + b^{2}}}{2 a}, \quad - \frac{b + \sqrt{- 4 
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sistem enačb:</p>
 </div>
@@ -5197,8 +5210,7 @@ $$\left \{ x : 1, \quad y : 0\right \}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za nelinearne sisteme pa lahko uporabimo tudi numerično reševanje s funkcijo  <code>sympy.nsolve()</code> (<a href="http://docs.sympy.org/latest/modules/solvers/solvers.html#sympy.solvers.solvers.nsolve">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">nsolve</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">[</span><span class="n">args</span><span class="p">,]</span> <span class="n">x0</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="p">[</span><span class="s1">'mpmath'</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -5215,8 +5227,7 @@ $$\left \{ x : 1, \quad y : 0\right \}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer od zgoraj:</p>
 </div>
@@ -5247,24 +5258,21 @@ $$2.61799387799149$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Reševanje-diferencialnih-enačb">Reševanje diferencialnih enačb<a class="anchor-link" href="#Reševanje-diferencialnih-enačb">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Nedefinirane-funkcije">Nedefinirane funkcije<a class="anchor-link" href="#Nedefinirane-funkcije">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preden si ogledamo diferencialne enačbe, moramo spoznati nedefinirane funkcije. Take funkcije definiramo <code>sympy.Function</code> <a href="https://docs.sympy.org/latest/modules/functions/index.html">dokumentacija</a>.</p>
 <p>Kot primer si poglejmo kako definiramo enačbo $\ddot x(t)=g$. Najprej definirajmo nedoločeno funkcijo:</p>
@@ -5283,8 +5291,7 @@ $$2.61799387799149$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Nato simbole:</p>
 </div>
@@ -5302,8 +5309,7 @@ $$2.61799387799149$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In še enačbo:</p>
 </div>
@@ -5331,16 +5337,14 @@ $$\frac{d^{2}}{d t^{2}} x{\left (t \right )} = g$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Diferencialne-enačbe">Diferencialne enačbe<a class="anchor-link" href="#Diferencialne-enačbe">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferencialne enačbe in sisteme diferencialnih enačb rešujemo s funkcijo <code>sympy.dsolve()</code> (<a href="http://docs.sympy.org/latest/modules/solvers/ode.html#dsolve">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">'default'</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
@@ -5355,8 +5359,7 @@ $$\frac{d^{2}}{d t^{2}} x{\left (t \right )} = g$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer mase $m$, ki drsi po površini s koeficientom trenja $\mu$; začetna hitrost je $v_0$, pomik $x_0=0$.</p>
 <p>Definirajmo simbole:</p>
@@ -5376,8 +5379,7 @@ $$\frac{d^{2}}{d t^{2}} x{\left (t \right )} = g$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Definirajmo diferencialno enačbo:</p>
 </div>
@@ -5406,8 +5408,7 @@ $$m \frac{d^{2}}{d t^{2}} x{\left (t \right )} = - g m \mu$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo lastnosti diferencialne enačbe:</p>
 </div>
@@ -5458,8 +5459,7 @@ $$2$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rešimo jo:</p>
 </div>
@@ -5488,8 +5488,7 @@ $$x{\left (t \right )} = C_{1} + C_{2} t - \frac{g \mu t^{2}}{2}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pripravimo funkcijo pomika:</p>
 </div>
@@ -5518,8 +5517,7 @@ $$C_{1} + C_{2} t - \frac{g \mu t^{2}}{2}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker je pri času $t=0$ pomik nič, velja:</p>
 </div>
@@ -5547,8 +5545,7 @@ $$C_{1}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>torej določimo konstanto <code>C1</code></p>
 </div>
@@ -5577,8 +5574,7 @@ $$0$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno je pri $t=0$ hitrost enaka $v0$, torej določimo še konstanto <code>C2</code>:</p>
 </div>
@@ -5607,8 +5603,7 @@ $$v_{0}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko sta določeni konstanti <code>C1</code> in <code>C2</code>, je enolično določena tudi  funkcija lege mase:</p>
 </div>
@@ -5637,16 +5632,14 @@ $$- \frac{g \mu t^{2}}{2} + t v_{0}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Pojasnite na primeru <em>proceduralno</em> in <em>funkcijsko</em> programiranje.</li>
@@ -5682,16 +5675,14 @@ $$- \frac{g \mu t^{2}}{2} + t v_{0}$$
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="sympy.mechanics">sympy.mechanics<a class="anchor-link" href="#sympy.mechanics">¶</a></h2><p><code>sympy</code> ima vgrajeno podporo za klasično mehaniko (<a href="http://docs.sympy.org/latest/modules/physics/mechanics/index.html#classical-mechanics">dokumentacija</a>). Celovit tutorial je bil prikazan na znanstveni konferenci <a href="https://www.youtube.com/watch?v=r4piIKV4sDw">SciPy 2016</a>.</p>
 </div>

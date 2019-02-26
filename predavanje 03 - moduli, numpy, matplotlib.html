@@ -438,9 +438,124 @@ article .meta a.comments_btn:hover {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -519,12 +634,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -537,27 +660,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -753,7 +888,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -763,11 +900,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -1015,6 +1165,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -1053,7 +1206,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -1175,6 +1328,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -1191,16 +1348,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -1216,6 +1381,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1266,8 +1436,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -1406,8 +1583,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
 <div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Moduli-(nadaljevanje)-1" href="#Moduli-(nadaljevanje)"><span class="toc-item-num">1  </span>Moduli (nadaljevanje)</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Upravljalnik-paketov-conda-1.1" href="#Upravljalnik-paketov-conda"><span class="toc-item-num">1.1  </span>Upravljalnik paketov <code>conda</code></a></span></li><li><span><a data-toc-modified-id="Upravljalnik-paketov-pip-1.2" href="#Upravljalnik-paketov-pip"><span class="toc-item-num">1.2  </span>Upravljalnik paketov <code>pip</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Primer-namestitve-paketa-1.2.1" href="#Primer-namestitve-paketa"><span class="toc-item-num">1.2.1  </span>Primer namestitve paketa</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Modul-numpy-2" href="#Modul-numpy"><span class="toc-item-num">2  </span>Modul <code>numpy</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Osnove-modula-numpy-2.1" href="#Osnove-modula-numpy"><span class="toc-item-num">2.1  </span>Osnove modula <code>numpy</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zapis-matrik-in-vektorjev-2.1.1" href="#Zapis-matrik-in-vektorjev"><span class="toc-item-num">2.1.1  </span>Zapis matrik in vektorjev</a></span></li><li><span><a data-toc-modified-id="Rezanje-2.1.2" href="#Rezanje"><span class="toc-item-num">2.1.2  </span>Rezanje</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Poglejmo-si-še-rezanje-večdimenzijskega-numeričnega-polja.-2.1.2.1" href="#Poglejmo-si-še-rezanje-večdimenzijskega-numeričnega-polja."><span class="toc-item-num">2.1.2.1  </span>Poglejmo si še rezanje večdimenzijskega numeričnega polja.</a></span></li></ul></li><li><span><a data-toc-modified-id="Operacije-nad-numeričnimi-polji-2.1.3" href="#Operacije-nad-numeričnimi-polji"><span class="toc-item-num">2.1.3  </span>Operacije nad numeričnimi polji</a></span></li><li><span><a data-toc-modified-id="Aritmetične-operacije-2.1.4" href="#Aritmetične-operacije"><span class="toc-item-num">2.1.4  </span>Aritmetične operacije</a></span></li><li><span><a data-toc-modified-id="Matematične-funkcije-2.1.5" href="#Matematične-funkcije"><span class="toc-item-num">2.1.5  </span>Matematične funkcije</a></span></li><li><span><a data-toc-modified-id="Podatkovni-tipi-2.1.6" href="#Podatkovni-tipi"><span class="toc-item-num">2.1.6  </span>Podatkovni tipi</a></span></li><li><span><a data-toc-modified-id="Spreminjanje-elementov-numeričnega-polja-(numpy.array)-2.1.7" href="#Spreminjanje-elementov-numeričnega-polja-(numpy.array)"><span class="toc-item-num">2.1.7  </span>Spreminjanje elementov numeričnega polja (<code>numpy.array</code>)</a></span></li></ul></li><li><span><a data-toc-modified-id="Osnove-matričnega-računanja-2.2" href="#Osnove-matričnega-računanja"><span class="toc-item-num">2.2  </span>Osnove matričnega računanja</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Nekatere-funkcije-knjižnice-numpy-2.2.1" href="#Nekatere-funkcije-knjižnice-numpy"><span class="toc-item-num">2.2.1  </span>Nekatere funkcije knjižnice <code>numpy</code></a></span></li><li><span><a data-toc-modified-id="Linearna-algebra-z-numpy-2.2.2" href="#Linearna-algebra-z-numpy"><span class="toc-item-num">2.2.2  </span>Linearna algebra z <code>numpy</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Vektorizacija-algoritmov-2.3" href="#Vektorizacija-algoritmov"><span class="toc-item-num">2.3  </span>Vektorizacija algoritmov</a></span></li></ul></li><li><span><a data-toc-modified-id="Modul-matplotlib-3" href="#Modul-matplotlib"><span class="toc-item-num">3  </span>Modul <code>matplotlib</code></a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Osnovna-uporaba-3.1" href="#Osnovna-uporaba"><span class="toc-item-num">3.1  </span>Osnovna uporaba</a></span></li><li><span><a data-toc-modified-id="Interaktivna-uporaba-3.2" href="#Interaktivna-uporaba"><span class="toc-item-num">3.2  </span>Interaktivna uporaba</a></span></li><li><span><a data-toc-modified-id="Napredna-uporaba-3.3" href="#Napredna-uporaba"><span class="toc-item-num">3.3  </span>Napredna uporaba</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Prikaz-več-funkcij-3.3.1" href="#Prikaz-več-funkcij"><span class="toc-item-num">3.3.1  </span>Prikaz več funkcij</a></span></li><li><span><a data-toc-modified-id="Prikaz-več-slik-3.3.2" href="#Prikaz-več-slik"><span class="toc-item-num">3.3.2  </span>Prikaz več slik</a></span></li><li><span><a data-toc-modified-id="Histogram-3.3.3" href="#Histogram"><span class="toc-item-num">3.3.3  </span>Histogram</a></span></li></ul></li><li><span><a data-toc-modified-id="Uporaba-primerov-iz-matplotlib.org-3.4" href="#Uporaba-primerov-iz-matplotlib.org"><span class="toc-item-num">3.4  </span>Uporaba primerov iz <code>matplotlib.org</code></a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-4" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">4  </span>Nekaj vprašanj za razmislek!</a></span></li><li><span><a data-toc-modified-id="Dodatno-5" href="#Dodatno"><span class="toc-item-num">5  </span>Dodatno</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="numba-5.1" href="#numba"><span class="toc-item-num">5.1  </span><code>numba</code></a></span></li><li><span><a data-toc-modified-id="matplotlib:-animacije,-povratni-klic,-XKCD-stil-5.2" href="#matplotlib:-animacije,-povratni-klic,-XKCD-stil"><span class="toc-item-num">5.2  </span><code>matplotlib</code>: animacije, povratni klic, XKCD stil</a></span></li><li><span><a data-toc-modified-id="Za-najbolj-zagrete-5.3" href="#Za-najbolj-zagrete"><span class="toc-item-num">5.3  </span>Za najbolj zagrete</a></span></li></ul></li></ul></div>
@@ -1415,40 +1591,35 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Moduli-(nadaljevanje)">Moduli (nadaljevanje)<a class="anchor-link" href="#Moduli-(nadaljevanje)">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poleg vgrajenih modulov in tistih, ki jih pripravimo sami, obstaja še velika množica modulov, ki jih lahko najdemo na spletu in Pythonu dodajajo nove funkcionalnosti. Šele ti moduli naredijo ekosistem Pythona tako uporaben.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://www.anaconda.com/download/">Anaconda</a> je najbolj popularna distribucija Pythona in ima vključenih že veliko modulov (za podroben seznam glejte to <a href="https://docs.anaconda.com/anaconda/packages/pkg-docs">povezavo</a>); predvsem pa ima vključene vse bistvene. Najbolj pomembne na področju inženirskih ved bomo spoznali v okviru te knjige.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Modul je tehnično gledano ena datoteka, kadar nek večji modul vsebuje več modulov, pa lahko začnemo govoriti o <em>paketih</em>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Module oz pakete lahko <em>posodabljamo</em> ali nameščamo <em>nove</em>, pri tem nam pomagajo t. i. <em>upravljalniki paketov</em> (angl. <em>package manager</em>). Najbolj pogosto uporabljamo:</p>
 <ul>
@@ -1460,16 +1631,14 @@ h6:hover .anchor-link {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Upravljalnik-paketov-conda">Upravljalnik paketov <code>conda</code><a class="anchor-link" href="#Upravljalnik-paketov-conda">¶</a></h2><p><code>conda</code> uporabljamo predvsem za module/pakete vključene v distribucijo <em>Anaconda</em>, in ima še nekatere dodatne sposobnosti (npr. kreiranje navideznega okolja, angl. <em>virtual environment</em>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo posodobiti vse nameščene pakete znotraj distribucije Anaconda, najprej posodobimo samo <code>conda</code>, nato pa pakete. V ukazni vrstici izvedemo sledeča ukaza:</p>
 <pre><code>conda update conda
@@ -1478,8 +1647,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kateri paketi so nameščeni, preverimo z ukazom (v ukazni vrstici):</p>
 <pre><code>conda list</code></pre>
@@ -1487,8 +1655,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Namesto izhoda v ukazno vrstico bomo večkrat uporabljali možnost <em>Jupyter notebooka</em>, ko s pomočjo klicaja (!) v celici s kodo izvedemo ukaz v ukazni vrstici  (gre za kratko obliko magičnega ukaza <code>%sx</code> - shell execute, glejte <a href="http://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-sx">dokumentacijo</a>). Opomba: dva klicaja bi vrnila celoten rezultat neposredno v notebook (ker je izpis zelo dolg, smo se temu izognili).</p>
 <p>Poglejmo primer:</p>
@@ -1522,8 +1689,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pakete namestimo z ukazom (v ukazni vrstici):</p>
 <pre><code>conda install [ime paketa]</code></pre>
@@ -1534,16 +1700,14 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Upravljalnik-paketov-pip">Upravljalnik paketov <code>pip</code><a class="anchor-link" href="#Upravljalnik-paketov-pip">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>pip</code> je upravljalnik paketov z daljšo zgodovino kot <code>conda</code>; podpira bistveno več paketov (<a href="https://pypi.org">pypi.org</a>), vendar ni tako odporen na nezdružljivosti kakor <code>conda</code>. Razlik je še več, vendar tukaj ne bomo šli v podrobnosti; uporabljate tistega, ki vam namesti željeni paket!</p>
 <p>Podobno kot pri <code>conda</code>, tudi tukaj že nameščene pakete najdemo z ukazom v ukazni vrstici (<a href="https://pip.pypa.io/en/stable/reference/pip_list/">dokumentacija</a>):</p>
@@ -1552,8 +1716,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pakete s <code>pip</code> namestimo z:</p>
 <div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="p">[</span><span class="n">ime_paketa</span><span class="p">]</span>
@@ -1568,8 +1731,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Primer-namestitve-paketa">Primer namestitve paketa<a class="anchor-link" href="#Primer-namestitve-paketa">¶</a></h3><p>Sicer pa pakete najpogosteje najdemo na spletu (<a href="https://pypi.org">pypi.org</a>). Pojdite na omenjeni portal in poiščite pakete na temo snemanja posnetkov iz portala <a href="https://www.youtube.com">www.youtube.com</a>.  Z iskanjem "youtube download" najdemo obetaven paket <code>youtube_dl</code>, ki ga namestimo:</p>
 </div>
@@ -1597,8 +1759,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj modul uporabimo (za podrobnosti uporabe glejte <a href="http://rg3.github.io/youtube-dl/">dokumentacijo</a>). Najprej uvozimo celotni paket:</p>
 </div>
@@ -1617,8 +1778,7 @@ conda update --all</code></pre>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prenesemo poljubni video:</p>
 </div>
@@ -1674,24 +1834,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Modul-numpy">Modul <code>numpy</code><a class="anchor-link" href="#Modul-numpy">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kakor je omenjeno zgoraj, so v okviru <em>Anaconda</em> distribucije Pythona že nameščeni praktično vsi pomembni moduli. V kolikor bi namestili Python <em>the hard way</em>, bi sicer morali modul <code>numpy</code> namestiti posebej (glejte <a href="http://www.numpy.org">spletno stran <code>numpy</code></a>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Osnove-modula-numpy">Osnove modula <code>numpy</code><a class="anchor-link" href="#Osnove-modula-numpy">¶</a></h2><p>Najprej uvozimo modul (uveljavljeno je, da ga uvozimo v kratki obliki <code>np</code>):</p>
 </div>
@@ -1709,8 +1866,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Gre za enega najbolj pomembnih modulov. Na kratko: gre za visoko optimiran modul za numerične izračune!</p>
 <p>Poglejmo si najprej sintakso za vektor ničel (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html">dokumentacija</a>):</p>
@@ -1726,8 +1882,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer:</p>
 </div>
@@ -1755,8 +1910,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali pa:</p>
 </div>
@@ -1786,8 +1940,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno kot <code>zeros</code> se obnaša <code>ones</code>, vendar je namesto ničel vrednost 1 (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html#numpy.ones">dokumentacija</a>).</p>
 <p>Poglejmo si primer, kjer definiramo tudi tip <code>int</code> (privzeti tip je <code>float</code>):</p>
@@ -1816,8 +1969,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto bomo tudi uporabljali razpon vrednosti <code>arange</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">([</span><span class="n">start</span><span class="p">,</span> <span class="p">]</span><span class="n">stop</span><span class="p">,</span> <span class="p">[</span><span class="n">step</span><span class="p">,</span> <span class="p">]</span><span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -1833,8 +1985,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer razpona od 0 do 9 (kakor vedno pri Pythonu <em>od</em> je vključen, <em>do</em> pa ni):</p>
 </div>
@@ -1862,8 +2013,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali pa od 7 do 12 po koraku 2, vendar število s plavajočo vejico:</p>
 </div>
@@ -1891,8 +2041,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Še eno funkcijo bomo pogosto uporabili, to je <code>linspace</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">retstep</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -1902,8 +2051,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Argumenti so:</p>
 <ul>
@@ -1918,8 +2066,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer generiranja 10 točk na razponu od $-\pi$ do vključno $+\pi$:</p>
 </div>
@@ -1948,16 +2095,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mimogrede smo zgoraj spoznali, da ima <code>numpy</code> vgrajene konstante (npr. $\pi$):</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še vgrajene funkcije za generiranje naključnih števil. Te najdemo v <code>numpy.random</code> (<a href="https://docs.scipy.org/doc/numpy/reference/routines.random.html">dokumentacija</a>).</p>
 <p>Najprej si poglejmo funkcijo <code>numpy.random.seed()</code>, ki se uporablja za ponastavitev generatorja naključnih števil (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.seed.html#numpy.random.seed">dokumentacija</a>). To pomeni, da lahko z istim semenom (angl. <em>seed</em>) različni uporabniki generiramo ista naključna števila!</p>
@@ -1965,8 +2110,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Spodnja vrstica:</p>
 </div>
@@ -1984,8 +2128,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>bo povzročila, da bo klic generatorja naključnih števil z enakomerno porazdelitvijo <code>numpy.random.rand()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html#numpy.random.rand">dokumentacija</a>) vedno rezultiral v iste vrednosti:</p>
 </div>
@@ -2013,8 +2156,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preizkusimo ali je res, kar smo zapisali, in ponastavimo seme in kličimo generator:</p>
 </div>
@@ -2043,16 +2185,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Zapis-matrik-in-vektorjev">Zapis matrik in vektorjev<a class="anchor-link" href="#Zapis-matrik-in-vektorjev">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Matrika je dimenzije <code>m x n</code>, kjer je na prvem mestu <code>m</code> število vrstic in <code>n</code> število stolpcev. Primer definiranja matrike dimenzije <code>m x n = 3 x 2</code> je:</p>
 </div>
@@ -2083,8 +2223,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vektor je lahko zapisan kot <strong>vrstični vektor</strong>:</p>
 </div>
@@ -2113,8 +2252,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali kot <strong>stolpični vektor</strong>:</p>
 </div>
@@ -2145,8 +2283,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V modulu <code>numpy</code> lahko vektorje in matrike zapisujemo kot:</p>
 <ul>
@@ -2158,24 +2295,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V angleškem jeziku bomo <em>array</em> prevajali kot <strong>večdimenzijsko numerično polje</strong> ali včasih <strong>večdimenzijske sezname</strong> (ker imajo nekatere podobnosti z navadnimi seznami). Nekatere knjige <em>array</em> tukaj prevajajo kot <em>tabela</em>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Rezanje">Rezanje<a class="anchor-link" href="#Rezanje">¶</a></h3><p><strong>Rezanje</strong> (angl. <em>slicing</em>) seznamov smo si že pogledali v poglavju Uvod v Python. Podobno rezanje, vendar bolj splošno, velja tudi za numerična polja modula <code>numpy</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sintaksa rezanja (<a href="http://docs.scipy.org/doc/numpy/reference/arrays.indexing.html">dokumentacija</a>) je:</p>
 <div class="highlight"><pre><span></span><span class="n">numpy_array</span><span class="p">[</span><span class="n">od</span><span class="p">:</span><span class="n">do</span><span class="p">:</span><span class="n">korak</span><span class="p">]</span>
@@ -2194,8 +2328,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer od elementa 3 do elementa 8 po koraku 2:</p>
 </div>
@@ -2224,8 +2357,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer od elementa 3 naprej:</p>
 </div>
@@ -2253,8 +2385,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer od elementa 3 naprej, vendar vsak tretji:</p>
 </div>
@@ -2282,8 +2413,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer zadnjih 5 elementov, vendar vsak drugi:</p>
 </div>
@@ -2311,8 +2441,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer zadnjih 5 elementov brez zadnjih 2, vendar vsak drugi:</p>
 </div>
@@ -2340,8 +2469,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Poglejmo-si-še-rezanje-večdimenzijskega-numeričnega-polja.">Poglejmo si še rezanje večdimenzijskega numeričnega polja.<a class="anchor-link" href="#Poglejmo-si-še-rezanje-večdimenzijskega-numeričnega-polja.">¶</a></h4><p>Večdimenzijsko rezanje izvedemo tako, da dimenzije ločimo z vejico:</p>
 <div class="highlight"><pre><span></span><span class="n">numpy_array</span><span class="p">[</span><span class="n">rezanje0</span><span class="p">,</span> <span class="n">rezanje1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
@@ -2351,8 +2479,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer; najprej pripravimo seznam 15 števil (<code>np.arange</code>), nato z metodo <code>reshape()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html">dokumentacija</a>) spremenimo obliko v matriko <code>3 x 5</code>:</p>
 </div>
@@ -2384,8 +2511,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Obliko numeričnega polja lahko preverimo z atributom <code>shape</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.shape.html">dokumentacija</a>).</p>
 </div>
@@ -2413,16 +2539,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Atribute bomo sicer podrobno spoznali pri obravnavi razredov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Prikažimo vrstice z indeksom 0:</p>
 </div>
@@ -2450,8 +2574,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Isti rezultat bi dobili s prikazom vrstice z indeksom 0 in vseh stolpcev:</p>
 </div>
@@ -2479,8 +2602,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto želimo dostopati do stoplcev, npr. stolpca z indeksom 1 (torej režemo vse vrstice in stolpec z indeksom 1):</p>
 </div>
@@ -2508,8 +2630,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si še primer rezanja prvih dveh vrstic in zadnjih dveh stolpcev:</p>
 </div>
@@ -2538,24 +2659,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobna logika se uporabi pri dimenzijah višjih od 2.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Operacije-nad-numeričnimi-polji">Operacije nad numeričnimi polji<a class="anchor-link" href="#Operacije-nad-numeričnimi-polji">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si sedaj bolj podrobno nekatere osnovne prednosti numeričnega polja <code>numpy.array</code> v primerjavi z navadnim seznamom Python.</p>
 <p>Najprej pripravimo navaden Pythonov seznam:</p>
@@ -2585,8 +2703,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In nato še numerično polje <code>numpy.array</code> (kar iz seznama <code>a</code>):</p>
 </div>
@@ -2615,16 +2732,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko izpišemo <code>b</code>, smo opozorjeni, da gre za <code>array([...])</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo, kako se obnaša Pythonov seznam pri množenju:</p>
 </div>
@@ -2652,16 +2767,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da se podvoji seznam, ne pa vrednosti, kar bi morebiti pričakovali.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo, kako se pri množenju obnaša numerično polje <code>numpy.array</code>:</p>
 </div>
@@ -2689,16 +2802,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Opazimo, da se podvojijo vrednosti; tako kakor bi pričakovali, ko množimo na primer skalarno vrednost in vektor!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Aritmetične-operacije">Aritmetične operacije<a class="anchor-link" href="#Aritmetične-operacije">¶</a></h3><p>Izbor aritmetičnih operacij, ki jih <code>numpy</code> izvaja na nivoju posameznega elementa, je (po naraščajoči prioriteti):</p>
 <ul>
@@ -2714,8 +2825,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -2743,8 +2853,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vse aritmetične operacije so sicer navedene v <a href="https://docs.scipy.org/doc/numpy/reference/routines.math.html#arithmetic-operations">dokumentaciji</a> in namesto kratkih oblik imamo tudi <em>dolge</em>, npr: <code>numpy.power(x, y)</code> namesto <code>x**y</code>; primer:</p>
 </div>
@@ -2772,16 +2881,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mimogrede opazimo, da je rezultat tipa <code>int32</code> (integer). Ko smo ustvarili ime <code>b</code>, smo namreč ustvarili numerično polje z elementi tipa <code>int32</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Matematične-funkcije">Matematične funkcije<a class="anchor-link" href="#Matematične-funkcije">¶</a></h3><p><code>numpy</code> ponuja praktično vse potrebne matematične (in druge) operacije, navedimo jih po skupinah, kot so strukturirane v <a href="https://docs.scipy.org/doc/numpy/reference/routines.math.html#mathematical-functions">dokumentaciji</a>:</p>
 <ul>
@@ -2796,8 +2903,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer funkcije $\sin()$:</p>
 </div>
@@ -2827,8 +2933,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo še hitrost izvajanja:</p>
 </div>
@@ -2857,16 +2962,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Podatkovni-tipi">Podatkovni tipi<a class="anchor-link" href="#Podatkovni-tipi">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>numpy</code> ima vnaprej definirane podatkovne tipe (statično). Celoten seznam možnih tipov je naveden v <a href="http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html">dokumentaciji</a>.</p>
 <p>Osredotočili se bomo predvsem na sledeče tipe:</p>
@@ -2880,8 +2983,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si nekaj primerov (cela števila, število s plavajočo vejico in kompleksna števila):</p>
 </div>
@@ -2951,24 +3053,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Spreminjanje-elementov-numeričnega-polja-(numpy.array)">Spreminjanje elementov numeričnega polja (<code>numpy.array</code>)<a class="anchor-link" href="#Spreminjanje-elementov-numeričnega-polja-(numpy.array)">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podatke spreminjamo na podoben način kakor pri navadnih seznamih; v kolikor uporabljamo rezanje, moramo paziti, da so na levi in desni strani enačaja podatki iste oblike (<code>array.shape</code>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer, ko matriki ničel dimenzije <code>3 x 4</code> spremenimo element z indeksom <code>[2, 3]</code>:</p>
 </div>
@@ -3000,8 +3099,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj spremenimo še elemente prvih dveh vrstic in prvih dveh stolpcev v vrednost 1:</p>
 </div>
@@ -3032,8 +3130,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z 2 pomnožimo stolpec z indeksom 1:</p>
 </div>
@@ -3064,8 +3161,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bodite pozorni na to, da na tak način naredimo <em>pogled</em> (view) na podatke (<strong>ne naredimo kopije podatkov</strong>).</p>
 <p>Za primer najprej naredimo novo ime <code>pogled</code>:</p>
@@ -3095,8 +3191,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj spremenimo izbrane vrednosti numeričnega polja <code>a</code>:</p>
 </div>
@@ -3127,8 +3222,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vrednosti <code>pogled</code> nismo spreminjali. Ker pa ime kaže na isto mesto kakor <code>a[:, 2]</code>, so vrednosti spremenjene:</p>
 </div>
@@ -3156,8 +3250,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želimo kopijo, moramo narediti tako:</p>
 </div>
@@ -3186,8 +3279,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in rezultat <code>kopija</code> ostane nespremenjen:</p>
 </div>
@@ -3216,24 +3308,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Osnove-matričnega-računanja">Osnove matričnega računanja<a class="anchor-link" href="#Osnove-matričnega-računanja">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če želite ponoviti matematične osnove matričnega računanja, potem sledite tej <a href="http://www.fmf.uni-lj.si/~kosir/poucevanje/skripta/matrike.pdf">povezavi</a> (gre za kratek in dober pregled prof. dr. T. Koširja). Pogledali bomo, kako matrične račune izvedemo s pomočjo paketa <code>numpy</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej definirajmo matriki $\mathbf{A}$ in $\mathbf{B}$:</p>
 </div>
@@ -3252,8 +3341,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ter vektorja $\mathbf{x}$ in $\mathbf{y}$.</p>
 </div>
@@ -3272,8 +3360,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Skalarni produkt dveh vektorjev izvedemo s funkcijo <code>dot()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3283,8 +3370,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer množenja dveh vektorjev, to lahko izvedemo tako:</p>
 </div>
@@ -3312,8 +3398,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>ali tudi tako:</p>
 </div>
@@ -3341,16 +3426,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgoraj smo omenili, da <code>numpy.array</code> ne sledi dosledno matematičnemu zapisu. Če bi, bi namreč eden od vektorjev moral biti vrstični, drugi stolpični. <code>numpy</code> to poenostavi in zato je koda lažje berljiva in krajša.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo sedaj množenje matrike z vektorjem (opazimo, da transponiranje <code>x</code> ni potrebno):</p>
 </div>
@@ -3378,8 +3461,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Lahko pa seveda pripravimo matematično korektno transponirano obliko vektorja (ampak vidimo, da je zapis neroden):</p>
 </div>
@@ -3408,8 +3490,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Transponiranje ima sicer tudi kratko obliko, prek atributa <code>T</code>, npr. za matriko $\mathbf{A}$:</p>
 </div>
@@ -3438,8 +3519,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si primer množenja dveh matrik:</p>
 </div>
@@ -3468,8 +3548,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Od Pythona 3.5 naprej se za množenje matrik (in vektorjev) uporablja tudi operator <code>@</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.matmul.html#numpy.matmul">dokumentacija</a>), ki omogoča kratek in pregleden zapis.</p>
 <p>Zgornji primeri zapisani z operatorjem <code>@</code>:</p>
@@ -3541,8 +3620,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Vektorski produkt</strong> izračunamo s funkcijo <code>numpy.cross()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.cross.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">axisa</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axisb</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axisc</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3552,8 +3630,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer vektorskega produkta ravninskih vektorjev:</p>
 </div>
@@ -3583,8 +3660,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer vektorskega produkta prostorskih vektorjev:</p>
 </div>
@@ -3614,16 +3690,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Nekatere-funkcije-knjižnice-numpy">Nekatere funkcije knjižnice <code>numpy</code><a class="anchor-link" href="#Nekatere-funkcije-knjižnice-numpy">¶</a></h3><p>Pogledali si bomo še nekatere funkcije, ki jih bolj ali manj pogosto potrebujemo.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Enotsko matriko definiramo s funkcijo <code>numpy.identity()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.identity.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3633,8 +3707,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer enotske matrike:</p>
 </div>
@@ -3665,8 +3738,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Do diagonalnih elementov matrike dostopamo s pomočjo funkcije <code>numpy.diagonal()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.diagonal.html">dokumentacija</a>)</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -3676,8 +3748,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo primer izločanja diagonale:</p>
 </div>
@@ -3705,8 +3776,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in uporabe <code>offset=1</code> za sosednjo diagonalo (najprej pripravimo nesimetirčno matriko):</p>
 </div>
@@ -3735,8 +3805,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Podobno sintakso kot <code>numpy.diagonal()</code> ima funkcija <code>numpy.trace()</code>, ki izračuna vsoto (sled) diagonalnih elementov (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.trace.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
@@ -3746,8 +3815,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer sledi diagonale:</p>
 </div>
@@ -3775,8 +3843,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>in potem sosednje diagonale:</p>
 </div>
@@ -3804,8 +3871,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogosto nas zanimata največji ali najmanjši element nekega numeričnega polja. <code>numpy</code> je tukaj zelo splošen. Poglejmo si na primeru funkcije <code>numpy.max()</code> (<a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.amax.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
@@ -3815,8 +3881,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer izračuna največje vrednosti celotnega polja (prej poglejmo <code>A</code>):</p>
 </div>
@@ -3867,8 +3932,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer izračuna največje vrednosti čez vrstice (torej po stolpcih):</p>
 </div>
@@ -3896,8 +3960,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer izračuna največje vrednosti čez stolpce (torej po vrsticah):</p>
 </div>
@@ -3925,8 +3988,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Par funkcije <code>max()</code> je <code>numpy.argmax()</code>, kateri določi indekse največje vrednosti.</p>
 <p>Primer uporabe:</p>
@@ -3955,16 +4017,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Linearna-algebra-z-numpy">Linearna algebra z <code>numpy</code><a class="anchor-link" href="#Linearna-algebra-z-numpy">¶</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pozneje bomo linearno algebro bolj podrobno spoznali in bomo sami pisali algoritme. Tukaj si poglejmo nekatere osnove, ki so vgrajene v modul <code>numpy</code>.</p>
 <p>Za primer najprej definirajmo matriko in vektor:</p>
@@ -3985,8 +4045,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inverzno matriko izračunamo z uporabo funkcije <code>numpy.linalg.inv()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.inv.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
@@ -4017,8 +4076,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sistem linearnih enačb, ki ga definirata matrika koeficientov <code>a</code> in vektor konstant <code>b</code>, rešimo s pomočjo funkcije <code>numpy.linalg.solve()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.solve.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -4027,8 +4085,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -4057,8 +4114,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Enakost elementov numeričnega polja <code>a</code> in <code>b</code> (znotraj določene tolerance) preverimo s funkcijo <code>numpy.isclose()</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.isclose.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span> <span class="n">equal_nan</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -4067,8 +4123,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primer:</p>
 </div>
@@ -4096,24 +4151,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Vektorizacija-algoritmov">Vektorizacija algoritmov<a class="anchor-link" href="#Vektorizacija-algoritmov">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V tem poglavju želimo izpostaviti vektorizacijo algoritmov. Glede na to kako Python in <code>numpy</code> delujeta se je potrebno izogibati zankam. Bistveno hitreje lahko izvajamo izračune, če jih uspemo vektorizirati; to pomeni, da izračune izvajamo na nivoju vektorjev (oz. numeričnih polj) in ne elementov.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za primer si najprej pripravimo podatke (dva vektorja dolžine 1000)</p>
 </div>
@@ -4133,8 +4185,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izračunajmo skalarni produkt vektorjev z uporabo zanke <code>for</code>:</p>
 </div>
@@ -4165,8 +4216,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Izmerimo hitrost:</p>
 </div>
@@ -4198,8 +4248,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Isti rezultat pridobimo še v vektorski obliki:</p>
 </div>
@@ -4229,24 +4278,21 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vidimo, da je vektorski način bistveno hitrejši (za še hitrejši način glejte <code>numba</code> v dodatku)!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Modul-matplotlib">Modul <code>matplotlib</code><a class="anchor-link" href="#Modul-matplotlib">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>V Pythonu imamo več možnosti za prikaz rezultatov v grafični obliki. Najbolj uporabni paketi so:</p>
 <ul>
@@ -4258,16 +4304,14 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Obstaja še veliko drugih; dober pregled je naredil Jake VanderPlas na konferenci <a href="https://www.youtube.com/watch?v=FytuB8nFHPQ">PyCon 2017</a> (sicer avtor paketa za deklerativno vizualizacijo: <em>Altair</em>).</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Osnovna-uporaba">Osnovna uporaba<a class="anchor-link" href="#Osnovna-uporaba">¶</a></h2><p>Najbolj razširjen in najbolj splošno uporabljen je paket <a href="http://matplotlib.org/"><code>matplotlib</code></a>:
 <img src="http://matplotlib.org/_static/logo2.svg" width="400"></p>
@@ -4276,8 +4320,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tipično uvozimo <code>matplotlib.pyplot</code> kot <code>plt</code>:</p>
 </div>
@@ -4295,8 +4338,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Znotraj <em>Jupyter notebooka</em> obstajata dva načina prikaza slike (v oglatem oklepaju je magic ukaz za proženje):</p>
 <ol>
@@ -4308,8 +4350,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tukaj bomo najpogosteje uporabljali <em>medvrstični</em> način:</p>
 </div>
@@ -4327,8 +4368,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kratek primer:</p>
 </div>
@@ -4362,8 +4402,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Mimogrede, zakaj to imenujemo žvižg (oz. kvadraten žvižg)? Da dobimo odgovor, podatke predvajamo na zvočnik:</p>
 </div>
@@ -4395,8 +4434,7 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Aktivirajmo sedaj interaktivni način (glejte tudi <code>%matplotlib</code>):</p>
 </div>
@@ -4428,10 +4466,10 @@ Deleting original file HOZENTREGARJI- JUTR TOČIMO ZASTONJ-7VGiJN-sCKk.f171.webm
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="da752f50-ec17-4286-aab4-98cd5abcf226"></div>
+<div id="9f664398-a72c-460f-97fa-01533484ff7b"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#da752f50-ec17-4286-aab4-98cd5abcf226');
+var element = $('#9f664398-a72c-460f-97fa-01533484ff7b');
 /* Put everything inside the global mpl namespace */
 window.mpl = {};
 
@@ -5215,8 +5253,7 @@ if (IPython.notebook.kernel != null) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Zgornjo sliko lahko sedaj interaktivno klikamo in tudi dopolnjujemo s kodo:</p>
 </div>
@@ -5235,16 +5272,14 @@ if (IPython.notebook.kernel != null) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Interaktivna-uporaba">Interaktivna uporaba<a class="anchor-link" href="#Interaktivna-uporaba">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pri tem predmetu bomo večkrat uporabljali interaktivnost pri delu z grafičnimi prikazi. V ta namen najprej uvozimo <code>interact</code> iz paketa <code>ipywidgets</code>:</p>
 </div>
@@ -5262,8 +5297,7 @@ if (IPython.notebook.kernel != null) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potem definiramo sliko kot funkcijo z argumenti <code>amplituda</code>, <code>fr</code>, <code>faza</code> in <code>dušenje</code>:</p>
 </div>
@@ -5286,8 +5320,7 @@ if (IPython.notebook.kernel != null) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Gremo nazaj na medvrstično uporabo in kličemo funkcijo za izris slike (privzeti argumenti):</p>
 </div>
@@ -5317,8 +5350,7 @@ if (IPython.notebook.kernel != null) {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če funkcijo za izris slike pošljemo v funkcijo <code>interact</code>, slednja poskrbi za interaktivne gumbe, s katerimi lahko spreminajmo parametre klicanja funkcije <code>slika</code>:</p>
 </div>
@@ -5338,10 +5370,10 @@ if (IPython.notebook.kernel != null) {
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="9f617c81-de6e-49ec-a711-56472e2c9f1a"></div>
+<div id="871db685-e6ec-4c7d-b5a2-3baf21811bc6"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#9f617c81-de6e-49ec-a711-56472e2c9f1a');
+var element = $('#871db685-e6ec-4c7d-b5a2-3baf21811bc6');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "47995dfcf04d4fb396b69a6553b1c673", "version_major": 2, "version_minor": 0}
@@ -5352,8 +5384,7 @@ var element = $('#9f617c81-de6e-49ec-a711-56472e2c9f1a');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Razpon parametov lahko tudi sami definiramo:</p>
 </div>
@@ -5373,10 +5404,10 @@ var element = $('#9f617c81-de6e-49ec-a711-56472e2c9f1a');
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="edce7a39-de76-42ee-b659-ce22c2fb8cea"></div>
+<div id="dcce4f9d-2012-47e5-acca-b161478b36e2"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
+var element = $('#dcce4f9d-2012-47e5-acca-b161478b36e2');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "f1cda4d569094f30b76c7b5160a06302", "version_major": 2, "version_minor": 0}
@@ -5387,16 +5418,14 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Napredna-uporaba">Napredna uporaba<a class="anchor-link" href="#Napredna-uporaba">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Prikaz-več-funkcij">Prikaz več funkcij<a class="anchor-link" href="#Prikaz-več-funkcij">¶</a></h3><p>Poglejmo si preprost primer prikaza več funkcij:</p>
 </div>
@@ -5435,8 +5464,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Prikaz-več-slik">Prikaz več slik<a class="anchor-link" href="#Prikaz-več-slik">¶</a></h3><p>Več slik prikažemo s pomočjo metode <code>subplot</code>, ki definira mrežo in lego naslednjega izrisala.</p>
 <div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -5449,8 +5477,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Delujoči primer je:</p>
 </div>
@@ -5487,8 +5514,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Histogram">Histogram<a class="anchor-link" href="#Histogram">¶</a></h3><p>Generirajmo 10000 normalno porazdeljenih vzorcev in jih prikažimo v obliki histograma:</p>
 </div>
@@ -5519,16 +5545,14 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Uporaba-primerov-iz-matplotlib.org">Uporaba primerov iz <code>matplotlib.org</code><a class="anchor-link" href="#Uporaba-primerov-iz-matplotlib.org">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Primere iz <a href="http://matplotlib.org/gallery.html">galerije</a> lahko uvozimo s pomočjo magične funkcije <code>%load</code>.</p>
 <p>Poskusite:</p>
@@ -5540,16 +5564,14 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Naredite slovar lokalno nameščenih modulov (uporabite izpeljevanje slovarjev, ključ naj bo ime modula, vrednost naj bo verzija).</li>
@@ -5576,24 +5598,21 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Dodatno">Dodatno<a class="anchor-link" href="#Dodatno">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="numba"><code>numba</code><a class="anchor-link" href="#numba">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Paket <code>numba</code> se v zadnjem obdobju zelo razvija in lahko numerično izvajanje še dodatno pohitri (tudi v povezavi z grafičnimi karticami oz. GPU procesorji).</p>
 <p>Za zgled tukaj uporabimo <code>jit</code> (<a href="http://numba.pydata.org/numba-doc/dev/reference/jit-compilation.html">just-in-time compilation</a>) iz paketa <code>numba</code>:</p>
@@ -5612,8 +5631,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><code>jit</code> uporabimo kot <a href="https://docs.python.org/3/glossary.html#term-decorator">dekorator</a> funkcije, ki jo želimo pohitriti:</p>
 </div>
@@ -5636,8 +5654,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj definirajmo vektorja:</p>
 </div>
@@ -5657,8 +5674,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo hitrost <code>numpy</code> skalarnega produkta:</p>
 </div>
@@ -5688,8 +5704,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Preverimo še hitrost <code>numba</code> pohitrene verzije. Prvi klic izvedemo, da se izvede kompilacija, potem merimo čas:</p>
 </div>
@@ -5740,24 +5755,21 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vidimo, da smo še izboljšali hitrost!</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="matplotlib:-animacije,-povratni-klic,-XKCD-stil"><code>matplotlib</code>: animacije, povratni klic, XKCD stil<a class="anchor-link" href="#matplotlib:-animacije,-povratni-klic,-XKCD-stil">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Z <code>matplotlib</code> lahko pripravimo tudi <strong>animacije</strong>. Dva primera lahko najdete tukaj:</p>
 <ul>
@@ -5769,8 +5781,7 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Slika s <strong>povratnim klicem</strong> (angl. <em>call back</em>):</p>
 <ul>
@@ -5784,16 +5795,14 @@ var element = $('#edce7a39-de76-42ee-b659-ce22c2fb8cea');
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Za-najbolj-zagrete">Za najbolj zagrete<a class="anchor-link" href="#Za-najbolj-zagrete">¶</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
 <li>Naučite se še kaj novega na <a href="http://chrisalbon.com/">chrisalbon.com</a>.</li>
