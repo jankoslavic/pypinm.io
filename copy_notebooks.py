@@ -81,6 +81,10 @@ def copy_notebooks():
                 for nbname, htmlname in name_map.items():
                     if nbname in cell.source:
                         cell.source = cell.source.replace(nbname, htmlname)
+                    nbname2 = nbname.lower().replace(' ', '%20')
+                    if nbname2 in cell.source:
+                        htmlname2 = htmlname.lower().replace(' ', '%20')
+                        cell.source = cell.source.replace(nbname2, htmlname2)
                 for figname, newfigname in figure_map.items():
                     if figname in cell.source:
                         cell.source = cell.source.replace(figname, newfigname)
