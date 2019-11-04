@@ -1607,11 +1607,12 @@ izračunu!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">epsilon</span>
+<span class="mf">1e16</span><span class="o">+</span><span class="mi">2</span>
 <span class="c1">#sys.float_info #preverite tudi širši izpis!</span>
 </pre></div>
 </div>
@@ -1620,9 +1621,9 @@ izračunu!</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[1]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>2.220446049250313e-16</pre>
+<pre>1.0000000000000002e+16</pre>
 </div>
 </div>
 </div>
@@ -1638,11 +1639,11 @@ izračunu!</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In [25]:</div>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">število</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span> <span class="c1"># poskušite še števila: -128 in nato 127, 128, 129. Kaj se dogaja?</span>
+<span class="n">število</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="o">-</span><span class="mi">100028</span><span class="p">)</span> <span class="c1"># poskušite še števila: -128 in nato 127, 128, 129. Kaj se dogaja?</span>
 <span class="n">f</span><span class="s1">'Število </span><span class="si">{število}</span><span class="s1"> tipa {type(število)} zapisano v binari obliki:</span><span class="si">{število:8b}</span><span class="s1">'</span>
 </pre></div>
 </div>
@@ -1651,9 +1652,9 @@ izračunu!</p>
 <div class="output_wrapper">
 <div class="output">
 <div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[25]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>"Število 90 tipa <class 'numpy.int8'> zapisano v binari obliki: 1011010"</pre>
+<pre>"Število 68 tipa <class 'numpy.int8'> zapisano v binari obliki: 1000100"</pre>
 </div>
 </div>
 </div>
@@ -2314,7 +2315,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Od druge enačbe odšejemo prvo:</p>
+<p>Od druge enačbe odštejemo prvo:</p>
 </div>
 </div>
 </div>
@@ -2541,7 +2542,7 @@ $$\begin{bmatrix}
 \end{bmatrix}=
 \left[\begin{array}{cccc|c}
 A_{0,0}&A_{0,1}&\cdots & A_{0,n-1} & b_0\\
-A_{1,0}&A_{0,1}&\cdots & A_{1,n-1} & b_1\\
+A_{1,0}&A_{1,1}&\cdots & A_{1,n-1} & b_1\\
 \vdots&\vdots&\ddots & \vdots & \vdots\\
 A_{n-1,0}&A_{n-1,1}&\cdots & A_{n-1,n-1} & b_{n-1}\\
 \end{array}\right]
