@@ -1675,7 +1675,7 @@ določimo $\mathbf{x}$.</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[3]:</div>
 <div class="output_latex output_subarea output_execute_result">
-$$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\L_{21} U_{11} & L_{21} U_{12} + U_{22} & L_{21} U_{13} + U_{23}\\L_{31} U_{11} & L_{31} U_{12} + L_{32} U_{22} & L_{31} U_{13} + L_{32} U_{23} + U_{33}\end{matrix}\right]$$
+$\displaystyle \left[\begin{matrix}U_{11} & U_{12} & U_{13}\\L_{21} U_{11} & L_{21} U_{12} + U_{22} & L_{21} U_{13} + U_{23}\\L_{31} U_{11} & L_{31} U_{12} + L_{32} U_{22} & L_{31} U_{13} + L_{32} U_{23} + U_{33}\end{matrix}\right]$
 </div>
 </div>
 </div>
@@ -1706,7 +1706,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\L_{21} U_{11} & L_{21} U_{12} + 
 <div class="output_area">
 <div class="prompt output_prompt">Out[4]:</div>
 <div class="output_latex output_subarea output_execute_result">
-$$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & L_{32} U_{22} & L_{32} U_{23} + U_{33}\end{matrix}\right]$$
+$\displaystyle \left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & L_{32} U_{22} & L_{32} U_{23} + U_{33}\end{matrix}\right]$
 </div>
 </div>
 </div>
@@ -1735,7 +1735,7 @@ $$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & L_{32} 
 <div class="output_area">
 <div class="prompt output_prompt">Out[5]:</div>
 <div class="output_latex output_subarea output_execute_result">
-$$\left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{33}\end{matrix}\right]$$
+$\displaystyle \left[\begin{matrix}U_{11} & U_{12} & U_{13}\\0 & U_{22} & U_{23}\\0 & 0 & U_{33}\end{matrix}\right]$
 </div>
 </div>
 </div>
@@ -2113,9 +2113,9 @@ Korak: 1
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
+<pre>C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: divide by zero encountered in double_scalars
   """Entry point for launching an IPython kernel.
-c:\Users\slavic\AppData\Local\Continuum\anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
+C:\ProgramData\Anaconda3\lib\site-packages\ipykernel_launcher.py:1: RuntimeWarning: invalid value encountered in multiply
   """Entry point for launching an IPython kernel.
 </pre>
 </div>
@@ -2846,9 +2846,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[41]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
-       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
-       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
+<pre>array([[-0.16666667, -0.16666667,  0.        ],
+       [-0.27777778, -0.44444444, -0.33333333],
+       [-0.11111111, -0.44444444, -0.33333333]])</pre>
 </div>
 </div>
 </div>
@@ -2877,8 +2877,8 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="prompt output_prompt">Out[42]:</div>
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[ 1.00000000e+00,  0.00000000e+00,  1.11022302e-16],
-       [-1.11022302e-16,  1.00000000e+00, -1.11022302e-16],
-       [ 1.66533454e-16,  0.00000000e+00,  1.00000000e+00]])</pre>
+       [ 2.22044605e-16,  1.00000000e+00, -1.11022302e-16],
+       [-1.66533454e-16,  0.00000000e+00,  1.00000000e+00]])</pre>
 </div>
 </div>
 </div>
@@ -2907,9 +2907,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[43]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
-       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
-       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
+<pre>array([[-0.16666667, -0.16666667,  0.        ],
+       [-0.27777778, -0.44444444, -0.33333333],
+       [-0.11111111, -0.44444444, -0.33333333]])</pre>
 </div>
 </div>
 </div>
@@ -2938,9 +2938,9 @@ poiščemo rešitev za vsak $\mathbf{x}_i$ ($2\,n^2$ računskih operacij za vsak
 <div class="output_area">
 <div class="prompt output_prompt">Out[44]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[-1.66666667e-01, -1.66666667e-01,  1.38777878e-17],
-       [-2.77777778e-01, -4.44444444e-01, -3.33333333e-01],
-       [-1.11111111e-01, -4.44444444e-01, -3.33333333e-01]])</pre>
+<pre>array([[-0.16666667, -0.16666667,  0.        ],
+       [-0.27777778, -0.44444444, -0.33333333],
+       [-0.11111111, -0.44444444, -0.33333333]])</pre>
 </div>
 </div>
 </div>
@@ -3160,10 +3160,10 @@ $$\mathbf{x}=\mathbf{A}^+\,\mathbf{b}.$$</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[49]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[ 8.88178420e-15, -8.21565038e-15,  9.65894031e-15,
-        -8.65973959e-15,  1.04360964e-14, -7.10542736e-15],
-       [-5.66213743e-15,  4.71844785e-15, -5.66213743e-15,
-         4.49640325e-15, -6.21724894e-15,  3.55271368e-15]])</pre>
+<pre>array([[-4.44089210e-16,  2.77555756e-15,  0.00000000e+00,
+         3.33066907e-15, -1.11022302e-15,  2.77555756e-15],
+       [ 9.99200722e-16, -6.66133815e-16,  6.66133815e-16,
+        -6.66133815e-16,  1.11022302e-15, -1.11022302e-15]])</pre>
 </div>
 </div>
 </div>
