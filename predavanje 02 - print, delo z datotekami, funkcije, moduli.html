@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1593,7 +1602,7 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Za bolj splošno uporabo glejmo <a href="https://docs.python.org/library/functions.html#print">dokumentacijo</a>:</p>
-<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">objects</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">' '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
 </pre></div>
 <p>kjer so argumenti:</p>
 <ul>
@@ -1712,7 +1721,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">3.14</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'pi = </span><span class="si">{a}</span><span class="s1">'</span><span class="p">)</span>                <span class="c1"># f-niz</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'pi = </span><span class="si">{a}</span><span class="s1">'</span><span class="p">)</span>                <span class="c1"># f-niz</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'pi = </span><span class="si">{a}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">))</span>   <span class="c1"># .format</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'pi = </span><span class="si">%(a)3.2f</span><span class="s1">'</span> <span class="o">%</span> <span class="p">{</span><span class="s1">'a'</span><span class="p">:</span> <span class="n">a</span><span class="p">})</span> <span class="c1"># % </span>
 </pre></div>
@@ -1745,7 +1754,7 @@ pi = 3.14
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><em>f-niz</em> se vedno začne s <strong>f</strong> pred prvim narekovajem in omogoča zelo splošno oblikovanje (glejte <a href="https://docs.python.org/reference/lexical_analysis.html#f-strings">dokumentacijo</a>).</p>
 <p>Vrednost, ki jo želimo znotraj niza oblikovati, damo v zavite oklepaje:</p>
-<div class="highlight"><pre><span></span><span class="n">f</span><span class="s1">'besedilo... {ime_arg1:fmt1} ... besedilo...'</span>
+<div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">'besedilo... {ime_arg1:fmt1} ... besedilo...'</span>
 </pre></div>
 </div>
 </div>
@@ -1782,7 +1791,7 @@ pi = 3.14
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">višina</span> <span class="o">=</span> <span class="mf">1.84</span>
 <span class="n">ime</span> <span class="o">=</span> <span class="s1">'Marko'</span>
-<span class="n">tekst</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'</span><span class="si">{ime}</span><span class="s1"> je visok </span><span class="si">{višina}</span><span class="s1"> m ali tudi: </span><span class="si">{višina:e}</span><span class="s1"> m, </span><span class="si">{višina:7.3f}</span><span class="s1"> m.'</span>
+<span class="n">tekst</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{ime}</span><span class="s1"> je visok </span><span class="si">{višina}</span><span class="s1"> m ali tudi: </span><span class="si">{višina:e}</span><span class="s1"> m, </span><span class="si">{višina:7.3f}</span><span class="s1"> m.'</span>
 <span class="n">tekst</span>
 </pre></div>
 </div>
@@ -1851,7 +1860,7 @@ pi = 3.14
 <div class="prompt input_prompt">In [8]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'višina = </span><span class="si">{parametri["visina"]:7.3f}</span><span class="s1">, gostota = </span><span class="si">{parametri["gostota"]:7.3e}</span><span class="s1">'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'višina = </span><span class="si">{parametri["visina"]:7.3f}</span><span class="s1">, gostota = </span><span class="si">{parametri["gostota"]:7.3e}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -1897,7 +1906,7 @@ pi = 3.14
 <div class="prompt input_prompt">In [9]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'</span><span class="si">{višina:-^20}</span><span class="s1">'</span> <span class="c1"># pred ^ je znak s katerim zapolnimo levo in desno stran</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'</span><span class="si">{višina:-^20}</span><span class="s1">'</span> <span class="c1"># pred ^ je znak s katerim zapolnimo levo in desno stran</span>
 </pre></div>
 </div>
 </div>
@@ -1918,7 +1927,7 @@ pi = 3.14
 <div class="prompt input_prompt">In [10]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'</span><span class="si">{parametri["visina"]:_>20}</span><span class="s1">'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'</span><span class="si">{parametri["visina"]:_>20}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -1940,7 +1949,7 @@ pi = 3.14
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">4</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span>
-<span class="n">f</span><span class="s1">'Kompleksno število </span><span class="si">{c}</span><span class="s1"> je sestavljeno iz realnega (</span><span class="si">{c.real}</span><span class="s1">)</span><span class="se">\</span>
+<span class="sa">f</span><span class="s1">'Kompleksno število </span><span class="si">{c}</span><span class="s1"> je sestavljeno iz realnega (</span><span class="si">{c.real}</span><span class="s1">)</span><span class="se">\</span>
 <span class="s1">in imaginarnega (</span><span class="si">{c.imag}</span><span class="s1">) dela.'</span>
 </pre></div>
 </div>
@@ -2184,7 +2193,7 @@ pi = 3.14
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">neka_funkcija</span><span class="p">(</span><span class="n">student</span><span class="p">,</span> <span class="n">izpit</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="sd">''' Prva verzija funkcije'''</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Študent </span><span class="si">{student}</span><span class="s1"> se je prijavil na izpit: </span><span class="si">{izpit}</span><span class="s1">.'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Študent </span><span class="si">{student}</span><span class="s1"> se je prijavil na izpit: </span><span class="si">{izpit}</span><span class="s1">.'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2230,7 +2239,7 @@ pi = 3.14
     <span class="n">izpit</span> <span class="o">=</span> <span class="n">slovar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'izpit'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="c1"># True je privzeta vrednost</span>
     <span class="n">izpisi_sliko</span> <span class="o">=</span> <span class="n">slovar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'izpisi_sliko'</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># False je privzeta vrednost</span>
     
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Študent </span><span class="si">{student}</span><span class="s1"> se je prijavil na izpit: </span><span class="si">{izpit}</span><span class="s1">.'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Študent </span><span class="si">{student}</span><span class="s1"> se je prijavil na izpit: </span><span class="si">{izpit}</span><span class="s1">.'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">izpisi_sliko</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">'slika:)'</span><span class="p">)</span>
 </pre></div>
@@ -2297,10 +2306,10 @@ slika:)
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">oblika_a</span><span class="p">(</span><span class="n">vrednost</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">f</span><span class="s1">'Prikaz vrednosti: </span><span class="si">{vrednost}</span><span class="s1">'</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'Prikaz vrednosti: </span><span class="si">{vrednost}</span><span class="s1">'</span>
 
 <span class="k">def</span> <span class="nf">oblika_b</span><span class="p">(</span><span class="n">vrednost</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">f</span><span class="s1">'Prikaz vrednosti: </span><span class="si">{vrednost:3.2f}</span><span class="s1">'</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">'Prikaz vrednosti: </span><span class="si">{vrednost:3.2f}</span><span class="s1">'</span>
 
 <span class="k">def</span> <span class="nf">izpis</span><span class="p">(</span><span class="n">oblika</span><span class="p">,</span> <span class="n">vrednost</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">oblika</span><span class="p">(</span><span class="n">vrednost</span><span class="p">))</span>
@@ -2452,7 +2461,7 @@ slika:)
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">zunanja</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">def</span> <span class="nf">prva</span><span class="p">():</span>
     <span class="n">notranja</span> <span class="o">=</span> <span class="mi">5</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Tole je zunanja vrednost: </span><span class="si">{zunanja}</span><span class="s1">, tole pa notranja: </span><span class="si">{notranja}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Tole je zunanja vrednost: </span><span class="si">{zunanja}</span><span class="s1">, tole pa notranja: </span><span class="si">{notranja}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2634,7 +2643,7 @@ slika:)
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>od najmanjše do največje vrednosti. To lahko izvedemo z vgrajeno metodo <code>sort</code> (<a href="https://docs.python.org/3/library/stdtypes.html#list.sort">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">sort</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">sort</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 <p>Metoda ima dva opcijska argumenta:</p>
 <ul>
@@ -2715,8 +2724,8 @@ slika:)
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Delo z datotekami je pomembno, saj podatke pogosto shranjujemo v datoteke ali jih beremo iz njih. Datoteko, iz katere želimo brati ali vanjo pisati, moramo najprej odpreti. To izvedemo z ukazom <code>open</code> (<a href="https://docs.python.org/library/functions.html#open">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-    <span class="n">errors</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">closefd</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">opener</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">buffering</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">closefd</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opener</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>Od vseh argumentov je nujen samo <code>file</code>, ki definira pot do datoteke.</p>
 </div>
@@ -2849,7 +2858,7 @@ slika:)
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">datoteka</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s1">'</span><span class="si">{d:7.2e}</span><span class="se">\t</span><span class="s1"> </span><span class="si">{d:9.4e}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">datoteka</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{d:7.2e}</span><span class="se">\t</span><span class="s1"> </span><span class="si">{d:9.4e}</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3013,7 +3022,7 @@ konec
 
 <span class="o">---------------------------------------------------------------------------</span>
 <span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
-<span class="o"><</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">50</span><span class="o">-</span><span class="mo">05</span><span class="n">c9758a9c21</span><span class="o">></span> <span class="ow">in</span> <span class="o"><</span><span class="n">module</span><span class="o">></span><span class="p">()</span>
+<span class="o"><</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">50</span><span class="o">-</span><span class="mi">05</span><span class="n">c9758a9c21</span><span class="o">></span> <span class="ow">in</span> <span class="o"><</span><span class="n">module</span><span class="o">></span><span class="p">()</span>
 <span class="o">----></span> <span class="mi">1</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
 
 <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
@@ -3177,7 +3186,7 @@ konec
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ime_osebe</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ime_osebe</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">f</span><span class="s1">'Ime ni pričakovanega tipa `str`.'</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Ime ni pričakovanega tipa `str`.'</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">izjema</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">izjema</span><span class="p">)</span>
 </pre></div>
@@ -3503,7 +3512,7 @@ konec
 <div class="prompt input_prompt">In [56]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli</span> <span class="k">import</span> <span class="n">prvi_modul</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli</span> <span class="kn">import</span> <span class="n">prvi_modul</span>
 </pre></div>
 </div>
 </div>
@@ -3549,7 +3558,7 @@ konec
 <div class="prompt input_prompt">In [58]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli.prvi_modul</span> <span class="k">import</span> <span class="n">kvadrat</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli.prvi_modul</span> <span class="kn">import</span> <span class="n">kvadrat</span>
 </pre></div>
 </div>
 </div>
@@ -3595,7 +3604,7 @@ konec
 <div class="prompt input_prompt">In [60]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli.prvi_modul</span> <span class="k">import</span> <span class="n">kvadrat</span> <span class="k">as</span> <span class="n">sqr</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">moduli.prvi_modul</span> <span class="kn">import</span> <span class="n">kvadrat</span> <span class="k">as</span> <span class="n">sqr</span>
 <span class="n">sqr</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3770,7 +3779,7 @@ konec
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it
 <span class="n">datoteka</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'data/data.txt'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'w'</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="n">datoteka</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s1">'</span><span class="si">{d:7.2e}</span><span class="se">\n</span><span class="s1">'</span> <span class="p">)</span>
+    <span class="n">datoteka</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{d:7.2e}</span><span class="se">\n</span><span class="s1">'</span> <span class="p">)</span>
 <span class="n">datoteka</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -3906,7 +3915,7 @@ konec
 <div class="prompt input_prompt">In [68]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'{sedaj:%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S}'</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'{sedaj:%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S}'</span>
 </pre></div>
 </div>
 </div>
@@ -4204,7 +4213,7 @@ konec
 <span class="k">for</span> <span class="n">ime</span> <span class="ow">in</span> <span class="n">seznam</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">ime</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ime</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span> <span class="o">==</span> <span class="s1">'ipynb'</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Našel sem datoteko: </span><span class="si">{ime:s}</span><span class="s1">'</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Našel sem datoteko: </span><span class="si">{ime:s}</span><span class="s1">'</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
         <span class="k">if</span> <span class="n">i</span><span class="o">></span><span class="mi">3</span><span class="p">:</span>
             <span class="k">break</span>

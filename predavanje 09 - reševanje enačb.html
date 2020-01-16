@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1623,7 +1632,7 @@ $$f(x)=0.$$<p>Rešitvam enačbe rečemo tudi <em>koreni</em> (angl. <em>roots</e
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ker pa gre za polinom $x^3-10x^2+5$ s koeficienti <code>[1, -10, 0, 5]</code> pa je bolje, da ga definiramo s pomočjo <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html"><code>np.poly1d</code></a>:</p>
-<div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>kjer so parametri:</p>
 <ul>
@@ -2221,7 +2230,7 @@ $$n = \frac{\log\left(\frac{\Delta x}{\varepsilon}\right)}{\log(2)}.$$<p>Seveda 
     <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">x0</span><span class="o">+</span><span class="n">x1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
     <span class="k">if</span> <span class="n">izpis</span><span class="p">:</span>
         <span class="n">decimalk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">tol</span><span class="p">))</span> <span class="c1"># ne deluje vedno in za vse primere:)    </span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Rešitev: {r:5.</span><span class="si">{decimalk}</span><span class="s1">f}, število iteracij: </span><span class="si">{n:g}</span><span class="s1">, D: </span><span class="si">{D:5.5f}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Rešitev: {r:5.</span><span class="si">{decimalk}</span><span class="s1">f}, število iteracij: </span><span class="si">{n:g}</span><span class="s1">, D: </span><span class="si">{D:5.5f}</span><span class="s1">'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">r</span>
 </pre></div>
 </div>
@@ -2421,7 +2430,7 @@ $$n = \frac{\log\left(\frac{\Delta x}{\varepsilon}\right)}{\log(2)}.$$<p>Seveda 
 <div class="prompt input_prompt">In [22]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">bisect</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span>
 </pre></div>
 </div>
 </div>
@@ -2431,7 +2440,7 @@ $$n = \frac{\log\left(\frac{\Delta x}{\varepsilon}\right)}{\log(2)}.$$<p>Seveda 
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">2e-12</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">8.8817841970012523e-16</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
-    <span class="n">full_output</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">disp</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 <p>Funkcija <code>bisect</code> zahteva tri parametre: funkijo <code>f</code> ter parametra <code>a</code> in <code>b</code>, ki definirata zaprti interval <code>[a, b]</code>. Predznaka <code>f(a)</code> in <code>f(b)</code> morata biti različna. Ostali parametri, npr. absolutna <code>xtol</code> in relativna <code>rtol</code> napaka ter največje število iteracij <code>maxiter</code> so opcijski - imajo privzete vrednosti. Za več glejte <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.bisect.html">dokumentacijo</a>.</p>
 </div>
@@ -2690,7 +2699,7 @@ $$\varepsilon_n = C\,\varepsilon_{n-1}^{1.618}.$$<p>Iz zgornje ocene sledi, da s
             <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">x0</span><span class="o">+</span><span class="n">x1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
             <span class="k">if</span> <span class="n">izpis</span><span class="p">:</span>
                 <span class="n">decimalk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">tol</span><span class="p">))</span> <span class="c1"># ne deluje vedno in za vse primere:)    </span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Rešitev: {r:5.</span><span class="si">{decimalk}</span><span class="s1">f}, D: </span><span class="si">{D:5.5f}</span><span class="s1">'</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Rešitev: {r:5.</span><span class="si">{decimalk}</span><span class="s1">f}, D: </span><span class="si">{D:5.5f}</span><span class="s1">'</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">r</span>        
 </pre></div>
 </div>
@@ -2822,7 +2831,7 @@ Rešitev: 3.142, D: 0.00002
 <div class="prompt input_prompt">In [31]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">newton</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
 </pre></div>
 </div>
 </div>
@@ -2831,7 +2840,7 @@ Rešitev: 3.142, D: 0.00002
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>Funkcija <code>newton</code> zahteva dva parametra: funkcijo <code>func</code> ter začetno vrednost <code>x0</code>. Opcijska parametra sta še <code>fprime</code> in <code>fprime2</code> za prvi in drugi odvod funkcije <code>func</code>; če nista podana, se uporabi sekantna metoda (več o odvodih spodaj pri Newtonovi metodi). Največje število iteracij definira <code>maxiter</code>.</p>
 </div>
@@ -2862,7 +2871,7 @@ Rešitev: 3.142, D: 0.00002
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.e-8</span><span class="p">)</span>
-<span class="n">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
+<span class="sa">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -2926,9 +2935,9 @@ Rešitev: 3.142, D: 0.00002
 <div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">ridder</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">ridder</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">ridder</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1.e-8</span><span class="p">)</span>
-<span class="n">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
+<span class="sa">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -3070,7 +3079,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">'Verjetnost pola ali več ničel.'</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">izpis</span><span class="p">:</span>
                 <span class="n">decimalk</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">tol</span><span class="p">))</span> <span class="c1"># ne deluje vedno in za vse primere:)    </span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Rešitev: {x1:5.</span><span class="si">{decimalk}</span><span class="s1">f}, število iteracij: {i+1}, D: </span><span class="si">{D:5.8f}</span><span class="s1">'</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Rešitev: {x1:5.</span><span class="si">{decimalk}</span><span class="s1">f}, število iteracij: {i+1}, D: </span><span class="si">{D:5.8f}</span><span class="s1">'</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">x1</span>
         <span class="n">x0</span> <span class="o">=</span> <span class="n">x1</span>
     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">'Metoda po </span><span class="si">{:g}</span><span class="s1"> iteracijah ne konvergira'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_iter</span><span class="p">))</span>
@@ -3175,7 +3184,7 @@ $$C=-\frac{f''(x)}{2\,f'(x)}.$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1.48e-08</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">fprime2</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>Če v funkcijo <code>newton</code> poleg funkcije <code>func</code> in začetne vrednosti <code>x0</code> podamo tudi prvi odvod <code>fprime</code>, se dejansko uporabi Newtonova metoda.</p>
 </div>
@@ -3202,7 +3211,7 @@ $$x_{n+1}=x_{n}-\frac{2f(x_{n})f'(x_{n})}{2\,f'^{2}(x_{n})-f(x_{n})f''(x_{n})}$$
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-<span class="n">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
+<span class="sa">f</span><span class="s1">'Rezultat: </span><span class="si">{r:2.8f}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -3362,7 +3371,7 @@ $$\sum_j^{n-1}\left|x_{i,j}-x_{i-1,j}\right|<\varepsilon,$$<p>kjer je $i$ indeks
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Funkcija <code>scipy.optimize.root</code> ima obsežno <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root.html">dokumentacijo</a> in omogoča večje število različnih pristopov:</p>
-<div class="highlight"><pre><span></span><span class="n">root</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">method</span><span class="o">=</span><span class="s1">'hybr'</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">root</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">method</span><span class="o">=</span><span class="s1">'hybr'</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -3380,7 +3389,7 @@ $$\sum_j^{n-1}\left|x_{i,j}-x_{i-1,j}\right|<\varepsilon,$$<p>kjer je $i$ indeks
 <div class="prompt input_prompt">In [41]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">root</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root</span>
 </pre></div>
 </div>
 </div>
@@ -3622,8 +3631,8 @@ $$\left [ x^{2} + x y - 10, \quad 3 x y^{2} + y - 57\right ]$$
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">funkcije</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Število rešitev: {len(sol)}'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s1">'Prva rešitev: </span><span class="si">{sol[0]}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Število rešitev: {len(sol)}'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Prva rešitev: </span><span class="si">{sol[0]}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

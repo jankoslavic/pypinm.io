@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1644,7 +1653,7 @@ izračunu!</p>
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">število</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="o">-</span><span class="mi">100028</span><span class="p">)</span> <span class="c1"># poskušite še števila: -128 in nato 127, 128, 129. Kaj se dogaja?</span>
-<span class="n">f</span><span class="s1">'Število </span><span class="si">{število}</span><span class="s1"> tipa {type(število)} zapisano v binari obliki:</span><span class="si">{število:8b}</span><span class="s1">'</span>
+<span class="sa">f</span><span class="s1">'Število </span><span class="si">{število}</span><span class="s1"> tipa {type(število)} zapisano v binari obliki:</span><span class="si">{število:8b}</span><span class="s1">'</span>
 </pre></div>
 </div>
 </div>
@@ -1985,7 +1994,7 @@ $$\mathbf{A}\,\mathbf{x}=\mathbf{b}$$<p>kjer sta $\mathbf{A}$ in $\mathbf{b}$ zn
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Rang matrike pa lahko določimo tudi s pomočjo <code>numpy</code> funkcije <code>numpy.linalg.matrix_rank</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.matrix_rank.html">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>kjer je <code>M</code> matrika, katere rang iščemo, <code>tol</code> opcijski parameter, ki določa mejo, pod katero se vrednosti v algoritmu smatrajo enake nič.</p>
 </div>
@@ -2082,7 +2091,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 <div class="prompt input_prompt">In [12]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
 <span class="s1">število neznank: {len(A[:,0])}, det(A)={np.linalg.det(A)}'</span>
 </pre></div>
 </div>
@@ -2137,7 +2146,7 @@ $$\mathbf{x}=\mathbf{A^{-1}}\,\mathbf{b}.$$</p>
 <div class="prompt input_prompt">In [14]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
 <span class="s1">število neznank: {len(A[:,0])}, det(A)={np.linalg.det(A)}'</span>
 </pre></div>
 </div>
@@ -2194,7 +2203,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Pogojenost računamo z vgrajeno funkcijo <code>numpy.linalg.cond</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.cond.html">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">cond</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">cond</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>ki sprejme dva parametra: matriko <code>x</code> in opcijski tip norme <code>p</code> (privzeti tip je <code>None</code>; v tem primeru se uporabi Evklidska/Frobeniusova norma).</p>
 </div>
@@ -2295,7 +2304,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="prompt input_prompt">In [17]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="sa">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
 <span class="s1">število neznank: {len(A[:,0])}, det(A)={np.linalg.det(A)}'</span>
 </pre></div>
 </div>
@@ -2443,7 +2452,7 @@ $$||\textbf{A}||_{\infty}=\max_{1\le i\le n}\sum_{j=1}^n |A_{ij}|$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">Ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
-<span class="n">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
+<span class="sa">f</span><span class="s1">'rang(A)={np.linalg.matrix_rank(A)}, rang(Ab)={np.linalg.matrix_rank(Ab)}, </span><span class="se">\</span>
 <span class="s1">število neznank: {len(A[:,0])}, det(A)={np.linalg.det(A)}'</span>
 <span class="n">Ab</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">-=</span> <span class="n">Ab</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
 <span class="n">x1_</span> <span class="o">=</span> <span class="n">Ab</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">Ab</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>

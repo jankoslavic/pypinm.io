@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1618,7 +1627,7 @@ h6:hover .anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Pravokotnik</span><span class="p">:</span>
     <span class="sd">"""Razred za objekt pravokotnik"""</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">širina</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">višina</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># to je konstruktor objekta. Se izvede, ko kličemo Pravokotnik(sirina=1, visina=4)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">širina</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">višina</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span> <span class="c1"># to je konstruktor objekta. Se izvede, ko kličemo Pravokotnik(sirina=1, visina=4)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">širina</span> <span class="o">=</span> <span class="n">širina</span> 
         <span class="bp">self</span><span class="o">.</span><span class="n">višina</span> <span class="o">=</span> <span class="n">višina</span> <span class="c1"># višina je atribut objekta</span>
         
@@ -1845,7 +1854,7 @@ h6:hover .anchor-link {
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Kvadrat</span><span class="p">(</span><span class="n">Pravokotnik</span><span class="p">):</span>
     <span class="s2">"Razred kvadrat"</span>
     
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">širina</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">širina</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1"># kličimo iniciacijo razreda Pravokotnik</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">širina</span><span class="o">=</span><span class="n">širina</span><span class="p">,</span> <span class="n">višina</span><span class="o">=</span><span class="n">širina</span><span class="p">)</span>
         
@@ -3133,7 +3142,7 @@ $\displaystyle e^{x} + \sin{\left(x \right)}$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Bistveno hitrejši način je uporaba pristopa <code>lambdify</code>, kjer se pripravi prevedena funkcija, optimirana za numerično izvajanje. Sintaksa funkcije <code>sympy.lambdify()</code> je (<a href="http://docs.sympy.org/latest/modules/utilities/lambdify.html#sympy.utilities.lambdify.lambdify">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">simboli</span><span class="p">,</span> <span class="n">funkcija</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">simboli</span><span class="p">,</span> <span class="n">funkcija</span><span class="p">,</span> <span class="n">modules</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>kjer so argumenti:</p>
 <ul>
@@ -3259,7 +3268,7 @@ $\displaystyle e^{x} + \sin{\left(x \right)}$
 <div class="prompt input_prompt">In [56]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="k">import</span> <span class="n">plot</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot</span>
 </pre></div>
 </div>
 </div>
@@ -3415,7 +3424,7 @@ $\displaystyle e^{x} + \sin{\left(x \right)}$
 <div class="prompt input_prompt">In [60]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="k">import</span> <span class="n">plot_parametric</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot_parametric</span>
 </pre></div>
 </div>
 </div>
@@ -3477,7 +3486,7 @@ $\displaystyle e^{x} + \sin{\left(x \right)}$
 <div class="prompt input_prompt">In [62]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="k">import</span> <span class="n">plot3d</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.plotting</span> <span class="kn">import</span> <span class="n">plot3d</span>
 </pre></div>
 </div>
 </div>
@@ -4586,7 +4595,7 @@ $\displaystyle y \cos{\left(x y \right)}$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Taylorjeve vrste izračunamo s pomočjo funkcijo <code>sympy.series()</code> (<a href="http://docs.sympy.org/latest/modules/series/series.html#id1">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">'+'</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">series</span><span class="p">(</span><span class="n">izraz</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">'+'</span><span class="p">)</span>
 </pre></div>
 <p>kjer so argumenti:</p>
 <ul>
@@ -5355,8 +5364,8 @@ $\displaystyle \frac{d^{2}}{d t^{2}} x{\left(t \right)} = g$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Diferencialne enačbe in sisteme diferencialnih enačb rešujemo s funkcijo <code>sympy.dsolve()</code> (<a href="http://docs.sympy.org/latest/modules/solvers/ode.html#dsolve">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">'default'</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
-             <span class="n">ics</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">sympy</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="s1">'default'</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+             <span class="n">ics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xi</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 <p>kjer so izbrani argumenti:</p>
 <ul>

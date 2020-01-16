@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1634,8 +1643,8 @@ $$F_1 = F_2 = 1\qquad\textrm{in}\qquad F_n = F_{n-1} + F_{n-2}.$$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Python omogoča visok nivo abstrakcije in zato abstraktno kodo. Sedaj si bomo pogledali primer kode Python:</p>
-<div class="highlight"><pre><span></span><span class="err">š</span><span class="n">tevila</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># seznam števil</span>
-<span class="p">[</span><span class="err">š</span><span class="n">tevilo</span> <span class="k">for</span> <span class="err">š</span><span class="n">tevilo</span> <span class="ow">in</span> <span class="err">š</span><span class="n">tevila</span> <span class="k">if</span> <span class="err">š</span><span class="n">tevilo</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="n">števila</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="c1"># seznam števil</span>
+<span class="p">[</span><span class="n">število</span> <span class="k">for</span> <span class="n">število</span> <span class="ow">in</span> <span class="n">števila</span> <span class="k">if</span> <span class="n">število</span><span class="o">%</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -2177,7 +2186,7 @@ $$F_1 = F_2 = 1\qquad\textrm{in}\qquad F_n = F_{n-1} + F_{n-2}.$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sedaj smo pripravljeni na prvi program napisan v Pythonu:</p>
 <div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.0</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 <p>Program lahko zapišemo v poljubnem urejevalniku tekstovnih datotek (npr. <em>Beležka</em>/<em>Notepad</em>) in ga shranimo v datoteko <code>ime.py</code>.</p>
 </div>
@@ -2453,8 +2462,8 @@ $$F_1 = F_2 = 1\qquad\textrm{in}\qquad F_n = F_{n-1} + F_{n-2}.$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Do pomoči dostopamo tudi, tako, da pred funkcijo postavimo <code>?</code> (za pomoč) ali <code>??</code> (prikaže tudi izvorno kodo, če je ta na voljo).</p>
 <p>Primer:</p>
-<div class="highlight"><pre><span></span><span class="err">?</span><span class="k">print</span>
-<span class="err">??</span><span class="k">print</span>
+<div class="highlight"><pre><span></span><span class="err">?</span><span class="nb">print</span>
+<span class="err">??</span><span class="nb">print</span>
 </pre></div>
 </div>
 </div>
@@ -4180,13 +4189,13 @@ odstranjeni element: 1
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Stavek-if">Stavek <code>if</code><a class="anchor-link" href="#Stavek-if">¶</a></h3><p>Tipična oblika stavka <code>if</code> (<a href="https://docs.python.org/tutorial/controlflow.html#if-statements">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">pogoj0</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj0'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj0'</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">pogoj1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj1'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj1'</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">pogoj2</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj2'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Izpolnjen je bil pogoj2'</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">'Noben pogoj ni bil izpolnjen'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Noben pogoj ni bil izpolnjen'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -4268,7 +4277,7 @@ uporaba podpičja namesto nove vrstice
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poleg stavka <code>if</code> ima Python tudi izraz <code>if</code> (angl. <em>ternary operator</em>, glejte <a href="https://docs.python.org/faq/programming.html#is-there-an-equivalent-of-c-s-ternary-operator">dokumentacijo</a>).</p>
 <p>Sintaksa je:</p>
-<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">izvedi</span><span class="p">,</span> <span class="err">č</span><span class="n">e</span> <span class="n">je</span> <span class="bp">True</span><span class="p">]</span> <span class="k">if</span> <span class="n">pogoj</span> <span class="k">else</span> <span class="p">[</span><span class="n">izvedi</span><span class="p">,</span> <span class="err">č</span><span class="n">e</span> <span class="n">je</span> <span class="bp">False</span><span class="p">]</span>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="n">izvedi</span><span class="p">,</span> <span class="n">če</span> <span class="n">je</span> <span class="kc">True</span><span class="p">]</span> <span class="k">if</span> <span class="n">pogoj</span> <span class="k">else</span> <span class="p">[</span><span class="n">izvedi</span><span class="p">,</span> <span class="n">če</span> <span class="n">je</span> <span class="kc">False</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -4678,7 +4687,7 @@ Pari so:  3 in 30
 <div class="prompt input_prompt">In [84]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 </pre></div>
 </div>
 </div>

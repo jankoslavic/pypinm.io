@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-580147-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-580147-3');
+</script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="author" content="Janko Slavič">
@@ -1817,7 +1826,7 @@ $$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznank zapisa
     <span class="n">napaka</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linearna_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">naklon</span><span class="p">,</span> <span class="n">premik</span><span class="p">))</span>
     <span class="n">sprememba_napake_v_smeri_a0</span> <span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linearna_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">naklon</span><span class="o">+</span><span class="n">d</span><span class="p">,</span> <span class="n">premik</span><span class="p">))</span><span class="o">-</span><span class="n">napaka</span><span class="p">)</span><span class="o">/</span><span class="n">d</span>
     <span class="n">sprememba_napake_v_smeri_a1</span> <span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linearna_f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">naklon</span><span class="p">,</span> <span class="n">premik</span><span class="o">+</span><span class="n">d</span><span class="p">))</span><span class="o">-</span><span class="n">napaka</span><span class="p">)</span><span class="o">/</span><span class="n">d</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'S: </span><span class="si">{napaka:g}</span><span class="s1">, </span><span class="se">\</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'S: </span><span class="si">{napaka:g}</span><span class="s1">, </span><span class="se">\</span>
 <span class="s1">            $\Delta S/\Delta a_0$: </span><span class="si">{sprememba_napake_v_smeri_a0:g}</span><span class="s1">, </span><span class="se">\</span>
 <span class="s1">            $\Delta S/\Delta a_1$: </span><span class="si">{sprememba_napake_v_smeri_a1:g}</span><span class="s1">'</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
@@ -1834,7 +1843,7 @@ $$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznank zapisa
 <div class="prompt input_prompt">In [7]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="k">import</span> <span class="n">interact</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>
 <span class="n">interact</span><span class="p">(</span><span class="n">slika</span><span class="p">,</span> <span class="n">naklon</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">premik</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -1844,10 +1853,10 @@ $$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznank zapisa
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="63ec2ea4-6003-46e8-9e87-19af31c36ec6"></div>
+<div id="70681ee9-1561-4dfa-8c7a-a69ed90f5188"></div>
 <div class="output_subarea output_widget_view">
 <script type="text/javascript">
-var element = $('#63ec2ea4-6003-46e8-9e87-19af31c36ec6');
+var element = $('#70681ee9-1561-4dfa-8c7a-a69ed90f5188');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "835d1c63db9a4b88b194bf8be9b788c9", "version_major": 2, "version_minor": 0}
@@ -2319,7 +2328,7 @@ $$e_i=y_i - f(x_i)$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si, kako uporabimo knjižnico <code>numpy</code> za polinomsko aproksimacijo.</p>
 <p>Najprej uporabimo funkcijo <code>numpy.polyfit</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 <p>ki zahteva tri parametre: <code>x</code> in <code>y</code> predstavljata tabelo podatkov (lahko tudi v obliki seznamov vektorjev), <code>deg</code> pa stopnjo polinoma. Ostali parametri so opcijski (npr. <code>w</code> za uporabo uteži pri aproksimaciji).</p>
 <p>Funkcija <code>polyfit</code> vrne seznam koeficientov polinoma (najprej za najvišji red); rezultat je lahko tudi seznam seznamov (če so vhodni podatki seznam vektorjev).</p>
@@ -2380,7 +2389,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Ko imamo koeficiente, lahko ustvarimo objekt polinoma s klicem <code>numpy.poly1d</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html#numpy.poly1d">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>kjer <code>c_or_r</code> predstavlja seznam koeficientov polinoma oz. ničle polinoma v primeru, da je <code>r=True</code>. Funkcija vrne instanco objekta, s klicem katere lahko izračunamo vrednosti aproksimacijskega polinoma pri <code>x</code>, lahko pa izračunamo tudi druge stvari, kot na primer ničle polinoma.</p>
 </div>
@@ -2543,7 +2552,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Aproksimacijo z nelinearno funkcijo bomo izvedli s pomočjo <code>scipy.optimize.curve_fit</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html">dokumentacija</a>):</p>
-<div class="highlight"><pre><span></span><span class="n">curve_fit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">absolute_sigma</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">curve_fit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">absolute_sigma</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">inf</span><span class="p">,</span> <span class="n">inf</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">jac</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 <p>katera zahteva tri parametre: <code>f</code> predstavlja definicijo Python funkcije, s katero želimo aproksimirati, in katere parametre spreminjamo z uporabo metode najmanjših kvadratov. <code>xdata</code> in <code>ydata</code> predstavljata tabelo podatkov. Priporočeno je tudi, da definiramo približek iskanih parametrov <code>p0</code>. Ostali parametri so opcijski.</p>
 <p>Funkcija vrne dve numerični polji: <code>popt</code>, ki predstavlja najdene parametre ter <code>pcov</code>, ki predstavljajo ocenjeno kovarianco <code>popt</code>.</p>
@@ -2588,7 +2597,7 @@ $$e_i=y_i - f(x_i)$$</p>
 <div class="prompt input_prompt">In [28]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">curve_fit</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 </pre></div>
 </div>
 </div>
@@ -2801,7 +2810,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si objekt <code>scipy.interpolate.UnivariateSpline</code> (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.UnivariateSpline.html">dokumentacija</a>), ki omogoča tako interpolacijo kot aproksimacijo z zlepki:</p>
-<div class="highlight"><pre><span></span><span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 <p>Parametra <code>x</code> in <code>y</code> predstavljata tabelo podatkov.</p>
 </div>
@@ -2831,7 +2840,7 @@ $$y = [6.008, 15.722, 27.130, 33.772, 5.257, 9.549, 11.098, 28.828$$
 <div class="prompt input_prompt">In [34]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">UnivariateSpline</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">UnivariateSpline</span>
 <span class="n">spl</span> <span class="o">=</span> <span class="n">UnivariateSpline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span>
 </pre></div>
 </div>
