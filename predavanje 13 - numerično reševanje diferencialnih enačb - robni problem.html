@@ -1812,12 +1812,12 @@ $$
     <span class="n">f1</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">ciljna_lega</span><span class="o">=</span><span class="n">ciljna_lega</span><span class="p">)</span>
     <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">f1</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">f1</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span>
     <span class="n">err</span> <span class="o">=</span> <span class="n">r</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="n">x2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">ciljna_lega</span><span class="o">=</span><span class="n">ciljna_lega</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Novi približek je </span><span class="si">{x2}</span><span class="s1">, napaka je </span><span class="si">{err}</span><span class="s1">.'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Novi približek je </span><span class="si">{</span><span class="n">x2</span><span class="si">}</span><span class="s1">, napaka je </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s1">.'</span><span class="p">)</span>
     <span class="n">x0</span> <span class="o">=</span> <span class="n">x1</span>
     <span class="n">x1</span> <span class="o">=</span> <span class="n">x2</span>
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="o"><</span><span class="n">epsilon</span><span class="p">:</span>
         <span class="n">rešitev</span> <span class="o">=</span> <span class="n">x2</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Rešitev </span><span class="si">{rešitev}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Rešitev </span><span class="si">{</span><span class="n">rešitev</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
         <span class="k">break</span>
 </pre></div>
 </div>
