@@ -1700,7 +1700,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_vert</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
@@ -1722,7 +1722,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1744,7 +1744,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">r</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ciljna_lega</span><span class="o">=</span><span class="mf">10.</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
@@ -1770,7 +1770,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -1787,13 +1787,13 @@ $$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
+    <div class="prompt output_prompt">Out[72]:</div>
 
 
 
 
-<div class="output_text output_subarea output_execute_result">
-<pre>5.63455093999735</pre>
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle 5.63455093999735$
 </div>
 
 </div>
@@ -1813,7 +1813,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ciljna_lega</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1835,7 +1835,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="mi">100</span>
@@ -1894,7 +1894,7 @@ Rešitev 25.686503962731987
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">f_vert</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
@@ -1929,7 +1929,7 @@ Rešitev 25.686503962731987
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1951,7 +1951,7 @@ Rešitev 25.686503962731987
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vertikalni met&#39;</span><span class="p">)</span>
@@ -2024,7 +2024,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_poševno</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
@@ -2047,7 +2047,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">r_poševno</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="p">[</span><span class="mf">5.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">],</span> <span class="n">t</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ciljna_lega</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]),</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
@@ -2073,7 +2073,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_poševno</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="p">[</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">],</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
@@ -2089,7 +2089,7 @@ $$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[80]:</div>
 
 
 
@@ -2118,7 +2118,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
@@ -2139,7 +2139,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rešitev</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="n">r_poševno</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">]),</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
@@ -2160,7 +2160,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rešitev</span>
@@ -2176,7 +2176,7 @@ $$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[83]:</div>
 
 
 
@@ -2210,7 +2210,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">r_poševno</span><span class="p">(</span><span class="n">v0</span><span class="o">=</span><span class="n">rešitev</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
@@ -2226,7 +2226,7 @@ $$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[84]:</div>
 
 
 
@@ -2251,7 +2251,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">f_poševno</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=.</span><span class="mi">1</span><span class="p">),</span>
@@ -2275,7 +2275,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Poševni met&#39;</span><span class="p">)</span>
@@ -2372,7 +2372,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_bvp</span>
@@ -2393,7 +2393,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
@@ -2414,7 +2414,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mejni_preostanek</span><span class="p">(</span><span class="n">ya</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
@@ -2436,7 +2436,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
@@ -2459,7 +2459,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">f_poševno</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">9.81</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span> <span class="n">c</span><span class="o">=.</span><span class="mi">1</span><span class="p">),</span> 
@@ -2473,7 +2473,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">message</span>
@@ -2489,7 +2489,7 @@ $$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[92]:</div>
 
 
 
@@ -2514,7 +2514,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[93]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Poševni met&#39;</span><span class="p">)</span>
@@ -2623,7 +2623,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[94]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">q_konstanta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">F_0</span><span class="o">=</span><span class="mf">1e3</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
@@ -2651,7 +2651,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="mf">10.</span>
@@ -2664,7 +2664,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
@@ -2713,7 +2713,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[97]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">f_nosilec_konstanta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mf">2.1e11</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mf">2.1e-5</span><span class="p">):</span>
@@ -2739,7 +2739,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mejni_nosilec</span><span class="p">(</span><span class="n">ya</span><span class="p">,</span> <span class="n">yb</span><span class="p">):</span>
@@ -2761,7 +2761,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[99]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2784,7 +2784,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol_ko</span> <span class="o">=</span> <span class="n">solve_bvp</span><span class="p">(</span><span class="n">f_nosilec_konstanta</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="n">mejni_nosilec</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y0</span><span class="p">)</span>
@@ -2807,7 +2807,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">sol_ko</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sol_ko</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Poves $w$&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -2854,7 +2854,7 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">sol_ko</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">sol_ko</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Konstantna $w$&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -3060,7 +3060,7 @@ $$y_0=0,\qquad y_{n-1}=10$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1"># liho število</span>
@@ -3094,7 +3094,7 @@ $$y_0=0,\qquad y_{n-1}=10$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> \
@@ -3113,7 +3113,7 @@ $$y_0=0,\qquad y_{n-1}=10$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[104]:</div>
 
 
 
@@ -3141,7 +3141,7 @@ $$y_0=0,\qquad y_{n-1}=10$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[105]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">g</span><span class="o">*</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -3162,7 +3162,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[106]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -3178,7 +3178,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
@@ -3200,7 +3200,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_mkr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -3221,7 +3221,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[109]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Vertikalni met (upor zraka: $-c\,\dot y$)&#39;</span><span class="p">)</span>
@@ -3270,7 +3270,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="prompt input_prompt">In&nbsp;[110]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">v_mkr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y_mkr</span><span class="p">,</span><span class="n">h</span><span class="p">,</span> <span class="n">edge_order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -3288,7 +3288,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[42]:</div>
+    <div class="prompt output_prompt">Out[110]:</div>
 
 
 
@@ -3313,7 +3313,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[111]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n2h</span> <span class="o">=</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span>
@@ -3347,7 +3347,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[112]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y2h_mkr</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
@@ -3363,7 +3363,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[44]:</div>
+    <div class="prompt output_prompt">Out[112]:</div>
 
 
 
@@ -3389,7 +3389,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[113]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_mkr</span><span class="p">[:</span><span class="mi">12</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
@@ -3405,7 +3405,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[45]:</div>
+    <div class="prompt output_prompt">Out[113]:</div>
 
 
 
@@ -3431,7 +3431,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[114]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">y_mkr</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">y2h_mkr</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span>
@@ -3447,7 +3447,7 @@ $$y_0=0,\quad y_{n-1}=10.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[114]:</div>
 
 
 
@@ -3506,7 +3506,7 @@ $$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[115]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="mf">10.</span>
@@ -3533,7 +3533,7 @@ $$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[116]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="o">+</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> \
@@ -3554,7 +3554,7 @@ $$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[48]:</div>
+    <div class="prompt output_prompt">Out[116]:</div>
 
 
 
@@ -3582,7 +3582,7 @@ $$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[117]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
@@ -3600,7 +3600,7 @@ $$w_{-1}-2\,w_{0}+w_{1}=0\qquad w_{n-2}-2\,w_{n-1}+w_{n}=0.$$
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[49]:</div>
+    <div class="prompt output_prompt">Out[117]:</div>
 
 
 
@@ -3627,7 +3627,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[118]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -3651,7 +3651,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[119]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
@@ -3667,7 +3667,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[120]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[:</span><span class="mi">5</span><span class="p">,:</span><span class="mi">5</span><span class="p">]</span>
@@ -3683,7 +3683,7 @@ robnim pogojem.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[52]:</div>
+    <div class="prompt output_prompt">Out[120]:</div>
 
 
 
@@ -3704,7 +3704,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[121]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:,</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -3720,7 +3720,7 @@ robnim pogojem.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[121]:</div>
 
 
 
@@ -3741,7 +3741,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="prompt input_prompt">In&nbsp;[122]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -3757,7 +3757,7 @@ robnim pogojem.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[54]:</div>
+    <div class="prompt output_prompt">Out[122]:</div>
 
 
 
@@ -3775,7 +3775,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">:]</span>
@@ -3791,7 +3791,7 @@ robnim pogojem.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[123]:</div>
 
 
 
@@ -3817,7 +3817,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[56]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_mkr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
@@ -3838,7 +3838,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[57]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Poves ob polsinusni obremenitvi&#39;</span><span class="p">)</span>
@@ -3902,7 +3902,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sym</span>
@@ -3924,7 +3924,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[59]:</div>
+<div class="prompt input_prompt">In&nbsp;[136]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Function</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
@@ -3946,7 +3946,7 @@ robnim pogojem.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[67]:</div>
+<div class="prompt input_prompt">In&nbsp;[137]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">Eq</span><span class="p">(</span><span class="o">-</span><span class="n">E</span><span class="o">*</span><span class="n">I</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="o">-</span><span class="n">F_0</span><span class="o">*</span><span class="n">sym</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">sym</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">l</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
@@ -3963,7 +3963,7 @@ robnim pogojem.</p>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[67]:</div>
+    <div class="prompt output_prompt">Out[137]:</div>
 
 
 
@@ -3988,10 +3988,16 @@ $\displaystyle - E I \frac{d^{4}}{d x^{4}} w{\left(x \right)} - F_{0} \sin{\left
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[156]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">dsolve</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">hint</span><span class="o">=</span><span class="s1">&#39;nth_linear_constant_coeff_undetermined_coefficients&#39;</span><span class="p">,</span>
+                 <span class="n">ics</span><span class="o">=</span><span class="p">{</span>
+                     <span class="n">w</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span><span class="mi">0</span><span class="p">,</span>                      <span class="c1">#poves pri x=0 je nič</span>
+                     <span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span> <span class="mi">0</span><span class="p">,</span><span class="c1">#moment pri x=0 je nič</span>
+                     <span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span> <span class="mi">0</span><span class="p">,</span>                     <span class="c1">#poves pri x=l je nič</span>
+                     <span class="n">w</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span> <span class="mi">0</span> <span class="c1">#moment pri x=l je nič                 </span>
+                 <span class="p">})</span>
 <span class="n">sol</span>
 </pre></div>
 
@@ -3999,40 +4005,19 @@ $\displaystyle - E I \frac{d^{4}}{d x^{4}} w{\left(x \right)} - F_{0} \sin{\left
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Iz vrednosti rešitve pri $x=0$:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[62]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 <div class="output_wrapper">
 <div class="output">
 
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[62]:</div>
+    <div class="prompt output_prompt">Out[156]:</div>
 
 
 
 
 <div class="output_latex output_subarea output_execute_result">
-$\displaystyle C$
+$\displaystyle w{\left(x \right)} = - \frac{F_{0} l^{4} \sin{\left(\frac{\pi x}{l} \right)}}{\pi^{4} E I}$
 </div>
 
 </div>
@@ -4040,62 +4025,16 @@ $\displaystyle C$
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>in drugega odvoda rešitve pri $x=0$:</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[63]:</div>
+<div class="prompt input_prompt">In&nbsp;[159]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sol</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[63]:</div>
-
-
-
-
-<div class="output_latex output_subarea output_execute_result">
-$\displaystyle C$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>določimo konstanti <code>C1</code> in <code>C3</code> (pomik in moment na levi strani sta enaka nič):</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c1c3</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">podatki</span> <span class="o">=</span> <span class="p">{</span><span class="n">E</span><span class="p">:</span> <span class="mf">2.1e11</span><span class="p">,</span> <span class="n">I</span><span class="p">:</span> <span class="mf">2.1e-5</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">F_0</span><span class="p">:</span><span class="mf">1e3</span><span class="p">}</span>
+<span class="n">resitev_np</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">rhs</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">podatki</span><span class="p">),</span> <span class="n">modules</span><span class="o">=</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="n">x_ana</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">podatki</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y_ana</span> <span class="o">=</span> <span class="n">resitev_np</span><span class="p">(</span><span class="n">x_ana</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4103,63 +4042,17 @@ $\displaystyle C$
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Robni pogoji na desni strani ($x=l$):</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[160]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq1</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
-<span class="n">eq1</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[65]:</div>
-
-
-
-
-<div class="output_latex output_subarea output_execute_result">
-$\displaystyle \begin{cases} \frac{C l^{3}}{6} + \frac{C l^{2}}{2} + C l + C & \text{for}\: l > -\infty \wedge l < \infty \wedge l \neq 0 \\\frac{C l^{3}}{6} + \frac{C l^{2}}{2} + C l + C + \frac{F_{0} l^{4}}{6 \pi E I} & \text{for}\: \frac{\pi}{l} \neq 0 \\\frac{C l^{3}}{6} + \frac{C l^{2}}{2} + C l + C & \text{otherwise} \end{cases}$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Ker na desni strani ni pomika, sledi rešitev za konstanto <code>C2</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C2</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">eq1</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">C2</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Upogib ob polsinusni obremenitvi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_ana</span><span class="p">,</span> <span class="n">y_ana</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analitična rešitev&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$ [m]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -4175,129 +4068,16 @@ $\displaystyle \begin{cases} \frac{C l^{3}}{6} + \frac{C l^{2}}{2} + C l + C & \
     <div class="prompt"></div>
 
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-66-0f2a8d92f325&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>C2 <span class="ansi-yellow-intense-fg ansi-bold">=</span> sym<span class="ansi-yellow-intense-fg ansi-bold">.</span>solve<span class="ansi-yellow-intense-fg ansi-bold">(</span>eq1<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;C2&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span>
-<span class="ansi-green-fg">      2</span> C2
 
-<span class="ansi-red-intense-fg ansi-bold">IndexError</span>: list index out of range</pre>
-</div>
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
-</div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Ker ni momenta, sledi še:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">eq2</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
-<span class="n">eq2</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Določimo konstanto <code>C4</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C4</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
-      <span class="n">eq2</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="n">C2</span><span class="p">),</span>
-      <span class="s1">&#39;C4&#39;</span>
-     <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">C4</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Upoštevajoč izračunane konstante je rešitev:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">resitev</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">c1c3</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="n">C2</span><span class="p">)</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="s1">&#39;C4&#39;</span><span class="p">,</span> <span class="n">C4</span><span class="p">)</span>
-<span class="n">resitev</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Pripravimo še numerično funkcijo <code>resitev_np()</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">podatki</span> <span class="o">=</span> <span class="p">{</span><span class="n">E</span><span class="p">:</span> <span class="mf">2.1e11</span><span class="p">,</span> <span class="n">I</span><span class="p">:</span> <span class="mf">2.1e-5</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">F_0</span><span class="p">:</span><span class="mf">1e3</span><span class="p">}</span>
-<span class="n">resitev_np</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">lambdify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">resitev</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">podatki</span><span class="p">),</span> <span class="n">modules</span><span class="o">=</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
-<span class="n">x_ana</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">podatki</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">y_ana</span> <span class="o">=</span> <span class="n">resitev_np</span><span class="p">(</span><span class="n">x_ana</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Upogib ob polsinusni obremenitvi&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_ana</span><span class="p">,</span> <span class="n">y_ana</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Analitična rešitev&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$ [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$w$ [m]&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -4312,13 +4092,33 @@ $\displaystyle \begin{cases} \frac{C l^{3}}{6} + \frac{C l^{2}}{2} + C l + C & \
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[161]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_ana</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_mkr</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">sol_pol_sin</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[161]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle \left[ -0.02327594116013143, \  -0.023279847998899324, \  -0.02327864621402198\right]$
+</div>
+
+</div>
+
 </div>
 </div>
 
