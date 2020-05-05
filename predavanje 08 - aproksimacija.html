@@ -1853,10 +1853,10 @@ $$\mathbf{A}\,\mathbf{a}=\mathbf{b},$$<p>Opomba, tukaj smo vektor neznank zapisa
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="331662d8-345f-437c-97da-6d871beef9ca"></div>
+<div id="16d7b329-809c-4804-96b9-5d46201ee54d"></div>
 <div class="output_subarea output_widget_view">
 <script type="text/javascript">
-var element = $('#331662d8-345f-437c-97da-6d871beef9ca');
+var element = $('#16d7b329-809c-4804-96b9-5d46201ee54d');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "795e60098a9749cb96c86587886885d5", "version_major": 2, "version_minor": 0}
@@ -2416,7 +2416,7 @@ $$e_i=y_i - f(x_i)$$</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Poglejmo si, kako uporabimo knjižnico <code>numpy</code> za polinomsko aproksimacijo.</p>
-<p>Najprej uporabimo funkcijo <code>numpy.polyfit</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.polyfit.html">dokumentacija</a>):</p>
+<p>Najprej uporabimo funkcijo <code>numpy.polyfit</code> (<a href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">deg</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">full</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 <p>ki zahteva tri parametre: <code>x</code> in <code>y</code> predstavljata tabelo podatkov (lahko tudi v obliki seznamov vektorjev), <code>deg</code> pa stopnjo polinoma. Ostali parametri so opcijski (npr. <code>w</code> za uporabo uteži pri aproksimaciji).</p>
@@ -2477,7 +2477,7 @@ $$e_i=y_i - f(x_i)$$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Ko imamo koeficiente, lahko ustvarimo objekt polinoma s klicem <code>numpy.poly1d</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.poly1d.html#numpy.poly1d">dokumentacija</a>):</p>
+<p>Ko imamo koeficiente, lahko ustvarimo objekt polinoma s klicem <code>numpy.poly1d</code> (<a href="https://numpy.org/doc/stable/reference/generated/numpy.poly1d.html#numpy.poly1d">dokumentacija</a>):</p>
 <div class="highlight"><pre><span></span><span class="n">poly1d</span><span class="p">(</span><span class="n">c_or_r</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 <p>kjer <code>c_or_r</code> predstavlja seznam koeficientov polinoma oz. ničle polinoma v primeru, da je <code>r=True</code>. Funkcija vrne instanco objekta, s klicem katere lahko izračunamo vrednosti aproksimacijskega polinoma pri <code>x</code>, lahko pa izračunamo tudi druge stvari, kot na primer ničle polinoma.</p>
