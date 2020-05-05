@@ -1557,14 +1557,14 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h1>Kazalo<span class="tocSkip"></span></h1></p>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Testiranje-pravilnosti-kode" data-toc-modified-id="Testiranje-pravilnosti-kode-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Testiranje pravilnosti kode</a></span><ul class="toc-item"><li><span><a href="#pytest" data-toc-modified-id="pytest-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>pytest</a></span><ul class="toc-item"><li><span><a href="#Zgled:-test_orodja.py:" data-toc-modified-id="Zgled:-test_orodja.py:-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Zgled: <code>test_orodja.py</code>:</a></span></li></ul></li></ul></li><li><span><a href="#Grafični-uporabniški-vmesnik" data-toc-modified-id="Grafični-uporabniški-vmesnik-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Grafični uporabniški vmesnik</a></span><ul class="toc-item"><li><span><a href="#Grafični-uporabniški-vmesnik-znotraj-brskalnika" data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-brskalnika-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Grafični uporabniški vmesnik znotraj brskalnika</a></span></li><li><span><a href="#Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema" data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Grafični uporabniški vmesnik znotraj operacijskega sistema</a></span></li><li><span><a href="#Zgled" data-toc-modified-id="Zgled-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Zgled</a></span></li></ul></li><li><span><a href="#Nekaj-vprašanj-za-razmislek!" data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Nekaj vprašanj za razmislek!</a></span></li></ul></div>
+<div class="toc"><ul class="toc-item"><li><span><a data-toc-modified-id="Testiranje-pravilnosti-kode-1" href="#Testiranje-pravilnosti-kode"><span class="toc-item-num">1  </span>Testiranje pravilnosti kode</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="pytest-1.1" href="#pytest"><span class="toc-item-num">1.1  </span>pytest</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Zgled:-test_orodja.py:-1.1.1" href="#Zgled:-test_orodja.py:"><span class="toc-item-num">1.1.1  </span>Zgled: <code>test_orodja.py</code>:</a></span></li></ul></li></ul></li><li><span><a data-toc-modified-id="Grafični-uporabniški-vmesnik-2" href="#Grafični-uporabniški-vmesnik"><span class="toc-item-num">2  </span>Grafični uporabniški vmesnik</a></span><ul class="toc-item"><li><span><a data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-brskalnika-2.1" href="#Grafični-uporabniški-vmesnik-znotraj-brskalnika"><span class="toc-item-num">2.1  </span>Grafični uporabniški vmesnik znotraj brskalnika</a></span></li><li><span><a data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema-2.2" href="#Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema"><span class="toc-item-num">2.2  </span>Grafični uporabniški vmesnik znotraj operacijskega sistema</a></span></li><li><span><a data-toc-modified-id="Zgled-2.3" href="#Zgled"><span class="toc-item-num">2.3  </span>Zgled</a></span></li></ul></li><li><span><a data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3" href="#Nekaj-vprašanj-za-razmislek!"><span class="toc-item-num">3  </span>Nekaj vprašanj za razmislek!</a></span></li></ul></div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Testiranje-pravilnosti-kode">Testiranje pravilnosti kode<a class="anchor-link" href="#Testiranje-pravilnosti-kode">&#182;</a></h1>
+<h1 id="Testiranje-pravilnosti-kode">Testiranje pravilnosti kode<a class="anchor-link" href="#Testiranje-pravilnosti-kode">¶</a></h1>
 </div>
 </div>
 </div>
@@ -1572,7 +1572,6 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kadar razvijamo bolj obsežno kodo in pri tem sodeluje več oseb, se pojavi potreba po avtomatskem testiranju pravilnosti kode. To pomeni, da poleg kode, ki ima določen rezultat, definiramo tudi testirne funkcije; slednje preverjajo ali prve vračajo pričakovani rezultat.</p>
-
 </div>
 </div>
 </div>
@@ -1587,7 +1586,6 @@ h6:hover .anchor-link {
 <span class="k">def</span> <span class="nf">test_kvadrat</span><span class="p">():</span>
     <span class="k">assert</span> <span class="n">kvadrat</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
 </pre></div>
-
 </div>
 </div>
 </div>
@@ -1596,7 +1594,6 @@ h6:hover .anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če poženemo funkcijo <code>test_kvadrat()</code> se testira pravilnost <code>kvadrat(2) == 4</code>; v primeru, da je rezultat <code>True</code> se ne zgodi nič, če pa je rezultat <code>False</code> se sproži <code>AssertionError()</code> (glejte <a href="https://docs.python.org/reference/simple_stmts.html#assert">dokumentacijo</a> za ukaz <code>assert</code>). Ker funkcija <code>kvadrat()</code> vrne <code>x**2+1</code>, bo testiranje neuspešno.</p>
 <p>Verjetno se sprašujete v čem je smisel takega <em>testiranja pravilnosti</em>. Ko koda postaja obsežna in na njej dela veliko oseb, postane nujno tudi prepletena. Tako se lahko zgodi, da razvijalec doda novo funkcionalnost in nehote poruši obstoječo. Če so vse funkcionalnosti testirane, bo testiranje zaznalo neustreznost predlagane spremembe.</p>
-
 </div>
 </div>
 </div>
@@ -1604,9 +1601,8 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Večina paketov ima tako dodano testiranje pravilnosti; za primer si lahko pogledate izvorno kodo paketa <em>NumPy</em>, ki se nahaja na <a href="https://github.com/numpy/numpy/tree/master/numpy/">githubu</a>; če pogledate <a href="https://github.com/numpy/numpy/tree/master/numpy/linalg">vsebino</a> podmodula <code>numpy.linalg</code> za linearno algebro:</p>
-<p><img width=400 src='./fig/github_numpy_linalg.png'></p>
+<p><img src="./fig/github_numpy_linalg.png" width="400"/></p>
 <p>opazimo podmapo <code>tests</code>. Slednja je v celoti namenjena testiranju in vsebuje množico Python datotek, ki preverjajo ustreznost podmodula.</p>
-
 </div>
 </div>
 </div>
@@ -1620,21 +1616,19 @@ h6:hover .anchor-link {
 <li><a href="https://docs.pytest.org/"><code>pytest</code></a>.</li>
 </ul>
 <p>Vsi trije pristopi imajo podobno funkcionalnost. V zadnjem obdobju pa se najpogosteje uporablja <code>pytest</code> (npr. NumPy/SciPy), katerega osnove si bomo tukaj pogledali.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">&#182;</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo z ukazom <code>pip</code> ali <code>conda</code>.</p>
+<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">¶</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo z ukazom <code>pip</code> ali <code>conda</code>.</p>
 <p>Nekatere lastnosti:</p>
 <ul>
 <li>vrne opis testa, ki ni bil uspešen,</li>
 <li>samodejno iskanje testnih modulov in funkcij,</li>
 <li>lahko vključuje <code>unittest</code> in <code>nose</code> teste.</li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1642,7 +1636,6 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če v ukazni vrstici poženete <code>pytest</code>, bo program sam poiskal trenutno mapo in vse podmape za datoteke oblike <code>test_*.py</code> ali <code>*_test.py</code> (napredno iskanje je navedeno v <a href="https://docs.pytest.org/en/latest/goodpractices.html#test-discovery">dokumentaciji</a>).</p>
-
 </div>
 </div>
 </div>
@@ -1650,17 +1643,14 @@ h6:hover .anchor-link {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če v ukazni vrstici poženemo ukaz:</p>
-
 <pre><code>pytest</code></pre>
 <p>bomo dobili tako poročilo:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
 <pre><code>============================= test session starts =============================
 platform win32 -- Python 3.6.2, pytest-3.2.1, py-1.4.34, pluggy-0.4.0
 rootdir: c:\pypinm\moduli, inifile:
@@ -1673,13 +1663,12 @@ test_prvi.py F
 ________________________________ test_kvadrat _________________________________
 
     def test_kvadrat():
-&gt;       assert kvadrat(2) == 4
+>       assert kvadrat(2) == 4
 E       assert 5 == 4
 E        +  where 5 = kvadrat(2)
 
 test_prvi.py:5: AssertionError
 ===================== 1 failed, 3 passed in 0.65 seconds ======================</code></pre>
-
 </div>
 </div>
 </div>
@@ -1687,7 +1676,6 @@ test_prvi.py:5: AssertionError
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Iz poročila vidimo, da je program našel dve datoteki (<code>test_orodja.py</code> in <code>test_prvi.py</code>) in da je prišlo do napake pri eni funkciji (<code>test_kvadrat</code>), tri funkcije pa so uspešno prestale test.</p>
-
 </div>
 </div>
 </div>
@@ -1701,14 +1689,13 @@ test_prvi.py:5: AssertionError
 <li><code>assert_array_less(x, y[, err_msg, verbose])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less">dokumentacija</a>) preveri, ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
 <li><code>assert_string_equal(dejansko, pričakovano)</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_string_equal.html#numpy.testing.assert_string_equal">dokumentacija</a>) preveri enakost niza.</li>
 </ul>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zgled:-test_orodja.py:">Zgled: <code>test_orodja.py</code>:<a class="anchor-link" href="#Zgled:-test_orodja.py:">&#182;</a></h3><p>V datoteki <code>test_orodja.py</code> so pripravljene funkcije za testiranje modula <code>orodja.py</code>.</p>
+<h3 id="Zgled:-test_orodja.py:">Zgled: <code>test_orodja.py</code>:<a class="anchor-link" href="#Zgled:-test_orodja.py:">¶</a></h3><p>V datoteki <code>test_orodja.py</code> so pripravljene funkcije za testiranje modula <code>orodja.py</code>.</p>
 <p>Tako so najprej pripravljeni podatki:</p>
 <div class="highlight"><pre><span></span><span class="n">zacetna</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
                       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
@@ -1717,7 +1704,6 @@ test_prvi.py:5: AssertionError
                                     <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
                                     <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
 </pre></div>
-
 </div>
 </div>
 </div>
@@ -1730,7 +1716,6 @@ test_prvi.py:5: AssertionError
     <span class="n">b</span> <span class="o">=</span> <span class="n">orodja</span><span class="o">.</span><span class="n">zamenjaj_stolpca</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># b (in tudi a) imata zamenjane stolpce</span>
     <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">zamenjana_0_1_stolpca</span><span class="p">)</span>
 </pre></div>
-
 </div>
 </div>
 </div>
@@ -1738,14 +1723,13 @@ test_prvi.py:5: AssertionError
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Če funkcija <code>orodja.zamenjaj_stolpca()</code> deluje pravilno, se klicanje <code>pytest</code> v ukazni vrstici uspešno zaključi. Za preostale teste poglejte datoteko <code>test_orodja.py</code> in <a href="https://docs.pytest.org/">dokumentacijo</a> paketa <code>pytest</code>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik">Grafi&#269;ni uporabni&#353;ki vmesnik<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik">&#182;</a></h1>
+<h1 id="Grafični-uporabniški-vmesnik">Grafični uporabniški vmesnik<a class="anchor-link" href="#Grafični-uporabniški-vmesnik">¶</a></h1>
 </div>
 </div>
 </div>
@@ -1753,22 +1737,20 @@ test_prvi.py:5: AssertionError
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabniški vmesnik se uporablja za interakcijo uporabnika s programsko kodo. Uporabniški vmesniki so lahko preko ukazne vrstice ali grafični. Za preproste uporabniške vmesnike preko ukazne vrstice je najbolje, da uporabimo kar <a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a>, sicer pa se bomo tukaj predvsem osredotočili na <strong>grafični uporabniški vmesnik</strong>.</p>
-<h2 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-brskalnika">Grafi&#269;ni uporabni&#353;ki vmesnik znotraj brskalnika<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-brskalnika">&#182;</a></h2><p>V zadnjem obdobju je opaziti veliko napora pri podpori razvoja grafičnih vmesnikov znotraj okolja <em>Jupyter notebook</em> ali <em>Jupyter lab</em>. Takšen pristop ima predvsem to prednost, da je nadgradnja v obliki spletne aplikacije relativno enostavna, glejte npr.: <a href="https://www.youtube.com/watch?v=VtchVpoSdoQ">Dashboarding with Jupyter Notebooks, Voila and Widgets | SciPy 2019 | M. Breddels and M. Renou</a>.</p>
-
+<h2 id="Grafični-uporabniški-vmesnik-znotraj-brskalnika">Grafični uporabniški vmesnik znotraj brskalnika<a class="anchor-link" href="#Grafični-uporabniški-vmesnik-znotraj-brskalnika">¶</a></h2><p>V zadnjem obdobju je opaziti veliko napora pri podpori razvoja grafičnih vmesnikov znotraj okolja <em>Jupyter notebook</em> ali <em>Jupyter lab</em>. Takšen pristop ima predvsem to prednost, da je nadgradnja v obliki spletne aplikacije relativno enostavna, glejte npr.: <a href="https://www.youtube.com/watch?v=VtchVpoSdoQ">Dashboarding with Jupyter Notebooks, Voila and Widgets | SciPy 2019 | M. Breddels and M. Renou</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-operacijskega-sistema">Grafi&#269;ni uporabni&#353;ki vmesnik znotraj operacijskega sistema<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-operacijskega-sistema">&#182;</a></h2><p>v okviru tega poglavja si bomo pogledali klasične uporabniške vmesnike, ki jih poganjamo v okviru določenega operacijskega sistema. Tudi za programiranje grafičnega uporabniškega vmesnika obstaja veliko različnih načinov/modulov. Nekaj najpogosteje uporabljenih:</p>
+<h2 id="Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema">Grafični uporabniški vmesnik znotraj operacijskega sistema<a class="anchor-link" href="#Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema">¶</a></h2><p>v okviru tega poglavja si bomo pogledali klasične uporabniške vmesnike, ki jih poganjamo v okviru določenega operacijskega sistema. Tudi za programiranje grafičnega uporabniškega vmesnika obstaja veliko različnih načinov/modulov. Nekaj najpogosteje uporabljenih:</p>
 <ul>
 <li><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> temelji na <a href="https://www.qt.io/">Qt</a>, ki predstavlja najbolj razširjeno platforma za uporabniške vmesnike,</li>
 <li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em>, vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a>, a žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
 <li><a href="http://kivy.org/">Kivy</a> za hiter razvoj modernih uporabniških vmesnikov (ni tako zrel kakor npr. Qt),</li>
 <li><a href="https://www.wxwidgets.org/">wxWidgets</a> široko uporabljena prosta platforma za izdelavo uporabniških vmesnikov.</li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1782,14 +1764,13 @@ test_prvi.py:5: AssertionError
 <li><em>kodiramo</em>.</li>
 </ul>
 <p>Tukaj bomo uporabniški vmesnik <em>kodirali</em>.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">&#182;</a></h2>
+<h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">¶</a></h2>
 </div>
 </div>
 </div>
@@ -1797,51 +1778,44 @@ test_prvi.py:5: AssertionError
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Najprej uvozimo paket za interakcijo in z grafičnimi objekti:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>     <span class="c1"># za interakcijo </span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>     <span class="c1"># za interakcijo </span>
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>  <span class="c1"># grafični objekti</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Potrebovali bomo tudi modul <code>sys</code> za poganjanje programa:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Uporabniški vmesnik tipično gradimo na razredu <code>QtWidgets.QMainWindow</code> (<a href="http://doc.qt.io/qt-5/qmainwindow.html">dokumentacija</a>), ki ima  spodaj prikazano strukturo:</p>
-<p><img width=350 src="http://doc.qt.io/qt-5/images/mainwindowlayout.png"></p>
-
+<p><img src="http://doc.qt.io/qt-5/images/mainwindowlayout.png" width="350"/></p>
 </div>
 </div>
 </div>
@@ -1856,7 +1830,6 @@ test_prvi.py:5: AssertionError
 <li><em>Central Widget</em>,</li>
 <li><em>Status bar</em>.</li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1870,88 +1843,82 @@ test_prvi.py:5: AssertionError
 <li><a href="https://doc.qt.io/qt-5/gallery.html">Qt5 galeriji</a>.</li>
 </ul>
 <p>Zelo enostaven uporabniški vmesnik (z vrstičnimi komentarji kode) je prikazan spodaj.</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
 
 <span class="k">class</span> <span class="nc">GlavnOkno</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Glavno okno podeduje `QtWidgets.QMainWindow`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">""" Glavno okno podeduje `QtWidgets.QMainWindow`</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Konstruktor GlavnoOkno objekta</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="sd">""" Konstruktor GlavnoOkno objekta</span>
+<span class="sd">        """</span>
         <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="c1"># konstruktor starša</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Naslovno okno programa&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">'Naslovno okno programa'</span><span class="p">)</span>
  
         <span class="c1"># status bar</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStatusBar</span><span class="p">()</span> <span class="c1"># novi widget</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Ta tekst po 10s izgine&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">'Ta tekst po 10s izgine'</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setStatusBar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span><span class="p">)</span> <span class="c1"># tukaj se self.moj_status_bar priredi predpripravljenemu v QMainWindow</span>
 
         <span class="c1"># central widget</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Gumb 1&#39;</span><span class="p">)</span> <span class="c1"># Gumb z napisom &#39;Gumb 1&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">'Gumb 1'</span><span class="p">)</span> <span class="c1"># Gumb z napisom 'Gumb 1'</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span><span class="o">.</span><span class="n">pressed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">akcija_pri_pritisku_gumba1</span><span class="p">)</span> <span class="c1"># povežemo pritisk s funkcijo za akcijo</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span><span class="p">)</span> <span class="c1"># dodamo gumb v `CentralWidget`</span>
         
         <span class="c1"># menuji</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_izhod_akcija</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QAction</span><span class="p">(</span><span class="s1">&#39;&amp;Izhod&#39;</span><span class="p">,</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">moj_izhod_akcija</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QAction</span><span class="p">(</span><span class="s1">'&Izhod'</span><span class="p">,</span> 
                                              <span class="bp">self</span><span class="p">,</span> <span class="n">shortcut</span><span class="o">=</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeySequence</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span>
-                                             <span class="n">statusTip</span><span class="o">=</span><span class="s2">&quot;Izhod iz programa&quot;</span><span class="p">,</span>
+                                             <span class="n">statusTip</span><span class="o">=</span><span class="s2">"Izhod iz programa"</span><span class="p">,</span>
                                              <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_datoteka_menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">menuBar</span><span class="p">()</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="s1">&#39;&amp;Datoteka&#39;</span><span class="p">)</span> <span class="c1"># menu &#39;Datoteka&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">moj_datoteka_menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">menuBar</span><span class="p">()</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="s1">'&Datoteka'</span><span class="p">)</span> <span class="c1"># menu 'Datoteka'</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">moj_datoteka_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moj_izhod_akcija</span><span class="p">)</span> <span class="c1"># povezava do zgoraj definirane akcije `self.moj_izhod_akcija`</span>
         
     <span class="k">def</span> <span class="nf">akcija_pri_pritisku_gumba1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">about</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                                <span class="s1">&#39;Naslov :)&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;Tole se sproži pri pritisku gumba.&#39;</span><span class="p">)</span>
+                                <span class="s1">'Naslov :)'</span><span class="p">,</span>
+                                <span class="s1">'Tole se sproži pri pritisku gumba.'</span><span class="p">)</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Program potem poženemo znotraj stavka <code>try</code>:</p>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
     <span class="n">mainWindow</span> <span class="o">=</span> <span class="n">GlavnOkno</span><span class="p">()</span>
     <span class="n">mainWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zapiram okno.&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Zapiram okno.'</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">())</span>
 </pre></div>
-
-    </div>
 </div>
 </div>
-
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -1962,7 +1929,6 @@ test_prvi.py:5: AssertionError
 <li><a href="./moduli/uporabniski_vmesnik.py">uporabniski_vmesnik.py</a> in </li>
 <li><a href="./moduli/brskalnik.py">brskalnik.py</a>.</li>
 </ul>
-
 </div>
 </div>
 </div>
@@ -1976,14 +1942,13 @@ test_prvi.py:5: AssertionError
 <li>Spremenite program, da se bo vedno izrisovala funkcija sinus, v vpisno polje <code>function_text</code> pa boste zapisali število diskretnih točk (sedaj je točk 100).  Povežite polje z ustreznimi funkcijami.</li>
 <li>Uredite lovljenje napak pri zgornji spremembi.</li>
 </ol>
-
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nekaj-vpra&#353;anj-za-razmislek!">Nekaj vpra&#353;anj za razmislek!<a class="anchor-link" href="#Nekaj-vpra&#353;anj-za-razmislek!">&#182;</a></h1>
+<h1 id="Nekaj-vprašanj-za-razmislek!">Nekaj vprašanj za razmislek!<a class="anchor-link" href="#Nekaj-vprašanj-za-razmislek!">¶</a></h1>
 </div>
 </div>
 </div>
@@ -2009,12 +1974,9 @@ test_prvi.py:5: AssertionError
 <li>Odkomentirajte prej (zgoraj) zakomentirane vrstice. Dodajte tretji gumb, ki naj program zapre.</li>
 <li>Dodajte še kakšen <em>Widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
 </ol>
-
 </div>
 </div>
 </div>
- 
-
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
