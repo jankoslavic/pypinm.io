@@ -8,7 +8,7 @@ SITESUBTITLE = u'Fakulteta za strojništvo, Univerza v Ljubljani'
 SITEURL = 'https://jankoslavic.github.io/pypinm.io/'
 SITESUBURL = 'pypinm.io'
 PATH = 'content'
-TIMEZONE = 'France/Paris'
+TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = 'en'
 
 # Feed generation is usually not desired when developing
@@ -30,17 +30,23 @@ DEFAULT_PAGINATION = 10
 #MARKUP = ('md', 'ipynb')
 #PLUGINS = ['ipynb.markup']
 
-MARKUP = ['md']
-PLUGIN_PATHS = ['./plugins', './plugins/pelican-plugins']
-PLUGINS = [
-    'summary',       # auto-summarizing articles
-    'feed_summary',  # use summaries for RSS, not full articles
-    'ipynb.liquid',  # for embedding notebooks
-    'liquid_tags.img',  # embedding images
-    'liquid_tags.video',  # embedding videos
-    'liquid_tags.include_code',  # including code blocks
-    'liquid_tags.literal'
-]
+#MARKUP = ['md']
+#PLUGIN_PATHS = ['./plugins', './plugins/pelican-plugins']
+
+#PLUGINS = [
+#    'summary',       # auto-summarizing articles
+#    'feed_summary',  # use summaries for RSS, not full articles
+#    'ipynb.liquid',  # for embedding notebooks
+#    'liquid_tags.img',  # embedding images
+#    'liquid_tags.video',  # embedding videos
+#    'liquid_tags.include_code',  # including code blocks
+#    'liquid_tags.literal'
+#]
+MARKUP = ("md", "ipynb")
+
+from pelican_jupyter import markup as nb_markup
+PLUGINS = [nb_markup]
+
 IGNORE_FILES = ['.ipynb_checkpoints']
 
 # for liquid tags

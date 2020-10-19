@@ -5,15 +5,18 @@ ki jih poveže
 import os
 import nbformat
 import shutil
+import datetime
 
 EXCLUDE_NOTEBOOKS = ['Predavanje 10b - Taylorjeve vrste.ipynb',
                      'working.ipynb']
-PAGEFILE = """title: {title}
-url:
-save_as: {htmlfile}
-Template: {template}
-
-{{% notebook notebooks/{notebook_file} cells[{cells}] %}}
+PAGEFILE = """Title: {title}
+Slug: 
+Date: {date}
+Category:
+Tags:
+Author: Janko Slavič
+Summary:
+Subcells: [2, None]
 """
 
 INTRO_TEXT = """Ta domača stran je pripravljena na podlagi izvršljivega učbenika 
@@ -90,16 +93,13 @@ def copy_notebooks():
                         cell.source = cell.source.replace(figname, newfigname)
 
         nb_no_spaces = nb.replace(' ', '_')
-        nbformat.write(content, os.path.join(NB_DEST_DIR, nb_no_spaces))
+        nbformat.write(content, os.path.join(PAGE_DEST_DIR, nb_no_spaces))
 
-        pagefile = os.path.join(PAGE_DEST_DIR, base + '.md')
+        pagefile = os.path.join(PAGE_DEST_DIR, nb_no_spaces[:-6] + '.nbdata')
         htmlfile = base.lower() + '.html'
+        now = datetime.datetime.now()
         with open(pagefile, 'w', encoding='utf-8') as f:
-            f.write(PAGEFILE.format(title=title,
-                                    htmlfile=htmlfile,
-                                    notebook_file=nb_no_spaces,
-                                    template=template,
-                                    cells=cells))
+            f.write(PAGEFILE.format(title=title, date=now.strftime('%d.%m.%Y')))
 
 if __name__ == '__main__':
     copy_notebooks()
