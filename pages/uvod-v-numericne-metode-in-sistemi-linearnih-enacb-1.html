@@ -425,7 +425,7 @@ article .meta a.comments_btn:hover {
     <article>
         <header>
             <h1>Uvod v numerične metode in sistemi linearnih enačb (1)</h1>
-                <time datetime="page.date.isoformat()" pubdate>Fri 16 October 2020</time>
+                <time datetime="page.date.isoformat()" pubdate>Sun 15 November 2020</time>
         </header>
 
         <div class="article_content">
@@ -1566,12 +1566,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <p>Kadar želimo simulirati izbrani fizikalni proces, ponavadi postopamo takole:</p>
 <ol>
 <li>postavimo matematični model*,</li>
-</ol>
-<ul>
 <li>izberemo numerično metodo in njene parametre,</li>
 <li>pripravimo program (pomagamo si z vgrajenimi funkcijami),</li>
 <li>izvedemo izračun, rezultate analiziramo in vrednotimo.</li>
-</ul>
+</ol>
 <p>* Če lahko matematični model rešimo analitično, numerično reševanje ni potrebno.</p>
 
 </div>
@@ -1801,12 +1799,10 @@ $$\mathbf{A}\,\mathbf{x}=\mathbf{b}$$<p>kjer sta $\mathbf{A}$ in $\mathbf{b}$ zn
 <p>S pomočjo elementarnih operacij nad vrsticami matrike $\mathbf{A}$ jo lahko preoblikujemo v t. i. <strong>vrstično kanonično obliko</strong>:</p>
 <ol>
 <li>če obstajajo ničelne vrstice, so te na dnu matrike,</li>
-</ol>
-<ul>
 <li>prvi neničelni element se nahaja desno od prvih neničelnih elementov predhodnih vrstic,</li>
 <li>prvi neničelni element v <em>vrstici</em> imenujemo <strong>pivot</strong> in je enak 1,</li>
 <li>pivot je edini neničelni element v <em>stolpcu</em>.</li>
-</ul>
+</ol>
 <p><strong>Rang matrike</strong> predstavlja število neničelnih vrstic v vrstični kanonični obliki matrike; število neničelnih vrstic predstavlja <strong>število linearno neodvisnih enačb in je enako številu pivotnih elementov</strong>. <strong>Rang matrike je torej enak številu linearno neodvisnih vrstic matrike</strong>. Transponiranje matrike njenega ranga ne spremeni, zato je rang matrike enak tudi številu linearno neodvisnih <em>stolpcev</em> matrike.</p>
 
 </div>
@@ -3573,9 +3569,8 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
  $$</p>
 <p>najdite rešitev s pomočjo <code>np.linalg.solve()</code>.</p>
 </li>
-</ol>
-<ul>
-<li>Za zgoraj definirano matriko $\mathbf{A}$ določite Evklidsko normo (lastni program).</li>
+<li><p>Za zgoraj definirano matriko $\mathbf{A}$ določite Evklidsko normo (lastni program).</p>
+</li>
 <li>Za zgoraj definirano matriko $\mathbf{A}$ določite neskončno normo (lastni program).</li>
 <li>Za zgoraj definirano matriko $\mathbf{A}$ določite pogojenost (<code>numpy</code> funkcija).</li>
 <li>Definirajte funkcijo <code>gauss_elim</code>, ki za poljubno matriko $\mathbf{A}$ in vektor $\mathbf{b}$ izvede Gaussovo eliminacijo (posebej za matriko in posebej za vektor tako, da ne sestavite razširjene matrike $[\mathbf{A}|\mathbf{b}]$).</li>
@@ -3584,11 +3579,11 @@ Za rešitev $n$ linearnih enačb tako z Gaussovo eliminacijo potrebujemo pribli�
 <li><p>Na sliki je prikazan sistem mas:</p>
 <p><img width=600 src="./fig/mase_na_klancu.png"></p>
 <p>Predpostavite, da se sistem zaradi teže giblje po klancu navzdol z neznanim pospeškom $a$ in da so vrvi napete z neznanimi silami $F_i$. Znane veličine so (sami jih določite): posamično telo ima maso $m_i$, koeficient trenja s podlago $\mu_i=1$, $g=9,81$m/s$^2$, $\varphi=55^{\circ}$.
-  Določite sistem enačb v primeru dveh teles. Določite matriko koeficientov $\mathbf{A}$ in vektorja $\mathbf{b}$ ter $\mathbf{x}$.</p>
+ Določite sistem enačb v primeru dveh teles. Določite matriko koeficientov $\mathbf{A}$ in vektorja $\mathbf{b}$ ter $\mathbf{x}$.</p>
 </li>
 <li>Za zgoraj definiran sistem mas predpostavite, da je mas 4 (ali več) ter določite matriko koeficientov $\mathbf{A}$, in vektorja $\mathbf{x}$ ter $\mathbf{b}$. Rešite sistem s pomočjo Gaussove elimnacije/LU razcepa ali <code>np.linalg.solve</code>. Preverite pogojenost!</li>
 <li>V sistemu mas dobimo fizikalno nekonsistentno rešitev, če imamo v kateri od vrvi tlačno silo (vrv ne prenese tlačne sile). Preverite, ali je to v vašem primeru res. Ustrezno spremenite koeficient(e) trenja, da se bo to zgodilo.</li>
-</ul>
+</ol>
 
 </div>
 </div>
