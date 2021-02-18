@@ -15,7 +15,7 @@
         <meta name="author" content="Janko Slavič">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Testiranje pravilnosti kode, uporabniški vmesnik | Programiranje in numerične metode v ekosistemu Pythona</title>
+        <title>Programiranje in numerične metode 2020/21 <br><br> študijski in izpitni red | Programiranje in numerične metode v ekosistemu Pythona</title>
 
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -424,7 +424,7 @@ article .meta a.comments_btn:hover {
 
     <article>
         <header>
-            <h1>Testiranje pravilnosti kode, uporabniški vmesnik</h1>
+            <h1>Programiranje in numerične metode 2020/21 <br><br> študijski in izpitni red</h1>
                 <time datetime="page.date.isoformat()" pubdate>Thu 18 February 2021</time>
         </header>
 
@@ -1548,83 +1548,77 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
  .highlight pre  .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1>Kazalo<span class="tocSkip"></span></h1></p>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Testiranje-pravilnosti-kode" data-toc-modified-id="Testiranje-pravilnosti-kode-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Testiranje pravilnosti kode</a></span><ul class="toc-item"><li><span><a href="#pytest" data-toc-modified-id="pytest-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>pytest</a></span><ul class="toc-item"><li><span><a href="#Zgled:-test_orodja.py:" data-toc-modified-id="Zgled:-test_orodja.py:-1.1.1"><span class="toc-item-num">1.1.1&nbsp;&nbsp;</span>Zgled: <code>test_orodja.py</code>:</a></span></li></ul></li></ul></li><li><span><a href="#Grafični-uporabniški-vmesnik" data-toc-modified-id="Grafični-uporabniški-vmesnik-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Grafični uporabniški vmesnik</a></span><ul class="toc-item"><li><span><a href="#Grafični-uporabniški-vmesnik-znotraj-brskalnika" data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-brskalnika-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Grafični uporabniški vmesnik znotraj brskalnika</a></span></li><li><span><a href="#Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema" data-toc-modified-id="Grafični-uporabniški-vmesnik-znotraj-operacijskega-sistema-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Grafični uporabniški vmesnik znotraj operacijskega sistema</a></span></li><li><span><a href="#Zgled" data-toc-modified-id="Zgled-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Zgled</a></span></li></ul></li><li><span><a href="#Nekaj-vprašanj-za-razmislek!" data-toc-modified-id="Nekaj-vprašanj-za-razmislek!-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Nekaj vprašanj za razmislek!</a></span></li></ul></div>
+<h1 id="Predavanja-/-vaje">Predavanja / vaje<a class="anchor-link" href="#Predavanja-/-vaje">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Testiranje-pravilnosti-kode">Testiranje pravilnosti kode<a class="anchor-link" href="#Testiranje-pravilnosti-kode">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Kadar razvijamo bolj obsežno kodo in pri tem sodeluje več oseb, se pojavi potreba po avtomatskem testiranju pravilnosti kode. To pomeni, da poleg kode, ki ima določen rezultat, definiramo tudi testirne funkcije; slednje preverjajo ali prve vračajo pričakovani rezultat.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Preprosti primer je:</p>
-<div class="highlight"><pre><span></span><span class="c1"># vsebina datoteke test_prvi.py (mapa moduli)</span>
-<span class="k">def</span> <span class="nf">kvadrat</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># očitna napaka glede na ime funkcije</span>
-
-<span class="k">def</span> <span class="nf">test_kvadrat</span><span class="p">():</span>
-    <span class="k">assert</span> <span class="n">kvadrat</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Če poženemo funkcijo <code>test_kvadrat()</code> se testira pravilnost <code>kvadrat(2) == 4</code>; v primeru, da je rezultat <code>True</code> se ne zgodi nič, če pa je rezultat <code>False</code> se sproži <code>AssertionError()</code> (glejte <a href="https://docs.python.org/reference/simple_stmts.html#assert">dokumentacijo</a> za ukaz <code>assert</code>). Ker funkcija <code>kvadrat()</code> vrne <code>x**2+1</code>, bo testiranje neuspešno.</p>
-<p>Verjetno se sprašujete v čem je smisel takega <em>testiranja pravilnosti</em>. Ko koda postaja obsežna in na njej dela veliko oseb, postane nujno tudi prepletena. Tako se lahko zgodi, da razvijalec doda novo funkcionalnost in nehote poruši obstoječo. Če so vse funkcionalnosti testirane, bo testiranje zaznalo neustreznost predlagane spremembe.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Večina paketov ima tako dodano testiranje pravilnosti; za primer si lahko pogledate izvorno kodo paketa <em>NumPy</em>, ki se nahaja na <a href="https://github.com/numpy/numpy/tree/master/numpy/">githubu</a>; če pogledate <a href="https://github.com/numpy/numpy/tree/master/numpy/linalg">vsebino</a> podmodula <code>numpy.linalg</code> za linearno algebro:</p>
-<p><img width=400 src='./fig/github_numpy_linalg.png'></p>
-<p>opazimo podmapo <code>tests</code>. Slednja je v celoti namenjena testiranju in vsebuje množico Python datotek, ki preverjajo ustreznost podmodula.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Obstaja več možnosti testiranja kode, pogosto se uporabljajo sledeče:</p>
+<p><strong>Predavanja</strong>:</p>
 <ul>
-<li><a href="https://docs.python.org/library/unittest.html"><code>unittest</code></a> (je vgrajen v Python),</li>
-<li><a href="http://nose.readthedocs.io/en/latest/"><code>nose</code></a>,</li>
-<li><a href="https://docs.pytest.org/"><code>pytest</code></a>.</li>
+<li><strong>T</strong> 10:30 V/2<ul>
+<li><strong>Prof. dr. Janko Slavič</strong> (DS-P3, 01 4771 226, janko.slavic@fs.uni-lj.si)</li>
 </ul>
-<p>Vsi trije pristopi imajo podobno funkcionalnost. V zadnjem obdobju pa se najpogosteje uporablja <code>pytest</code> (npr. NumPy/SciPy), katerega osnove si bomo tukaj pogledali.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="pytest">pytest<a class="anchor-link" href="#pytest">&#182;</a></h2><p>Modul <code>pytest</code> je vključen v Anaconda distribucijo Pythona, sicer pa ga namestimo z ukazom <code>pip</code> ali <code>conda</code>.</p>
-<p>Nekatere lastnosti:</p>
+</li>
+</ul>
+<p><strong>Vaje</strong>:</p>
+<table>
+<thead><tr>
+<th>Ura</th>
+<th>as. Klemen Zaletelj</th>
+<th>as. Domen Gorjup</th>
+<th>Predavalnica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13:30</td>
+<td><strong>Č1</strong></td>
+<td><strong>Č2</strong></td>
+<td>I/4</td>
+</tr>
+<tr>
+<td>7:30</td>
+<td><strong>P1</strong></td>
+<td><strong>P2</strong></td>
+<td>I/4</td>
+</tr>
+<tr>
+<td>9:30</td>
+<td><strong>P3</strong></td>
+<td><strong>P4</strong></td>
+<td>I/4</td>
+</tr>
+<tr>
+<td>11:30</td>
+<td></td>
+<td><strong>P5</strong></td>
+<td>II/1</td>
+</tr>
+<tr>
+<td>12:30</td>
+<td><strong>P6</strong></td>
+<td></td>
+<td>I/4</td>
+</tr>
+<tr>
+<td>14:00</td>
+<td></td>
+<td><strong>P7</strong></td>
+<td>I/4</td>
+</tr>
+</tbody>
+</table>
+<p>Spletne povezave do predavanj in vaj so zbrane v <a href="https://e-ucilnica.fs.uni-lj.si/course/view.php?id=181">e-učilnici</a>.</p>
+<p><strong>Govorilne ure</strong></p>
 <ul>
-<li>vrne opis testa, ki ni bil uspešen,</li>
-<li>samodejno iskanje testnih modulov in funkcij,</li>
-<li>lahko vključuje <code>unittest</code> in <code>nose</code> teste.</li>
+<li><strong>ponedeljek, 13:30</strong> (Zoom povezava v <a href="https://e-ucilnica.fs.uni-lj.si/course/view.php?id=181">e-učilnici</a>)</li>
+</ul>
+<p>Asistenti:</p>
+<ul>
+<li>as. Domen Gorjup, (DS-P5, 01 4771 228, domen.gorjup@fs.uni-lj.si)</li>
+<li>as. Klemen Zaletelj, (DS-P5, 01 4771 228, klemen.zaletelj@fs.uni-lj.si)</li>
 </ul>
 
 </div>
@@ -1633,7 +1627,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če v ukazni vrstici poženete <code>pytest</code>, bo program sam poiskal trenutno mapo in vse podmape za datoteke oblike <code>test_*.py</code> ali <code>*_test.py</code> (napredno iskanje je navedeno v <a href="https://docs.pytest.org/en/latest/goodpractices.html#test-discovery">dokumentaciji</a>).</p>
+<p><strong>Spremljanje sprotnega študija, obvestila itd</strong></p>
+<p>Sproten študij bomo izvajali s pomočjo: <a href="http://moj.ladisk.si/">moj.ladisk.si</a>. Za prijavo uporabite email, ki ga imate v VIS-u. Video prikaz prijave: <a href="https://www.youtube.com/watch?v=kGhOcmRSJG4">če imate gmail</a>, <a href="https://www.youtube.com/watch?v=mYBZpz3bico">poljubni drugi email</a>.</p>
+<p><strong>Vprašanja in odgovori:</strong></p>
+<p>Vprašanja na temo predmeta ali tudi širše lahko postavite/odgovorite na portalu: <a href="http://pinm.ladisk.si">pinm.ladisk.si</a>.</p>
 
 </div>
 </div>
@@ -1641,10 +1638,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Če v ukazni vrstici poženemo ukaz:</p>
-
-<pre><code>pytest</code></pre>
-<p>bomo dobili tako poročilo:</p>
+<p><strong>Spletna učilnica (e-ucilnica.fs.uni-lj.si)</strong></p>
+<p>Spletne povezave do predavanj in vaj in s tem povezane vsebine najdete v <a href="https://e-ucilnica.fs.uni-lj.si/course/view.php?id=181">e-učilnici</a>.</p>
 
 </div>
 </div>
@@ -1652,321 +1647,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-
-<pre><code>============================= test session starts =============================
-platform win32 -- Python 3.6.2, pytest-3.2.1, py-1.4.34, pluggy-0.4.0
-rootdir: c:\pypinm\moduli, inifile:
-collected 4 items
-
-test_orodja.py ...
-test_prvi.py F
-
-================================== FAILURES ===================================
-________________________________ test_kvadrat _________________________________
-
-    def test_kvadrat():
-&gt;       assert kvadrat(2) == 4
-E       assert 5 == 4
-E        +  where 5 = kvadrat(2)
-
-test_prvi.py:5: AssertionError
-===================== 1 failed, 3 passed in 0.65 seconds ======================</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Iz poročila vidimo, da je program našel dve datoteki (<code>test_orodja.py</code> in <code>test_prvi.py</code>) in da je prišlo do napake pri eni funkciji (<code>test_kvadrat</code>), tri funkcije pa so uspešno prestale test.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Za osnovno uporabo pri numeričnih izračunih je treba še izpostaviti modul <code>numpy.testing</code> (<a href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html#">dokumentacija</a>), ki nudi podporo za testiranje numeričnih polj.</p>
-<p>Izbrane funkcije so:</p>
-<ul>
-<li><code>assert_allclose(dejansko, pričakovano[, rtol, ...])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_allclose.html#numpy.testing.assert_allclose">dokumentacija</a>) preveri enakost do zahtevane natančnosti,</li>
-<li><code>assert_array_less(x, y[, err_msg, verbose])</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_array_less.html#numpy.testing.assert_array_less">dokumentacija</a>) preveri, ali so elementi <code>x</code> manjši od elementov <code>y</code>,</li>
-<li><code>assert_string_equal(dejansko, pričakovano)</code> (<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.testing.assert_string_equal.html#numpy.testing.assert_string_equal">dokumentacija</a>) preveri enakost niza.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Zgled:-test_orodja.py:">Zgled: <code>test_orodja.py</code>:<a class="anchor-link" href="#Zgled:-test_orodja.py:">&#182;</a></h3><p>V datoteki <code>test_orodja.py</code> so pripravljene funkcije za testiranje modula <code>orodja.py</code>.</p>
-<p>Tako so najprej pripravljeni podatki:</p>
-<div class="highlight"><pre><span></span><span class="n">zacetna</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-                      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-                      <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
-<span class="n">zamenjana_0_1_stolpca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-                                    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
-                                    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Potem je definirana funkcija, ki kliče funkcijo <code>orodja.zamenjaj_stolpca()</code> in rezultat primerja s pričakovanim <code>zamenjana_0_1_stolpca</code>:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_stolpec</span><span class="p">():</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">zacetna</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># naredimo kopijo podatkov</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">orodja</span><span class="o">.</span><span class="n">zamenjaj_stolpca</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># b (in tudi a) imata zamenjane stolpce</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">zamenjana_0_1_stolpca</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Če funkcija <code>orodja.zamenjaj_stolpca()</code> deluje pravilno, se klicanje <code>pytest</code> v ukazni vrstici uspešno zaključi. Za preostale teste poglejte datoteko <code>test_orodja.py</code> in <a href="https://docs.pytest.org/">dokumentacijo</a> paketa <code>pytest</code>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik">Grafi&#269;ni uporabni&#353;ki vmesnik<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Uporabniški vmesnik se uporablja za interakcijo uporabnika s programsko kodo. Uporabniški vmesniki so lahko preko ukazne vrstice ali grafični. Za preproste uporabniške vmesnike preko ukazne vrstice je najbolje, da uporabimo kar <a href="https://docs.python.org/3/library/argparse.html"><code>argparse</code></a>, sicer pa se bomo tukaj predvsem osredotočili na <strong>grafični uporabniški vmesnik</strong>.</p>
-<h2 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-brskalnika">Grafi&#269;ni uporabni&#353;ki vmesnik znotraj brskalnika<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-brskalnika">&#182;</a></h2><p>V zadnjem obdobju je opaziti veliko napora pri podpori razvoja grafičnih vmesnikov znotraj okolja <em>Jupyter notebook</em> ali <em>Jupyter lab</em>. Takšen pristop ima predvsem to prednost, da je nadgradnja v obliki spletne aplikacije relativno enostavna, glejte npr.: <a href="https://www.youtube.com/watch?v=VtchVpoSdoQ">Dashboarding with Jupyter Notebooks, Voila and Widgets | SciPy 2019 | M. Breddels and M. Renou</a>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-operacijskega-sistema">Grafi&#269;ni uporabni&#353;ki vmesnik znotraj operacijskega sistema<a class="anchor-link" href="#Grafi&#269;ni-uporabni&#353;ki-vmesnik-znotraj-operacijskega-sistema">&#182;</a></h2><p>v okviru tega poglavja si bomo pogledali klasične uporabniške vmesnike, ki jih poganjamo v okviru določenega operacijskega sistema. Tudi za programiranje grafičnega uporabniškega vmesnika obstaja veliko različnih načinov/modulov. Nekaj najpogosteje uporabljenih:</p>
-<ul>
-<li><a href="https://riverbankcomputing.com/software/pyqt/intro">PyQt</a> temelji na <a href="https://www.qt.io/">Qt</a>, ki predstavlja najbolj razširjeno platforma za uporabniške vmesnike,</li>
-<li><a href="https://wiki.qt.io/PySide">PySide</a> podobno kakor <em>PyQt</em>, vendar s širšo licenco <a href="http://qt-project.org/wiki/PySide">LGPL</a>, a žal tudi slabšo podporo (tukaj je dobra knjiga: <a href="https://www.packtpub.com/application-development/pyside-gui-application-development-second-edition">PySide GUI Application Development - SE</a>),</li>
-<li><a href="http://kivy.org/">Kivy</a> za hiter razvoj modernih uporabniških vmesnikov (ni tako zrel kakor npr. Qt),</li>
-<li><a href="https://www.wxwidgets.org/">wxWidgets</a> široko uporabljena prosta platforma za izdelavo uporabniških vmesnikov.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Med vsemi naštetimi si bomo podrobneje pogledali <em>PyQt</em>, ki je verjetno najboljša in tudi najbolj dozorela izbira (za komercialno uporabo pa žal ni brezplačna).</p>
-<p>Velja omeniti, da uporabniški vmesnik lahko:</p>
-<ul>
-<li><em>rišemo</em> s <a href="http://doc.qt.io/qt-5/qtdesigner-manual.html">QtDesignerjem</a> (glejte <a href="https://www.youtube.com/watch?v=GLqrzLIIW2E">video</a>), ali </li>
-<li><em>kodiramo</em>.</li>
-</ul>
-<p>Tukaj bomo uporabniški vmesnik <em>kodirali</em>.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Zgled">Zgled<a class="anchor-link" href="#Zgled">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Najprej uvozimo paket za interakcijo in z grafičnimi objekti:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>     <span class="c1"># za interakcijo </span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>  <span class="c1"># grafični objekti</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Potrebovali bomo tudi modul <code>sys</code> za poganjanje programa:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Uporabniški vmesnik tipično gradimo na razredu <code>QtWidgets.QMainWindow</code> (<a href="http://doc.qt.io/qt-5/qmainwindow.html">dokumentacija</a>), ki ima  spodaj prikazano strukturo:</p>
-<p><img width=350 src="http://doc.qt.io/qt-5/images/mainwindowlayout.png"></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Bistveni grafični elementi, ki jih pri takem uporabniškem vmesniku uporabimo, so:</p>
-<ul>
-<li><em>Menu Bar</em>,</li>
-<li><em>Toolbars</em>,</li>
-<li><em>Dock Widgets</em>,</li>
-<li><em>Central Widget</em>,</li>
-<li><em>Status bar</em>.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Ni potrebno definirati vseh; spodaj si bomo pogledali primer, ko bomo definirali <em>Status bar</em>, <em>Central Widget</em> in <em>Menu Bar</em>. Ponavadi vse elemente definiramo pri inicializaciji instance razreda (metoda <code>__init__</code>).</p>
-<p>Tukaj izpostavimo, da grafični vmesnik temelji na t. i. <em>Widgetih</em>, (za na primer gumb, tabelo, datum itd.). Prikaz nekaterih možnosti je prikazan v:</p>
-<ul>
-<li><a href="https://doc.qt.io/qt-5/gallery.html">Qt 5 Windows galeriji</a>,</li>
-<li><a href="https://doc.qt.io/qt-5/gallery.html">Qt5 galeriji</a>.</li>
-</ul>
-<p>Zelo enostaven uporabniški vmesnik (z vrstičnimi komentarji kode) je prikazan spodaj.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtCore</span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtGui</span>
-<span class="kn">from</span> <span class="nn">PyQt5</span> <span class="kn">import</span> <span class="n">QtWidgets</span>
-
-<span class="k">class</span> <span class="nc">GlavnOkno</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Glavno okno podeduje `QtWidgets.QMainWindow`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Konstruktor GlavnoOkno objekta</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMainWindow</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="c1"># konstruktor starša</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Naslovno okno programa&#39;</span><span class="p">)</span>
- 
-        <span class="c1"># status bar</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QStatusBar</span><span class="p">()</span> <span class="c1"># novi widget</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s1">&#39;Ta tekst po 10s izgine&#39;</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setStatusBar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moj_status_bar</span><span class="p">)</span> <span class="c1"># tukaj se self.moj_status_bar priredi predpripravljenemu v QMainWindow</span>
-
-        <span class="c1"># central widget</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QPushButton</span><span class="p">(</span><span class="s1">&#39;Gumb 1&#39;</span><span class="p">)</span> <span class="c1"># Gumb z napisom &#39;Gumb 1&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span><span class="o">.</span><span class="n">pressed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">akcija_pri_pritisku_gumba1</span><span class="p">)</span> <span class="c1"># povežemo pritisk s funkcijo za akcijo</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gumb1</span><span class="p">)</span> <span class="c1"># dodamo gumb v `CentralWidget`</span>
-        
-        <span class="c1"># menuji</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_izhod_akcija</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QAction</span><span class="p">(</span><span class="s1">&#39;&amp;Izhod&#39;</span><span class="p">,</span> 
-                                             <span class="bp">self</span><span class="p">,</span> <span class="n">shortcut</span><span class="o">=</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QKeySequence</span><span class="o">.</span><span class="n">Close</span><span class="p">,</span>
-                                             <span class="n">statusTip</span><span class="o">=</span><span class="s2">&quot;Izhod iz programa&quot;</span><span class="p">,</span>
-                                             <span class="n">triggered</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_datoteka_menu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">menuBar</span><span class="p">()</span><span class="o">.</span><span class="n">addMenu</span><span class="p">(</span><span class="s1">&#39;&amp;Datoteka&#39;</span><span class="p">)</span> <span class="c1"># menu &#39;Datoteka&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">moj_datoteka_menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">moj_izhod_akcija</span><span class="p">)</span> <span class="c1"># povezava do zgoraj definirane akcije `self.moj_izhod_akcija`</span>
-        
-    <span class="k">def</span> <span class="nf">akcija_pri_pritisku_gumba1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">about</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                                <span class="s1">&#39;Naslov :)&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;Tole se sproži pri pritisku gumba.&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Program potem poženemo znotraj stavka <code>try</code>:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">app</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QApplication</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-    <span class="n">mainWindow</span> <span class="o">=</span> <span class="n">GlavnOkno</span><span class="p">()</span>
-    <span class="n">mainWindow</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Zapiram okno.&#39;</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">())</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Za naprednejši zgled glejte datoteki:</p>
-<ul>
-<li><a href="./moduli/preprosti_uporabniski_vmesnik.py">preprosti_uporabniski_vmesnik.py</a>,</li>
-<li><a href="./moduli/uporabniski_vmesnik.py">uporabniski_vmesnik.py</a> in </li>
-<li><a href="./moduli/brskalnik.py">brskalnik.py</a>.</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nekaj komentarjev na <code>uporabniski_vmesnik.py</code>:</p>
+<p><strong>Razpored predavanj</strong></p>
 <ol>
-<li>Poglejte prepis dogodka <code>mouseDoubleClickEvent</code> in prepišite podedovan dogodek <code>keyPressEvent</code>, ki naj ob pritisku katerekoli tipke zapre program (če se nahajate v TextEdit polju, potem seveda pritisk tipke izpiše vrednost te tipke).</li>
-<li>Dodajte še kakšen <em>Widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
-<li>Spremenite program, da se bo vedno izrisovala funkcija sinus, v vpisno polje <code>function_text</code> pa boste zapisali število diskretnih točk (sedaj je točk 100).  Povežite polje z ustreznimi funkcijami.</li>
-<li>Uredite lovljenje napak pri zgornji spremembi.</li>
+<li><a href="Predavanje%2001%20-%20Uvod%20v%20Python.ipynb">23.feb in 2. mar: Uvod v Python</a></li>
+<li><a href="Predavanje%2002%20-%20Print,%20delo%20z%20datotekami,%20funkcije,%20moduli.ipynb">9. in 16. mar: Print, delo z datotekami, funkcije, moduli</a></li>
+<li><a href="Predavanje%2003%20-%20Moduli,%20numpy,%20matplotlib.ipynb">16. in 23.mar: Moduli, numpy, matplotlib</a></li>
+<li><a href="Predavanje%2004%20-%20Objektno%20programiranje,%20simbolno%20računanje.ipynb">30.mar in 6.apr: Objektno programiranje, simbolno računanje</a></li>
+<li><a href="Predavanje%2014%20-%20Testiranje%20pravilnosti%20kode,%20uporabniški%20vmesnik.ipynb">6.apr: Testiranje pravilnosti kode, uporabniški vmesnik</a></li>
 </ol>
 
 </div>
@@ -1975,7 +1662,208 @@ test_prvi.py:5: AssertionError
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Nekaj-vpra&#353;anj-za-razmislek!">Nekaj vpra&#353;anj za razmislek!<a class="anchor-link" href="#Nekaj-vpra&#353;anj-za-razmislek!">&#182;</a></h1>
+<ol>
+<li><a href="Predavanje%2005%20-%20Uvod%20v%20numerične%20metode%20in%20sistemi%20linearnih%20enačb%201.ipynb">13.apr: Uvod v numerične metode in sistemi linearnih algebrajskih enačb 1</a>
+(<a href="Predavanje%2006%20-%20Sistemi%20linearnih%20enačb%202.ipynb">Sistemi linearnih enačb 2*</a>)</li>
+<li><a href="Predavanje%2007%20-%20Interpolacija.ipynb">20.apr: Interpolacija</a></li>
+<li><a href="Predavanje%2008%20-%20Aproksimacija.ipynb">4.maj: Aproksimacija</a></li>
+<li><a href="Predavanje%2009%20-%20Reševanje%20enačb.ipynb">11.maj: Reševanje enačb</a></li>
+<li><a href="Predavanje%2010%20-%20Numerično%20odvajanje.ipynb">18.maj: Numerično odvajanje</a></li>
+<li><p><a href="Predavanje%2011%20-%20Numerično%20integriranje.ipynb">25.maj: Numerično integriranje</a></p>
+<p>1.junij: Izbrane fakultativne vsebine</p>
+</li>
+<li><a href="Predavanje%2012%20-%20Numerično%20reševanje%20diferencialnih%20enačb%20-%20začetni%20problem.ipynb">Numerično reševanje diferencialnih enačb - začetni problem*</a></li>
+<li><a href="Predavanje%2013%20-%20Numerično%20reševanje%20diferencialnih%20enačb%20-%20robni%20problem.ipynb">Numerično reševanje diferencialnih enačb - robni problem*</a></li>
+<li><a href="+Uvod%20v%20Mathematico.nb">Uvod v Mathematico*</a></li>
+</ol>
+<p>* Fakultativno predavanje. Študentje Fakultete za strojništvo UNI-LJ imate možnost pridobiti licenčno verzijo programa Mathematica na tej <a href="http://www.fs.uni-lj.si/studijska_dejavnost/it_podpora/programska_oprema_za_studente/2015071415154271/Registracija%20Mathematica/">povezavi</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Sprotni-&#353;tudij">Sprotni &#353;tudij<a class="anchor-link" href="#Sprotni-&#353;tudij">&#182;</a></h1><p><img src="./fig/flowchart_pridobitev_ocene_pinm.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sestava-ocene">Sestava ocene<a class="anchor-link" href="#Sestava-ocene">&#182;</a></h2><ul>
+<li>7.5% sodelovanje pri predavanjih</li>
+<li>35% sodelovanje pri vajah* (vsaj 50%)</li>
+<li>7.5% tedenske domače naloge (osnove ekosistema Pythona) (vsaj 50%)</li>
+<li>15% tedenske domače naloge (numerične metode) (vsaj 50%)</li>
+<li>35% individualni projekt (vsaj 50%)</li>
+</ul>
+<p>* Na predavanja in vaje morate priti pripravljeni; uporabili bomo nekatere principe obratnega učenja! Če ne morete priti na vaje, pridete na prve govorilne ure na katere lahko.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Sodelovanje-na-vajah">Sodelovanje na vajah<a class="anchor-link" href="#Sodelovanje-na-vajah">&#182;</a></h2><p>Lestvica ocenjevanja je:</p>
+<ul>
+<li>100% - uspešno odgovorite vprašanje: tekoče napišete ustrezen program in ga tudi ustrezno argumentirate,</li>
+<li>75% - na vprašanje odgovorite delno, vendar z zadovoljivim razumevanjem.</li>
+<li>50% - na vprašanje odgovorite delno.</li>
+<li>0% - na vprašanje odgovorite z nezadovoljivim razumevanjem (tudi, če je koda pravilno napisana).</li>
+<li>0% - niste prisotni na vajah.</li>
+</ul>
+<p>Če ste na vajah prisotni in niste vprašani oziroma se ne javite sami, se to ne šteje k povprečju ocene vaj.
+Če ste bili ocenjeni z 0%, potem lahko oceno popravite na prvih naslednjih govorilnih urah, vendar lahko dosežete max 75%.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Individualni-projekt">Individualni projekt<a class="anchor-link" href="#Individualni-projekt">&#182;</a></h2><p>Se navezuje na poljubno vsebino katerega-koli predmeta na FS in ga študent definira sam.
+Projekt mora vsebovati sledeče vsebine:</p>
+<ul>
+<li><em>obdelava podatkov</em>, </li>
+<li><em>simbolno reševanje</em>, </li>
+<li><em>sistemi linearnih enačb</em>, </li>
+<li><em>interpolacija ali aproksimacija</em>,</li>
+<li><em>iskanje ničel</em>, </li>
+<li><em>integriranje ali odvajanje</em>, </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ocena individualnega projekta je sestavljena iz:</p>
+<ul>
+<li><em>numerična pravilnost</em> (30%), </li>
+<li><em>struktura, urejenost, uporaba lastnih modulov, stil kode (docstringi)</em> (30%), </li>
+<li><em>lasten odnos / kreativni dodatek</em> (30%),* </li>
+<li><em>pripravljeni testi kode in/ali uporabniški vmesnik</em> (10%).</li>
+</ul>
+<p>Oddaja: do roka (glejte pomembne datume spodaj) v obliki zip datoteke z imenom: <strong>Ime in priimek, vpisna številka.zip</strong> pošljete na email naslov svojega asistenta.</p>
+<p>V primeru oddaje vsaj 1 teden pred rokom, se uspeh množi z 1.1; v primeru zamude pa se upeh množi z  0.9𝑛 , kjer je  𝑛  število začetih dni zamude.</p>
+<p><strong>Predloga za oddajo je <a href="https://github.com/jankoslavic/pypinm/blob/master/projekt/Individualni%20projekt%20-%20predloga.ipynb">tukaj</a></strong>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>* Kot <strong>kreativni dodatek</strong> se tretira programska vsebina, ki na predavanjih in vajah ni bila posebej obravnavana. Kot na primer:</p>
+<ul>
+<li>animacija rezultatov z uporabo matplotlib-a,</li>
+<li>druge oblike naprednih prikazov (Plotly, Bokeh, vispy, pyqtgraph, VTK...),</li>
+<li>avtomatsko branje podatkov iz spleta, pošiljanje rezultatov po elektronski pošti,</li>
+<li>strojno generiranje poročila,</li>
+<li>uporaba knjižnjice Pandas, zapis rezultatov v bazo podatkov, MS Excel,</li>
+<li>uporaba platform Raspberry Pi, Arduino, zajem podatkov,</li>
+<li>izdelava spletne aplikacije (Flask, Django),</li>
+<li>uporaba modulov in knjižnic, kot so scikit-learn, TensorFlow, PyOpenCV.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Doma&#269;e-naloge-(moj.ladisk.si)">Doma&#269;e naloge (moj.ladisk.si)<a class="anchor-link" href="#Doma&#269;e-naloge-(moj.ladisk.si)">&#182;</a></h2><p><strong>Splošna navodila za reševanje</strong></p>
+<p>Tedenske domače naloge vam dodelimo v sistemu <a href="https://moj.ladisk.si/">moj.ladisk.si</a>. Domače naloge rešujete v okolju Jupyter Notebook.</p>
+<ul>
+<li><p>Datoteke, ki jih prenesete s spleta, shranite v obliki <code>.zip</code> arhiva (če vaš brskalnik datoteki ne doda končnice <code>.zip</code>, to storite sami).</p>
+</li>
+<li><p>Arhiv z datotekami, ki ga prenesete s spleta, razpakirate v celoti.</p>
+</li>
+<li>V mapi z razpakiranimi datotekami odprete ukazno okno in poženete ukaz <code>jupyter notebook</code>.</li>
+<li>Celice v <code>.ipynb</code> datoteki z domačo nalogo poganjate po vrsti (tudi celice povsem na vrhu datoteke!).</li>
+<li>Rezultati so pri reševanju posredovani v spletni sistem moj.ladisk.si in se samodejno sprotno preverjajo. Pri reševanju je <strong>nujna povezava s spletom</strong>.</li>
+</ul>
+<p>Pripravili smo tudi <a href="https://www.youtube.com/watch?v=6flGZqLKQh0">video navodila za reševanje</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Časovna omejitev reševanja domačih nalog</strong></p>
+<p>Domače naloge imajo definiran čas <em>okna za reševanje</em>:</p>
+<ul>
+<li><p>Do odprtja okna za reševanje je možno <strong>predčasno reševanje naloge brez časovne omejitve</strong>.</p>
+</li>
+<li><p>V oknu za reševanje je dovoljen čas reševanja naloge omejen. Časovna omejitev teče od trenutka, ko <em>znotraj okna za reševanje</em> nalogo prvič odprete.</p>
+</li>
+<li>Po zaprtju okna se naloga zapre, reševanje <strong>ni več možno</strong>.</li>
+</ul>
+<p>Svetujemo vam, da <em>čim večji del naloge rešite v času predčasnega reševanja, pred odprtjem okna za reševanje</em>.</p>
+<p><strong>Uporaba Jokerja za premik obveznosti</strong></p>
+<p>Vsakemu študentu sta pri predmetu na voljo dva Jokerja, ki jih lahko uporabite za premik obveznosti v prihodnost.</p>
+<ul>
+<li>Z uporabo Jokerja lahko okno za reševanje domače naloge premaknete za $\leq$ 14 dni naprej.</li>
+<li>Uporaba jokerja <strong>ni možna, če ste nalogo že odprli</strong>.</li>
+<li>Pred pričetkom okna za reševanje je za premik naloge potreben en Joker, v času okna za reševanje pa dva.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Predlog-ocene-na-podlagi-sprotnega-&#353;tudija">Predlog ocene na podlagi sprotnega &#353;tudija<a class="anchor-link" href="#Predlog-ocene-na-podlagi-sprotnega-&#353;tudija">&#182;</a></h2><p>Predlog ocene:</p>
+<ul>
+<li>50,0 do 57,5%: 6/6</li>
+<li>62,5 do 67,5%: 7/7</li>
+<li>72,5 do 77,5%: 8/8</li>
+<li>82,5 do 87,5%: 9/9</li>
+<li>92,5 do 100%: 10/10</li>
+</ul>
+<p>(Nedefinirana področja so vmesne ocene.)</p>
+<p>Individualni projekt in predlog ocene se zagovarja na ustnem zagovoru.</p>
+<p>Pri zagovoru upoštevamo tudi kvalitativno oceno sodelovanja na vajah, predavanjih ali pinm.ladisk.si (1000 točk je ekvivalent 1xP). Glejte <a href="http://lab.fs.uni-lj.si/ladisk/data/wiki/my.ladisk.si/doku.php?id=start#kaj_pomenijo_oznake_v_stolpcu_komentar">tudi</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pomembni-datumi">Pomembni datumi<a class="anchor-link" href="#Pomembni-datumi">&#182;</a></h2><ol>
+<li>Oddaja individualnega projekta: torek, 1. junij 2021, do 12h.</li>
+<li>Zagovori: prvi teden poletnega izpitnega obdobja.</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Izpit">Izpit<a class="anchor-link" href="#Izpit">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Če izpolnjujete pogoje za pristop k izpitu, potem lahko obveznosti opravite tudi z izpitom. Izpit se opravlja v dveh delih: 50 min preverjanje uporabe numeričnih metod za računalnikom (tipično dve nalogi, s sabo imate lahko poljubne pisne vire, dostopa do interneta ni, <a href="https://github.com/jankoslavic/pypinm/tree/master/primeri%20nalog%20in%20izpita/primer%20izpita">glejte primere nalog</a>), nato 60 min za tri teoretična vprašanja (<a href="https://github.com/jankoslavic/pypinm/blob/master/primeri%20nalog%20in%20izpita/NM_teorija.pdf">glejte primere vprašanj</a>). Za pozitivno oceno morata biti oba dela pozitivna.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Literatura">Literatura<a class="anchor-link" href="#Literatura">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -1983,24 +1871,34 @@ test_prvi.py:5: AssertionError
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li>V PyCharm-u pripravite modul, ki bo imel dve funkciji:<ul>
-<li>za množenje matrike in vektorja,</li>
-<li>za množenje dveh matrik.</li>
-</ul>
-</li>
-<li>Za modul zgoraj pripravite skripto za testiranje (uporabite <code>numpy.testing</code>).</li>
-<li>V <code>uporabniski_vmesnik_simple.py</code> inicializijski metodi <code>__init__</code> zakomentirajte vse klice na metode <code>self.init ...</code> razen na metodo: <code>self.init_status_bar()</code>. Poženite program v navadnem načinu. Nastavite <em>break</em> točko na <code>self.setGeometry(50, 50, 600, 400)</code> in poženite program v <em>debug</em> načinu.</li>
-<li><p>Nadaljujte prejšnjo točko in poiščite bližnjico za pomikanje po vrsticah:</p>
-<ul>
-<li>s preskokom vrstice,</li>
-<li><p>z vstopom v vrstico.</p>
-<p>Vstopite v <code>init_status_bar(self)</code> in se ustavite pri vrstici <code>self.setStatusBar(self.status_bar)</code>. Odprite konzolo (<em>console</em>) in prek ukazne vrstice spremenite vrednost <code>self.status_bar.showMessage()</code>.</p>
-</li>
-</ul>
-</li>
-<li>Odkomentirajte prej (zgoraj) zakomentirane vrstice. Dodajte tretji gumb, ki naj program zapre.</li>
-<li>Dodajte še kakšen <em>Widget</em> s <a href="http://doc.qt.io/qt-5/gallery-windows.html">seznama</a>.</li>
+<li>Slavič J.: Programiranje in numerične metode s Pythonom, <a href="https://github.com/jankoslavic/pypinm">izvršljiva knjiga</a> ali <a href="https://jankoslavic.github.io/pypinm.io/">spletna knjiga</a> ali <a href="https://github.com/jankoslavic/pypinm/raw/master/pdf/Programiranje%20in%20numeri%C4%8Dne%20metode%20v%20ekosistemu%20Pythona%20-%20zadnja%20verzija.pdf">pdf</a>, 2015-</li>
 </ol>
+<ul>
+<li>Petrišič J.: Uvod v Matlab za inženirje, 2011</li>
+<li>Demšar J. Python za programerje, 2012 (dosegljiva na spletu: <a href="http://goo.gl/PK1rUZ">http://goo.gl/PK1rUZ</a>, glejte tudi to spletno učilnico: <a href="http://goo.gl/n4pVUe">http://goo.gl/n4pVUe</a>)</li>
+<li>Nicolas P. Rougier: From Python to Numpy, 2017 <a href="http://www.labri.fr/perso/nrougier/from-python-to-numpy/">spletna knjiga</a></li>
+<li>Kiusalaas J: Numerical Methods in Engineering with Python 3, 2013</li>
+<li>Fangohr H. Python for Computational Science and Engineering, 2014  (dosegljiva na spletu: <a href="http://goo.gl/nCOfY0">http://goo.gl/nCOfY0</a>)</li>
+<li>Bucky R. Python 3.4 Programming Tutorials (videi dosegljivi na: <a href="http://goo.gl/ie6nfD">http://goo.gl/ie6nfD</a>)</li>
+<li><a href="https://www.projekt-tomo.si">Projekt TOMO</a> (več vsebin, glejte predvsem predmete na FMF in FRI)</li>
+<li><a href="http://www.scipy-lectures.org/">Scipy Lecture Notes</a></li>
+</ul>
+<p>Nekatere spletne učilnice na temo Pythona najdete na <a href="http://pinm.ladisk.si/9/katera-so-najbolj%C5%A1e-spletne-u%C4%8Dilnice-za-u%C4%8Denje-pythona">pinm.ladisk.si</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Pogoji-za-poslu&#353;anje-v-naprej?">Pogoji za poslu&#353;anje v naprej?<a class="anchor-link" href="#Pogoji-za-poslu&#353;anje-v-naprej?">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Predmeta ni mogoče opravljati v naprej.</p>
 
 </div>
 </div>
