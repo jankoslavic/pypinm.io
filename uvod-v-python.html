@@ -425,7 +425,7 @@ article .meta a.comments_btn:hover {
     <article>
         <header>
             <h1>Uvod v Python</h1>
-                <time datetime="page.date.isoformat()" pubdate>Tue 23 February 2021</time>
+                <time datetime="page.date.isoformat()" pubdate>Fri 03 September 2021</time>
         </header>
 
         <div class="article_content">
@@ -2378,7 +2378,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 <ul>
 <li>zamik: 4 presledki,</li>
 <li>en presledek pri operatorju <code>=</code>, torej: <code>a = 5</code> in ne <code>a=5</code>,</li>
-<li>spremenljivke in imena funkcij naj bodo opisne, pišemo jih s podčrtajem: <code>širina_calja = 5</code>,</li>
+<li>spremenljivke in imena funkcij naj bodo opisne, pišemo jih s podčrtajem: <code>širina_valja = 5</code>,</li>
 <li>za razrede uporabljamo t. i. format CamelCase.</li>
 </ul>
 
@@ -2782,11 +2782,11 @@ $$\sum F=m\,\ddot{x}$$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">a</span> <span class="ow">is</span> <span class="mi">1</span>
+<span class="n">a</span> <span class="o">==</span> <span class="mi">1</span>
 </pre></div>
 
     </div>
@@ -2799,7 +2799,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[35]:</div>
 
 
 
@@ -3020,7 +3020,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">celo_število</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="o">**</span><span class="mi">3000</span>         <span class="c1"># `**` predstavlja potenčni operator</span>
@@ -3039,24 +3039,22 @@ $$\sum F=m\,\ddot{x}$$</li>
 <h3 id="Operatorji-numeri&#269;nih-vrednosti">Operatorji numeri&#269;nih vrednosti<a class="anchor-link" href="#Operatorji-numeri&#269;nih-vrednosti">&#182;</a></h3><p>Podatkovni tipi razvrščeni po naraščajoči prioriteti (<a href="https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex">vir</a>):</p>
 <ol>
 <li><code>x + y</code> vsota,        </li>
-</ol>
-<ul>
-<li><code>x - y</code>razlika,        </li>
-<li><code>x * y</code> produkt,       </li>
-<li><code>x / y</code> deljenje,      </li>
+<li><code>x - y</code>razlika,       </li>
+<li><code>x * y</code> produkt,      </li>
+<li><code>x / y</code> deljenje,         </li>
 <li><code>x // y</code> celoštevilsko deljenje (rezultat je celo število zaokroženo navzdol),</li>
-<li><code>x % y</code> ostanek pri celoštevilskem deljenju,   </li>
-<li><code>-x</code> negiranje,    </li>
-<li><code>+x</code> nespremenjen,         </li>
+<li><code>x % y</code> ostanek pri celoštevilskem deljenju,  </li>
+<li><code>-x</code> negiranje,   </li>
+<li><code>+x</code> nespremenjen,        </li>
 <li><code>abs(x)</code> absolutna vrednost,</li>
 <li><code>int(x)</code> celo število tipa <code>int</code>,</li>
 <li><code>float(x)</code> racionalno število tipa <code>float</code>,</li>
 <li><code>complex(re, im)</code> compleksno število tipa <code>complex</code>,</li>
-<li><code>c.conjugate()</code> kompleksno konjugirano število,        </li>
+<li><code>c.conjugate()</code> kompleksno konjugirano število,       </li>
 <li><code>divmod(x, y)</code> vrne par <code>(x // y, x % y)</code>,</li>
 <li><code>pow(x, y)</code> vrne <code>x</code> na potenco <code>y</code>,</li>
-<li><code>x ** y</code>  vrne <code>x</code> na potenco <code>y</code>.</li>
-</ul>
+<li><code>x ** y</code> vrne <code>x</code> na potenco <code>y</code>.</li>
+</ol>
 
 </div>
 </div>
@@ -3119,7 +3117,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span> 
 <span class="n">a</span>
 </pre></div>
 
@@ -3174,7 +3172,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">21</span>  <span class="c1"># 21 v bitni obliki: 0001 0101 </span>
@@ -3194,7 +3192,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[46]:</div>
 
 
 
@@ -3219,7 +3217,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
@@ -3235,7 +3233,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[47]:</div>
 
 
 
@@ -3275,7 +3273,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;tekst&#39;</span> <span class="c1"># b je niz (string)</span>
@@ -3292,7 +3290,7 @@ $$\sum F=m\,\ddot{x}$$</li>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[61]:</div>
 
 
 
@@ -3398,7 +3396,7 @@ Celo število: 10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">terka_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;programiranje&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span>
@@ -3411,7 +3409,7 @@ Celo število: 10
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">terka_1</span>
@@ -3427,7 +3425,7 @@ Celo število: 10
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[72]:</div>
 
 
 
@@ -3453,7 +3451,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">terka_1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">)</span>
@@ -3469,7 +3467,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[74]:</div>
 
 
 
@@ -3590,7 +3588,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">terka_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -3606,7 +3604,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[77]:</div>
 
 
 
@@ -3649,7 +3647,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
@@ -3662,7 +3660,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span>
@@ -3678,7 +3676,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[34]:</div>
+    <div class="prompt output_prompt">Out[84]:</div>
 
 
 
@@ -3745,7 +3743,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">seznam</span>
@@ -3762,13 +3760,13 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[36]:</div>
+    <div class="prompt output_prompt">Out[85]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[10, 2, &#39;d&#39;]</pre>
+<pre>[1.0, 2, &#39;d&#39;]</pre>
 </div>
 
 </div>
@@ -3788,7 +3786,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9</span>
@@ -3805,7 +3803,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[37]:</div>
+    <div class="prompt output_prompt">Out[86]:</div>
 
 
 
@@ -3822,7 +3820,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span>
@@ -3838,7 +3836,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[38]:</div>
+    <div class="prompt output_prompt">Out[87]:</div>
 
 
 
@@ -4011,7 +4009,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>
@@ -4029,7 +4027,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[43]:</div>
+    <div class="prompt output_prompt">Out[91]:</div>
 
 
 
@@ -4054,7 +4052,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;na drugo mesto&#39;</span><span class="p">)</span>
@@ -4071,7 +4069,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[44]:</div>
+    <div class="prompt output_prompt">Out[92]:</div>
 
 
 
@@ -4096,7 +4094,7 @@ Npr. drugi element je tipa <code>str</code>, ki ima tudi metodo <code>replace</c
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[93]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">odstranjeni_element</span> <span class="o">=</span> <span class="n">seznam</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># odstani element z indeksom 2 in ga vrne </span>
@@ -4139,7 +4137,40 @@ odstranjeni element: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[94]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, &#39;na drugo mesto&#39;, &#39;test&#39;, &#39;dodajanje elementa&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">seznam</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
@@ -4155,7 +4186,7 @@ odstranjeni element: 1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[46]:</div>
+    <div class="prompt output_prompt">Out[95]:</div>
 
 
 
@@ -4439,7 +4470,7 @@ odstranjeni element: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">parametri</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;višina&#39;</span><span class="p">:</span> <span class="mf">5.2</span><span class="p">,</span> <span class="s1">&#39;širina&#39;</span><span class="p">:</span> <span class="mi">43</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">:</span> <span class="mf">9.81</span><span class="p">}</span>
@@ -4456,7 +4487,7 @@ odstranjeni element: 1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[53]:</div>
+    <div class="prompt output_prompt">Out[103]:</div>
 
 
 
@@ -4528,7 +4559,7 @@ odstranjeni element: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="prompt input_prompt">In&nbsp;[110]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">parametri</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -4544,7 +4575,7 @@ odstranjeni element: 1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[55]:</div>
+    <div class="prompt output_prompt">Out[110]:</div>
 
 
 
@@ -5112,7 +5143,7 @@ odstranjeni element: 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="prompt input_prompt">In&nbsp;[118]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;taka oblika je odsvetovana&#39;</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="s1">&#39;-&#39;</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;uporaba podpičja namesto nove vrstice&#39;</span><span class="p">)</span>
@@ -5248,7 +5279,7 @@ uporaba podpičja namesto nove vrstice
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[123]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
@@ -5316,7 +5347,7 @@ uporaba podpičja namesto nove vrstice
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">imena</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Jaka&#39;</span><span class="p">,</span> <span class="s1">&#39;Miki&#39;</span><span class="p">,</span> <span class="s1">&#39;Luka&#39;</span><span class="p">,</span> <span class="s1">&#39;Anja&#39;</span><span class="p">]</span>
@@ -5404,7 +5435,7 @@ g = 9.81
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -5468,7 +5499,7 @@ Pari so:  3 in 30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
@@ -5518,7 +5549,7 @@ Pari so:  3 in 30
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[128]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ime</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imena</span><span class="p">):</span>
