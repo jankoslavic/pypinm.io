@@ -99,7 +99,7 @@ def copy_notebooks():
         htmlfile = base.lower() + '.html'
         now = datetime.datetime.now()
         with open(pagefile, 'w', encoding='utf-8') as f:
-            f.write(PAGEFILE.format(title=title, date=now.strftime('%d.%m.%Y')))
+            f.write(PAGEFILE.format(title=title, date=now.strftime('%m.%d.%Y')))
 
 if __name__ == '__main__':
     copy_notebooks()
